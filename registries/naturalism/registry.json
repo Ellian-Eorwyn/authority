@@ -1,0 +1,95 @@
+{
+  "registry_id": "reg-b32bed3fc8eb",
+  "asr_spec_version": "0.1.0",
+  "title": "Naturalism — Flora, Fauna & Fungi",
+  "description": "Authoritative sources for natural-history research: occurrence data, taxonomy, nomenclature, and bioacoustics, chosen to exercise every access pattern (keyless REST, header keys, basic-auth downloads, render-delegated apps).",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1200,
+    "user_agent_contact": "mailto:ellianeorwyn@gmail.com"
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/"
+  },
+  "sources": [
+    {
+      "source_id": "asc-7e76c71f2c59",
+      "slug": "ebird",
+      "name": "eBird",
+      "path": "sources/ebird/",
+      "verification_state": "asserted"
+    },
+    {
+      "source_id": "asc-f801b7658bf7",
+      "slug": "flora-of-north-america",
+      "name": "Flora of North America",
+      "path": "sources/flora-of-north-america/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-ff426711a2a0",
+      "slug": "gbif",
+      "name": "GBIF",
+      "path": "sources/gbif/",
+      "verification_state": "asserted"
+    },
+    {
+      "source_id": "asc-e05d090415a7",
+      "slug": "inaturalist",
+      "name": "iNaturalist",
+      "path": "sources/inaturalist/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-f868bb6eca33",
+      "slug": "mycobank",
+      "name": "MycoBank",
+      "path": "sources/mycobank/",
+      "verification_state": "broken"
+    },
+    {
+      "source_id": "asc-890e442eaef3",
+      "slug": "usda-plants-database",
+      "name": "USDA PLANTS Database",
+      "path": "sources/usda-plants-database/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-55da745303e0",
+      "slug": "xeno-canto",
+      "name": "Xeno-canto",
+      "path": "sources/xeno-canto/",
+      "verification_state": "asserted"
+    }
+  ],
+  "counts": {
+    "sources": 7,
+    "access_methods": 10,
+    "endpoints": 7,
+    "probes": 13,
+    "fetches": 5
+  },
+  "integrity": {
+    "schema_hash": "sha256:ed434785262eb1a34677ccdbeb6ddccb76ae21763bf1c747923e10353aad7c34"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

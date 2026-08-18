@@ -1,0 +1,7 @@
+{
+  "fixture": "topics-invalid",
+  "target": "L1",
+  "expect": [
+    "topics_invalid"
+  ]
+}

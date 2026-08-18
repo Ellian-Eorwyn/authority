@@ -1,0 +1,7 @@
+{
+  "fixture": "jsonl-invalid",
+  "target": "L1",
+  "expect": [
+    "jsonl_invalid"
+  ]
+}

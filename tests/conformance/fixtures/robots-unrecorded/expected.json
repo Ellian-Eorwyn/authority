@@ -1,0 +1,7 @@
+{
+  "fixture": "robots-unrecorded",
+  "target": "L1",
+  "expect": [
+    "robots_unrecorded"
+  ]
+}

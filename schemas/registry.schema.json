@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.1.0/schemas/registry.schema.json",
+  "title": "ASR Registry Manifest (registry.json)",
+  "description": "The machine-owned root manifest of a registry. It is a REGENERABLE projection of the source profiles plus hand-set registry metadata (title, defaults, contact): `authority regen` rebuilds sections, the source index, counts, and integrity atomically, and doing so is also the crash-recovery move. Tools resolve objects through `sections` and the source index — never by hard-coding paths. The manifest is self-describing: `readme` and `rules_note` teach a tool that has never heard of ASR what the folder is.",
+  "type": "object",
+  "properties": {
+    "registry_id": { "type": "string", "pattern": "^reg-[0-9a-f]{12}$", "description": "Opaque nonce id minted at init; format-checked but not content-addressed (a registry has no canonical content to key on)." },
+    "asr_spec_version": { "type": "string", "description": "Semver of the ASR spec this registry conforms to. A reader for 0.x MUST accept a 0.y registry for any y ≥ x within the same major line." },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "readme": { "type": "string", "description": "One self-describing paragraph for tools and humans that arrive without context." },
+    "rules_note": { "type": "string", "description": "Pointer to the governing spec section, e.g. \"spec/00-overview.md\"." },
+    "defaults": {
+      "type": "object",
+      "description": "Registry-wide operational defaults; access methods may override per-method.",
+      "properties": {
+        "verification_window_days": { "type": "integer", "minimum": 1, "description": "Days a verified state stays fresh before deriving to stale. Default 90. Deliberately independent of content update_cadence — access stability and content rhythm are different clocks." },
+        "politeness_delay_ms": { "type": "integer", "minimum": 0, "description": "Minimum delay between consecutive requests to the same host. Default 1000." },
+        "user_agent_contact": { "type": "string", "description": "Contact URL or mailto appended to the probe/fetch User-Agent so operators can reach the registry owner." }
+      },
+      "additionalProperties": true
+    },
+    "sections": {
+      "type": "object",
+      "description": "Authoritative resolution table from logical section to physical path, relative to the registry root. A value ending in / is a directory.",
+      "properties": {
+        "sources": { "type": "string" },
+        "topics": { "type": "string" },
+        "sources_csv": { "type": "string" },
+        "index_html": { "type": "string" },
+        "credentials_example": { "type": "string" },
+        "fetched": { "type": "string" }
+      },
+      "required": ["sources", "topics"],
+      "additionalProperties": true
+    },
+    "sources": {
+      "type": "array",
+      "description": "The source index: one entry per profile, regenerated from the profiles themselves (counts and states here are a cache; the profiles are truth).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": { "type": "string", "pattern": "^asc-[0-9a-f]{12}$" },
+          "slug": { "type": "string" },
+          "name": { "type": "string" },
+          "path": { "type": "string", "description": "Registry-relative path to source.json." },
+          "verification_state": { "$ref": "../vocab/vocab.json#/$defs/verification_state" }
+        },
+        "required": ["source_id", "slug", "path"],
+        "additionalProperties": true
+      }
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "sources": { "type": "integer" },
+        "access_methods": { "type": "integer" },
+        "endpoints": { "type": "integer" },
+        "probes": { "type": "integer" },
+        "fetches": { "type": "integer" }
+      },
+      "additionalProperties": true
+    },
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "schema_hash": { "type": "string", "description": "sha256: + sha256 of the JCS serialization of {filename: sha256(file)} over schemas/*.json + vocab/vocab.json, so readers can detect schema skew within a minor version." }
+      },
+      "additionalProperties": true
+    },
+    "provenance": { "$ref": "provenance-stamp.schema.json" },
+    "ext": { "type": "object", "description": "Tool-namespaced extension data, e.g. ext[\"pi-forge\"].", "additionalProperties": true },
+    "notes": { "type": "string" }
+  },
+  "required": ["registry_id", "asr_spec_version", "title", "sections", "sources", "provenance"],
+  "additionalProperties": true
+}

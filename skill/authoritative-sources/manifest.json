@@ -1,0 +1,26 @@
+{
+  "name": "authoritative-sources",
+  "type": "skill",
+  "skill_file": "SKILL.md",
+  "asr_spec_version": "0.1.0",
+  "requires": { "runtime": "node>=18", "schemas": "../../schemas + ../../vocab (walk-up discovery; AUTHORITY_SCHEMA_DIR/AUTHORITY_VOCAB_DIR to override when vendored)" },
+  "tools": [
+    { "name": "authority-init", "command": "node scripts/authority.mjs init", "args_hint": "<dir> --title <t> [--topics a,b] [--contact <mailto>]", "description": "Scaffold a new registry for a topic area.", "destructive": false },
+    { "name": "authority-add", "command": "node scripts/authority.mjs add", "args_hint": "<registry> <homepage-url> [--name --role --tier --topics --no-probe]", "description": "Add a skeleton source profile (born asserted; first polite probe by default).", "destructive": false },
+    { "name": "authority-validate", "command": "node scripts/authority.mjs validate", "args_hint": "<registry> [--strict] [--level L0|L1|L2]", "description": "Run the conformance rule engine; reports level and operational_here. Read-only.", "destructive": false },
+    { "name": "authority-probe", "command": "node scripts/authority.mjs probe", "args_hint": "<registry> [<source>] [--access <name>] [--all] [--force]", "description": "Verify access claims with polite live checks; appends evidence-backed probe records. Network: HEAD/GET + robots.txt per method.", "destructive": false },
+    { "name": "authority-fetch", "command": "node scripts/authority.mjs fetch", "args_hint": "<registry> <source> <endpoint> [--param k=v ...] [--max-pages N] [--keep-sample]", "description": "Execute a profiled endpoint with credential injection; writes payload + UPC-compatible sidecar. Network: the profiled request(s), budget- and robots-respecting.", "destructive": false },
+    { "name": "authority-creds", "command": "node scripts/authority.mjs creds", "args_hint": "set|list|check [<ref>] [--registry <r>] [--keychain]", "description": "Manage credential references (values via hidden stdin to gitignored file 0600, or macOS Keychain; never printed).", "destructive": false },
+    { "name": "authority-regen", "command": "node scripts/authority.mjs regen", "args_hint": "<registry>", "description": "Rebuild derived state, manifest, CSV mirror, and HTML browser atomically. Also the crash-recovery move.", "destructive": false },
+    { "name": "authority-export", "command": "node scripts/authority.mjs export", "args_hint": "<registry> --format csv|json|markdown|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]", "description": "Emit consumer projections (pi-forge registries, markdown, CSV).", "destructive": false },
+    { "name": "authority-build-index", "command": "node scripts/authority.mjs build-index", "args_hint": "<registry>", "description": "Generate the self-contained offline HTML browser. Read-only over profiles.", "destructive": false },
+    { "name": "authority-mint", "command": "node scripts/authority.mjs mint", "args_hint": "asc|acc|end|prb|fch < object.json", "description": "Compute a content-addressed id by the spec/06 recipes.", "destructive": false }
+  ],
+  "safety": {
+    "destructive_by_default": false,
+    "requires_review_for_filesystem_changes": true,
+    "network_is_polite_by_construction": true,
+    "never_bypasses_robots_or_paywalls": true,
+    "secrets_never_in_tracked_files": true
+  }
+}

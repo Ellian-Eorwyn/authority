@@ -1,0 +1,7 @@
+{
+  "fixture": "dangling-probe",
+  "target": "L1",
+  "expect": [
+    "dangling_probe"
+  ]
+}

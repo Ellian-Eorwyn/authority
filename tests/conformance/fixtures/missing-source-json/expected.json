@@ -1,0 +1,7 @@
+{
+  "fixture": "missing-source-json",
+  "target": "L1",
+  "expect": [
+    "missing_source_json"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "spec-version-missing",
+  "target": "L1",
+  "expect": [
+    "spec_version_missing"
+  ]
+}

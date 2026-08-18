@@ -1,0 +1,7 @@
+{
+  "fixture": "id-format",
+  "target": "L1",
+  "expect": [
+    "id_format"
+  ]
+}

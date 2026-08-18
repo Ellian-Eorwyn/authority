@@ -1,0 +1,7 @@
+{
+  "fixture": "probe-evidence-missing",
+  "target": "L1",
+  "expect": [
+    "probe_evidence_missing"
+  ]
+}

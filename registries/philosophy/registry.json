@@ -1,0 +1,119 @@
+{
+  "registry_id": "reg-d680645e25dd",
+  "asr_spec_version": "0.1.0",
+  "title": "Philosophy & Epistemology",
+  "description": "Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.)",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1200,
+    "user_agent_contact": "mailto:ellianeorwyn@gmail.com"
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/"
+  },
+  "sources": [
+    {
+      "source_id": "asc-076e1b2cd3d9",
+      "slug": "gutendex",
+      "name": "Gutendex",
+      "path": "sources/gutendex/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-ded550a1202d",
+      "slug": "internet-encyclopedia-of-philosophy",
+      "name": "Internet Encyclopedia of Philosophy",
+      "path": "sources/internet-encyclopedia-of-philosophy/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-92e35d2375a7",
+      "slug": "internet-philosophy-ontology-project",
+      "name": "Internet Philosophy Ontology Project",
+      "path": "sources/internet-philosophy-ontology-project/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-4e9759b49538",
+      "slug": "philpapers",
+      "name": "PhilPapers",
+      "path": "sources/philpapers/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-9cdf6978e749",
+      "slug": "philsci-archive",
+      "name": "PhilSci-Archive",
+      "path": "sources/philsci-archive/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-5a0d6bae4a68",
+      "slug": "stanford-encyclopedia-of-philosophy",
+      "name": "Stanford Encyclopedia of Philosophy",
+      "path": "sources/stanford-encyclopedia-of-philosophy/",
+      "verification_state": "verified"
+    }
+  ],
+  "counts": {
+    "sources": 6,
+    "access_methods": 8,
+    "endpoints": 4,
+    "probes": 8,
+    "fetches": 3
+  },
+  "integrity": {
+    "schema_hash": "sha256:ed434785262eb1a34677ccdbeb6ddccb76ae21763bf1c747923e10353aad7c34"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {
+    "pi-forge": {
+      "topic_map": {
+        "epistemology": [
+          "epistemology",
+          "philosophy"
+        ],
+        "ethics": [
+          "ethics",
+          "philosophy"
+        ],
+        "metaphysics": [
+          "metaphysics",
+          "philosophy"
+        ],
+        "logic": [
+          "logic",
+          "philosophy"
+        ],
+        "history-of-philosophy": [
+          "philosophy"
+        ],
+        "philosophy-of-science": [
+          "philosophy",
+          "science-technology-studies"
+        ],
+        "primary-texts": [
+          "philosophy"
+        ]
+      }
+    }
+  },
+  "notes": ""
+}

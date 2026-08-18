@@ -1,0 +1,116 @@
+{
+  "registry_id": "reg-f4f70accf5d2",
+  "asr_spec_version": "0.1.0",
+  "title": "Energy Research",
+  "description": "Authoritative sources for building decarbonization, heat pumps, and California/US energy policy — grounded in the CEC_FORGE Task 2 corpus, with EIA added as the API gap-fill.",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1200,
+    "user_agent_contact": "mailto:ellianeorwyn@gmail.com"
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/"
+  },
+  "sources": [
+    {
+      "source_id": "asc-3ffe0d7feb14",
+      "slug": "aceee-state-policy-database",
+      "name": "ACEEE State Policy Database",
+      "path": "sources/aceee-state-policy-database/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-8cad8f69c11f",
+      "slug": "ahri",
+      "name": "AHRI",
+      "path": "sources/ahri/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-0d7080b52228",
+      "slug": "california-air-resources-board",
+      "name": "California Air Resources Board",
+      "path": "sources/california-air-resources-board/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-28b228ffc8c7",
+      "slug": "california-energy-commission",
+      "name": "California Energy Commission",
+      "path": "sources/california-energy-commission/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-c753a8933bc7",
+      "slug": "california-public-utilities-commission",
+      "name": "California Public Utilities Commission",
+      "path": "sources/california-public-utilities-commission/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-bddcb5e6edfe",
+      "slug": "calmac",
+      "name": "CALMAC",
+      "path": "sources/calmac/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-071cb066d064",
+      "slug": "dsire",
+      "name": "DSIRE",
+      "path": "sources/dsire/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-9fd4fbaa8fca",
+      "slug": "national-renewable-energy-laboratory",
+      "name": "National Renewable Energy Laboratory",
+      "path": "sources/national-renewable-energy-laboratory/",
+      "verification_state": "broken"
+    },
+    {
+      "source_id": "asc-2825f0b73374",
+      "slug": "osti-gov",
+      "name": "OSTI.GOV",
+      "path": "sources/osti-gov/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-748da0edf004",
+      "slug": "us-energy-information-administration",
+      "name": "U.S. Energy Information Administration",
+      "path": "sources/us-energy-information-administration/",
+      "verification_state": "broken"
+    }
+  ],
+  "counts": {
+    "sources": 10,
+    "access_methods": 16,
+    "endpoints": 4,
+    "probes": 23,
+    "fetches": 1
+  },
+  "integrity": {
+    "schema_hash": "sha256:ed434785262eb1a34677ccdbeb6ddccb76ae21763bf1c747923e10353aad7c34"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "auth-underspecified",
+  "target": "L1",
+  "expect": [
+    "auth_underspecified"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "fetch-record-invalid",
+  "target": "L2",
+  "expect": [
+    "fetch_record_invalid"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "credential-in-profile",
+  "target": "L1",
+  "expect": [
+    "credential_in_profile"
+  ]
+}

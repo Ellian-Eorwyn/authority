@@ -1,0 +1,7 @@
+{
+  "fixture": "manifest-source-unlisted",
+  "target": "L1",
+  "expect": [
+    "manifest_source_unlisted"
+  ]
+}

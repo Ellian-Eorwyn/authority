@@ -1,0 +1,105 @@
+{
+  "source_id": "asc-a66fce027c84",
+  "aliases": {},
+  "identity": {
+    "name": "Fixture Source",
+    "publisher": "",
+    "homepage_url": "https://fixture.example.test/",
+    "canonical_url": "https://fixture.example.test/",
+    "description": "",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "primary_dataset"
+      ],
+      "rationale": "fixture",
+      "asserted_by": "authority-fixtures",
+      "asserted_at": "2026-08-17T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "general"
+    ],
+    "jurisdiction": {
+      "level": "not_applicable",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json"
+        ],
+        "notes": ""
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [],
+  "verification": {
+    "state": "verified",
+    "summary": "api: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Exercising the ASR reference implementation."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "This is a fixture on a reserved .test domain; it answers no real requests."
+    ],
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "static",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "fixture",
+    "retrieved_via": "",
+    "first_added": "2026-08-17T12:00:00.000Z",
+    "added_by": "authority-fixtures",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-fixtures",
+      "tool_version": "0.1.0",
+      "model": null,
+      "method": "fixture",
+      "person": null
+    },
+    "created_at": "2026-08-17T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

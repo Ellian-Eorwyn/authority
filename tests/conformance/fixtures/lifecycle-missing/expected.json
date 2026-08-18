@@ -1,0 +1,7 @@
+{
+  "fixture": "lifecycle-missing",
+  "target": "L2",
+  "expect": [
+    "lifecycle_missing"
+  ]
+}

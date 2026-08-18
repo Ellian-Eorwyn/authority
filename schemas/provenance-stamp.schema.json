@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.1.0/schemas/provenance-stamp.schema.json",
+  "title": "ASR Provenance Stamp",
+  "description": "Who or what wrote an object, and when. Every top-level ASR object (registry manifest, topics file, source profile) carries one; probe and fetch records carry the lighter tool block instead because they are born mechanical. The stamp answers accountability questions (was this profile model-written? when was it last touched?), not derivation questions — ASR objects are roots, not derived objects, so there is no derived_from here (contrast UPC).",
+  "type": "object",
+  "properties": {
+    "produced_by": {
+      "type": "object",
+      "properties": {
+        "tool": { "type": "string", "description": "Producing tool name, e.g. \"authority\" or \"pi-forge\"." },
+        "tool_version": { "type": "string" },
+        "model": { "type": ["string", "null"], "description": "Model identifier when method is model; null otherwise." },
+        "method": { "$ref": "../vocab/vocab.json#/$defs/produced_by_method" },
+        "person": { "type": ["string", "null"], "description": "Human attribution when method is human; null otherwise." }
+      },
+      "required": ["tool", "method"],
+      "additionalProperties": true
+    },
+    "created_at": { "type": "string", "format": "date-time", "description": "RFC 3339 UTC." },
+    "modified_at": { "type": ["string", "null"], "format": "date-time", "description": "Set on every subsequent edit; null when never modified." }
+  },
+  "required": ["produced_by", "created_at"],
+  "additionalProperties": true
+}

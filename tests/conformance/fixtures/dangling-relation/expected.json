@@ -1,0 +1,7 @@
+{
+  "fixture": "dangling-relation",
+  "target": "L1",
+  "expect": [
+    "dangling_relation"
+  ]
+}

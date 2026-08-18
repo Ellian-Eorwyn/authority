@@ -1,0 +1,7 @@
+{
+  "fixture": "unknown-topic",
+  "target": "L1",
+  "expect": [
+    "unknown_topic"
+  ]
+}

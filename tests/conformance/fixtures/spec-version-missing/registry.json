@@ -1,0 +1,52 @@
+{
+  "registry_id": "reg-00f1c70de000",
+  "title": "Conformance Fixture",
+  "description": "",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1000,
+    "user_agent_contact": "mailto:fixtures@example.test"
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/"
+  },
+  "sources": [
+    {
+      "source_id": "asc-a66fce027c84",
+      "slug": "fixture-source",
+      "name": "Fixture Source",
+      "path": "sources/fixture-source/",
+      "verification_state": "verified"
+    }
+  ],
+  "counts": {
+    "sources": 1,
+    "access_methods": 1,
+    "endpoints": 1,
+    "probes": 1,
+    "fetches": 1
+  },
+  "integrity": {
+    "schema_hash": "sha256:ed434785262eb1a34677ccdbeb6ddccb76ae21763bf1c747923e10353aad7c34"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-fixtures",
+      "tool_version": "0.1.0",
+      "model": null,
+      "method": "fixture",
+      "person": null
+    },
+    "created_at": "2026-08-17T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

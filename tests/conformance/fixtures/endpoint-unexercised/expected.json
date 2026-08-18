@@ -1,0 +1,7 @@
+{
+  "fixture": "endpoint-unexercised",
+  "target": "L2",
+  "expect": [
+    "endpoint_unexercised"
+  ]
+}

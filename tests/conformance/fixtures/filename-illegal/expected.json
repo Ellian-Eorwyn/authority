@@ -1,0 +1,7 @@
+{
+  "fixture": "filename-illegal",
+  "target": "L1",
+  "expect": [
+    "filename_illegal"
+  ]
+}

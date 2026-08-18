@@ -1,0 +1,265 @@
+{
+  "source_id": "asc-e05d090415a7",
+  "aliases": {},
+  "identity": {
+    "name": "iNaturalist",
+    "publisher": "iNaturalist (California Academy of Sciences / National Geographic)",
+    "homepage_url": "https://www.inaturalist.org/",
+    "canonical_url": "https://www.inaturalist.org/",
+    "description": "Community biodiversity observations with computer-vision-assisted IDs; keyless read API over taxa, observations, and places.",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "community",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "community_curated",
+        "primary_dataset"
+      ],
+      "rationale": "The dominant community observation platform; research-grade observations flow into GBIF. Tier 2 as community-curated primary data.",
+      "asserted_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+      "asserted_at": "2026-08-18T02:43:59.974Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "occurrence-data",
+      "flora",
+      "fauna",
+      "fungi"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json"
+        ],
+        "notes": ""
+      },
+      {
+        "kind": "image",
+        "formats": [
+          "jpg"
+        ],
+        "notes": "observation photos (per-photo licenses)"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-eb0b2945fefe",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://api.inaturalist.org/v1",
+      "docs_url": "https://api.inaturalist.org/v1/docs/",
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": 1,
+        "politeness_delay_ms": null,
+        "daily_budget": 10000,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "documented: ~1 req/s, 10k/day"
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-417613af7392",
+          "name": "taxa-search",
+          "description": "Search taxa.",
+          "http_method": "GET",
+          "path_template": "/taxa?q={q}",
+          "params": [
+            {
+              "name": "q",
+              "required": true,
+              "type": "string",
+              "description": "name fragment",
+              "example": "Amanita"
+            }
+          ],
+          "pagination": {
+            "style": "page_number",
+            "page_param": "page",
+            "size_param": "per_page",
+            "cursor_path": null,
+            "max_page_size": 200,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": "results",
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "q": "Amanita"
+            }
+          },
+          "example_request": "https://api.inaturalist.org/v1/taxa?q=Amanita",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-3850ae994987",
+          "name": "observations",
+          "description": "Search observations.",
+          "http_method": "GET",
+          "path_template": "/observations?taxon_name={taxon_name}&place_id={place_id}&quality_grade={quality_grade}",
+          "params": [
+            {
+              "name": "taxon_name",
+              "required": true,
+              "type": "string",
+              "description": "scientific name",
+              "example": "Amanita muscaria"
+            },
+            {
+              "name": "place_id",
+              "required": false,
+              "type": "integer",
+              "description": "iNat place id (1 = US)",
+              "example": 1
+            },
+            {
+              "name": "quality_grade",
+              "required": false,
+              "type": "enum:research|needs_id|casual",
+              "description": "filter to research-grade",
+              "example": "research"
+            }
+          ],
+          "pagination": {
+            "style": "page_number",
+            "page_param": "page",
+            "size_param": "per_page",
+            "cursor_path": null,
+            "max_page_size": 200,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": "results",
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "taxon_name": "Amanita muscaria",
+              "quality_grade": "research"
+            }
+          },
+          "example_request": "https://api.inaturalist.org/v1/observations?taxon_name=Amanita%20muscaria&quality_grade=research",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-6f6a999e066d",
+        "last_verified_at": "2026-08-18T02:47:44.640Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "api: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Recent local observations of a taxon with photos",
+      "Phenology and seasonal presence signals",
+      "Community ID activity around a group"
+    ],
+    "query_shapes": [
+      {
+        "task": "research-grade records of a species",
+        "access": "api",
+        "endpoint": "observations",
+        "recipe": "taxon_name + quality_grade=research; add place_id to localize.",
+        "example": "taxon_name=Amanita muscaria&quality_grade=research"
+      }
+    ],
+    "pitfalls": [
+      "Respect the documented limits (~1 rps, 10k/day).",
+      "Casual-grade records include captive/cultivated organisms — filter by quality_grade.",
+      "Photo licenses vary per observation; check before reuse."
+    ],
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "realtime",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "companion_of",
+      "target": {
+        "source_id": "asc-ff426711a2a0",
+        "name": "GBIF",
+        "url": "https://www.gbif.org/"
+      },
+      "notes": "research-grade records flow into GBIF"
+    }
+  ],
+  "discovery": {
+    "discovered_via": "model knowledge (authority seeding pass)",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T02:43:59.974Z",
+    "added_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

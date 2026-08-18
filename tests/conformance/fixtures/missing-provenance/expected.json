@@ -1,0 +1,7 @@
+{
+  "fixture": "missing-provenance",
+  "target": "L1",
+  "expect": [
+    "missing_provenance"
+  ]
+}

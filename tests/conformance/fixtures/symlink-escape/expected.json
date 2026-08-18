@@ -1,0 +1,7 @@
+{
+  "fixture": "symlink-escape",
+  "target": "L1",
+  "expect": [
+    "symlink_escape"
+  ]
+}

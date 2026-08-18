@@ -1,0 +1,7 @@
+{
+  "fixture": "credential-ref-invalid",
+  "target": "L1",
+  "expect": [
+    "credential_ref_invalid"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "unverified-claim",
+  "target": "L1",
+  "expect": [
+    "unverified_claim"
+  ]
+}

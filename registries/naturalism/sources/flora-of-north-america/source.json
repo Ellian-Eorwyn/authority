@@ -1,0 +1,197 @@
+{
+  "source_id": "asc-f801b7658bf7",
+  "aliases": {},
+  "identity": {
+    "name": "Flora of North America",
+    "publisher": "Flora of North America Association",
+    "homepage_url": "http://floranorthamerica.org/",
+    "canonical_url": "http://floranorthamerica.org/",
+    "description": "Peer-edited floristic treatments (30 volumes) as a MediaWiki: dichotomous keys, morphology, distribution.",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "peer_reviewed",
+        "curated_reference"
+      ],
+      "rationale": "The scholarly treatment of North American flora: keys, descriptions, and distributions by taxonomic experts; served as a MediaWiki.",
+      "asserted_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+      "asserted_at": "2026-08-18T02:43:59.974Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "flora",
+      "taxonomy"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [
+        "US",
+        "CA"
+      ],
+      "notes": "North America"
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "treatment pages per taxon"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-8c4c1eec0b33",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "http://floranorthamerica.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-b98ebaa524f1",
+          "name": "wiki-api",
+          "description": "MediaWiki API (standard action=query).",
+          "http_method": "GET",
+          "path_template": "/w/api.php?action=query&list=search&srsearch={q}&format=json",
+          "params": [
+            {
+              "name": "q",
+              "required": true,
+              "type": "string",
+              "description": "taxon name",
+              "example": "Acer rubrum"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": "query.search",
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "q": "Acer"
+            }
+          },
+          "example_request": "http://floranorthamerica.org/w/api.php?action=query&list=search&srsearch=Acer%20rubrum&format=json",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "blocked",
+        "last_probe_id": "prb-eca66ce82f07",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "blocked = 403 to plain fetchers; content is reachable through a browser/harness"
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "blocked",
+    "summary": "site: blocked"
+  },
+  "guidance": {
+    "best_for": [
+      "Scholarly keys and morphological descriptions of North American plants",
+      "Authoritative distributions at treatment level"
+    ],
+    "query_shapes": [
+      {
+        "task": "get a taxon treatment",
+        "access": "site",
+        "endpoint": null,
+        "recipe": "Treatment pages live at /<Taxon_name> (underscored); the MediaWiki search endpoint resolves uncertain names.",
+        "example": "http://floranorthamerica.org/Acer_rubrum"
+      }
+    ],
+    "pitfalls": [
+      "floranorthamerica.org refuses plain automated fetchers (HTTP 403) — delegate page reads to the rendering harness; the blocked state here is real.",
+      "Served over plain http; some fetchers flag the missing TLS.",
+      "Volume coverage is complete for most groups but check the volume list for gaps."
+    ],
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "static",
+    "cadence_notes": "published volumes stable; wiki corrections episodic",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "model knowledge (authority seeding pass)",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T02:43:59.974Z",
+    "added_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

@@ -1,0 +1,400 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philosophy &amp; Epistemology — ASR registry</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1d21; --muted:#6a737d; --line:#e1e4e8; --card:#f6f8fa;
+          --ok:#116329; --okbg:#dafbe1; --warn:#7d4e00; --warnbg:#fff8c5; --bad:#a40e26; --badbg:#ffebe9; --chip:#eaeef2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+            --ok:#3fb950; --okbg:#12261e; --warn:#d29922; --warnbg:#272115; --bad:#f85149; --badbg:#25171c; --chip:#21262d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font:14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; } h2 { font-size:18px; } h3 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:20px 0 6px; }
+  h4 { margin: 0 0 2px; font-size: 14px; }
+  a { color:inherit; } .sub { color:var(--muted); font-size:12.5px; } .muted { color:var(--muted); }
+  code { background:var(--chip); padding:1px 5px; border-radius:4px; font:12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap:anywhere; }
+  .chip { display:inline-block; background:var(--chip); border-radius:10px; padding:0 8px; font-size:11.5px; white-space:nowrap; }
+  .chip.tier.adj { background:var(--okbg); color:var(--ok); font-weight:600; }
+  .chip.tier.ass { background:var(--warnbg); color:var(--warn); }
+  .badge { display:inline-block; border-radius:6px; padding:1px 8px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--okbg); color:var(--ok); } .badge.warn { background:var(--warnbg); color:var(--warn); }
+  .badge.bad { background:var(--badbg); color:var(--bad); } .badge.muted { background:var(--chip); color:var(--muted); }
+  .banner { margin:10px 0 16px; } .stat { margin-right:14px; } .stat.ok b { color:var(--ok); } .stat.warn b { color:var(--warn); } .stat.bad b { color:var(--bad); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .filters input, .filters select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:13px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  table.mini td, table.mini th { padding:3px 8px; font-size:12px; }
+  .access, .shape { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .endpoint { border-top:1px dashed var(--line); margin-top:8px; padding-top:8px; }
+  .example { margin-top:4px; }
+  .pitfall { color:var(--warn); margin:4px 0; }
+  .bestfor { font-size:15px; }
+  footer { margin-top:28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:10px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
+</style>
+<h1>Philosophy &amp; Epistemology</h1>
+<div class="sub">Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.) — ASR registry <code>reg-d680645e25dd</code>, spec 0.1.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="banner"><span class="stat ok"><b>5</b> verified</span> <span class="stat bad"><b>1</b> blocked</span></div>
+
+<main id="list">
+  <div class="filters">
+    <input id="q" type="search" placeholder="filter by name…">
+    <select id="ftopic"><option value="">topic: all</option><option>epistemology</option><option>ethics</option><option>history-of-philosophy</option><option>logic</option><option>metaphysics</option><option>philosophy-of-science</option><option>primary-texts</option></select>
+    <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
+    <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>oai_pmh</option><option>web_fetch</option></select>
+  </div>
+  <div class="tablewrap">
+  <table id="tbl">
+    <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
+    <tr data-topics="primary-texts history-of-philosophy" data-state="verified" data-tier="2" data-types="api_rest" data-text="gutendex gutendex (over project gutenberg) gutendex">
+      <td><a href="#src=asc-076e1b2cd3d9">Gutendex</a><div class="sub">Gutendex (over Project Gutenberg)</div></td>
+      <td><span class="chip">index</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">primary-texts</span> <span class="chip">history-of-philosophy</span></td>
+      <td class="sub">not_applicable</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">api_rest</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="epistemology ethics metaphysics history-of-philosophy" data-state="verified" data-tier="1" data-types="web_fetch" data-text="internet encyclopedia of philosophy iep, university of tennessee at martin internet-encyclopedia-of-philosophy">
+      <td><a href="#src=asc-ded550a1202d">Internet Encyclopedia of Philosophy</a><div class="sub">IEP, University of Tennessee at Martin</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">epistemology</span> <span class="chip">ethics</span> <span class="chip">metaphysics</span> <span class="chip">history-of-philosophy</span></td>
+      <td class="sub">not_applicable</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="epistemology metaphysics history-of-philosophy" data-state="verified" data-tier="2" data-types="api_rest" data-text="internet philosophy ontology project indiana university internet-philosophy-ontology-project">
+      <td><a href="#src=asc-92e35d2375a7">Internet Philosophy Ontology Project</a><div class="sub">Indiana University</div></td>
+      <td><span class="chip">index</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">epistemology</span> <span class="chip">metaphysics</span> <span class="chip">history-of-philosophy</span></td>
+      <td class="sub">not_applicable</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">api_rest</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="epistemology ethics metaphysics logic philosophy-of-science" data-state="blocked" data-tier="1" data-types="web_fetch api_rest" data-text="philpapers philpapers foundation, western university philpapers">
+      <td><a href="#src=asc-4e9759b49538">PhilPapers</a><div class="sub">PhilPapers Foundation, Western University</div></td>
+      <td><span class="chip">index</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">epistemology</span> <span class="chip">ethics</span> <span class="chip">metaphysics</span> <span class="chip">logic</span> <span class="chip">philosophy-of-science</span></td>
+      <td class="sub">not_applicable</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span> <span class="chip">api_rest</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="philosophy-of-science epistemology" data-state="verified" data-tier="2" data-types="oai_pmh web_fetch" data-text="philsci-archive university of pittsburgh philsci-archive">
+      <td><a href="#src=asc-9cdf6978e749">PhilSci-Archive</a><div class="sub">University of Pittsburgh</div></td>
+      <td><span class="chip">repository</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">philosophy-of-science</span> <span class="chip">epistemology</span></td>
+      <td class="sub">not_applicable</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">oai_pmh</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="epistemology ethics metaphysics logic history-of-philosophy philosophy-of-science" data-state="verified" data-tier="1" data-types="web_fetch" data-text="stanford encyclopedia of philosophy metaphysics research lab, stanford university stanford-encyclopedia-of-philosophy">
+      <td><a href="#src=asc-5a0d6bae4a68">Stanford Encyclopedia of Philosophy</a><div class="sub">Metaphysics Research Lab, Stanford University</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">epistemology</span> <span class="chip">ethics</span> <span class="chip">metaphysics</span> <span class="chip">logic</span> <span class="chip">history-of-philosophy</span> <span class="chip">philosophy-of-science</span></td>
+      <td class="sub">not_applicable</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>Credential coverage</h3><div class="tablewrap"><table><tr><th>ref</th><th>needed by</th><th>resolution chain (spec/05)</th></tr><tr><td><code>philpapers_api_key</code></td><td class="sub">philpapers#api</td><td class="sub">env <code>AUTHORITY_CRED_PHILPAPERS_API_KEY</code> / <code>FORGE_API_KEY_PHILPAPERS_API_KEY</code> → credentials.json → keychain</td></tr></table></div>
+</main>
+
+
+    <section class="detail" id="src=asc-076e1b2cd3d9" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Gutendex <span class="chip">index</span> <span class="chip">tertiary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Gutendex (over Project Gutenberg) · <a href="https://gutendex.com/">https://gutendex.com/</a> · <code>asc-076e1b2cd3d9</code> · <code>sources/gutendex/</code></div>
+      <p>JSON API over the Project Gutenberg catalog: search, filter, and resolve download links for public-domain texts (Hume, Kant, Mill, …).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Locating public-domain primary texts with direct download links</p>
+      <div class="shape"><strong>find a primary text</strong> <code>books</code><br>Search author+title; each result&#39;s formats map gives direct text/epub/html URLs on gutenberg.org.<br><code>search=kant critique</code></div>
+      <div class="pitfall">⚠ Gutenberg editions are older translations — check the translator before quoting for scholarship.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (community_curated) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Clean keyless JSON API over Project Gutenberg&#39;s catalog — the practical machine door to public-domain primary texts.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · landing: direct · cadence: continuous (active) — mirrors Gutenberg catalog</p>
+      <h3>Relations</h3><p><span class="chip">api_for → Project Gutenberg</span></p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://gutendex.com · <a href="https://gutendex.com/">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /books?search={search}</code> <span class="sub">books</span>
+          <div class="sub">Search the catalog.</div>
+          <div class="sub">params: <code>search</code>*</div>
+          <div class="example"><code>https://gutendex.com/books?search=hume%20treatise</code></div>
+          <div class="sub">pagination: page_number</div>
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:17.635Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-ded550a1202d" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Internet Encyclopedia of Philosophy <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">IEP, University of Tennessee at Martin · <a href="https://iep.utm.edu/">https://iep.utm.edu/</a> · <code>asc-ded550a1202d</code> · <code>sources/internet-encyclopedia-of-philosophy/</code></div>
+      <p>Peer-reviewed open encyclopedia of philosophy; entries at /&lt;slug&gt;/, WordPress-served.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Accessible authoritative overviews; figures and movements SEP covers thinly</p>
+      <div class="shape"><strong>get an article</strong><br>Articles live at /&lt;kebab-slug&gt;/ (e.g. /epistemo/ uses abbreviated legacy slugs — search the site when a guess 404s).<br><code>https://iep.utm.edu/epistemic-injustice/</code></div>
+      <div class="pitfall">⚠ Older articles use abbreviated slugs (/aristotl/); don&#39;t infer non-existence from one 404.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Peer-reviewed sibling to SEP with more accessible register; strong on figures and historical periods.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://iep.utm.edu/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:20.688Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-92e35d2375a7" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Internet Philosophy Ontology Project <span class="chip">index</span> <span class="chip">tertiary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Indiana University · <a href="https://www.inphoproject.org/">https://www.inphoproject.org/</a> · <code>asc-92e35d2375a7</code> · <code>sources/internet-philosophy-ontology-project/</code></div>
+      <p>An ontology of philosophy: entities (ideas, thinkers, journals) with typed relations, exposed as JSON.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Mapping a concept&#39;s neighborhood (related ideas, thinkers) before reading · Machine-readable philosophy taxonomy</p>
+      <div class="shape"><strong>find related concepts</strong> <code>entity-search</code><br>Search the concept, then follow the entity&#39;s JSON (append .json to any entity URL) for related_ideas/related_thinkers.<br><code>q=coherentism</code></div>
+      <div class="pitfall">⚠ Coverage follows the SEP corpus; niche contemporary topics may be missing.</div><div class="pitfall">⚠ The service is academically hosted — be gentle and expect occasional downtime.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference, community_curated) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Machine-readable taxonomy of philosophical concepts, thinkers, and their relations; the structured index over the SEP-centric literature.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json, html) · landing: direct · cadence: irregular (dormant) — project updates episodically</p>
+      <h3>Relations</h3><p><span class="chip">aggregates → Stanford Encyclopedia of Philosophy</span></p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.inphoproject.org · <a href="https://www.inphoproject.org/docs/">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /entity.json?q={q}</code> <span class="sub">entity-search</span>
+          <div class="sub">Search entities as JSON.</div>
+          <div class="sub">params: <code>q</code>*</div>
+          <div class="example"><code>https://www.inphoproject.org/entity.json?q=epistemology</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:22.422Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-4e9759b49538" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>PhilPapers <span class="chip">index</span> <span class="chip">tertiary</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">PhilPapers Foundation, Western University · <a href="https://philpapers.org/">https://philpapers.org/</a> · <code>asc-4e9759b49538</code> · <code>sources/philpapers/</code></div>
+      <p>Comprehensive index and bibliography of philosophy: records, category taxonomy, and an API granted by request. Plain automated fetches are refused.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Finding the literature on a philosophical question · Category-based browsing of a subfield</p>
+      <div class="shape"><strong>survey literature on a topic</strong><br>Delegate to the rendering harness or a human browser (plain fetch is blocked); category pages philpapers.org/browse/&lt;category&gt; organize the field.</div>
+      <div class="pitfall">⚠ Plain HTTP fetch returns 403 — this profile records `blocked` by design; use Consensus/browser paths for discovery instead.</div><div class="pitfall">⚠ Records point at publisher copies; open-access links vary in quality.</div>
+      <p class="sub">The blocked state here is the honest exemplar: a source can be authoritative and still refuse automation.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (curated_reference, professional_org) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The comprehensive bibliography/index of philosophy; category taxonomy curated by editors. Indexes rather than hosts.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (html, json) · landing: search_then_record · cadence: continuous (active)</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://philpapers.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:22.800Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge muted">asserted — never probed</span></h4>
+        <div class="sub">https://philpapers.org/utils · <a href="https://philpapers.org/help/api.html">docs</a></div>
+        <div class="sub">auth: api_key_query · ref <code>philpapers_api_key</code> · <a href="https://philpapers.org/help/api.html">get a key</a></div>
+        
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:24.288Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-9cdf6978e749" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>PhilSci-Archive <span class="chip">repository</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">University of Pittsburgh · <a href="https://philsci-archive.pitt.edu/">https://philsci-archive.pitt.edu/</a> · <code>asc-9cdf6978e749</code> · <code>sources/philsci-archive/</code></div>
+      <p>Open-access preprints in philosophy of science; harvestable over OAI-PMH (EPrints).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Open-access phil-sci preprints · Bulk metadata harvest of a subfield</p>
+      <div class="shape"><strong>harvest recent records</strong> <code>list-records</code><br>Standard OAI-PMH: Identify → ListRecords with oai_dc; resume via resumptionToken.</div>
+      <div class="pitfall">⚠ Pitt&#39;s WAF permits the OAI Identify verb but rejects ListRecords/ListIdentifiers from unknown clients (HTTP 200 with an HTML block page) — bulk harvest needs coordination with the archive or a whitelisted client; fetch records this as partial, honestly.</div><div class="pitfall">⚠ OAI-PMH resumption requests must drop all other parameters (verb+resumptionToken only).</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The preprint archive for philosophy of science; open access, EPrints-based with standard OAI-PMH.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · structured_record (xml) · landing: landing_then_file · cadence: continuous (active)</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>oai</code> <span class="chip">oai_pmh</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://philsci-archive.pitt.edu/cgi/oai2 · <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET ?verb=ListRecords&amp;metadataPrefix={metadataPrefix}</code> <span class="sub">list-records</span>
+          <div class="sub">Harvest Dublin Core records.</div>
+          <div class="sub">params: <code>metadataPrefix</code>*</div>
+          <div class="example"><code>https://philsci-archive.pitt.edu/cgi/oai2?verb=ListRecords&amp;metadataPrefix=oai_dc</code></div>
+          <div class="sub">pagination: token</div>
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:24.366Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (0 ok)</div>
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://philsci-archive.pitt.edu/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:24.817Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-5a0d6bae4a68" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Stanford Encyclopedia of Philosophy <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Metaphysics Research Lab, Stanford University · <a href="https://plato.stanford.edu/">https://plato.stanford.edu/</a> · <code>asc-5a0d6bae4a68</code> · <code>sources/stanford-encyclopedia-of-philosophy/</code></div>
+      <p>Dynamic peer-reviewed encyclopedia: ~1,800 signed, revised entries with stable URLs and archived editions.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Authoritative overviews of any philosophical topic, figure, or debate · Bibliographies that seed deeper reading</p>
+      <div class="shape"><strong>get an entry directly</strong><br>Entries live at /entries/&lt;kebab-slug&gt;/ — guess the slug from the topic name before searching.<br><code>https://plato.stanford.edu/entries/epistemology/</code></div><div class="shape"><strong>search when the slug is unknown</strong> <code>search</code><br>Use searcher.py; result links are entry URLs.<br><code>query=virtue+epistemology</code></div>
+      <div class="pitfall">⚠ Cite the archived edition (via the entry&#39;s &#39;Author and Citation Info&#39;) when citation stability matters — the live entry revises.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Peer-reviewed, continuously revised reference; the strongest single source for the philosophy cluster (pi-forge&#39;s own editorial policy agrees).<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: continuous (active) — entries revised on their own cycles; quarterly archives</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://plato.stanford.edu/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /search/searcher.py?query={q}</code> <span class="sub">search</span>
+          <div class="sub">SEP&#39;s own search.</div>
+          <div class="sub">params: <code>q</code>*</div>
+          <div class="example"><code>https://plato.stanford.edu/search/searcher.py?query=epistemic+injustice</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:26.654Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
+    </section>
+
+<footer>Authoritative Source Registry — every access claim is backed by stored evidence, or it says so. Built by authority build-index; regenerate with <code>authority regen</code>.</footer>
+<script>
+(function () {
+  var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
+      fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  function apply() {
+    var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
+    document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
+      var show = (!text || tr.dataset.text.indexOf(text) !== -1)
+        && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
+        && (!st || tr.dataset.state === st)
+        && (!tier || tr.dataset.tier === tier)
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+      tr.style.display = show ? "" : "none";
+    });
+  }
+  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  function route() {
+    var hash = location.hash.replace(/^#/, "");
+    var list = document.getElementById("list");
+    var showList = !hash || hash.indexOf("src=") !== 0;
+    list.hidden = !showList;
+    document.querySelectorAll(".detail").forEach(function (d) { d.hidden = true; });
+    if (!showList) {
+      var el = document.getElementById(hash);
+      if (el) el.hidden = false; else list.hidden = false;
+    }
+  }
+  window.addEventListener("hashchange", route);
+  document.querySelectorAll(".back").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); location.hash = ""; }); });
+  route();
+})();
+</script>

@@ -1,0 +1,7 @@
+{
+  "fixture": "stale-verification",
+  "target": "L1",
+  "expect": [
+    "stale_verification"
+  ]
+}

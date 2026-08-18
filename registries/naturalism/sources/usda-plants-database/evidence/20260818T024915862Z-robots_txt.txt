@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <base href="/"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>USDA Plants Database</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css"/>
+
+    <script src="./assets/js/json2csv.js"></script>
+    <script src="./assets/js/uswds-init.min.js"></script>
+  <link rel="stylesheet" href="styles.css"></head>
+  <body>
+    <plants-app></plants-app>
+  <script src="runtime.js" type="module"></script><script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script></body>
+</html>

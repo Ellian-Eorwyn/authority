@@ -1,0 +1,7 @@
+{
+  "fixture": "id-duplicate",
+  "target": "L1",
+  "expect": [
+    "id_duplicate"
+  ]
+}

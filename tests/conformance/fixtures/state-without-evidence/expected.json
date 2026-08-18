@@ -1,0 +1,7 @@
+{
+  "fixture": "state-without-evidence",
+  "target": "L1",
+  "expect": [
+    "state_without_evidence"
+  ]
+}

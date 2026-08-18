@@ -1,0 +1,7 @@
+{
+  "fixture": "schema-invalid",
+  "target": "L1",
+  "expect": [
+    "schema_invalid"
+  ]
+}

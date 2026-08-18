@@ -1,0 +1,7 @@
+{
+  "fixture": "load-error",
+  "target": "L1",
+  "expect": [
+    "load_error"
+  ]
+}

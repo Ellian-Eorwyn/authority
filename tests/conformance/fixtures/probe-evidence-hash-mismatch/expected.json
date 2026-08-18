@@ -1,0 +1,7 @@
+{
+  "fixture": "probe-evidence-hash-mismatch",
+  "target": "L1",
+  "expect": [
+    "probe_evidence_hash_mismatch"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "adjudication-unattributed",
+  "target": "L1",
+  "expect": [
+    "adjudication_unattributed"
+  ]
+}

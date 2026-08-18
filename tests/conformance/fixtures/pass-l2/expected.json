@@ -1,0 +1,6 @@
+{
+  "fixture": "pass-l2",
+  "target": "L2",
+  "min_level": "L2",
+  "expect": []
+}

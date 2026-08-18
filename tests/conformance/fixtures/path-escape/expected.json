@@ -1,0 +1,7 @@
+{
+  "fixture": "path-escape",
+  "target": "L1",
+  "expect": [
+    "path_escape"
+  ]
+}

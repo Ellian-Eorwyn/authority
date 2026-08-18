@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.1.0/schemas/probe.schema.json",
+  "title": "ASR Probe Record (probes.jsonl line)",
+  "description": "One execution of the verification gate against one access method — the evidence behind the hard promise. Probe records are append-only (probes.jsonl beside the profile); their evidence[] entries name files under evidence/ whose bytes must hash-match sha256 (probe_evidence_hash_mismatch). Recorded URLs and headers are secret-REDACTED before writing: a probe record proves reachability, it never leaks a credential.",
+  "type": "object",
+  "properties": {
+    "probe_id": { "type": "string", "pattern": "^prb-[0-9a-f]{12}$", "description": "Content-addressed: \"prb\\n\" + access_id + \"\\n\" + probed_at (§06)." },
+    "access_id": { "type": "string", "pattern": "^acc-[0-9a-f]{12}$" },
+    "source_id": { "type": "string", "pattern": "^asc-[0-9a-f]{12}$" },
+    "probed_at": { "type": "string", "format": "date-time", "description": "RFC 3339 UTC with millisecond precision (feeds identity)." },
+    "tool": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "method": { "$ref": "../vocab/vocab.json#/$defs/produced_by_method", "description": "tool for real probes; fixture for deterministic example builders (fixtures never lie, but they say what they are)." }
+      },
+      "required": ["name", "method"],
+      "additionalProperties": true
+    },
+    "outcome": { "$ref": "../vocab/vocab.json#/$defs/probe_outcome" },
+    "checks": {
+      "type": "array",
+      "description": "The individual verification steps, in execution order. A skipped check is recorded with result skip and a detail — skips are visible, never silently dropped.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "check": { "$ref": "../vocab/vocab.json#/$defs/probe_check" },
+          "result": { "$ref": "../vocab/vocab.json#/$defs/check_result" },
+          "detail": { "type": "string" }
+        },
+        "required": ["check", "result"],
+        "additionalProperties": true
+      },
+      "minItems": 1
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "method": { "$ref": "../vocab/vocab.json#/$defs/http_method" },
+        "url": { "type": "string", "description": "The request URL with any credential value replaced by *** BEFORE recording." },
+        "user_agent": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "http_status": { "type": ["integer", "null"] },
+        "final_url": { "type": ["string", "null"], "description": "After redirects, secret-redacted." },
+        "content_type": { "type": ["string", "null"] },
+        "elapsed_ms": { "type": ["integer", "null"] },
+        "headers_subset": { "type": "object", "description": "Selected response headers (server, retry-after, rate-limit family, deprecation); never set-cookie or anything bearing tokens.", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Stored artifacts proving what the probe saw. sha256 is the hash of the stored bytes exactly (the recomputable claim); for truncated body samples, full_sha256/full_bytes describe the complete body when known.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": { "$ref": "../vocab/vocab.json#/$defs/evidence_kind" },
+          "path": { "type": "string", "description": "Registry-relative path under the source's evidence/ directory." },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "truncated_at": { "type": ["integer", "null"], "description": "Byte cap applied, when the stored sample is a prefix; null when complete." },
+          "full_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+          "full_bytes": { "type": ["integer", "null"] }
+        },
+        "required": ["kind", "path", "sha256", "bytes"],
+        "additionalProperties": true
+      }
+    },
+    "credential": {
+      "type": "object",
+      "description": "Which credential ref was involved and which chain step resolved it — never the value.",
+      "properties": {
+        "ref": { "type": ["string", "null"] },
+        "resolved_via": { "$ref": "../vocab/vocab.json#/$defs/credential_source" }
+      },
+      "additionalProperties": true
+    },
+    "notes": { "type": "string" }
+  },
+  "required": ["probe_id", "access_id", "source_id", "probed_at", "tool", "outcome", "checks"],
+  "additionalProperties": true
+}

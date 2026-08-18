@@ -1,0 +1,283 @@
+{
+  "source_id": "asc-748da0edf004",
+  "aliases": {},
+  "identity": {
+    "name": "U.S. Energy Information Administration",
+    "publisher": "U.S. Department of Energy",
+    "homepage_url": "https://www.eia.gov/",
+    "canonical_url": "https://www.eia.gov/",
+    "description": "Official U.S. energy statistics: electricity, natural gas, petroleum, consumption surveys (RECS/CBECS), all exposed through a keyed JSON API.",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "government_agency",
+        "primary_dataset"
+      ],
+      "rationale": "The federal statistical agency for energy; the APIv2 is the canonical machine door to national and state energy series. Absent from the CEC_FORGE corpus — added here as the deliberate API gap-fill.",
+      "asserted_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+      "asserted_at": "2026-08-18T02:43:59.974Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "energy-data"
+    ],
+    "jurisdiction": {
+      "level": "national",
+      "regions": [
+        "US"
+      ],
+      "notes": "state-level series throughout"
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json"
+        ],
+        "notes": "API v2 series data"
+      },
+      {
+        "kind": "dataset_file",
+        "formats": [
+          "csv",
+          "xlsx"
+        ],
+        "notes": "bulk downloads per survey"
+      },
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "analysis and survey pages"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-4caa3ade0e20",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://api.eia.gov/v2",
+      "docs_url": "https://www.eia.gov/opendata/documentation.php",
+      "auth": {
+        "required": true,
+        "scheme": "api_key_query",
+        "credential_ref": "eia_api_key",
+        "location": {
+          "in": "query",
+          "name": "api_key"
+        },
+        "signup_url": "https://www.eia.gov/opendata/register.php",
+        "notes": "Free key, instant e-mail delivery."
+      },
+      "limits": {
+        "requests_per_second": 1,
+        "politeness_delay_ms": null,
+        "daily_budget": 5000,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "published courtesy limits; burst tolerance unknown"
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-6869ae4e398c",
+          "name": "retail-sales",
+          "description": "Monthly/annual electricity retail sales, price, revenue, customers by state and sector.",
+          "http_method": "GET",
+          "path_template": "/electricity/retail-sales/data?frequency={frequency}&data[0]={data}&facets[stateid][]={state}&start={start}&end={end}",
+          "params": [
+            {
+              "name": "frequency",
+              "required": true,
+              "type": "enum:monthly|quarterly|annual",
+              "description": "series frequency",
+              "example": "annual"
+            },
+            {
+              "name": "data",
+              "required": true,
+              "type": "enum:price|sales|revenue|customers",
+              "description": "measure to return",
+              "example": "price"
+            },
+            {
+              "name": "state",
+              "required": false,
+              "type": "string",
+              "description": "state facet, e.g. CA",
+              "example": "CA"
+            },
+            {
+              "name": "start",
+              "required": false,
+              "type": "date",
+              "description": "period start (YYYY or YYYY-MM)",
+              "example": "2020"
+            },
+            {
+              "name": "end",
+              "required": false,
+              "type": "date",
+              "description": "period end",
+              "example": "2025"
+            }
+          ],
+          "pagination": {
+            "style": "offset_limit",
+            "page_param": "offset",
+            "size_param": "length",
+            "cursor_path": null,
+            "max_page_size": 5000,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": "response.data",
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "frequency": "annual",
+              "data": "price",
+              "state": "CA"
+            }
+          },
+          "example_request": "https://api.eia.gov/v2/electricity/retail-sales/data?frequency=annual&data[0]=price&facets[stateid][]=CA&api_key=$CREDENTIAL",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "asserted",
+        "last_probe_id": "prb-a27ca36c4273",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "asserted until a free API key is stored (creds set eia_api_key) — probing without it records auth_required, by design"
+      },
+      "notes": ""
+    },
+    {
+      "access_id": "acc-a59642c47aa5",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.eia.gov/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "broken",
+        "last_probe_id": "prb-d0e335c41658",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "broken = Akamai edge denies plain fetchers (503); expected, see pitfalls"
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "broken",
+    "summary": "api: asserted; site: broken"
+  },
+  "guidance": {
+    "best_for": [
+      "State electricity prices/sales/customers over time",
+      "Residential energy consumption survey (RECS) tables",
+      "National energy statistics with provenance"
+    ],
+    "query_shapes": [
+      {
+        "task": "CA residential electricity price history",
+        "access": "api",
+        "endpoint": "retail-sales",
+        "recipe": "frequency=annual, data=price, state=CA; add facets[sectorid][]=RES via ext params if needed.",
+        "example": "frequency=annual&data[0]=price&facets[stateid][]=CA"
+      }
+    ],
+    "pitfalls": [
+      "www.eia.gov denies plain automated fetchers at the Akamai edge (503, AkamaiGHost) — the API access is the machine door; use the rendering harness for site pages.",
+      "API v2 routes are hierarchical — /electricity/retail-sales is one of many; browse /v2 with the key to discover others.",
+      "Bracketed query params (data[0], facets[stateid][]) are literal — copy the example shape."
+    ],
+    "llm_notes": "Key is free and instant; store it once with `authority creds set eia_api_key` and every registry can use it."
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "monthly",
+    "cadence_notes": "series-dependent; monthly electricity data lags ~2 months",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "model knowledge (authority seeding pass)",
+    "retrieved_via": "model knowledge; EIA absent from the CEC_FORGE corpus (gap-fill)",
+    "first_added": "2026-08-18T02:43:59.974Z",
+    "added_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

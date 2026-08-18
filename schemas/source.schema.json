@@ -1,0 +1,337 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.1.0/schemas/source.schema.json",
+  "title": "ASR Source Profile (source.json)",
+  "description": "The operational profile of one authoritative source: what it is, why it is trusted, what it holds, how it is reached, and what evidence backs each access claim. A profile is a living document — probes update its verification blocks, humans update its adjudication and guidance — but it must never overstate: an access method's verification.state is DERIVED from probe records (§04), and machine-asserted authority is quarantined from human-adjudicated authority. What a source holds (content) and how it is reached (access) are separate blocks by design.",
+  "type": "object",
+  "properties": {
+    "source_id": { "type": "string", "pattern": "^asc-[0-9a-f]{12}$", "description": "Content-addressed: \"asc\\n\" + canonical_url (§06). Deliberately NOT UPC's src- prefix: an ASR source is a service profile, a UPC source is a captured object." },
+    "aliases": { "type": "object", "description": "Per-tool alias map, e.g. {\"cec-forge\": \"FORGE-2B-017\", \"pi-forge\": \"sep\"}.", "additionalProperties": { "type": "string" } },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The source's common name; the slug is computed from it (§06)." },
+        "publisher": { "type": "string", "description": "The operating legal/organizational entity, when distinct from name." },
+        "homepage_url": { "type": "string", "description": "The public front door as given." },
+        "canonical_url": { "type": "string", "description": "homepage_url normalized by the §06 URL algorithm; feeds identity. A changed canonical_url is a NEW source related by supersedes." },
+        "description": { "type": "string" },
+        "languages": { "type": "array", "items": { "type": "string" }, "description": "BCP 47 tags, e.g. [\"en\"]." }
+      },
+      "required": ["name", "homepage_url", "canonical_url"],
+      "additionalProperties": true
+    },
+    "source_role": { "$ref": "../vocab/vocab.json#/$defs/source_role" },
+    "source_class": { "$ref": "../vocab/vocab.json#/$defs/source_class" },
+    "authority": {
+      "type": "object",
+      "description": "Why this source is trusted — in two quarantined halves. `asserted` may be written by a machine at add-time and is triage, not judgment. `adjudicated` is the human scoring pass: its tier/score are null until a person (or an explicitly attributed process) fills them, and the validator requires attribution when they are non-null (adjudication_unattributed) and warns when the profile's provenance says a model wrote it (adjudication_by_machine). Consumers that need one number use adjudicated.tier ?? asserted.tier and must preserve the distinction when re-exporting.",
+      "properties": {
+        "asserted": {
+          "type": "object",
+          "properties": {
+            "tier": { "$ref": "../vocab/vocab.json#/$defs/authority_tier" },
+            "basis": { "type": "array", "items": { "$ref": "../vocab/vocab.json#/$defs/authority_basis" } },
+            "rationale": { "type": "string" },
+            "asserted_by": { "type": "string", "description": "Who/what made the triage call, e.g. \"authority add\" or a model id." },
+            "asserted_at": { "type": "string", "format": "date-time" }
+          },
+          "required": ["tier", "basis"],
+          "additionalProperties": true
+        },
+        "adjudicated": {
+          "type": "object",
+          "properties": {
+            "tier": { "anyOf": [ { "$ref": "../vocab/vocab.json#/$defs/authority_tier" }, { "type": "null" } ], "description": "Human-confirmed tier on the same 1/2/3 scale; null until adjudicated." },
+            "score": { "type": ["number", "null"], "minimum": 0, "maximum": 1, "description": "Optional finer-grained score in [0,1]; null until adjudicated." },
+            "scored_by": { "type": ["string", "null"] },
+            "scored_at": { "type": ["string", "null"], "format": "date-time" },
+            "method": { "type": ["string", "null"], "description": "How the adjudication was made (rubric name, review process)." },
+            "notes": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": ["asserted"],
+      "additionalProperties": true
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "topics": { "type": "array", "items": { "type": "string" }, "description": "Topic ids; every entry MUST exist in the registry's topics.json (unknown_topic)." },
+        "jurisdiction": {
+          "type": "object",
+          "properties": {
+            "level": { "$ref": "../vocab/vocab.json#/$defs/jurisdiction_level" },
+            "regions": { "type": "array", "items": { "type": "string" }, "description": "ISO 3166-1 alpha-2 or 3166-2 codes, e.g. [\"US\", \"US-CA\"]." },
+            "notes": { "type": "string", "description": "Free text for compound realities (\"Federal 9th Circuit ruling scoped to CA\")." }
+          },
+          "additionalProperties": true
+        },
+        "temporal": {
+          "type": "object",
+          "properties": {
+            "coverage_start": { "type": ["string", "null"], "description": "ISO date or year the content coverage begins." },
+            "coverage_end": { "type": ["string", "null"], "description": "ISO date, year, or the string \"present\"." },
+            "notes": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "content": {
+      "type": "object",
+      "description": "WHAT the source holds — deliberately separate from access. artifacts describe the kinds of objects; landing_pattern records how many hops from a public URL to the artifact you actually want (the \"report landing page\" problem made explicit).",
+      "properties": {
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": { "$ref": "../vocab/vocab.json#/$defs/artifact_kind" },
+              "formats": { "type": "array", "items": { "type": "string" }, "description": "File/wire formats as lowercase extensions or MIME-ish names, e.g. [\"pdf\"], [\"json\", \"csv\"]." },
+              "notes": { "type": "string" }
+            },
+            "required": ["kind"],
+            "additionalProperties": true
+          }
+        },
+        "landing_pattern": { "$ref": "../vocab/vocab.json#/$defs/landing_pattern" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "access": {
+      "type": "array",
+      "description": "Every viable way in, ordered by preference (first = try first). Each method's verification block is governed by the hard promise: state derives from probe records, never from optimism.",
+      "items": { "$ref": "#/$defs/access_method" },
+      "minItems": 1
+    },
+    "verification": {
+      "type": "object",
+      "description": "Source-level rollup: the WORST state among access methods, ordered broken > blocked > stale > asserted > degraded > verified (retired methods are excluded from the rollup). Recomputed by regen/validate; stored for browsability.",
+      "properties": {
+        "state": { "$ref": "../vocab/vocab.json#/$defs/verification_state" },
+        "summary": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "guidance": {
+      "type": "object",
+      "description": "The token-frugal payload for agents: what this source is best for, query shapes that actually work, and pitfalls that waste round-trips. Render this FIRST in human views too — it is the payoff of the profile.",
+      "properties": {
+        "best_for": { "type": "array", "items": { "type": "string" } },
+        "query_shapes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "task": { "type": "string", "description": "The research task this shape serves." },
+              "access": { "type": ["string", "null"], "description": "access method name this recipe runs against; null when the shape is not method-specific." },
+              "endpoint": { "type": ["string", "null"], "description": "endpoint name within that access method, when applicable." },
+              "recipe": { "type": "string", "description": "How to shape the query/request, in imperative prose." },
+              "example": { "type": "string" }
+            },
+            "required": ["task", "recipe"],
+            "additionalProperties": true
+          }
+        },
+        "pitfalls": { "type": "array", "items": { "type": "string" } },
+        "llm_notes": { "type": "string", "description": "Anything else an agent should know before spending requests." }
+      },
+      "additionalProperties": true
+    },
+    "lifecycle": {
+      "type": "object",
+      "properties": {
+        "status": { "$ref": "../vocab/vocab.json#/$defs/lifecycle_status" },
+        "update_cadence": { "$ref": "../vocab/vocab.json#/$defs/update_cadence" },
+        "cadence_notes": { "type": "string", "description": "Free text for what the enum cannot say (\"updated as filed\", \"annual each October\")." },
+        "effective_date": { "type": ["string", "null"], "description": "For sources whose content takes force on a date (standards, statutes)." }
+      },
+      "required": ["status", "update_cadence"],
+      "additionalProperties": true
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "$ref": "../vocab/vocab.json#/$defs/relation_type" },
+          "target": {
+            "type": "object",
+            "description": "Either an in-registry reference (source_id) or an external pointer (name + url) for sources not yet profiled.",
+            "properties": {
+              "source_id": { "type": "string", "pattern": "^asc-[0-9a-f]{12}$" },
+              "name": { "type": "string" },
+              "url": { "type": "string" }
+            },
+            "additionalProperties": true
+          },
+          "notes": { "type": "string" }
+        },
+        "required": ["type", "target"],
+        "additionalProperties": true
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "description": "How this source entered the registry — discovery provenance, kept because a registry is also a record of research method.",
+      "properties": {
+        "discovered_via": { "type": "string", "description": "The channel: \"web search\", \"analyst knowledge\", \"import\", \"cited by <source>\"." },
+        "retrieved_via": { "type": "string", "description": "The exact query or session action that surfaced it, verbatim." },
+        "first_added": { "type": "string", "format": "date-time" },
+        "added_by": { "type": "string" },
+        "import_ref": { "type": ["string", "null"], "description": "Id in the corpus this was imported from, e.g. \"FORGE-2B-017\"; null when not an import." }
+      },
+      "additionalProperties": true
+    },
+    "provenance": { "$ref": "provenance-stamp.schema.json" },
+    "ext": { "type": "object", "description": "Tool-namespaced extension data. ext[\"pi-forge\"] conventionally carries {provider, kinds, selectors} for the export crosswalk.", "additionalProperties": true },
+    "notes": { "type": "string" }
+  },
+  "required": ["source_id", "identity", "source_role", "source_class", "authority", "scope", "access", "lifecycle", "provenance"],
+  "additionalProperties": true,
+  "$defs": {
+    "access_method": {
+      "type": "object",
+      "description": "One way into the source. auth carries a credential REFERENCE only — a secret value in any tracked file is the credential_in_profile error. robots posture is recorded per method because different transports sit under different paths and rules.",
+      "properties": {
+        "access_id": { "type": "string", "pattern": "^acc-[0-9a-f]{12}$", "description": "Content-addressed: \"acc\\n\" + source_id + \"\\n\" + type + \"\\n\" + normalized base_url (§06)." },
+        "name": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "CLI-addressable slug, unique within the profile." },
+        "type": { "$ref": "../vocab/vocab.json#/$defs/access_type" },
+        "base_url": { "type": "string" },
+        "docs_url": { "type": ["string", "null"], "description": "Where the interface is documented." },
+        "auth": {
+          "type": "object",
+          "properties": {
+            "required": { "type": "boolean" },
+            "scheme": { "$ref": "../vocab/vocab.json#/$defs/auth_scheme" },
+            "credential_ref": { "type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]*$", "description": "Registry-unique slug the resolution chain (§05) looks up. Convention: name it after the pi-forge provider id when one exists, so FORGE_API_KEY_<REF> resolves with zero mapping." },
+            "location": {
+              "type": "object",
+              "description": "Where an api_key travels; required when scheme is api_key_query or api_key_header.",
+              "properties": {
+                "in": { "$ref": "../vocab/vocab.json#/$defs/auth_location" },
+                "name": { "type": "string", "description": "The parameter or header name, e.g. \"api_key\" or \"x-ebirdapitoken\"." }
+              },
+              "required": ["in", "name"],
+              "additionalProperties": true
+            },
+            "signup_url": { "type": ["string", "null"], "description": "Where a human obtains a key." },
+            "notes": { "type": "string" }
+          },
+          "required": ["required", "scheme"],
+          "additionalProperties": true
+        },
+        "limits": {
+          "type": "object",
+          "description": "Declared or observed politeness limits; enforced by probe/fetch and exported to consumer budget ledgers. Absent fields mean unknown, not unlimited.",
+          "properties": {
+            "requests_per_second": { "type": ["number", "null"] },
+            "politeness_delay_ms": { "type": ["integer", "null"], "description": "Overrides the registry default when set." },
+            "daily_budget": { "type": ["integer", "null"], "description": "Requests per day, when the provider declares or meters one." },
+            "monthly_budget": { "type": ["integer", "null"] },
+            "concurrency": { "type": ["integer", "null"] },
+            "notes": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "robots": {
+          "type": "object",
+          "properties": {
+            "applies": { "type": "boolean", "description": "Whether robots.txt governs this transport (false for authenticated APIs, ftp, offline)." },
+            "posture": { "anyOf": [ { "$ref": "../vocab/vocab.json#/$defs/robots_posture" }, { "type": "null" } ], "description": "null = not yet recorded (an L1 error where robots applies — probe to fill)." },
+            "checked_path": { "type": ["string", "null"], "description": "The path whose allowance was evaluated." },
+            "tos_url": { "type": ["string", "null"], "description": "Terms-of-service URL, recorded as metadata; never auto-fetched." },
+            "tos_notes": { "type": "string" }
+          },
+          "required": ["applies"],
+          "additionalProperties": true
+        },
+        "endpoints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/endpoint" }
+        },
+        "verification": {
+          "type": "object",
+          "description": "The access claim this method makes, governed by the hard promise: state is DERIVED from probes.jsonl (§04). Stored here as a cache for browsability; disagreement with derivation is state_drift.",
+          "properties": {
+            "state": { "$ref": "../vocab/vocab.json#/$defs/verification_state" },
+            "last_probe_id": { "type": ["string", "null"], "pattern": "^prb-[0-9a-f]{12}$" },
+            "last_verified_at": { "type": ["string", "null"], "format": "date-time", "description": "Timestamp of the last ok probe; null when never verified." },
+            "window_days": { "type": ["integer", "null"], "minimum": 1, "description": "Per-method staleness override; null uses the registry default." },
+            "notes": { "type": "string" }
+          },
+          "required": ["state"],
+          "additionalProperties": true
+        },
+        "notes": { "type": "string" }
+      },
+      "required": ["access_id", "name", "type", "base_url", "auth", "robots", "verification"],
+      "additionalProperties": true
+    },
+    "endpoint": {
+      "type": "object",
+      "description": "An operational recipe under an access method: enough detail that an agent (or `authority fetch`) can execute it without reading external docs. path_template uses {param} placeholders resolved from params[] and --param flags; the credential placeholder is injected by the auth block, never written into the template.",
+      "properties": {
+        "endpoint_id": { "type": "string", "pattern": "^end-[0-9a-f]{12}$", "description": "Content-addressed: \"end\\n\" + access_id + \"\\n\" + http_method + \"\\n\" + path_template (§06)." },
+        "name": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "CLI-addressable slug, unique within the access method." },
+        "description": { "type": "string" },
+        "http_method": { "$ref": "../vocab/vocab.json#/$defs/http_method" },
+        "path_template": { "type": "string", "description": "Path + query template relative to base_url, with {param} placeholders, e.g. \"/v2/electricity/retail-sales/data?frequency={frequency}\"." },
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "required": { "type": "boolean" },
+              "type": { "type": "string", "description": "Informal type hint: string, integer, date, enum:..., etc." },
+              "description": { "type": "string" },
+              "example": { "type": ["string", "number", "boolean", "null"] }
+            },
+            "required": ["name", "required"],
+            "additionalProperties": true
+          }
+        },
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "style": { "$ref": "../vocab/vocab.json#/$defs/pagination_style" },
+            "page_param": { "type": ["string", "null"] },
+            "size_param": { "type": ["string", "null"] },
+            "cursor_path": { "type": ["string", "null"], "description": "JSON path to the next-cursor/token in the response, for cursor/token styles." },
+            "max_page_size": { "type": ["integer", "null"] },
+            "notes": { "type": "string" }
+          },
+          "required": ["style"],
+          "additionalProperties": true
+        },
+        "response": {
+          "type": "object",
+          "properties": {
+            "format": { "$ref": "../vocab/vocab.json#/$defs/response_format" },
+            "record_path": { "type": ["string", "null"], "description": "JSON path (dot notation) to the records array within a structured response, e.g. \"response.data\"." },
+            "notes": { "type": "string" }
+          },
+          "required": ["format"],
+          "additionalProperties": true
+        },
+        "probe_hint": {
+          "type": "object",
+          "description": "The cheapest real invocation of this endpoint, used by `authority probe` as the API ping. For OAI-PMH the convention is the Identify verb.",
+          "properties": {
+            "params": { "type": "object", "additionalProperties": true },
+            "expect_status": { "type": "integer" }
+          },
+          "additionalProperties": true
+        },
+        "example_request": { "type": "string", "description": "A ready-to-read example URL or request line with $CREDENTIAL placeholders where a secret would go." },
+        "notes": { "type": "string" }
+      },
+      "required": ["endpoint_id", "name", "http_method", "path_template", "response"],
+      "additionalProperties": true
+    }
+  }
+}

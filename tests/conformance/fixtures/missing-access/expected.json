@@ -1,0 +1,7 @@
+{
+  "fixture": "missing-access",
+  "target": "L1",
+  "expect": [
+    "missing_access"
+  ]
+}

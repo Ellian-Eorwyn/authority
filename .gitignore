@@ -1,0 +1,19 @@
+# OS noise
+.DS_Store
+
+# tooling
+node_modules/
+.claude/
+
+# temp files (atomic-write staging)
+*.tmp
+.*.tmp
+
+# registry-local secrets — never tracked, anywhere
+credentials.json
+
+# full fetch payloads + sidecars (fetches.jsonl carries the record)
+fetched/
+
+# tool-private scratch (budget ledgers, caches)
+.authority/

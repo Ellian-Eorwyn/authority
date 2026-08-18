@@ -1,0 +1,15 @@
+{
+ "results": [
+  {
+   "species": "Sturnella magna",
+   "date": "2026-06-01",
+   "count": 3
+  },
+  {
+   "species": "Sturnella magna",
+   "date": "2026-06-02",
+   "count": 1
+  }
+ ],
+ "total": 2
+}

@@ -1,0 +1,207 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example Registry — ASR registry</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1d21; --muted:#6a737d; --line:#e1e4e8; --card:#f6f8fa;
+          --ok:#116329; --okbg:#dafbe1; --warn:#7d4e00; --warnbg:#fff8c5; --bad:#a40e26; --badbg:#ffebe9; --chip:#eaeef2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+            --ok:#3fb950; --okbg:#12261e; --warn:#d29922; --warnbg:#272115; --bad:#f85149; --badbg:#25171c; --chip:#21262d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font:14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; } h2 { font-size:18px; } h3 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:20px 0 6px; }
+  h4 { margin: 0 0 2px; font-size: 14px; }
+  a { color:inherit; } .sub { color:var(--muted); font-size:12.5px; } .muted { color:var(--muted); }
+  code { background:var(--chip); padding:1px 5px; border-radius:4px; font:12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap:anywhere; }
+  .chip { display:inline-block; background:var(--chip); border-radius:10px; padding:0 8px; font-size:11.5px; white-space:nowrap; }
+  .chip.tier.adj { background:var(--okbg); color:var(--ok); font-weight:600; }
+  .chip.tier.ass { background:var(--warnbg); color:var(--warn); }
+  .badge { display:inline-block; border-radius:6px; padding:1px 8px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--okbg); color:var(--ok); } .badge.warn { background:var(--warnbg); color:var(--warn); }
+  .badge.bad { background:var(--badbg); color:var(--bad); } .badge.muted { background:var(--chip); color:var(--muted); }
+  .banner { margin:10px 0 16px; } .stat { margin-right:14px; } .stat.ok b { color:var(--ok); } .stat.warn b { color:var(--warn); } .stat.bad b { color:var(--bad); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .filters input, .filters select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:13px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  table.mini td, table.mini th { padding:3px 8px; font-size:12px; }
+  .access, .shape { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .endpoint { border-top:1px dashed var(--line); margin-top:8px; padding-top:8px; }
+  .example { margin-top:4px; }
+  .pitfall { color:var(--warn); margin:4px 0; }
+  .bestfor { font-size:15px; }
+  footer { margin-top:28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:10px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
+</style>
+<h1>Example Registry</h1>
+<div class="sub">Fictional two-source registry exercising the ASR object model end to end (.test domains; every id and hash is real). — ASR registry <code>reg-00c0ffee0001</code>, spec 0.1.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="banner"><span class="stat ok"><b>2</b> verified</span></div>
+
+<main id="list">
+  <div class="filters">
+    <input id="q" type="search" placeholder="filter by name…">
+    <select id="ftopic"><option value="">topic: all</option><option>bird-sightings</option><option>orchard-trade-press</option></select>
+    <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
+    <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>bulk_download</option><option>web_fetch</option><option>web_render</option></select>
+  </div>
+  <div class="tablewrap">
+  <table id="tbl">
+    <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
+    <tr data-topics="bird-sightings" data-state="verified" data-tier="1" data-types="api_rest bulk_download" data-text="meadowlark observatory data service meadowlark observatory (fictional) meadowlark-observatory-data-service">
+      <td><a href="#src=asc-ca327093cdd0">Meadowlark Observatory Data Service</a><div class="sub">Meadowlark Observatory (fictional)</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">bird-sightings</span></td>
+      <td class="sub">subnational · US-VT</td>
+      <td class="sub">daily</td>
+      <td><span class="chip">api_rest</span> <span class="chip">bulk_download</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="orchard-trade-press" data-state="verified" data-tier="2" data-types="web_fetch web_render" data-text="orchard gazette archive orchard gazette trust (fictional) orchard-gazette-archive">
+      <td><a href="#src=asc-3316339d3d95">Orchard Gazette Archive</a><div class="sub">Orchard Gazette Trust (fictional)</div></td>
+      <td><span class="chip">archive</span></td>
+      <td><span class="chip tier adj" title="adjudicated by E. Fixture (human review)">T2</span></td>
+      <td><span class="chip">orchard-trade-press</span></td>
+      <td class="sub">subnational · US-VT</td>
+      <td class="sub">static</td>
+      <td><span class="chip">web_fetch</span> <span class="chip">web_render</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+  </table>
+  </div>
+
+  
+</main>
+
+
+    <section class="detail" id="src=asc-ca327093cdd0" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Meadowlark Observatory Data Service <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Meadowlark Observatory (fictional) · <a href="https://data.meadowlark.test/">https://data.meadowlark.test/</a> · <code>asc-ca327093cdd0</code> · <code>sources/meadowlark-observatory-data-service/</code></div>
+      <p>Fictional observatory publishing structured bird-sighting records through a keyless JSON API and yearly bulk snapshots.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Sighting counts and dates for a species · Seasonal presence questions</p>
+      <div class="shape"><strong>find sightings of a species</strong> <code>sightings-search</code><br>Query q with the common or scientific name; page with the offset param.<br><code>q=eastern-meadowlark</code></div>
+      <div class="pitfall">⚠ The API caps page size at 50; ask for more and it silently clamps.</div>
+      <p class="sub">Fictional exemplar: shows what a fully verified, exercised profile looks like.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (primary_dataset) by authority-fixtures — fixture<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · dataset_file (csv, zip) · landing: direct · cadence: daily (active) — new sightings nightly</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://api.meadowlark.test/v2</div>
+        
+        
+        <div class="sub">limits: 2 rps · 5000/day</div>
+        
+        <div class="endpoint">
+          <code>GET /sightings?q={q}&amp;offset={offset}</code> <span class="sub">sightings-search</span>
+          <div class="sub">Search sighting records.</div>
+          <div class="sub">params: <code>q</code>*, <code>offset</code></div>
+          <div class="example"><code>https://api.meadowlark.test/v2/sightings?q=eastern-meadowlark&amp;offset=0</code></div>
+          <div class="sub">pagination: offset_limit</div>
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-17T12:00:00.000Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
+      </div>
+      <div class="access">
+        <h4><code>bulk</code> <span class="chip">bulk_download</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://data.meadowlark.test/snapshots/</div>
+        
+        <div class="sub">robots: allowed</div>
+        <div class="sub">limits: 1 rps </div>
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-17T12:00:00.000Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">fixture · added 2026-08-17</p>
+    </section>
+
+    <section class="detail" id="src=asc-3316339d3d95" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Orchard Gazette Archive <span class="chip">archive</span> <span class="chip">secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Orchard Gazette Trust (fictional) · <a href="https://archive.orchardgazette.test/">https://archive.orchardgazette.test/</a> · <code>asc-3316339d3d95</code> · <code>sources/orchard-gazette-archive/</code></div>
+      <p>Fictional digitized archive of a regional horticulture newspaper; article pages are plain HTML, issue scans sit behind a landing page per issue.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Historical orchard practice and cultivar naming, 1911–1974</p>
+      <div class="shape"><strong>find an article by topic and year</strong><br>Browse /year/&lt;yyyy&gt;/ indexes; article slugs contain the headline.<br><code>https://archive.orchardgazette.test/year/1952/</code></div>
+      <div class="pitfall">⚠ Issue landing pages are thin; the scan PDF is behind the &#39;full scan&#39; link (landing_then_file).</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (trade_press, curated_reference) by authority-fixtures — fixture<br>
+      adjudicated: tier 2, score 0.7 by E. Fixture (human review) at 2026-08-17T12:00:00.000Z</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: landing_then_file · cadence: static (archived) — digitization complete 2019</p>
+      <h3>Relations</h3><p><span class="chip">companion_of → asc-ca327093cdd0</span></p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://archive.orchardgazette.test/</div>
+        
+        <div class="sub">robots: allowed</div>
+        <div class="sub">limits: 1 rps </div>
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-17T12:00:00.000Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>scan-portal</code> <span class="chip">web_render</span> <span class="badge ok">verified 0d ago</span> <span class="chip" title="reachability verified; JS rendering delegated to the harness (spec/03.6)">transport-only</span></h4>
+        <div class="sub">https://archive.orchardgazette.test/scans/</div>
+        
+        <div class="sub">robots: allowed</div>
+        <div class="sub">limits: 1 rps </div>
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-17T12:00:00.000Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass render:skip</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">fixture · added 2026-08-17</p>
+    </section>
+
+<footer>Authoritative Source Registry — every access claim is backed by stored evidence, or it says so. Built by authority build-index; regenerate with <code>authority regen</code>.</footer>
+<script>
+(function () {
+  var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
+      fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  function apply() {
+    var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
+    document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
+      var show = (!text || tr.dataset.text.indexOf(text) !== -1)
+        && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
+        && (!st || tr.dataset.state === st)
+        && (!tier || tr.dataset.tier === tier)
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+      tr.style.display = show ? "" : "none";
+    });
+  }
+  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  function route() {
+    var hash = location.hash.replace(/^#/, "");
+    var list = document.getElementById("list");
+    var showList = !hash || hash.indexOf("src=") !== 0;
+    list.hidden = !showList;
+    document.querySelectorAll(".detail").forEach(function (d) { d.hidden = true; });
+    if (!showList) {
+      var el = document.getElementById(hash);
+      if (el) el.hidden = false; else list.hidden = false;
+    }
+  }
+  window.addEventListener("hashchange", route);
+  document.querySelectorAll(".back").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); location.hash = ""; }); });
+  route();
+})();
+</script>

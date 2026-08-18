@@ -1,0 +1,35 @@
+{
+  "asr_spec_version": "0.1.0",
+  "topics": [
+    {
+      "id": "bird-sightings",
+      "label": "Bird sightings",
+      "description": "Observational records of birds.",
+      "parent": null
+    },
+    {
+      "id": "orchard-trade-press",
+      "label": "Orchard trade press",
+      "description": "Historical horticulture journalism.",
+      "parent": null
+    },
+    {
+      "id": "general",
+      "label": "General",
+      "description": "",
+      "parent": null
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-fixtures",
+      "tool_version": "0.1.0",
+      "model": null,
+      "method": "fixture",
+      "person": null
+    },
+    "created_at": "2026-08-17T12:00:00.000Z",
+    "modified_at": null
+  },
+  "notes": ""
+}

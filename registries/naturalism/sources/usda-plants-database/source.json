@@ -1,0 +1,165 @@
+{
+  "source_id": "asc-890e442eaef3",
+  "aliases": {},
+  "identity": {
+    "name": "USDA PLANTS Database",
+    "publisher": "USDA Natural Resources Conservation Service",
+    "homepage_url": "https://plants.usda.gov/",
+    "canonical_url": "https://plants.usda.gov/",
+    "description": "Federal plant database: profiles, distribution maps, characteristics, wetland indicator status. The modern site is a JS application over an internal API.",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "government_agency",
+        "primary_dataset"
+      ],
+      "rationale": "The U.S. federal reference for plant taxonomy, distribution, and wetland status; symbols (e.g. STME2) are the standard cross-reference keys.",
+      "asserted_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+      "asserted_at": "2026-08-18T02:43:59.974Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "flora",
+      "taxonomy"
+    ],
+    "jurisdiction": {
+      "level": "national",
+      "regions": [
+        "US"
+      ],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "html"
+        ],
+        "notes": "plant profiles"
+      },
+      {
+        "kind": "dataset_file",
+        "formats": [
+          "csv"
+        ],
+        "notes": "state/complete checklists via the app's download builder"
+      }
+    ],
+    "landing_pattern": "portal_query",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-96f6a182f8fa",
+      "name": "app",
+      "type": "web_render",
+      "base_url": "https://plants.sc.egov.usda.gov/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-7bc947933b90",
+        "last_verified_at": "2026-08-18T02:49:15.862Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": "plants.usda.gov 301s here; the vanity domain is the public identity, this host is the serving app."
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "app: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Authoritative U.S. plant nomenclature and symbols",
+      "State-level distribution and wetland status"
+    ],
+    "query_shapes": [
+      {
+        "task": "look up a plant by symbol",
+        "access": "app",
+        "endpoint": null,
+        "recipe": "Profiles live at /plant-profile/<SYMBOL> (e.g. ACRU for red maple); the harness renders the page.",
+        "example": "https://plants.usda.gov/plant-profile/ACRU"
+      }
+    ],
+    "pitfalls": [
+      "The site is a JS app — plain fetch gets the shell only; delegate to the rendering harness.",
+      "Checklist downloads go through the app's builder (portal_query), not stable URLs."
+    ],
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "irregular",
+    "cadence_notes": "taxonomic updates episodic",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "model knowledge (authority seeding pass)",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T02:43:59.974Z",
+    "added_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

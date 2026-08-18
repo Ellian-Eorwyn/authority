@@ -1,0 +1,613 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy Research — ASR registry</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1d21; --muted:#6a737d; --line:#e1e4e8; --card:#f6f8fa;
+          --ok:#116329; --okbg:#dafbe1; --warn:#7d4e00; --warnbg:#fff8c5; --bad:#a40e26; --badbg:#ffebe9; --chip:#eaeef2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+            --ok:#3fb950; --okbg:#12261e; --warn:#d29922; --warnbg:#272115; --bad:#f85149; --badbg:#25171c; --chip:#21262d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font:14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; } h2 { font-size:18px; } h3 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:20px 0 6px; }
+  h4 { margin: 0 0 2px; font-size: 14px; }
+  a { color:inherit; } .sub { color:var(--muted); font-size:12.5px; } .muted { color:var(--muted); }
+  code { background:var(--chip); padding:1px 5px; border-radius:4px; font:12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap:anywhere; }
+  .chip { display:inline-block; background:var(--chip); border-radius:10px; padding:0 8px; font-size:11.5px; white-space:nowrap; }
+  .chip.tier.adj { background:var(--okbg); color:var(--ok); font-weight:600; }
+  .chip.tier.ass { background:var(--warnbg); color:var(--warn); }
+  .badge { display:inline-block; border-radius:6px; padding:1px 8px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--okbg); color:var(--ok); } .badge.warn { background:var(--warnbg); color:var(--warn); }
+  .badge.bad { background:var(--badbg); color:var(--bad); } .badge.muted { background:var(--chip); color:var(--muted); }
+  .banner { margin:10px 0 16px; } .stat { margin-right:14px; } .stat.ok b { color:var(--ok); } .stat.warn b { color:var(--warn); } .stat.bad b { color:var(--bad); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .filters input, .filters select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:13px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  table.mini td, table.mini th { padding:3px 8px; font-size:12px; }
+  .access, .shape { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .endpoint { border-top:1px dashed var(--line); margin-top:8px; padding-top:8px; }
+  .example { margin-top:4px; }
+  .pitfall { color:var(--warn); margin:4px 0; }
+  .bestfor { font-size:15px; }
+  footer { margin-top:28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:10px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
+</style>
+<h1>Energy Research</h1>
+<div class="sub">Authoritative sources for building decarbonization, heat pumps, and California/US energy policy — grounded in the CEC_FORGE Task 2 corpus, with EIA added as the API gap-fill. — ASR registry <code>reg-f4f70accf5d2</code>, spec 0.1.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="banner"><span class="stat ok"><b>7</b> verified</span> <span class="stat bad"><b>2</b> broken</span> <span class="stat bad"><b>1</b> blocked</span></div>
+
+<main id="list">
+  <div class="filters">
+    <input id="q" type="search" placeholder="filter by name…">
+    <select id="ftopic"><option value="">topic: all</option><option>building-decarbonization</option><option>codes-standards</option><option>energy-data</option><option>energy-policy</option><option>heat-pumps</option><option>incentives</option><option>program-evaluation</option></select>
+    <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
+    <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>bulk_download</option><option>web_fetch</option><option>web_render</option></select>
+  </div>
+  <div class="tablewrap">
+  <table id="tbl">
+    <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
+    <tr data-topics="energy-policy incentives" data-state="verified" data-tier="2" data-types="web_fetch" data-text="aceee state policy database american council for an energy-efficient economy aceee-state-policy-database">
+      <td><a href="#src=asc-3ffe0d7feb14">ACEEE State Policy Database</a><div class="sub">American Council for an Energy-Efficient Economy</div></td>
+      <td><span class="chip">aggregator</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">energy-policy</span> <span class="chip">incentives</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="heat-pumps energy-data" data-state="blocked" data-tier="1" data-types="web_fetch" data-text="ahri air-conditioning, heating, and refrigeration institute ahri">
+      <td><a href="#src=asc-8cad8f69c11f">AHRI</a><div class="sub">Air-Conditioning, Heating, and Refrigeration Institute</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">heat-pumps</span> <span class="chip">energy-data</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">monthly</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="energy-policy building-decarbonization" data-state="verified" data-tier="1" data-types="web_fetch" data-text="california air resources board state of california california-air-resources-board">
+      <td><a href="#src=asc-0d7080b52228">California Air Resources Board</a><div class="sub">State of California</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">energy-policy</span> <span class="chip">building-decarbonization</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="energy-policy codes-standards building-decarbonization program-evaluation" data-state="verified" data-tier="1" data-types="web_fetch" data-text="california energy commission state of california california-energy-commission">
+      <td><a href="#src=asc-28b228ffc8c7">California Energy Commission</a><div class="sub">State of California</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">energy-policy</span> <span class="chip">codes-standards</span> <span class="chip">building-decarbonization</span> <span class="chip">program-evaluation</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="energy-policy program-evaluation" data-state="verified" data-tier="1" data-types="web_fetch web_fetch" data-text="california public utilities commission state of california california-public-utilities-commission">
+      <td><a href="#src=asc-c753a8933bc7">California Public Utilities Commission</a><div class="sub">State of California</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">energy-policy</span> <span class="chip">program-evaluation</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-evaluation" data-state="verified" data-tier="1" data-types="web_fetch" data-text="calmac california measurement advisory council calmac">
+      <td><a href="#src=asc-bddcb5e6edfe">CALMAC</a><div class="sub">California Measurement Advisory Council</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">program-evaluation</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="incentives" data-state="verified" data-tier="1" data-types="web_fetch web_render" data-text="dsire nc clean energy technology center, nc state university dsire">
+      <td><a href="#src=asc-071cb066d064">DSIRE</a><div class="sub">NC Clean Energy Technology Center, NC State University</div></td>
+      <td><span class="chip">aggregator</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">incentives</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span> <span class="chip">web_render</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="heat-pumps energy-data building-decarbonization" data-state="broken" data-tier="1" data-types="api_rest web_fetch bulk_download" data-text="national renewable energy laboratory u.s. department of energy national-renewable-energy-laboratory">
+      <td><a href="#src=asc-9fd4fbaa8fca">National Renewable Energy Laboratory</a><div class="sub">U.S. Department of Energy</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">heat-pumps</span> <span class="chip">energy-data</span> <span class="chip">building-decarbonization</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span> <span class="chip">bulk_download</span></td>
+      <td><span class="badge bad">broken</span></td>
+    </tr>
+<tr data-topics="energy-data building-decarbonization heat-pumps" data-state="verified" data-tier="1" data-types="api_rest web_fetch" data-text="osti.gov u.s. department of energy, office of scientific and technical information osti-gov">
+      <td><a href="#src=asc-2825f0b73374">OSTI.GOV</a><div class="sub">U.S. Department of Energy, Office of Scientific and Technical Information</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">energy-data</span> <span class="chip">building-decarbonization</span> <span class="chip">heat-pumps</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="energy-data" data-state="broken" data-tier="1" data-types="api_rest web_fetch" data-text="u.s. energy information administration u.s. department of energy us-energy-information-administration">
+      <td><a href="#src=asc-748da0edf004">U.S. Energy Information Administration</a><div class="sub">U.S. Department of Energy</div></td>
+      <td><span class="chip">publisher</span></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">energy-data</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">monthly</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">broken</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>Credential coverage</h3><div class="tablewrap"><table><tr><th>ref</th><th>needed by</th><th>resolution chain (spec/05)</th></tr><tr><td><code>eia_api_key</code></td><td class="sub">us-energy-information-administration#api</td><td class="sub">env <code>AUTHORITY_CRED_EIA_API_KEY</code> / <code>FORGE_API_KEY_EIA_API_KEY</code> → credentials.json → keychain</td></tr>
+<tr><td><code>nrel_api_key</code></td><td class="sub">national-renewable-energy-laboratory#api</td><td class="sub">env <code>AUTHORITY_CRED_NREL_API_KEY</code> / <code>FORGE_API_KEY_NREL_API_KEY</code> → credentials.json → keychain</td></tr></table></div>
+</main>
+
+
+    <section class="detail" id="src=asc-3ffe0d7feb14" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>ACEEE State Policy Database <span class="chip">aggregator</span> <span class="chip">tertiary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">American Council for an Energy-Efficient Economy · <a href="https://database.aceee.org/">https://database.aceee.org/</a> · <code>asc-3ffe0d7feb14</code> · <code>sources/aceee-state-policy-database/</code></div>
+      <p>State-by-state energy-efficiency policy summaries (buildings, utilities, transportation) with citations into the primary sources.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Orienting on a state&#39;s efficiency policy landscape before reading primaries</p>
+      <div class="shape"><strong>California policy overview</strong><br>State pages live at /state/&lt;state-name&gt;; sections cite the underlying statutes and orders.<br><code>https://database.aceee.org/state/california</code></div>
+      <div class="pitfall">⚠ Summaries lag primary sources; follow the citations for anything load-bearing.</div>
+      <p class="sub">Named source in the FORGE SOW.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference, professional_org) by Claude (Fable 5) — authority seeding pass 2026-08-17 — ACEEE&#39;s curated state-by-state policy database; named in the FORGE SOW. Credible secondary curation over primary policy documents.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active) — state pages updated on ACEEE&#39;s review cycle</p>
+      <h3>Relations</h3><p><span class="chip">part_of → ACEEE</span></p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://database.aceee.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:35.051Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.3; named in SOW) — <code>WebSearch: ACEEE state policy database California</code> · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-8cad8f69c11f" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>AHRI <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">Air-Conditioning, Heating, and Refrigeration Institute · <a href="https://www.ahrinet.org/">https://www.ahrinet.org/</a> · <code>asc-8cad8f69c11f</code> · <code>sources/ahri/</code></div>
+      <p>AHRI standards, certification program information, and the monthly HVACR shipment statistics releases.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Monthly U.S. heat pump and HVACR shipment statistics · AHRI standards references (e.g. 210/240)</p>
+      <div class="shape"><strong>latest shipment numbers</strong><br>/analytics/statistics fronts the monthly releases; each release links its data file.</div>
+      <div class="pitfall">⚠ ahrinet.org refuses plain automated fetchers (HTTP 403) — the blocked state is real; use the rendering harness or a human browser for page content.</div><div class="pitfall">⚠ Certified-product lookups live on ahridirectory.org, a JS application — delegate rendering to the harness if needed.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (standards_body, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The industry standards body; its monthly HVACR shipment statistics are the primary market-size dataset for heat pumps.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · dataset_file (xlsx, pdf) · landing: landing_then_file · cadence: monthly (active) — shipment stats monthly</p>
+      <h3>Relations</h3><p><span class="chip">companion_of → AHRI Directory</span></p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://www.ahrinet.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:36.583Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.4) — <code>WebSearch: AHRI heat pump shipment data 2024 2025</code> · import FORGE-2.4-042 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-0d7080b52228" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>California Air Resources Board <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">State of California · <a href="https://ww2.arb.ca.gov/">https://ww2.arb.ca.gov/</a> · <code>asc-0d7080b52228</code> · <code>sources/california-air-resources-board/</code></div>
+      <p>CARB&#39;s program pages and rulemaking documents for building decarbonization, zero-emission space/water heating, and the Climate Change Scoping Plan.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Zero-emission appliance rulemaking status · Scoping Plan text and building-decarbonization appendices</p>
+      <div class="shape"><strong>track the zero-emission space and water heater rulemaking</strong><br>Program page at /our-work/programs/zero-emission-space-and-water-heater-standards; check &#39;Documents&#39; for the latest workshop materials.</div>
+      <div class="pitfall">⚠ Some CARB program pages intermittently refuse automated fetchers (the corpus recorded a fetch-failed-403 on this very program page) — if blocked, retry later or delegate to the rendering harness.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, regulation) by Claude (Fable 5) — authority seeding pass 2026-08-17 — State air-quality regulator; owner of the Scoping Plan and zero-emission appliance rulemakings.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: landing_then_file · cadence: continuous (active) — rulemaking in progress</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://ww2.arb.ca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:38.214Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.3) — <code>WebFetch attempted (403); URL from WebSearch — CARB zero-emission space water heater standards</code> · import FORGE-2.3-016 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-28b228ffc8c7" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>California Energy Commission <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">State of California · <a href="https://www.energy.ca.gov/">https://www.energy.ca.gov/</a> · <code>asc-28b228ffc8c7</code> · <code>sources/california-energy-commission/</code></div>
+      <p>California&#39;s primary energy policy and planning agency: building energy code, electrification programs (BUILD, IRA rebates), assessments, and proceedings.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Title 24 building energy code documents and timelines · State electrification program pages (BUILD, Equitable Building Decarbonization) · California energy planning reports</p>
+      <div class="shape"><strong>find the current building code documents</strong><br>Go to /programs-and-topics/programs/building-energy-efficiency-standards and follow the current cycle page to the compliance-manual PDFs.</div>
+      <div class="pitfall">⚠ Landing pages are thin — the load-bearing content is in linked PDFs (compliance manuals, final reports).</div><div class="pitfall">⚠ Docket materials live on efiling.energy.ca.gov, a separate system.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, regulation) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The state&#39;s principal energy policy and planning agency; publisher of the Building Energy Efficiency Standards (Title 24, Part 6) and statewide decarbonization assessments.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: landing_then_file · cadence: continuous (active) — code cycles every ~3 years; program pages updated as filed</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.energy.ca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /search?search_api_fulltext={q}</code> <span class="sub">site-search</span>
+          <div class="sub">Site search over programs, proceedings, and publications.</div>
+          <div class="sub">params: <code>q</code>*</div>
+          <div class="example"><code>https://www.energy.ca.gov/search?search_api_fulltext=heat+pump</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:39.525Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtasks 2.2/2.3) — <code>WebSearch: California 2025 Title 24 building energy efficiency standards heat pump baseline</code> · import FORGE-2.2-020 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-c753a8933bc7" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>California Public Utilities Commission <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">State of California · <a href="https://www.cpuc.ca.gov/">https://www.cpuc.ca.gov/</a> · <code>asc-c753a8933bc7</code> · <code>sources/california-public-utilities-commission/</code></div>
+      <p>CPUC proceeding pages plus the public documents system (docs.cpuc.ca.gov) where filed documents actually live.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Long-term gas planning rulemaking documents (R.24-09-012 and closed R.20-01-007) · Decisions and rulings as filed PDFs</p>
+      <div class="shape"><strong>pull a specific proceeding&#39;s documents</strong><br>Search the proceeding number (e.g. R2409012) in the docs system; captured PDF URLs under /PublishedDocs/ are stable and directly fetchable.</div>
+      <div class="pitfall">⚠ Proceeding numbers are written R.24-09-012 in prose but R2409012 in the docket system.</div><div class="pitfall">⚠ cpuc.ca.gov program pages lag the docket record.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, regulation) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Regulator of investor-owned utilities; long-term gas planning and building-decarbonization proceedings.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: search_then_record · cadence: continuous (active) — updated as filed</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.cpuc.ca.gov/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:40.876Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>docket-search</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://docs.cpuc.ca.gov/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:43.903Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.3) — <code>WebSearch: CPUC long-term gas planning rulemaking R.24-09-012 order</code> · import FORGE-2.3-031 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-bddcb5e6edfe" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>CALMAC <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">California Measurement Advisory Council · <a href="https://www.calmac.org/">https://www.calmac.org/</a> · <code>asc-bddcb5e6edfe</code> · <code>sources/calmac/</code></div>
+      <p>Searchable archive of California energy program measurement and evaluation studies, served as direct PDF publications.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> TECH Clean California and other CA program evaluations · Load and impact studies for CA efficiency programs</p>
+      <div class="shape"><strong>find an evaluation study</strong><br>Use the site search; captured /publications/&lt;name&gt;.pdf URLs are stable and directly fetchable.</div>
+      <div class="pitfall">⚠ The search UI is dated; once you have a publication URL, fetch it directly.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The clearinghouse for California utility program evaluation studies (TECH Clean California evaluations live here).<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · landing: landing_then_file · cadence: irregular (active) — studies posted as completed</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.calmac.org/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:45.246Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.2) — <code>WebSearch: TECH clean california process evaluation CALMAC</code> · import FORGE-2.2-001 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-071cb066d064" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>DSIRE <span class="chip">aggregator</span> <span class="chip">tertiary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">NC Clean Energy Technology Center, NC State University · <a href="https://dsireusa.org/">https://dsireusa.org/</a> · <code>asc-071cb066d064</code> · <code>sources/dsire/</code></div>
+      <p>Continuously updated database of U.S. clean-energy incentives and policies, browsable per state; entries link to the underlying statutes and program pages.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Finding what incentives exist for a technology in a state · Orientation before reading the primary program documents</p>
+      <div class="shape"><strong>list CA heat-pump incentives</strong><br>Filter state=California, technology=Air-Source Heat Pumps in the program app; follow each entry&#39;s links to the administering program&#39;s own page.</div>
+      <div class="pitfall">⚠ Treat entries as POINTERS: cite the underlying program document, not the DSIRE entry (aggregator semantics).</div><div class="pitfall">⚠ The corpus marks this Tertiary-aggregator for exactly that reason.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The standard national database of state incentives for renewables and efficiency; tier 1 as an aggregator — its entries are pointers to authoritative program documents.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (html) · landing: portal_query · cadence: continuous (active) — n.d. (continuously updated) in the corpus</p>
+      <h3>Relations</h3><p><span class="chip">aggregates → State and utility incentive programs</span></p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://dsireusa.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:28.572Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>app</code> <span class="chip">web_render</span> <span class="badge ok">verified 0d ago</span> <span class="chip" title="reachability verified; JS rendering delegated to the harness (spec/03.6)">transport-only</span></h4>
+        <div class="sub">https://programs.dsireusa.org/system/program</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:30.048Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass render:skip</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.3) — <code>WebSearch: DSIRE database state incentives renewables efficiency</code> · import FORGE-2.3-001 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-9fd4fbaa8fca" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>National Renewable Energy Laboratory <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge bad">broken</span></h2>
+      <div class="sub">U.S. Department of Energy · <a href="https://www.nrel.gov/">https://www.nrel.gov/</a> · <code>asc-9fd4fbaa8fca</code> · <code>sources/national-renewable-energy-laboratory/</code></div>
+      <p>NREL publications (docs.nrel.gov PDFs), the research hub, and developer.nrel.gov APIs keyed by the shared api.data.gov key.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Cold-climate heat pump field studies · ResStock / End-Use Load Profiles pointers · Utility rate lookups by location</p>
+      <div class="shape"><strong>fetch a known NREL report</strong><br>docs.nrel.gov/docs/fy25osti/&lt;number&gt;.pdf is directly fetchable once you have the number (search the research hub for it).<br><code>https://docs.nrel.gov/docs/fy25osti/88309.pdf</code></div>
+      <div class="pitfall">⚠ ResStock data lives on AWS Open Data (registry.opendata.aws/nrel-pds-building-stock), not nrel.gov — the corpus notes the AWS registry URL is the clean entry.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (national_lab, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — DOE lab whose reports and datasets (ResStock, End-Use Load Profiles) anchor residential electrification analysis.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · structured_record (json) · dataset_file (csv, parquet) · landing: direct · cadence: continuous (active)</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge muted">asserted — never probed</span></h4>
+        <div class="sub">https://developer.nrel.gov/api · <a href="https://developer.nrel.gov/docs/">docs</a></div>
+        <div class="sub">auth: api_key_query · ref <code>nrel_api_key</code> · <a href="https://developer.nrel.gov/signup/">get a key</a></div>
+        
+        <div class="sub">limits: 1 rps · 1000/day</div>
+        
+        <div class="endpoint">
+          <code>GET /utility_rates/v3.json?lat={lat}&amp;lon={lon}</code> <span class="sub">utility-rates</span>
+          <div class="sub">Utility rate summaries by location.</div>
+          <div class="sub">params: <code>lat</code>*, <code>lon</code>*</div>
+          <div class="example"><code>https://developer.nrel.gov/api/utility_rates/v3.json?lat=38.58&amp;lon=-121.49&amp;api_key=$CREDENTIAL</code></div>
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:33.840Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr><tr><td>2026-08-18T02:44:50.120Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">broken</span></h4>
+        <div class="sub">https://www.nrel.gov/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:33.886Z</td><td><span class="badge bad">dns_error</span></td><td class="sub">robots:skip http:fail</td><td class="sub"></td></tr><tr><td>2026-08-18T02:44:50.175Z</td><td><span class="badge bad">dns_error</span></td><td class="sub">robots:skip http:fail</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>docs</code> <span class="chip">bulk_download</span> <span class="badge bad">broken</span></h4>
+        <div class="sub">https://docs.nrel.gov/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:36.374Z</td><td><span class="badge bad">dns_error</span></td><td class="sub">robots:skip http:fail</td><td class="sub"></td></tr><tr><td>2026-08-18T02:44:52.644Z</td><td><span class="badge bad">dns_error</span></td><td class="sub">robots:skip http:fail</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtasks 2.2/2.4) — <code>WebSearch: NREL cold climate heat pump field validation</code> · import FORGE-2.2-007 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-2825f0b73374" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>OSTI.GOV <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">U.S. Department of Energy, Office of Scientific and Technical Information · <a href="https://www.osti.gov/">https://www.osti.gov/</a> · <code>asc-2825f0b73374</code> · <code>sources/osti-gov/</code></div>
+      <p>DOE&#39;s scientific and technical information portal: national-lab reports with a keyless JSON records API and stable biblio landing pages.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> DOE national-lab reports (LBNL/NREL/PNNL) by topic · Stable citation metadata for gray literature</p>
+      <div class="shape"><strong>find lab reports on a topic</strong> <code>records</code><br>Plain keyword q; each record carries links.osti_id → biblio landing page → PDF.<br><code>q=residential electrification barriers</code></div>
+      <div class="pitfall">⚠ The API returns metadata; full text is one hop away on the biblio page (landing_then_file).</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, national_lab) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The access path for DOE national-laboratory reports (LBNL, NREL, PNNL) — the corpus reaches lab literature through OSTI biblio pages.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · pdf_document (pdf) · landing: landing_then_file · cadence: continuous (active)</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.osti.gov/api/v1 · <a href="https://www.osti.gov/api/v1/docs">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /records?q={q}&amp;rows={rows}&amp;page={page}</code> <span class="sub">records</span>
+          <div class="sub">Search OSTI records.</div>
+          <div class="sub">params: <code>q</code>*, <code>rows</code>, <code>page</code></div>
+          <div class="example"><code>https://www.osti.gov/api/v1/records?q=building+electrification&amp;rows=10</code></div>
+          <div class="sub">pagination: page_number</div>
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:55.140Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.osti.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:44:55.421Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">CEC_FORGE Task 2 Source Corpus (subtask 2.2) — <code>WebSearch: LBNL electrification of buildings drivers barriers OSTI</code> · import FORGE-2.2-033 · added 2026-08-18</p>
+    </section>
+
+    <section class="detail" id="src=asc-748da0edf004" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>U.S. Energy Information Administration <span class="chip">publisher</span> <span class="chip">primary</span> <span class="badge bad">broken</span></h2>
+      <div class="sub">U.S. Department of Energy · <a href="https://www.eia.gov/">https://www.eia.gov/</a> · <code>asc-748da0edf004</code> · <code>sources/us-energy-information-administration/</code></div>
+      <p>Official U.S. energy statistics: electricity, natural gas, petroleum, consumption surveys (RECS/CBECS), all exposed through a keyed JSON API.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> State electricity prices/sales/customers over time · Residential energy consumption survey (RECS) tables · National energy statistics with provenance</p>
+      <div class="shape"><strong>CA residential electricity price history</strong> <code>retail-sales</code><br>frequency=annual, data=price, state=CA; add facets[sectorid][]=RES via ext params if needed.<br><code>frequency=annual&amp;data[0]=price&amp;facets[stateid][]=CA</code></div>
+      <div class="pitfall">⚠ www.eia.gov denies plain automated fetchers at the Akamai edge (503, AkamaiGHost) — the API access is the machine door; use the rendering harness for site pages.</div><div class="pitfall">⚠ API v2 routes are hierarchical — /electricity/retail-sales is one of many; browse /v2 with the key to discover others.</div><div class="pitfall">⚠ Bracketed query params (data[0], facets[stateid][]) are literal — copy the example shape.</div>
+      <p class="sub">Key is free and instant; store it once with `authority creds set eia_api_key` and every registry can use it.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The federal statistical agency for energy; the APIv2 is the canonical machine door to national and state energy series. Absent from the CEC_FORGE corpus — added here as the deliberate API gap-fill.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · dataset_file (csv, xlsx) · html_page (html) · landing: direct · cadence: monthly (active) — series-dependent; monthly electricity data lags ~2 months</p>
+      
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge muted">asserted — never probed</span></h4>
+        <div class="sub">https://api.eia.gov/v2 · <a href="https://www.eia.gov/opendata/documentation.php">docs</a></div>
+        <div class="sub">auth: api_key_query · ref <code>eia_api_key</code> · <a href="https://www.eia.gov/opendata/register.php">get a key</a></div>
+        
+        <div class="sub">limits: 1 rps · 5000/day</div>
+        
+        <div class="endpoint">
+          <code>GET /electricity/retail-sales/data?frequency={frequency}&amp;data[0]={data}&amp;facets[stateid][]={state}&amp;start={start}&amp;end={end}</code> <span class="sub">retail-sales</span>
+          <div class="sub">Monthly/annual electricity retail sales, price, revenue, customers by state and sector.</div>
+          <div class="sub">params: <code>frequency</code>*, <code>data</code>*, <code>state</code>, <code>start</code>, <code>end</code></div>
+          <div class="example"><code>https://api.eia.gov/v2/electricity/retail-sales/data?frequency=annual&amp;data[0]=price&amp;facets[stateid][]=CA&amp;api_key=$CREDENTIAL</code></div>
+          <div class="sub">pagination: offset_limit</div>
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:40.978Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr><tr><td>2026-08-18T02:44:56.959Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">broken</span></h4>
+        <div class="sub">https://www.eia.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:46:41.026Z</td><td><span class="badge bad">failed</span></td><td class="sub">robots:pass http:fail</td><td class="sub">503</td></tr><tr><td>2026-08-18T02:44:57.011Z</td><td><span class="badge bad">failed</span></td><td class="sub">robots:pass http:fail</td><td class="sub">503</td></tr></table></details>
+        
+      </div>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (authority seeding pass) — <code>model knowledge; EIA absent from the CEC_FORGE corpus (gap-fill)</code> · added 2026-08-18</p>
+    </section>
+
+<footer>Authoritative Source Registry — every access claim is backed by stored evidence, or it says so. Built by authority build-index; regenerate with <code>authority regen</code>.</footer>
+<script>
+(function () {
+  var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
+      fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  function apply() {
+    var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
+    document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
+      var show = (!text || tr.dataset.text.indexOf(text) !== -1)
+        && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
+        && (!st || tr.dataset.state === st)
+        && (!tier || tr.dataset.tier === tier)
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+      tr.style.display = show ? "" : "none";
+    });
+  }
+  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  function route() {
+    var hash = location.hash.replace(/^#/, "");
+    var list = document.getElementById("list");
+    var showList = !hash || hash.indexOf("src=") !== 0;
+    list.hidden = !showList;
+    document.querySelectorAll(".detail").forEach(function (d) { d.hidden = true; });
+    if (!showList) {
+      var el = document.getElementById(hash);
+      if (el) el.hidden = false; else list.hidden = false;
+    }
+  }
+  window.addEventListener("hashchange", route);
+  document.querySelectorAll(".back").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); location.hash = ""; }); });
+  route();
+})();
+</script>

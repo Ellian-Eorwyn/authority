@@ -1,0 +1,207 @@
+{
+  "source_id": "asc-7e76c71f2c59",
+  "aliases": {},
+  "identity": {
+    "name": "eBird",
+    "publisher": "Cornell Lab of Ornithology",
+    "homepage_url": "https://ebird.org/",
+    "canonical_url": "https://ebird.org/",
+    "description": "Bird observations, hotspots, and taxonomy through API 2.0, keyed by a free token sent in the x-ebirdapitoken header.",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "primary_dataset",
+        "curated_reference"
+      ],
+      "rationale": "The global bird observation dataset, expert-reviewed; the API 2.0 is the canonical machine door (header-keyed).",
+      "asserted_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+      "asserted_at": "2026-08-18T02:43:59.974Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "birds",
+      "occurrence-data"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json",
+          "csv"
+        ],
+        "notes": ""
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-ae918500bf86",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://api.ebird.org/v2",
+      "docs_url": "https://documenter.getpostman.com/view/664302/S1ENwy59",
+      "auth": {
+        "required": true,
+        "scheme": "api_key_header",
+        "credential_ref": "ebird_api_key",
+        "location": {
+          "in": "header",
+          "name": "x-ebirdapitoken"
+        },
+        "signup_url": "https://ebird.org/api/keygen",
+        "notes": "Free key, instant."
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-fb6cb773c389",
+          "name": "recent-observations",
+          "description": "Recent observations in a region.",
+          "http_method": "GET",
+          "path_template": "/data/obs/{regionCode}/recent?back={back}",
+          "params": [
+            {
+              "name": "regionCode",
+              "required": true,
+              "type": "string",
+              "description": "eBird region (US, US-CA, or a hotspot locId)",
+              "example": "US-CA"
+            },
+            {
+              "name": "back",
+              "required": false,
+              "type": "integer",
+              "description": "days back (1-30)",
+              "example": 7
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": null,
+            "notes": "top-level array"
+          },
+          "probe_hint": {
+            "params": {
+              "regionCode": "US-CA",
+              "back": 3
+            }
+          },
+          "example_request": "https://api.ebird.org/v2/data/obs/US-CA/recent  (header x-ebirdapitoken: $CREDENTIAL)",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "asserted",
+        "last_probe_id": "prb-7e067a842fce",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "asserted until a free key is stored (creds set ebird_api_key) — the header-key exemplar"
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "asserted",
+    "summary": "api: asserted"
+  },
+  "guidance": {
+    "best_for": [
+      "Recent bird sightings by region or hotspot",
+      "Species lists for a region",
+      "The eBird taxonomy"
+    ],
+    "query_shapes": [
+      {
+        "task": "what's being seen locally",
+        "access": "api",
+        "endpoint": "recent-observations",
+        "recipe": "regionCode US-CA (or finer, e.g. US-CA-067 for Sacramento County); back=7.",
+        "example": "/data/obs/US-CA-067/recent?back=7"
+      }
+    ],
+    "pitfalls": [
+      "The key travels in the x-ebirdapitoken HEADER, never the query string.",
+      "Full historical datasets are a separate request-based product (EBD), not this API."
+    ],
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "realtime",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "model knowledge (authority seeding pass)",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T02:43:59.974Z",
+    "added_by": "Claude (Fable 5) — authority seeding pass 2026-08-17",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.1.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T02:43:59.974Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

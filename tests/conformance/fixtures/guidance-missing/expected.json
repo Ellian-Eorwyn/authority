@@ -1,0 +1,7 @@
+{
+  "fixture": "guidance-missing",
+  "target": "L2",
+  "expect": [
+    "guidance_missing"
+  ]
+}

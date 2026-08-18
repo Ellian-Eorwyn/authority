@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.1.0/schemas/fetch-record.schema.json",
+  "title": "ASR Fetch Record (fetches.jsonl line and .fetch.json sidecar)",
+  "description": "One exercised recipe: real data pulled through a profiled endpoint. The same object is appended to the source's tracked fetches.jsonl AND written beside the payload as <payload>.fetch.json — so the registry remembers every exercised recipe even after gitignored payloads are cleaned up. The retrieval block is field-compatible with UPC source.retrieval by construction (crosswalks/upc.md): a fetched payload can seed a UPC source without translation. Recorded URLs and params are secret-redacted; the payload itself is whatever the source returned.",
+  "type": "object",
+  "properties": {
+    "fetch_id": { "type": "string", "pattern": "^fch-[0-9a-f]{12}$", "description": "Content-addressed: \"fch\\n\" + endpoint_id + \"\\n\" + request_url(redacted) + \"\\n\" + fetched_at (§06)." },
+    "endpoint_id": { "type": "string", "pattern": "^end-[0-9a-f]{12}$" },
+    "access_id": { "type": "string", "pattern": "^acc-[0-9a-f]{12}$" },
+    "source_id": { "type": "string", "pattern": "^asc-[0-9a-f]{12}$" },
+    "fetched_at": { "type": "string", "format": "date-time" },
+    "tool": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "method": { "$ref": "../vocab/vocab.json#/$defs/produced_by_method" }
+      },
+      "required": ["name", "method"],
+      "additionalProperties": true
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "method": { "$ref": "../vocab/vocab.json#/$defs/http_method" },
+        "url": { "type": "string", "description": "Fully substituted request URL, credential value replaced by *** BEFORE recording." },
+        "params": { "type": "object", "description": "The caller-supplied params (secret-valued params redacted).", "additionalProperties": true },
+        "user_agent": { "type": "string" }
+      },
+      "required": ["method", "url"],
+      "additionalProperties": true
+    },
+    "retrieval": {
+      "type": "object",
+      "description": "UPC-compatible retrieval block. Field names and the fetch_status enum match UPC source.retrieval exactly, so this block can be copied into a UPC source verbatim.",
+      "properties": {
+        "original_url": { "type": "string", "description": "The requested URL (redacted) — maps to UPC retrieval.original_url." },
+        "final_url": { "type": ["string", "null"], "description": "After redirects (redacted)." },
+        "fetch_status": { "$ref": "../vocab/vocab.json#/$defs/fetch_status" },
+        "http_status": { "type": ["integer", "null"] },
+        "content_type": { "type": ["string", "null"] },
+        "fetch_method": { "type": "string", "description": "Always \"http\" for the reference CLI; a rendering harness writes its own value." },
+        "fetched_at": { "type": "string", "format": "date-time" },
+        "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$", "description": "Hash of the complete payload bytes as stored; null when nothing was stored." },
+        "bytes": { "type": ["integer", "null"] },
+        "elapsed_ms": { "type": ["integer", "null"] }
+      },
+      "required": ["original_url", "fetch_status", "fetched_at"],
+      "additionalProperties": true
+    },
+    "payload": {
+      "type": "object",
+      "description": "Where the full payload landed (gitignored fetched/); the file may be cleaned up later — sha256/bytes in retrieval remain the durable record. null when the fetch was refused or skipped.",
+      "properties": {
+        "path": { "type": ["string", "null"], "description": "Registry-relative path under fetched/." },
+        "pages": { "type": ["integer", "null"], "description": "Number of pages concatenated/collected when pagination ran; null for single requests." }
+      },
+      "additionalProperties": true
+    },
+    "sample": {
+      "type": "object",
+      "description": "Present when --keep-sample stored a truncated, TRACKED sample under the source's samples/ directory (cap recorded in truncated_at; hash is of the stored sample bytes).",
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" },
+        "truncated_at": { "type": ["integer", "null"], "description": "Byte cap applied; null when the sample is the complete payload." }
+      },
+      "required": ["path", "sha256", "bytes"],
+      "additionalProperties": true
+    },
+    "credential": {
+      "type": "object",
+      "properties": {
+        "ref": { "type": ["string", "null"] },
+        "resolved_via": { "$ref": "../vocab/vocab.json#/$defs/credential_source" }
+      },
+      "additionalProperties": true
+    },
+    "skip_reason": { "type": ["string", "null"], "description": "Human-readable reason when the fetch did not execute (credential unresolved with the tried chain listed, robots disallowed, budget exhausted). A skipped fetch is a successful CLI run (exit 0) that honestly did nothing." },
+    "notes": { "type": "string" }
+  },
+  "required": ["fetch_id", "endpoint_id", "access_id", "source_id", "fetched_at", "tool", "request", "retrieval"],
+  "additionalProperties": true
+}
