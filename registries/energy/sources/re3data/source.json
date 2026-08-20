@@ -39,7 +39,7 @@
   },
   "scope": {
     "topics": [
-      "research-data"
+      "energy-data"
     ],
     "jurisdiction": {
       "level": "not_applicable",
@@ -50,6 +50,11 @@
       "coverage_start": null,
       "coverage_end": "present",
       "notes": ""
+    },
+    "facets": {
+      "governance_domain": [
+        "research"
+      ]
     }
   },
   "content": {
@@ -79,9 +84,7 @@
     "temporal": {
       "coverage_start": "2012",
       "coverage_end": "present"
-    },
-    "policy_states": [],
-    "sectors": []
+    }
   },
   "access": [
     {
@@ -241,7 +244,7 @@
       "person": null
     },
     "created_at": "2026-08-18T12:00:00.000Z",
-    "modified_at": null
+    "modified_at": "2026-08-20T12:00:00.000Z"
   },
   "ext": {},
   "notes": "Reference federation target: `authority import <registry> re3data <id|--from file.json>` (crosswalks/re3data.md, spec/10)."

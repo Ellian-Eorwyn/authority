@@ -1,6 +1,6 @@
 # ASR 00 — Overview
 
-**Authoritative Source Registry (ASR), version 0.2.0.** This specification
+**Authoritative Source Registry (ASR), version 0.3.0.** This specification
 defines a tool-independent format for per-domain registries of authoritative
 sources, profiled operationally. The key words MUST, MUST NOT, SHOULD, SHOULD
 NOT, and MAY are to be interpreted as described in RFC 2119.

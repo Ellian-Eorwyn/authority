@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.2.0/schemas/provenance-stamp.schema.json",
+  "$id": "https://provenance.dev/asr/0.3.0/schemas/provenance-stamp.schema.json",
   "title": "ASR Provenance Stamp",
   "description": "Who or what wrote an object, and when. Every top-level ASR object (registry manifest, topics file, source profile) carries one; probe and fetch records carry the lighter tool block instead because they are born mechanical. The stamp answers accountability questions (was this profile model-written? when was it last touched?), not derivation questions — ASR objects are roots, not derived objects, so there is no derived_from here (contrast UPC).",
   "type": "object",

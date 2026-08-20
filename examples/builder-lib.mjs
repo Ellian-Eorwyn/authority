@@ -172,7 +172,7 @@ export function addFetch(root, slugName, source, acc, ep, { bodyText, params = {
 
 /** Write registry scaffolding (manifest with FIXED nonce id, topics,
  *  credentials example, .gitignore) and the profiles. */
-export function writeRegistry(root, { registryId, title, description = "", topics, sources }) {
+export function writeRegistry(root, { registryId, title, description = "", topics, facets = null, sources }) {
   fs.mkdirSync(path.join(root, "sources"), { recursive: true });
   for (const { slugName, source } of sources) {
     const dir = path.join(root, "sources", slugName);
@@ -180,16 +180,24 @@ export function writeRegistry(root, { registryId, title, description = "", topic
     writeJsonAtomic(path.join(dir, "source.json"), source);
   }
   writeJsonAtomic(path.join(root, "topics.json"), {
-    asr_spec_version: "0.2.0",
+    asr_spec_version: "0.3.0",
     topics,
     provenance: stamp(),
     notes: "",
   });
+  if (facets) {
+    writeJsonAtomic(path.join(root, "facets.json"), {
+      asr_spec_version: "0.3.0",
+      facets,
+      provenance: stamp(),
+      notes: "",
+    });
+  }
   writeJsonAtomic(path.join(root, "credentials.example.json"), { version: 1, credentials: {} });
   fs.writeFileSync(path.join(root, ".gitignore"), "credentials.json\nfetched/\n.authority/\n*.tmp\n.*.tmp\n.DS_Store\n");
   writeJsonAtomic(path.join(root, "registry.json"), {
     registry_id: registryId,
-    asr_spec_version: "0.2.0",
+    asr_spec_version: "0.3.0",
     title,
     description,
     readme:
@@ -199,7 +207,7 @@ export function writeRegistry(root, { registryId, title, description = "", topic
       "referenced by name and never stored in tracked files.",
     rules_note: "spec/00-overview.md",
     defaults: { verification_window_days: 90, politeness_delay_ms: 1000, user_agent_contact: "mailto:fixtures@example.test" },
-    sections: { sources: "sources/", topics: "topics.json", sources_csv: "sources.csv", index_html: "index.html", credentials_example: "credentials.example.json", fetched: "fetched/" },
+    sections: { sources: "sources/", topics: "topics.json", ...(facets ? { facets: "facets.json" } : {}), sources_csv: "sources.csv", index_html: "index.html", credentials_example: "credentials.example.json", fetched: "fetched/" },
     sources: sources.map(({ slugName, source }) => ({
       source_id: source.source_id, slug: slugName, name: source.identity.name,
       path: `sources/${slugName}/`, verification_state: source.verification.state,

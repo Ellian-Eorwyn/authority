@@ -176,11 +176,11 @@ eq(rollupState(["retired"]), "retired", "rollup: all retired");
 // --- CSV — spec/09.1 ---
 eq(writeCsv([["a", 'b"c', "d,e"], ["1", "", "x\ny"]]), 'a,"b""c","d,e"\n1,,"x\ny"\n', "csv RFC 4180 quoting");
 
-// --- 0.2.0 vocab & schema extension contract (spec/00.7, spec/02) ---
+// --- 0.2.0/0.3.0 vocab & schema extension contract (spec/00.7, spec/02) ---
 {
   const vocab = JSON.parse(fs.readFileSync(new URL("../vocab/vocab.json", import.meta.url), "utf8"));
   const defs = vocab.$defs;
-  eq(vocab.asr_spec_version, "0.2.0", "vocab stamps 0.2.0");
+  eq(vocab.asr_spec_version, "0.3.0", "vocab stamps 0.3.0");
   for (const name of ["officiality", "routing_disposition", "completeness", "completeness_basis", "content_freshness_basis", "resolution_strategy", "upstream_registry"]) {
     const d = defs[name];
     ok(d && Array.isArray(d.anyOf) && d.anyOf.some((s) => s.pattern === "^x-[a-z0-9-]+$"), `vocab: ${name} present and extensible`);
@@ -195,6 +195,11 @@ eq(writeCsv([["a", 'b"c', "d,e"], ["1", "", "x\ny"]]), 'a,"b""c","d,e"\n1,,"x\ny
   ok(src.properties.freshness && !defs.content_freshness_basis.anyOf[0].enum.some((v) => /probe|verified_access/.test(v)), "schema: content_freshness_basis has no probe-derived value");
   ok(src.properties.coverage && src.properties.discovery.properties.upstream && src.properties.guidance.properties.routing, "schema: coverage + discovery.upstream + guidance.routing present");
   ok(src.$defs.access_method.properties.openapi && src.properties.identity.properties.operator, "schema: access.openapi + identity.operator present");
+  // 0.3.0 facets: scope.facets present, and the migrated coverage free-strings are GONE.
+  ok(src.properties.scope.properties.facets, "schema: scope.facets present (0.3.0)");
+  ok(!src.properties.coverage.properties.policy_states && !src.properties.coverage.properties.sectors, "schema: coverage.policy_states/sectors removed (migrated to facets)");
+  const facetsSchema = JSON.parse(fs.readFileSync(new URL("../schemas/facets.schema.json", import.meta.url), "utf8"));
+  ok(facetsSchema.properties.facets && facetsSchema.required.includes("facets"), "schema: facets.schema.json declares a required facets array");
 }
 
 console.log(`selftest: ${pass} passed, ${failCount} failed`);

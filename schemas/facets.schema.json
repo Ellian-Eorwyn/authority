@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.3.0/schemas/facets.schema.json",
+  "title": "ASR Facet Vocabularies (facets.json)",
+  "description": "The registry's hand-authored, multi-axis facet vocabularies. A profile MAY carry scope.facets: {<facet-id>: [<value-id>, ...]}; every facet id and value id it uses MUST be declared here (unknown_facet_value). Facets are registry-local by design — energy axes and mycology axes do not share one list — and orthogonal: one source may carry governance_domain AND sector AND policy_stage at once. Kept a separate file from topics.json because topics are a single-parent subject tree while facets are independent axes; like topics.json and unlike the manifest, this file is hand-curated, never regenerated. Supersedes the 0.2.0 free-string coverage.policy_states / coverage.sectors.",
+  "type": "object",
+  "properties": {
+    "asr_spec_version": { "type": "string" },
+    "registry_id": { "type": "string", "pattern": "^reg-[0-9a-f]{12}$" },
+    "facets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*$", "description": "Facet-axis id (snake_case or kebab); the key profiles use in scope.facets." },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "values": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*$", "description": "Facet value id (kebab or snake_case); the value profiles reference in scope.facets.<facet>[]." },
+                "label": { "type": "string" },
+                "description": { "type": "string" },
+                "ext": { "type": "object", "additionalProperties": true }
+              },
+              "required": ["id", "label"],
+              "additionalProperties": true
+            }
+          },
+          "ext": { "type": "object", "additionalProperties": true }
+        },
+        "required": ["id", "label", "values"],
+        "additionalProperties": true
+      }
+    },
+    "provenance": { "$ref": "provenance-stamp.schema.json" },
+    "notes": { "type": "string" }
+  },
+  "required": ["asr_spec_version", "facets", "provenance"],
+  "additionalProperties": true
+}

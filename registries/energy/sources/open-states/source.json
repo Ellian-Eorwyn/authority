@@ -47,7 +47,6 @@
   },
   "scope": {
     "topics": [
-      "legislation",
       "policy-discovery"
     ],
     "jurisdiction": {
@@ -61,6 +60,11 @@
       "coverage_start": null,
       "coverage_end": "present",
       "notes": ""
+    },
+    "facets": {
+      "governance_domain": [
+        "legislative"
+      ]
     }
   },
   "content": {
@@ -257,7 +261,7 @@
       "person": null
     },
     "created_at": "2026-08-18T12:00:00.000Z",
-    "modified_at": null
+    "modified_at": "2026-08-20T12:00:00.000Z"
   },
   "ext": {},
   "notes": ""

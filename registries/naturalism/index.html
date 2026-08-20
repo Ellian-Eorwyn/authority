@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Naturalism — Flora, Fauna &amp; Fungi</h1>
-<div class="sub">Authoritative sources for natural-history research: occurrence data, taxonomy, nomenclature, and bioacoustics, chosen to exercise every access pattern (keyless REST, header keys, basic-auth downloads, render-delegated apps). — ASR registry <code>reg-b32bed3fc8eb</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub">Authoritative sources for natural-history research: occurrence data, taxonomy, nomenclature, and bioacoustics, chosen to exercise every access pattern (keyless REST, header keys, basic-auth downloads, render-delegated apps). — ASR registry <code>reg-b32bed3fc8eb</code>, spec 0.3.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat ok"><b>2</b> verified</span> <span class="stat muted"><b>3</b> asserted</span> <span class="stat bad"><b>1</b> broken</span> <span class="stat bad"><b>1</b> blocked</span></div>
 
 <main id="list">
@@ -48,11 +48,12 @@
     <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
     <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>web_fetch</option><option>web_render</option></select>
+    
   </div>
   <div class="tablewrap">
   <table id="tbl">
     <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
-    <tr data-topics="birds occurrence-data" data-state="asserted" data-tier="1" data-types="api_rest" data-text="ebird cornell lab of ornithology ebird">
+    <tr data-topics="birds occurrence-data" data-facets="" data-state="asserted" data-tier="1" data-types="api_rest" data-text="ebird cornell lab of ornithology ebird">
       <td><a href="#src=asc-7e76c71f2c59">eBird</a><div class="sub">Cornell Lab of Ornithology</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -62,7 +63,7 @@
       <td><span class="chip">api_rest</span></td>
       <td><span class="badge muted">asserted — never probed</span></td>
     </tr>
-<tr data-topics="flora taxonomy" data-state="blocked" data-tier="1" data-types="web_fetch" data-text="flora of north america flora of north america association flora-of-north-america">
+<tr data-topics="flora taxonomy" data-facets="" data-state="blocked" data-tier="1" data-types="web_fetch" data-text="flora of north america flora of north america association flora-of-north-america">
       <td><a href="#src=asc-f801b7658bf7">Flora of North America</a><div class="sub">Flora of North America Association</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -72,7 +73,7 @@
       <td><span class="chip">web_fetch</span></td>
       <td><span class="badge bad">blocked</span></td>
     </tr>
-<tr data-topics="occurrence-data taxonomy flora fauna fungi" data-state="asserted" data-tier="1" data-types="api_rest api_rest" data-text="gbif global biodiversity information facility gbif">
+<tr data-topics="occurrence-data taxonomy flora fauna fungi" data-facets="" data-state="asserted" data-tier="1" data-types="api_rest api_rest" data-text="gbif global biodiversity information facility gbif">
       <td><a href="#src=asc-ff426711a2a0">GBIF</a><div class="sub">Global Biodiversity Information Facility</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -82,7 +83,7 @@
       <td><span class="chip">api_rest</span> <span class="chip">api_rest</span></td>
       <td><span class="badge muted">asserted — never probed</span></td>
     </tr>
-<tr data-topics="occurrence-data flora fauna fungi" data-state="verified" data-tier="2" data-types="api_rest" data-text="inaturalist inaturalist (california academy of sciences / national geographic) inaturalist">
+<tr data-topics="occurrence-data flora fauna fungi" data-facets="" data-state="verified" data-tier="2" data-types="api_rest" data-text="inaturalist inaturalist (california academy of sciences / national geographic) inaturalist">
       <td><a href="#src=asc-e05d090415a7">iNaturalist</a><div class="sub">iNaturalist (California Academy of Sciences / National Geographic)</div></td>
       <td><span class="chip">community</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -90,9 +91,9 @@
       <td class="sub">international</td>
       <td class="sub">realtime</td>
       <td><span class="chip">api_rest</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
-<tr data-topics="fungi taxonomy" data-state="broken" data-tier="1" data-types="web_render api_rest" data-text="mycobank westerdijk fungal biodiversity institute mycobank">
+<tr data-topics="fungi taxonomy" data-facets="" data-state="broken" data-tier="1" data-types="web_render api_rest" data-text="mycobank westerdijk fungal biodiversity institute mycobank">
       <td><a href="#src=asc-f868bb6eca33">MycoBank</a><div class="sub">Westerdijk Fungal Biodiversity Institute</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -102,7 +103,7 @@
       <td><span class="chip">web_render</span> <span class="chip">api_rest</span></td>
       <td><span class="badge bad">broken</span></td>
     </tr>
-<tr data-topics="flora taxonomy" data-state="verified" data-tier="1" data-types="web_render" data-text="usda plants database usda natural resources conservation service usda-plants-database">
+<tr data-topics="flora taxonomy" data-facets="" data-state="verified" data-tier="1" data-types="web_render" data-text="usda plants database usda natural resources conservation service usda-plants-database">
       <td><a href="#src=asc-890e442eaef3">USDA PLANTS Database</a><div class="sub">USDA Natural Resources Conservation Service</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -110,9 +111,9 @@
       <td class="sub">national · US</td>
       <td class="sub">irregular</td>
       <td><span class="chip">web_render</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
-<tr data-topics="bioacoustics birds fauna" data-state="asserted" data-tier="2" data-types="api_rest web_fetch" data-text="xeno-canto xeno-canto foundation / naturalis xeno-canto">
+<tr data-topics="bioacoustics birds fauna" data-facets="" data-state="asserted" data-tier="2" data-types="api_rest web_fetch" data-text="xeno-canto xeno-canto foundation / naturalis xeno-canto">
       <td><a href="#src=asc-55da745303e0">Xeno-canto</a><div class="sub">Xeno-canto Foundation / Naturalis</div></td>
       <td><span class="chip">community</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -146,6 +147,7 @@
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (primary_dataset, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The global bird observation dataset, expert-reviewed; the API 2.0 is the canonical machine door (header-keyed).<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
       
       <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
@@ -192,6 +194,7 @@
       <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The scholarly treatment of North American flora: keys, descriptions, and distributions by taxonomic experts; served as a MediaWiki.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">international · US, CA — North America</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · landing: direct · cadence: static (active) — published volumes stable; wiki corrections episodic</p>
@@ -237,13 +240,14 @@
       <p class="sub">asserted: tier 1 (primary_dataset, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The global aggregation point for biodiversity occurrence data; intergovernmental, openly licensed, canonical taxon keys.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · dataset_file (zip, csv) · landing: direct · cadence: continuous (active)</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://api.gbif.org/v1 · <a href="https://techdocs.gbif.org/en/openapi/">docs</a></div>
         
         
@@ -299,13 +303,14 @@
       <p class="sub">asserted: tier 2 (community_curated, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The dominant community observation platform; research-grade observations flow into GBIF. Tier 2 as community-curated primary data.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · image (jpg) · landing: direct · cadence: realtime (active)</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://api.inaturalist.org/v1 · <a href="https://api.inaturalist.org/v1/docs/">docs</a></div>
         
         
@@ -350,6 +355,7 @@
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (curated_reference, standards_body) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The registration database for fungal names (nomenclatural acts are registered here); the authority for fungal taxonomy alongside Index Fungorum.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
       
       <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
@@ -399,13 +405,14 @@
       <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The U.S. federal reference for plant taxonomy, distribution, and wetland status; symbols (e.g. STME2) are the standard cross-reference keys.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">national · US</p>
       <h3>Content</h3>
       <p class="sub">structured_record (html) · dataset_file (csv) · landing: portal_query · cadence: irregular (active) — taxonomic updates episodic</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>app</code> <span class="chip">web_render</span> <span class="badge ok">verified 0d ago</span> <span class="chip" title="reachability verified; JS rendering delegated to the harness (spec/03.6)">transport-only</span></h4>
+        <h4><code>app</code> <span class="chip">web_render</span> <span class="badge ok">verified 2d ago</span> <span class="chip" title="reachability verified; JS rendering delegated to the harness (spec/03.6)">transport-only</span></h4>
         <div class="sub">https://plants.sc.egov.usda.gov/</div>
         
         <div class="sub">robots: allowed</div>
@@ -437,6 +444,7 @@
       <p class="sub">asserted: tier 2 (community_curated, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The reference collection of wildlife sound recordings (birds and beyond), community-contributed with per-recording licenses.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">audio (mp3, wav) · structured_record (json) · landing: direct · cadence: continuous (active)</p>
@@ -460,7 +468,7 @@
         
       </div>
       <div class="access">
-        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://xeno-canto.org/</div>
         
         <div class="sub">robots: allowed</div>
@@ -481,6 +489,7 @@
 (function () {
   var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
       fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
   function apply() {
     var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
     document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
@@ -488,11 +497,15 @@
         && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
         && (!st || tr.dataset.state === st)
         && (!tier || tr.dataset.tier === tier)
-        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
       tr.style.display = show ? "" : "none";
     });
   }
-  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
   function route() {
     var hash = location.hash.replace(/^#/, "");
     var list = document.getElementById("list");

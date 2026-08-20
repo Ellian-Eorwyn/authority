@@ -1,0 +1,7 @@
+{
+  "fixture": "unknown-facet-value",
+  "target": "L1",
+  "expect": [
+    "unknown_facet_value"
+  ]
+}

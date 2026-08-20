@@ -18,10 +18,10 @@ cumulative and **computed from rules passed**, never from object counts.
 Severity E = error (blocks the level), W = warning (advisory, never blocks
 except under `--strict`).
 
-Rules tagged *(0.2.0, conditional)* were added in the 0.2.0 minor revision;
-each inspects a field that did not exist in 0.1.0 and fires only when that
-field is present, so every conformant 0.1.0 registry stays conformant
-unchanged.
+Rules tagged *(0.2.0, conditional)* or *(0.3.0, conditional)* were added in a
+minor revision; each inspects a field that did not exist earlier and fires only
+when that field is present, so every registry conformant under an earlier minor
+stays conformant unchanged.
 
 ### L0 Browsable
 
@@ -34,6 +34,7 @@ unchanged.
 | 0.5 | journals are well-formed JSONL (torn final line tolerated) | `jsonl_invalid` E, `jsonl_torn_tail` W | E/W |
 | 0.6 | every source declares ≥ 1 access method with `type` + `base_url` | `missing_access` | E |
 | 0.7 | `topics.json` exists and validates; every profile topic exists in it | `topics_invalid`, `unknown_topic` | E |
+| 0.8 | *(0.3.0, conditional)* when a profile carries `scope.facets`, `facets.json` validates and every facet axis id + value it uses is declared there | `facets_invalid`, `unknown_facet_value` | E |
 
 ### L1 Verified
 
@@ -85,7 +86,7 @@ unchanged.
 {
   "status": "error | warning | ok",
   "registry": "<registry_id>",
-  "asr_spec_version": "0.2.0",
+  "asr_spec_version": "0.3.0",
   "level": "none | L0 | L1 | L2",
   "operational_here": false,
   "counts": { "sources": 0, "access_methods": 0, "endpoints": 0, "probes": 0, "fetches": 0 },

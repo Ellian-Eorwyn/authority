@@ -36,6 +36,11 @@ an error and never a workaround.
 - Researching a domain with a registry → **read profiles first** (guidance,
   query shapes, pitfalls), fetch through verified endpoints instead of
   searching the web (`references/agent-playbook.md`).
+- Not sure *which* sources settle a question → **`authority query`**
+  (e.g. `--facet governance_domain=utility --facet sector=electricity --region
+  US-CA --task legal_status`): faceted selection, ranked by routing, without
+  knowing source names first. Axes AND, values within an axis OR — a narrow
+  query over sparsely-tagged axes can legitimately return nothing.
 - Pulling data from a profiled source → **`authority fetch`** (auth injected
   from the credential chain; payload + sidecar + optional tracked sample).
 - Checking what works right now → **`authority validate`** (levels L0/L1/L2 +
@@ -64,7 +69,8 @@ node scripts/authority.mjs probe <registry> [<source>] [--access <name>] [--all]
 node scripts/authority.mjs fetch <registry> <source> <endpoint> [--param k=v ...] [--max-pages N] [--keep-sample]
 node scripts/authority.mjs creds <set|list|check> [<ref>] [--registry <r>] [--keychain]
 node scripts/authority.mjs regen <registry>
-node scripts/authority.mjs export <registry> --format csv|json|markdown|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
+node scripts/authority.mjs query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>]
+node scripts/authority.mjs export <registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
 node scripts/authority.mjs build-index <registry>
 node scripts/authority.mjs mint <asc|acc|end|prb|fch>  < object.json
 ```
@@ -82,6 +88,9 @@ node scripts/authority.mjs mint <asc|acc|end|prb|fch>  < object.json
   response sample.
 - **regen** — recomputes derived state (verified→stale on window lapse,
   rollups), manifest, CSV, browser. Crash-recovery move; run after hand-edits.
+- **query** — faceted source selection over `scope.facets` + topic/region: AND
+  across axes, OR within one; `--task` ranks by routing disposition then tier
+  then verification. Read-only; each hit carries the agent-card fields.
 - **build-index** — self-contained offline `index.html` browser with
   verification badges and credential coverage.
 

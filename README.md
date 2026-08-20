@@ -2,7 +2,7 @@
 
 **A tool-independent standard for per-domain registries of authoritative
 sources, profiled operationally: what each source is, why it is authoritative,
-and exactly how its data is accessed.** Version **0.2.0**.
+and exactly how its data is accessed.** Version **0.3.0**.
 
 An ASR registry is a folder in which both humans and software can always
 answer: *Which sources should be consulted for this domain? Why are they
@@ -36,7 +36,7 @@ An agent reading a registry always knows the difference between "verified 12
 days ago", "asserted, never probed", and "known blocked". See
 [spec/04](spec/04-probes-and-verification.md).
 
-Beyond that promise, ASR 0.2.0 is a **source-selection and retrieval-routing
+Beyond that promise, ASR is a **source-selection and retrieval-routing
 layer**: a profile records not just *whether access works* but *how to use the
 source* — per-task `routing` (search here, cite here, or follow to a source of
 record), institutional `officiality` (official is not true), `coverage`
@@ -44,6 +44,16 @@ completeness (absence-as-evidence), separated `freshness` clocks, structured
 organization identity (ROR), and `discovery.upstream` federation provenance for
 profiles imported from external catalogs. See [spec/00](spec/00-overview.md) and
 [spec/10](spec/10-federation-and-import.md).
+
+0.3.0 adds **registry-local facets**: a profile carries `scope.facets` —
+independent classification axes (governance domain, sector, policy stage, …)
+declared per-registry in `facets.json` — and `authority query <registry>
+--facet governance_domain=utility --facet sector=electricity --region US-CA`
+selects the sources that settle a question *without knowing their names first*
+(axes AND, values within an axis OR; results ranked by routing with `--task`). Facet vocabularies stay
+registry-local; the universal core gains only one optional field and one
+conformance rule. See [spec/02](spec/02-source-profiles.md) §2.4 and
+[spec/09](spec/09-projections-and-exports.md) §9.7.
 
 ## The model in one picture
 

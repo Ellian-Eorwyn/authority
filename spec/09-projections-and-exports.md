@@ -30,7 +30,7 @@ by `build-index`. Required affordances:
   triage), topics, jurisdiction, cadence, access-type chips, and a
   **verification badge with age** ("verified 12d ago" / "stale" /
   "asserted — never probed" / "blocked"), filterable by topic, tier, state,
-  and access type.
+  access type, and — one dropdown per declared axis — **facet** (§02.4).
 - **Source detail** — guidance rendered FIRST (it is the payoff), then
   identity/authority/scope/content, endpoints with copy-ready example
   requests using `$CREDENTIAL` placeholders, the probe timeline, and fetch
@@ -80,6 +80,27 @@ for another consumer) in its manifest: `{ "<registry topic id>":
 ["<consumer topic>", …] }`. Exports apply the map; unmapped topics pass
 through verbatim and the export notes them, so vocabulary drift is visible
 rather than silent.
+
+## 9.7 Agent card and faceted query
+
+`export --format agent-card` emits the token-frugal per-source projection a
+routing agent loads to decide **where** to search: identity, officiality,
+`use_for`/`caveats`, the routing dispositions and `follow_to_primary`
+resolution, jurisdiction, topics, `facets` (§02.4), the preferred access
+method, and verification freshness. It is a regenerable projection like any
+other; the envelope carries a `schemaVersion` so consumers can pin the shape
+(bumped to `2` in 0.3.0 when the per-source `facets` map was added).
+
+`authority query <registry> [--facet name=value …] [--topic id] [--region ISO]
+[--task t]` resolves *which sources settle a question* from the facet axes plus
+topic/region — **without knowing source names first**. Facet matching is AND
+across axes, OR within one axis (repeating an axis widens it); `--region`
+matches a queried subnational code against a source scoped to its parent (a
+`US-CA` query reaches `US`-national sources). With `--task`, results are ranked
+by that task's routing disposition (`preferred` → `avoid`), then authority tier,
+then verification state; each hit carries the agent-card fields, so the answer
+already says whether to cite the source or follow it to a primary. The command
+is read-only.
 
 ## 9.6 Regeneration contract
 

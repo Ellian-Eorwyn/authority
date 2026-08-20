@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Philosophy &amp; Epistemology</h1>
-<div class="sub">Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.) — ASR registry <code>reg-d680645e25dd</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub">Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.) — ASR registry <code>reg-d680645e25dd</code>, spec 0.3.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat ok"><b>5</b> verified</span> <span class="stat bad"><b>1</b> blocked</span></div>
 
 <main id="list">
@@ -48,11 +48,12 @@
     <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
     <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>oai_pmh</option><option>web_fetch</option></select>
+    
   </div>
   <div class="tablewrap">
   <table id="tbl">
     <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
-    <tr data-topics="primary-texts history-of-philosophy" data-state="verified" data-tier="2" data-types="api_rest" data-text="gutendex gutendex (over project gutenberg) gutendex">
+    <tr data-topics="primary-texts history-of-philosophy" data-facets="" data-state="verified" data-tier="2" data-types="api_rest" data-text="gutendex gutendex (over project gutenberg) gutendex">
       <td><a href="#src=asc-076e1b2cd3d9">Gutendex</a><div class="sub">Gutendex (over Project Gutenberg)</div></td>
       <td><span class="chip">index</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -60,9 +61,9 @@
       <td class="sub">not_applicable</td>
       <td class="sub">continuous</td>
       <td><span class="chip">api_rest</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
-<tr data-topics="epistemology ethics metaphysics history-of-philosophy" data-state="verified" data-tier="1" data-types="web_fetch" data-text="internet encyclopedia of philosophy iep, university of tennessee at martin internet-encyclopedia-of-philosophy">
+<tr data-topics="epistemology ethics metaphysics history-of-philosophy" data-facets="" data-state="verified" data-tier="1" data-types="web_fetch" data-text="internet encyclopedia of philosophy iep, university of tennessee at martin internet-encyclopedia-of-philosophy">
       <td><a href="#src=asc-ded550a1202d">Internet Encyclopedia of Philosophy</a><div class="sub">IEP, University of Tennessee at Martin</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -70,9 +71,9 @@
       <td class="sub">not_applicable</td>
       <td class="sub">irregular</td>
       <td><span class="chip">web_fetch</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
-<tr data-topics="epistemology metaphysics history-of-philosophy" data-state="verified" data-tier="2" data-types="api_rest" data-text="internet philosophy ontology project indiana university internet-philosophy-ontology-project">
+<tr data-topics="epistemology metaphysics history-of-philosophy" data-facets="" data-state="verified" data-tier="2" data-types="api_rest" data-text="internet philosophy ontology project indiana university internet-philosophy-ontology-project">
       <td><a href="#src=asc-92e35d2375a7">Internet Philosophy Ontology Project</a><div class="sub">Indiana University</div></td>
       <td><span class="chip">index</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -80,9 +81,9 @@
       <td class="sub">not_applicable</td>
       <td class="sub">irregular</td>
       <td><span class="chip">api_rest</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
-<tr data-topics="epistemology ethics metaphysics logic philosophy-of-science" data-state="blocked" data-tier="1" data-types="web_fetch api_rest" data-text="philpapers philpapers foundation, western university philpapers">
+<tr data-topics="epistemology ethics metaphysics logic philosophy-of-science" data-facets="" data-state="blocked" data-tier="1" data-types="web_fetch api_rest" data-text="philpapers philpapers foundation, western university philpapers">
       <td><a href="#src=asc-4e9759b49538">PhilPapers</a><div class="sub">PhilPapers Foundation, Western University</div></td>
       <td><span class="chip">index</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -92,7 +93,7 @@
       <td><span class="chip">web_fetch</span> <span class="chip">api_rest</span></td>
       <td><span class="badge bad">blocked</span></td>
     </tr>
-<tr data-topics="philosophy-of-science epistemology" data-state="verified" data-tier="2" data-types="oai_pmh web_fetch" data-text="philsci-archive university of pittsburgh philsci-archive">
+<tr data-topics="philosophy-of-science epistemology" data-facets="" data-state="verified" data-tier="2" data-types="oai_pmh web_fetch" data-text="philsci-archive university of pittsburgh philsci-archive">
       <td><a href="#src=asc-9cdf6978e749">PhilSci-Archive</a><div class="sub">University of Pittsburgh</div></td>
       <td><span class="chip">repository</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -100,9 +101,9 @@
       <td class="sub">not_applicable</td>
       <td class="sub">continuous</td>
       <td><span class="chip">oai_pmh</span> <span class="chip">web_fetch</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
-<tr data-topics="epistemology ethics metaphysics logic history-of-philosophy philosophy-of-science" data-state="verified" data-tier="1" data-types="web_fetch" data-text="stanford encyclopedia of philosophy metaphysics research lab, stanford university stanford-encyclopedia-of-philosophy">
+<tr data-topics="epistemology ethics metaphysics logic history-of-philosophy philosophy-of-science" data-facets="" data-state="verified" data-tier="1" data-types="web_fetch" data-text="stanford encyclopedia of philosophy metaphysics research lab, stanford university stanford-encyclopedia-of-philosophy">
       <td><a href="#src=asc-5a0d6bae4a68">Stanford Encyclopedia of Philosophy</a><div class="sub">Metaphysics Research Lab, Stanford University</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -110,7 +111,7 @@
       <td class="sub">not_applicable</td>
       <td class="sub">continuous</td>
       <td><span class="chip">web_fetch</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 2d ago</span></td>
     </tr>
   </table>
   </div>
@@ -135,13 +136,14 @@
       <p class="sub">asserted: tier 2 (community_curated) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Clean keyless JSON API over Project Gutenberg&#39;s catalog — the practical machine door to public-domain primary texts.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · landing: direct · cadence: continuous (active) — mirrors Gutenberg catalog</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://gutendex.com · <a href="https://gutendex.com/">docs</a></div>
         
         
@@ -180,13 +182,14 @@
       <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Peer-reviewed sibling to SEP with more accessible register; strong on figures and historical periods.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://iep.utm.edu/</div>
         
         <div class="sub">robots: allowed</div>
@@ -218,13 +221,14 @@
       <p class="sub">asserted: tier 2 (curated_reference, community_curated) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Machine-readable taxonomy of philosophical concepts, thinkers, and their relations; the structured index over the SEP-centric literature.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json, html) · landing: direct · cadence: irregular (dormant) — project updates episodically</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://www.inphoproject.org · <a href="https://www.inphoproject.org/docs/">docs</a></div>
         
         
@@ -262,6 +266,7 @@
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (curated_reference, professional_org) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The comprehensive bibliography/index of philosophy; category taxonomy curated by editors. Indexes rather than hosts.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
       
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
@@ -311,13 +316,14 @@
       <p class="sub">asserted: tier 2 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The preprint archive for philosophy of science; open access, EPrints-based with standard OAI-PMH.<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">pdf_document (pdf) · structured_record (xml) · landing: landing_then_file · cadence: continuous (active)</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>oai</code> <span class="chip">oai_pmh</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>oai</code> <span class="chip">oai_pmh</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://philsci-archive.pitt.edu/cgi/oai2 · <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">docs</a></div>
         
         
@@ -334,7 +340,7 @@
         <div class="sub">fetches: 1 (0 ok)</div>
       </div>
       <div class="access">
-        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://philsci-archive.pitt.edu/</div>
         
         <div class="sub">robots: allowed</div>
@@ -366,13 +372,14 @@
       <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Peer-reviewed, continuously revised reference; the strongest single source for the philosophy cluster (pi-forge&#39;s own editorial policy agrees).<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · landing: direct · cadence: continuous (active) — entries revised on their own cycles; quarterly archives</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 2d ago</span></h4>
         <div class="sub">https://plato.stanford.edu/</div>
         
         <div class="sub">robots: allowed</div>
@@ -400,6 +407,7 @@
 (function () {
   var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
       fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
   function apply() {
     var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
     document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
@@ -407,11 +415,15 @@
         && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
         && (!st || tr.dataset.state === st)
         && (!tier || tr.dataset.tier === tier)
-        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
       tr.style.display = show ? "" : "none";
     });
   }
-  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
   function route() {
     var hash = location.hash.replace(/^#/, "");
     var list = document.getElementById("list");

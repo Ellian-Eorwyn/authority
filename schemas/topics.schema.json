@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.2.0/schemas/topics.schema.json",
+  "$id": "https://provenance.dev/asr/0.3.0/schemas/topics.schema.json",
   "title": "ASR Topic Taxonomy (topics.json)",
   "description": "The registry's hand-authored topic vocabulary. Every topic a profile claims in scope.topics MUST exist here (unknown_topic); the taxonomy is per-registry by design — energy topics and mycology topics do not belong in one flat list — and each registry maps its topics onto consumer vocabularies (e.g. the pi-forge router) in its export crosswalk, not here. Unlike the manifest this file is NOT regenerable: it encodes human curation, including ties from topics back to the objectives that motivated them.",
   "type": "object",

@@ -77,6 +77,15 @@ export function cmdBuildIndex(args, ctx) {
     for (const x of v.access) typeSet.add(x.a.type);
   }
 
+  // Facet axes (declared order from facets.json) + the values actually in use.
+  const facetAxes = (reg.facets?.facets || []).map((f) => ({ id: f.id, label: f.label || f.id }));
+  const facetVals = {}; // axis id -> Set(value)
+  for (const v of sources) {
+    for (const [fn, arr] of Object.entries(v.o.scope?.facets || {})) {
+      for (const val of arr || []) (facetVals[fn] ||= new Set()).add(val);
+    }
+  }
+
   // --- render ---
   const rows = sources.map((v) => {
     const o = v.o;
@@ -84,7 +93,8 @@ export function cmdBuildIndex(args, ctx) {
     const tierAdj = o.authority?.adjudicated?.tier;
     const tierAss = o.authority?.asserted?.tier;
     const lastVerified = v.access.map((x) => x.a.verification?.last_verified_at).filter(Boolean).sort().pop();
-    return `<tr data-topics="${esc((o.scope?.topics || []).join(" "))}" data-state="${esc(v.roll)}" data-tier="${esc(String(tierAdj ?? tierAss ?? ""))}" data-types="${esc(v.access.map((x) => x.a.type).join(" "))}" data-text="${esc((o.identity.name + " " + (o.identity.publisher || "") + " " + slug).toLowerCase())}">
+    const facetTokens = Object.entries(o.scope?.facets || {}).flatMap(([fn, arr]) => (arr || []).map((val) => fn + ":" + val));
+    return `<tr data-topics="${esc((o.scope?.topics || []).join(" "))}" data-facets="${esc(facetTokens.join(" "))}" data-state="${esc(v.roll)}" data-tier="${esc(String(tierAdj ?? tierAss ?? ""))}" data-types="${esc(v.access.map((x) => x.a.type).join(" "))}" data-text="${esc((o.identity.name + " " + (o.identity.publisher || "") + " " + slug).toLowerCase())}">
       <td><a href="#src=${esc(o.source_id)}">${esc(o.identity.name)}</a><div class="sub">${esc(o.identity.publisher || "")}</div></td>
       <td><span class="chip">${esc(o.source_role)}</span>${o.officiality?.default ? `<div class="sub">${esc(o.officiality.default)}</div>` : ""}</td>
       <td>${tierAdj != null ? `<span class="chip tier adj" title="adjudicated by ${esc(o.authority.adjudicated.scored_by || "?")}">T${esc(String(tierAdj))}</span>` : `<span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T${esc(String(tierAss ?? "?"))}?</span>`}</td>
@@ -137,7 +147,9 @@ export function cmdBuildIndex(args, ctx) {
     const rel = (o.relations || []).map((r) => `<span class="chip">${esc(r.type)} → ${esc(r.target?.source_id || r.target?.name || "?")}</span>`).join(" ");
     const cov = o.coverage;
     const c = cov?.completeness;
-    const coverageHtml = cov ? `<p class="sub">${c ? `completeness: <strong>${esc(c.claim || "?")}</strong>${c.basis ? ` (${esc(c.basis)})` : ""}${c.notes ? " — " + esc(c.notes) : ""}` : ""}${(cov.jurisdictions || []).length ? `${c ? "<br>" : ""}jurisdictions: ${cov.jurisdictions.map(esc).join(", ")}${(cov.jurisdiction_levels || []).length ? " (" + cov.jurisdiction_levels.map(esc).join(", ") + ")" : ""}` : ""}${cov.temporal && (cov.temporal.coverage_start || cov.temporal.coverage_end) ? `<br>temporal: ${esc(cov.temporal.coverage_start || "?")} → ${esc(cov.temporal.coverage_end || "?")}` : ""}${(cov.policy_states || []).length ? `<br>policy states: ${cov.policy_states.map(esc).join(", ")}` : ""}${(cov.sectors || []).length ? `<br>sectors: ${cov.sectors.map(esc).join(", ")}` : ""}</p>` : "";
+    const coverageHtml = cov ? `<p class="sub">${c ? `completeness: <strong>${esc(c.claim || "?")}</strong>${c.basis ? ` (${esc(c.basis)})` : ""}${c.notes ? " — " + esc(c.notes) : ""}` : ""}${(cov.jurisdictions || []).length ? `${c ? "<br>" : ""}jurisdictions: ${cov.jurisdictions.map(esc).join(", ")}${(cov.jurisdiction_levels || []).length ? " (" + cov.jurisdiction_levels.map(esc).join(", ") + ")" : ""}` : ""}${cov.temporal && (cov.temporal.coverage_start || cov.temporal.coverage_end) ? `<br>temporal: ${esc(cov.temporal.coverage_start || "?")} → ${esc(cov.temporal.coverage_end || "?")}` : ""}</p>` : "";
+    const facetEntries = Object.entries(o.scope?.facets || {});
+    const facetsHtml = facetEntries.length ? `<p class="sub">${facetEntries.map(([fn, arr]) => `${esc(fn)}: ${(arr || []).map((val) => `<span class="chip">${esc(val)}</span>`).join(" ")}`).join("<br>")}</p>` : "";
     const jur = o.scope?.jurisdiction;
     const jurHtml = jur && (jur.level || (jur.regions || []).length) ? `<p class="sub">${esc(jur.level || "")}${(jur.regions || []).length ? " · " + esc(jur.regions.join(", ")) : ""}${jur.notes ? " — " + esc(jur.notes) : ""}</p>` : "";
     const fr = o.freshness;
@@ -157,6 +169,7 @@ export function cmdBuildIndex(args, ctx) {
       <p class="sub">asserted: tier ${esc(String(o.authority?.asserted?.tier))} (${(o.authority?.asserted?.basis || []).map(esc).join(", ") || "no basis recorded"}) by ${esc(o.authority?.asserted?.asserted_by || "?")} — ${esc(o.authority?.asserted?.rationale || "")}<br>
       adjudicated: ${o.authority?.adjudicated?.tier != null || o.authority?.adjudicated?.score != null ? `tier ${esc(String(o.authority.adjudicated.tier ?? "—"))}${o.authority.adjudicated.score != null ? `, score ${esc(String(o.authority.adjudicated.score))}` : ""} by ${esc(o.authority.adjudicated.scored_by || "?")} at ${esc(o.authority.adjudicated.scored_at || "?")}` : "<em>pending human scoring pass</em>"}</p>
       ${cov ? `<h3>Coverage</h3>${coverageHtml}` : ""}
+      ${facetsHtml ? `<h3>Facets</h3>${facetsHtml}` : ""}
       ${jurHtml ? `<h3>Jurisdiction</h3>${jurHtml}` : ""}
       <h3>Content</h3>
       <p class="sub">${(o.content?.artifacts || []).map((a) => `${esc(a.kind)}${(a.formats || []).length ? " (" + a.formats.map(esc).join(", ") + ")" : ""}${a.officiality ? " [" + esc(a.officiality) + "]" : ""}`).join(" · ") || "—"} · landing: ${esc(o.content?.landing_pattern || "—")} · cadence: ${esc(o.lifecycle?.update_cadence || "?")} (${esc(o.lifecycle?.status || "?")})${o.lifecycle?.cadence_notes ? " — " + esc(o.lifecycle.cadence_notes) : ""}</p>
@@ -229,6 +242,7 @@ export function cmdBuildIndex(args, ctx) {
     <select id="fstate"><option value="">state: all</option>${Object.keys(STATE_META).map((s) => `<option>${esc(s)}</option>`).join("")}</select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
     <select id="ftype"><option value="">access: all</option>${[...typeSet].sort().map((t) => `<option>${esc(t)}</option>`).join("")}</select>
+    ${facetAxes.filter((f) => facetVals[f.id]).map((f) => `<select class="ffacet" data-facet="${esc(f.id)}"><option value="">${esc(f.label)}: all</option>${[...facetVals[f.id]].sort().map((val) => `<option>${esc(val)}</option>`).join("")}</select>`).join("")}
   </div>
   <div class="tablewrap">
   <table id="tbl">
@@ -247,6 +261,7 @@ ${details}
 (function () {
   var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
       fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
   function apply() {
     var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
     document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
@@ -254,11 +269,15 @@ ${details}
         && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
         && (!st || tr.dataset.state === st)
         && (!tier || tr.dataset.tier === tier)
-        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
       tr.style.display = show ? "" : "none";
     });
   }
-  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
   function route() {
     var hash = location.hash.replace(/^#/, "");
     var list = document.getElementById("list");

@@ -1111,6 +1111,90 @@ function sortedSources(reg) {
   return [...reg.sources].filter((s) => s.obj).sort((a, b) => (a.dirRel < b.dirRel ? -1 : 1));
 }
 
+// ---------------------------------------------------------------------------
+// query (spec/09) — faceted source selection. Resolve "which sources settle
+// this, and how to use them" from facet axes + topic/region, WITHOUT knowing
+// source names first. Read-only; reuses the agent-card projection so each hit
+// already carries routing and follow-to-primary guidance.
+// ---------------------------------------------------------------------------
+
+const DISPOSITION_RANK = { preferred: 0, acceptable: 1, conditional: 2, follow_primary: 3, avoid: 5 };
+const QUERY_STATE_RANK = { verified: 0, degraded: 1, stale: 2, asserted: 3, blocked: 4, broken: 5, retired: 6 };
+
+/** A source's region set covers query region R when it has R itself or a parent
+ *  of R (source "US" covers query "US-CA"), or R covers one of its regions
+ *  (query "US" matches a "US-CA" source). */
+function regionMatches(regions, R) {
+  if (!R) return true;
+  return (regions || []).some((sr) => sr === R || R.startsWith(sr + "-") || sr.startsWith(R + "-"));
+}
+
+export function cmdQuery(args, ctx) {
+  const root = args.pos[0];
+  if (!root) fail("usage: authority query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>] [--json]");
+  const reg = loadRegistry(root);
+  const now = nowDate();
+
+  // Group requested facet pairs by axis: AND across axes, OR within an axis.
+  const wanted = new Map(); // name -> Set(value)
+  for (const [name, value] of (args.facets || [])) {
+    if (!wanted.has(name)) wanted.set(name, new Set());
+    wanted.get(name).add(value);
+  }
+  const topic = typeof args.flags.topic === "string" ? args.flags.topic : null;
+  const region = typeof args.flags.region === "string" ? args.flags.region : null;
+  const task = typeof args.flags.task === "string" ? args.flags.task : null;
+
+  const matched = [];
+  for (const s of sortedSources(reg)) {
+    const o = s.obj;
+    const sfacets = o.scope?.facets || {};
+    let ok = true;
+    const matchedFacets = {};
+    for (const [name, values] of wanted) {
+      const have = new Set(sfacets[name] || []);
+      const hits = [...values].filter((v) => have.has(v));
+      if (hits.length === 0) { ok = false; break; }
+      matchedFacets[name] = hits;
+    }
+    if (!ok) continue;
+    if (topic && !(o.scope?.topics || []).includes(topic)) continue;
+    if (region && !regionMatches(o.scope?.jurisdiction?.regions, region)) continue;
+    matched.push({ s, matchedFacets });
+  }
+
+  const dispRank = (m) => {
+    const d = task ? m.s.obj.guidance?.routing?.[task] : null;
+    return d != null && d in DISPOSITION_RANK ? DISPOSITION_RANK[d] : 4; // absent/not_applicable rank between conditional and avoid
+  };
+  const tierOf = (m) => m.s.obj.authority?.adjudicated?.tier ?? m.s.obj.authority?.asserted?.tier ?? 9;
+  const stateRank = (m) => {
+    const states = (m.s.obj.access || []).map((a) => deriveState(a, m.s.probes, reg.registry, now));
+    return QUERY_STATE_RANK[rollupState(states)] ?? 9;
+  };
+  matched.sort((a, b) =>
+    dispRank(a) - dispRank(b) ||
+    tierOf(a) - tierOf(b) ||
+    stateRank(a) - stateRank(b) ||
+    (a.s.obj.identity.name < b.s.obj.identity.name ? -1 : 1));
+
+  const results = matched.map((m) => ({
+    ...projectAgentCardSource(m.s, reg, now),
+    matched_facets: m.matchedFacets,
+    routing_for_task: task ? (m.s.obj.guidance?.routing?.[task] ?? null) : null,
+  }));
+
+  printResult(toolResult({
+    status: "ok",
+    data: {
+      registry: reg.registry.registry_id,
+      query: { facets: Object.fromEntries([...wanted].map(([k, v]) => [k, [...v]])), topic, region, task },
+      count: results.length,
+      results,
+    },
+  }));
+}
+
 /**
  * agent-card (spec/09) — the token-frugal projection for a routing agent. For
  * each source it answers, in order: when to use it, when not, whether to
@@ -1118,51 +1202,56 @@ function sortedSources(reg) {
  * fresh the verification is. Deliberately compact: an agent should decide
  * WHERE to search without reading the whole profile.
  */
-function exportAgentCard(reg, now) {
-  const sources = sortedSources(reg).map((s) => {
-    const o = s.obj;
-    const access = o.access || [];
-    const states = access.map((a) => deriveState(a, s.probes, reg.registry, now));
-    // Preferred access: first verified, else first usable (not broken/blocked/retired), else first.
-    let pi = states.findIndex((st) => st === "verified");
-    if (pi < 0) pi = states.findIndex((st) => !["broken", "blocked", "retired"].includes(st));
-    if (pi < 0) pi = 0;
-    const pa = access[pi];
-    const routing = o.guidance?.routing || {};
-    const tasksBy = (disp) => Object.keys(routing).filter((k) => routing[k] === disp);
-    const lastVerified = access.map((a) => a.verification?.last_verified_at).filter(Boolean).sort().pop() || null;
-    return {
-      id: o.source_id,
-      name: o.identity.name,
-      role: o.source_role,
-      class: o.source_class,
-      officiality: o.officiality?.default || null,
-      use_for: o.guidance?.best_for || [],
-      caveats: o.guidance?.pitfalls || [],
-      routing: {
-        preferred_for: tasksBy("preferred"),
-        acceptable_for: tasksBy("acceptable"),
-        conditional_for: tasksBy("conditional"),
-        follow_primary_for: tasksBy("follow_primary"),
-        avoid_for: tasksBy("avoid"),
-      },
-      follow_to_primary: (routing.citation === "follow_primary" || routing.legal_status === "follow_primary")
-        ? (o.guidance?.resolution || { strategy: null, notes: "" })
-        : null,
-      jurisdiction: o.scope?.jurisdiction || null,
-      topics: o.scope?.topics || [],
-      coverage: o.coverage
-        ? { completeness: o.coverage.completeness || null, jurisdictions: o.coverage.jurisdictions || [], temporal: o.coverage.temporal || null }
-        : null,
-      preferred_access: pa
-        ? { name: pa.name, type: pa.type, base_url: pa.base_url, auth_required: !!pa.auth?.required, state: states[pi], openapi: pa.openapi?.url || null }
-        : null,
-      verification: { rollup: rollupState(states), last_verified_at: lastVerified },
-      content_current_through: o.freshness?.content_current_through || null,
-    };
-  });
+/** Build one agent-card per-source object. Shared by the agent-card export and
+ * the query command so both carry identical routing/facet fields. */
+function projectAgentCardSource(s, reg, now) {
+  const o = s.obj;
+  const access = o.access || [];
+  const states = access.map((a) => deriveState(a, s.probes, reg.registry, now));
+  // Preferred access: first verified, else first usable (not broken/blocked/retired), else first.
+  let pi = states.findIndex((st) => st === "verified");
+  if (pi < 0) pi = states.findIndex((st) => !["broken", "blocked", "retired"].includes(st));
+  if (pi < 0) pi = 0;
+  const pa = access[pi];
+  const routing = o.guidance?.routing || {};
+  const tasksBy = (disp) => Object.keys(routing).filter((k) => routing[k] === disp);
+  const lastVerified = access.map((a) => a.verification?.last_verified_at).filter(Boolean).sort().pop() || null;
   return {
-    schemaVersion: 1,
+    id: o.source_id,
+    name: o.identity.name,
+    role: o.source_role,
+    class: o.source_class,
+    officiality: o.officiality?.default || null,
+    use_for: o.guidance?.best_for || [],
+    caveats: o.guidance?.pitfalls || [],
+    routing: {
+      preferred_for: tasksBy("preferred"),
+      acceptable_for: tasksBy("acceptable"),
+      conditional_for: tasksBy("conditional"),
+      follow_primary_for: tasksBy("follow_primary"),
+      avoid_for: tasksBy("avoid"),
+    },
+    follow_to_primary: (routing.citation === "follow_primary" || routing.legal_status === "follow_primary")
+      ? (o.guidance?.resolution || { strategy: null, notes: "" })
+      : null,
+    jurisdiction: o.scope?.jurisdiction || null,
+    topics: o.scope?.topics || [],
+    facets: o.scope?.facets || {},
+    coverage: o.coverage
+      ? { completeness: o.coverage.completeness || null, jurisdictions: o.coverage.jurisdictions || [], temporal: o.coverage.temporal || null }
+      : null,
+    preferred_access: pa
+      ? { name: pa.name, type: pa.type, base_url: pa.base_url, auth_required: !!pa.auth?.required, state: states[pi], openapi: pa.openapi?.url || null }
+      : null,
+    verification: { rollup: rollupState(states), last_verified_at: lastVerified },
+    content_current_through: o.freshness?.content_current_through || null,
+  };
+}
+
+function exportAgentCard(reg, now) {
+  const sources = sortedSources(reg).map((s) => projectAgentCardSource(s, reg, now));
+  return {
+    schemaVersion: 2,
     generated_by: "authority export --format agent-card",
     registry: reg.registry.registry_id,
     asr_spec_version: reg.registry.asr_spec_version,

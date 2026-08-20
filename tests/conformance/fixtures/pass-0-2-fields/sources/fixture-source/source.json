@@ -232,13 +232,7 @@
     "temporal": {
       "coverage_start": "2020",
       "coverage_end": "present"
-    },
-    "policy_states": [
-      "enacted"
-    ],
-    "sectors": [
-      "electricity"
-    ]
+    }
   },
   "freshness": {
     "profile_reviewed_at": "2026-08-17T12:00:00.000Z",

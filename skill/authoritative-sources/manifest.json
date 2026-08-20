@@ -2,7 +2,7 @@
   "name": "authoritative-sources",
   "type": "skill",
   "skill_file": "SKILL.md",
-  "asr_spec_version": "0.2.0",
+  "asr_spec_version": "0.3.0",
   "requires": { "runtime": "node>=18", "schemas": "../../schemas + ../../vocab (walk-up discovery; AUTHORITY_SCHEMA_DIR/AUTHORITY_VOCAB_DIR to override when vendored)" },
   "tools": [
     { "name": "authority-init", "command": "node scripts/authority.mjs init", "args_hint": "<dir> --title <t> [--topics a,b] [--contact <mailto>]", "description": "Scaffold a new registry for a topic area.", "destructive": false },
@@ -12,7 +12,8 @@
     { "name": "authority-fetch", "command": "node scripts/authority.mjs fetch", "args_hint": "<registry> <source> <endpoint> [--param k=v ...] [--max-pages N] [--keep-sample]", "description": "Execute a profiled endpoint with credential injection; writes payload + UPC-compatible sidecar. Network: the profiled request(s), budget- and robots-respecting.", "destructive": false },
     { "name": "authority-creds", "command": "node scripts/authority.mjs creds", "args_hint": "set|list|check [<ref>] [--registry <r>] [--keychain]", "description": "Manage credential references (values via hidden stdin to gitignored file 0600, or macOS Keychain; never printed).", "destructive": false },
     { "name": "authority-regen", "command": "node scripts/authority.mjs regen", "args_hint": "<registry>", "description": "Rebuild derived state, manifest, CSV mirror, and HTML browser atomically. Also the crash-recovery move.", "destructive": false },
-    { "name": "authority-export", "command": "node scripts/authority.mjs export", "args_hint": "<registry> --format csv|json|markdown|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]", "description": "Emit consumer projections (pi-forge registries, markdown, CSV).", "destructive": false },
+    { "name": "authority-query", "command": "node scripts/authority.mjs query", "args_hint": "<registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>]", "description": "Faceted source selection: find which sources settle a question by governance_domain/sector/policy_stage + topic/region, ranked with routing — without knowing source names first. Read-only.", "destructive": false },
+    { "name": "authority-export", "command": "node scripts/authority.mjs export", "args_hint": "<registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]", "description": "Emit consumer projections (pi-forge registries, agent-card, markdown, CSV).", "destructive": false },
     { "name": "authority-build-index", "command": "node scripts/authority.mjs build-index", "args_hint": "<registry>", "description": "Generate the self-contained offline HTML browser. Read-only over profiles.", "destructive": false },
     { "name": "authority-mint", "command": "node scripts/authority.mjs mint", "args_hint": "asc|acc|end|prb|fch < object.json", "description": "Compute a content-addressed id by the spec/06 recipes.", "destructive": false }
   ],

@@ -9,7 +9,10 @@ Read `registry.json` (title, defaults, source index) and `topics.json`. For
 anything deeper, read the profiles the index points at — **guidance first**
 (`guidance.best_for`, `query_shapes`, `pitfalls`): that block exists so you
 spend requests well. `sources.csv` is the one-glance overview; per-endpoint
-`samples/` show real response shapes without a live call.
+`samples/` show real response shapes without a live call. To find *which*
+sources fit before reading any profile, run `authority query <registry>
+--facet <axis>=<value> [--topic …] [--region …] [--task …]` against the axes in
+`facets.json` — it returns the matching sources ranked, each with its routing.
 
 ## 2. Trust the states, and say what they mean
 

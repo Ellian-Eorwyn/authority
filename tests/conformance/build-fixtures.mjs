@@ -92,6 +92,20 @@ function writeManifest(dir, obj) {
   writeJsonAtomic(path.join(dir, "registry.json"), obj);
 }
 
+/** Declare a one-axis facet vocabulary in a fixture registry (facets.json +
+ *  sections.facets). validate reads facets.json directly, so no regen needed. */
+function declareFacet(dir) {
+  writeJsonAtomic(path.join(dir, "facets.json"), {
+    asr_spec_version: "0.3.0",
+    facets: [{ id: "governance_domain", label: "Governance domain", values: [{ id: "legislative", label: "Legislative" }, { id: "regulatory", label: "Regulatory" }] }],
+    provenance: { produced_by: { tool: "build-fixtures", tool_version: "0.3.0", model: null, method: "fixture", person: null }, created_at: TS, modified_at: null },
+    notes: "",
+  });
+  const m = readManifest(dir);
+  m.sections.facets = "facets.json";
+  writeManifest(dir, m);
+}
+
 /** Define one fixture. mutate(dir, handles) runs AFTER base+regen. */
 function fixture(name, expect, { target = "L1", strict = false, minLevel = null, baseOpts = {}, mutate = null, skipBase = false, expectWarnings = null } = {}) {
   const dir = path.join(FIXTURES, name);
@@ -184,6 +198,23 @@ fixture("topics-invalid", ["topics_invalid"], {
 });
 fixture("unknown-topic", ["unknown_topic"], {
   mutate: (dir, h) => { const o = readSource(dir, h.slug); o.scope.topics.push("not-in-taxonomy"); writeSource(dir, h.slug, o); },
+});
+fixture("unknown-facet-value", ["unknown_facet_value"], {
+  mutate: (dir, h) => {
+    declareFacet(dir);
+    const o = readSource(dir, h.slug);
+    o.scope.facets = { governance_domain: ["not-a-declared-value"] };
+    writeSource(dir, h.slug, o);
+  },
+});
+// positive control: a source carrying a DECLARED facet value validates clean.
+fixture("pass-facets", [], {
+  mutate: (dir, h) => {
+    declareFacet(dir);
+    const o = readSource(dir, h.slug);
+    o.scope.facets = { governance_domain: ["legislative"] };
+    writeSource(dir, h.slug, o);
+  },
 });
 
 // --- L1: identity ---
@@ -415,7 +446,7 @@ fixture("pass-0-2-fields", [], {
   mutate: (dir, h) => {
     const o = readSource(dir, h.slug);
     o.officiality = { default: "discovery_aggregator", basis: "operated by the fixture authority", notes: "" };
-    o.coverage = { completeness: { claim: "systematic", basis: "provider_asserted", notes: "" }, jurisdictions: ["US"], jurisdiction_levels: ["national"], temporal: { coverage_start: "2020", coverage_end: "present" }, policy_states: ["enacted"], sectors: ["electricity"] };
+    o.coverage = { completeness: { claim: "systematic", basis: "provider_asserted", notes: "" }, jurisdictions: ["US"], jurisdiction_levels: ["national"], temporal: { coverage_start: "2020", coverage_end: "present" } };
     o.content.artifacts[0].officiality = "official_representation";
     o.identity.operator = { name: "Fixture Org", identifiers: { ror: "https://ror.org/01bj3aw27", wikidata: "Q1", other: [] } };
     o.guidance.routing = { discovery: "preferred", citation: "follow_primary" };

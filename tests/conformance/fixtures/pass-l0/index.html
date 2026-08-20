@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Conformance Fixture</h1>
-<div class="sub"> — ASR registry <code>reg-00f1c70de000</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub"> — ASR registry <code>reg-00f1c70de000</code>, spec 0.3.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat muted"><b>1</b> asserted</span></div>
 
 <main id="list">
@@ -48,11 +48,12 @@
     <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
     <select id="ftype"><option value="">access: all</option><option>web_fetch</option></select>
+    
   </div>
   <div class="tablewrap">
   <table id="tbl">
     <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
-    <tr data-topics="general" data-state="asserted" data-tier="1" data-types="web_fetch" data-text="fixture source  fixture-source">
+    <tr data-topics="general" data-facets="" data-state="asserted" data-tier="1" data-types="web_fetch" data-text="fixture source  fixture-source">
       <td><a href="#src=asc-a66fce027c84">Fixture Source</a><div class="sub"></div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -85,6 +86,7 @@
       <p class="sub">asserted: tier 1 (primary_dataset) by authority-fixtures — fixture<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · landing: direct · cadence: static (active)</p>
@@ -112,6 +114,7 @@
 (function () {
   var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
       fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
   function apply() {
     var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
     document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
@@ -119,11 +122,15 @@
         && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
         && (!st || tr.dataset.state === st)
         && (!tier || tr.dataset.tier === tier)
-        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
       tr.style.display = show ? "" : "none";
     });
   }
-  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
   function route() {
     var hash = location.hash.replace(/^#/, "");
     var list = document.getElementById("list");

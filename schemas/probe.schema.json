@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.2.0/schemas/probe.schema.json",
+  "$id": "https://provenance.dev/asr/0.3.0/schemas/probe.schema.json",
   "title": "ASR Probe Record (probes.jsonl line)",
   "description": "One execution of the verification gate against one access method — the evidence behind the hard promise. Probe records are append-only (probes.jsonl beside the profile); their evidence[] entries name files under evidence/ whose bytes must hash-match sha256 (probe_evidence_hash_mismatch). Recorded URLs and headers are secret-REDACTED before writing: a probe record proves reachability, it never leaks a credential.",
   "type": "object",
