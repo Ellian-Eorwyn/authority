@@ -46,6 +46,12 @@ for (const name of names) {
     for (const want of expected.expect) {
       if (!codes.has(want)) problems.push(`expected error code "${want}" not reported (got: ${[...codes].join(", ") || "none"})`);
     }
+    if (Array.isArray(expected.expect_warnings)) {
+      const wcodes = new Set((report.warnings || []).map((w) => w.code));
+      for (const want of expected.expect_warnings) {
+        if (!wcodes.has(want)) problems.push(`expected warning code "${want}" not reported (got warnings: ${[...wcodes].join(", ") || "none"})`);
+      }
+    }
     if (expected.expect.length === 0 && report.errors.length) {
       problems.push(`expected clean, got: ${report.errors.map((e) => e.code).join(", ")}`);
     }

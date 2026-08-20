@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Naturalism — Flora, Fauna &amp; Fungi</h1>
-<div class="sub">Authoritative sources for natural-history research: occurrence data, taxonomy, nomenclature, and bioacoustics, chosen to exercise every access pattern (keyless REST, header keys, basic-auth downloads, render-delegated apps). — ASR registry <code>reg-b32bed3fc8eb</code>, spec 0.1.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub">Authoritative sources for natural-history research: occurrence data, taxonomy, nomenclature, and bioacoustics, chosen to exercise every access pattern (keyless REST, header keys, basic-auth downloads, render-delegated apps). — ASR registry <code>reg-b32bed3fc8eb</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat ok"><b>2</b> verified</span> <span class="stat muted"><b>3</b> asserted</span> <span class="stat bad"><b>1</b> broken</span> <span class="stat bad"><b>1</b> blocked</span></div>
 
 <main id="list">
@@ -139,15 +139,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Recent bird sightings by region or hotspot · Species lists for a region · The eBird taxonomy</p>
+      
       <div class="shape"><strong>what&#39;s being seen locally</strong> <code>recent-observations</code><br>regionCode US-CA (or finer, e.g. US-CA-067 for Sacramento County); back=7.<br><code>/data/obs/US-CA-067/recent?back=7</code></div>
       <div class="pitfall">⚠ The key travels in the x-ebirdapitoken HEADER, never the query string.</div><div class="pitfall">⚠ Full historical datasets are a separate request-based product (EBD), not this API.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (primary_dataset, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The global bird observation dataset, expert-reviewed; the API 2.0 is the canonical machine door (header-keyed).<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json, csv) · landing: direct · cadence: realtime (active)</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -167,6 +169,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:46.186Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -179,15 +184,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Scholarly keys and morphological descriptions of North American plants · Authoritative distributions at treatment level</p>
+      
       <div class="shape"><strong>get a taxon treatment</strong><br>Treatment pages live at /&lt;Taxon_name&gt; (underscored); the MediaWiki search endpoint resolves uncertain names.<br><code>http://floranorthamerica.org/Acer_rubrum</code></div>
       <div class="pitfall">⚠ floranorthamerica.org refuses plain automated fetchers (HTTP 403) — delegate page reads to the rendering harness; the blocked state here is real.</div><div class="pitfall">⚠ Served over plain http; some fetchers flag the missing TLS.</div><div class="pitfall">⚠ Volume coverage is complete for most groups but check the volume list for gaps.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The scholarly treatment of North American flora: keys, descriptions, and distributions by taxonomic experts; served as a MediaWiki.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">international · US, CA — North America</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · landing: direct · cadence: static (active) — published volumes stable; wiki corrections episodic</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -207,6 +214,9 @@
         <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:49:21.896Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-08-18T02:47:52.524Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -219,15 +229,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Occurrence records for any taxon, filtered by geography/time · Resolving names against the GBIF taxonomic backbone · Citable Darwin Core datasets</p>
+      
       <div class="shape"><strong>occurrences of a species in a region</strong> <code>occurrence-search</code><br>First species-search the name to get usageKey; then occurrence-search taxonKey=&lt;key&gt;&amp;country=&lt;ISO&gt;.<br><code>taxonKey=3329049&amp;country=US</code></div><div class="shape"><strong>bulk data beyond 100k records</strong><br>Use the authenticated download API with a predicate; result is a citable DOI-stamped Darwin Core Archive.</div>
       <div class="pitfall">⚠ Occurrence search caps at offset 100,000 — bulk needs the download API.</div><div class="pitfall">⚠ Vernacular-name search is fuzzy; prefer scientific names for precision.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (primary_dataset, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The global aggregation point for biodiversity occurrence data; intergovernmental, openly licensed, canonical taxon keys.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · dataset_file (zip, csv) · landing: direct · cadence: continuous (active)</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -264,6 +276,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:43.465Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -276,15 +291,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Recent local observations of a taxon with photos · Phenology and seasonal presence signals · Community ID activity around a group</p>
+      
       <div class="shape"><strong>research-grade records of a species</strong> <code>observations</code><br>taxon_name + quality_grade=research; add place_id to localize.<br><code>taxon_name=Amanita muscaria&amp;quality_grade=research</code></div>
       <div class="pitfall">⚠ Respect the documented limits (~1 rps, 10k/day).</div><div class="pitfall">⚠ Casual-grade records include captive/cultivated organisms — filter by quality_grade.</div><div class="pitfall">⚠ Photo licenses vary per observation; check before reuse.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (community_curated, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The dominant community observation platform; research-grade observations flow into GBIF. Tier 2 as community-curated primary data.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · image (jpg) · landing: direct · cadence: realtime (active)</p>
-      <h3>Relations</h3><p><span class="chip">companion_of → asc-ff426711a2a0</span></p>
       <h3>Access</h3>
       
       <div class="access">
@@ -311,6 +328,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:44.640Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         <div class="sub">fetches: 2 (2 ok)</div>
       </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">companion_of → asc-ff426711a2a0</span></p>
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -323,15 +343,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Authoritative fungal name status, authorship, and synonymy · Registration numbers (MB#) for nomenclatural citations</p>
+      
       <div class="shape"><strong>check a fungal name</strong><br>Search the name in the app; the record page carries current status, basionym, and MB number.</div>
       <div class="pitfall">⚠ The web app answers plain HTTP with 404 (SPA misdesign) — only a rendering harness sees content.</div><div class="pitfall">⚠ The legacy webservice is unreliable — prefer the rendered app or cross-check with Index Fungorum.</div><div class="pitfall">⚠ Name status can differ from Index Fungorum; for contested names record both.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (curated_reference, standards_body) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The registration database for fungal names (nomenclatural acts are registered here); the authority for fungal taxonomy alongside Index Fungorum.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">structured_record (html) · landing: search_then_record · cadence: continuous (active) — registrations continuous</p>
-      <h3>Relations</h3><p><span class="chip">companion_of → Index Fungorum</span></p>
       <h3>Access</h3>
       
       <div class="access">
@@ -354,6 +376,9 @@
         <div class="sub muted">never probed</div>
         
       </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">companion_of → Index Fungorum</span></p>
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -366,15 +391,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Authoritative U.S. plant nomenclature and symbols · State-level distribution and wetland status</p>
+      
       <div class="shape"><strong>look up a plant by symbol</strong><br>Profiles live at /plant-profile/&lt;SYMBOL&gt; (e.g. ACRU for red maple); the harness renders the page.<br><code>https://plants.usda.gov/plant-profile/ACRU</code></div>
       <div class="pitfall">⚠ The site is a JS app — plain fetch gets the shell only; delegate to the rendering harness.</div><div class="pitfall">⚠ Checklist downloads go through the app&#39;s builder (portal_query), not stable URLs.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The U.S. federal reference for plant taxonomy, distribution, and wetland status; symbols (e.g. STME2) are the standard cross-reference keys.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
       <h3>Content</h3>
       <p class="sub">structured_record (html) · dataset_file (csv) · landing: portal_query · cadence: irregular (active) — taxonomic updates episodic</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -387,6 +414,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:49:15.862Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass render:skip</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -399,15 +429,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Reference recordings of a species&#39; calls/songs · Bioacoustic comparison material</p>
+      
       <div class="shape"><strong>find quality recordings</strong> <code>recordings</code><br>Use the query grammar: &#39;gen:Sturnella q:A&#39; filters genus and quality; cnt: filters country.<br><code>query=gen:Sturnella q:A</code></div>
       <div class="pitfall">⚠ API v2 (keyless) was retired for v3 (keyed) — the probe history dates the discovery; get a free key from your account page.</div><div class="pitfall">⚠ Each recording has its own CC license — check before redistribution.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (community_curated, primary_dataset) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The reference collection of wildlife sound recordings (birds and beyond), community-contributed with per-recording licenses.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">international</p>
       <h3>Content</h3>
       <p class="sub">audio (mp3, wav) · structured_record (json) · landing: direct · cadence: continuous (active)</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -437,6 +469,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:49:12.818Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>

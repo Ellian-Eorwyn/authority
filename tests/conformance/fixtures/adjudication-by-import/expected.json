@@ -1,0 +1,8 @@
+{
+  "fixture": "adjudication-by-import",
+  "target": "L1",
+  "expect": [],
+  "expect_warnings": [
+    "adjudication_by_import"
+  ]
+}

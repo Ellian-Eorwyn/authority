@@ -1,0 +1,251 @@
+{
+  "source_id": "asc-f31ac734c187",
+  "aliases": {},
+  "identity": {
+    "name": "EPA Facility Registry Service",
+    "publisher": "U.S. Environmental Protection Agency",
+    "homepage_url": "https://www.epa.gov/frs",
+    "canonical_url": "https://www.epa.gov/frs",
+    "description": "EPA's Facility Registry Service: canonical, integrated identity for facilities and sites regulated or tracked by EPA programs — the join key across environmental datasets.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "U.S. Environmental Protection Agency",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "repository",
+  "source_class": "primary",
+  "officiality": {
+    "default": "official_service",
+    "basis": "EPA's authoritative source of facility identity.",
+    "notes": ""
+  },
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "government_agency",
+        "primary_dataset"
+      ],
+      "rationale": "",
+      "asserted_by": "authority-seed (0.2.0 energy expansion)",
+      "asserted_at": "2026-08-18T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "facility-data",
+      "energy-data"
+    ],
+    "jurisdiction": {
+      "level": "national",
+      "regions": [
+        "US"
+      ],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json",
+          "csv"
+        ],
+        "notes": "facility identity records (FRS registry ids)"
+      }
+    ],
+    "landing_pattern": "search_then_record",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-3de6aa2260e5",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://data.epa.gov/efservice",
+      "docs_url": "https://www.epa.gov/enviro/envirofacts-data-service-api",
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-490d192bf56d",
+          "name": "frs-facility",
+          "description": "",
+          "http_method": "GET",
+          "path_template": "/FRS_FACILITY_SITE/STATE_CODE/{state}/rows/0:1/JSON",
+          "params": [
+            {
+              "name": "state",
+              "required": true,
+              "type": "string",
+              "description": "USPS state code",
+              "example": "CA"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": null,
+            "notes": "Envirofacts data service"
+          },
+          "probe_hint": {
+            "params": {
+              "state": "CA"
+            }
+          },
+          "example_request": "https://data.epa.gov/efservice/FRS_FACILITY_SITE/STATE_CODE/CA/rows/0:1/JSON",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-8d4570cafe9b",
+        "last_verified_at": "2026-08-18T16:48:47.509Z",
+        "window_days": null,
+        "notes": "Open Envirofacts data service."
+      },
+      "notes": ""
+    },
+    {
+      "access_id": "acc-5f7e66a6a879",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.epa.gov/frs",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-ed847c03b5a3",
+        "last_verified_at": "2026-08-18T16:48:49.739Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "api: verified; site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Resolving a facility/site to a canonical EPA identity to join across environmental datasets."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "FRS is identity, not compliance status — use ECHO for permitting/enforcement.",
+      "The Envirofacts data-service path grammar is idiosyncratic; test row ranges."
+    ],
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred"
+    },
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "companion_of",
+      "target": {
+        "name": "EPA ECHO",
+        "url": "https://echo.epa.gov/"
+      },
+      "notes": "identity vs compliance"
+    }
+  ],
+  "discovery": {
+    "discovered_via": "analyst knowledge",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T12:00:00.000Z",
+    "added_by": "authority-seed",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.2.0",
+      "model": "claude-opus-4-8",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

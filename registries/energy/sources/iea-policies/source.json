@@ -1,0 +1,203 @@
+{
+  "source_id": "asc-2515fa3a8c75",
+  "aliases": {},
+  "identity": {
+    "name": "IEA Policies Database",
+    "publisher": "International Energy Agency",
+    "homepage_url": "https://www.iea.org/policies",
+    "canonical_url": "https://www.iea.org/policies",
+    "description": "The IEA Policies database: a searchable, comparative collection of national and subnational energy and climate policies and measures.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "International Energy Agency",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "aggregator",
+  "source_class": "secondary",
+  "officiality": {
+    "default": "curated_secondary",
+    "basis": "IEA-maintained database of energy and climate policies across countries.",
+    "notes": ""
+  },
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "professional_org",
+        "curated_reference"
+      ],
+      "rationale": "",
+      "asserted_by": "authority-seed (0.2.0 energy expansion)",
+      "asserted_at": "2026-08-18T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "international-comparison",
+      "climate-policy",
+      "policy-discovery"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": "IEA members and beyond"
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "html"
+        ],
+        "notes": "policy records with metadata and source links"
+      }
+    ],
+    "landing_pattern": "portal_query",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "provider_asserted",
+      "notes": "Curated, not exhaustive; coverage varies by country and period. Absence is not evidence of no policy."
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "national",
+      "subnational"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    },
+    "policy_states": [],
+    "sectors": [
+      "electricity",
+      "buildings",
+      "industry",
+      "transportation",
+      "renewables"
+    ]
+  },
+  "access": [
+    {
+      "access_id": "acc-28b0a195e0a3",
+      "name": "site",
+      "type": "web_render",
+      "base_url": "https://www.iea.org/policies",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-deae14770916",
+        "last_verified_at": "2026-08-18T16:48:54.807Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "International energy-policy discovery and cross-country comparison."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Excellent for discovery/comparison; absence does NOT mean no policy exists. Route legal/current-status claims to the originating authority."
+    ],
+    "routing": {
+      "discovery": "preferred",
+      "citation": "follow_primary",
+      "legal_status": "follow_primary",
+      "quantitative_claims": "conditional"
+    },
+    "resolution": {
+      "strategy": "originating_authority",
+      "notes": "Follow a policy record to the responsible national government/legal database."
+    },
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "discovery_for",
+      "target": {
+        "name": "national energy & climate policies",
+        "url": "https://www.iea.org/policies"
+      },
+      "notes": ""
+    }
+  ],
+  "discovery": {
+    "discovered_via": "analyst knowledge",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T12:00:00.000Z",
+    "added_by": "authority-seed",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.2.0",
+      "model": "claude-opus-4-8",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

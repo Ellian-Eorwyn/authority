@@ -1,0 +1,177 @@
+{
+  "source_id": "asc-b120972ceacf",
+  "aliases": {},
+  "identity": {
+    "name": "OECD Climate Actions and Policies Measurement Framework",
+    "publisher": "OECD",
+    "homepage_url": "https://www.oecd.org/climate-action/ipac/",
+    "canonical_url": "https://www.oecd.org/climate-action/ipac",
+    "description": "OECD's climate policy measurement (IPAC / IFCMA) work: a structured, comparable database of climate mitigation policies and their stringency across countries.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Organisation for Economic Co-operation and Development",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "secondary",
+  "officiality": {
+    "default": "curated_secondary",
+    "basis": "OECD comparative climate-policy measurement dataset.",
+    "notes": ""
+  },
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "professional_org",
+        "primary_dataset"
+      ],
+      "rationale": "",
+      "asserted_by": "authority-seed (0.2.0 energy expansion)",
+      "asserted_at": "2026-08-18T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "international-comparison",
+      "climate-policy"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "html",
+          "csv"
+        ],
+        "notes": "climate-policy records with a structured instrument model"
+      }
+    ],
+    "landing_pattern": "portal_query",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-07d89871952a",
+      "name": "site",
+      "type": "web_render",
+      "base_url": "https://www.oecd.org/climate-action/ipac/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "blocked",
+        "last_probe_id": "prb-6bcde36a82a2",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "blocked",
+    "summary": "site: blocked"
+  },
+  "guidance": {
+    "best_for": [
+      "Comparable, structured climate-policy data and instrument classification across countries."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Comparative measurement, not the operative legal text; resolve to national sources for legal status."
+    ],
+    "routing": {
+      "discovery": "preferred",
+      "legal_status": "follow_primary"
+    },
+    "resolution": {
+      "strategy": "originating_authority",
+      "notes": ""
+    },
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "annual",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "aggregates",
+      "target": {
+        "name": "national climate policies",
+        "url": "https://www.oecd.org/climate-action/ipac/"
+      },
+      "notes": ""
+    }
+  ],
+  "discovery": {
+    "discovered_via": "analyst knowledge",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T12:00:00.000Z",
+    "added_by": "authority-seed",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.2.0",
+      "model": "claude-opus-4-8",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "Its instrument model is a useful reference for an energy-policy ontology (handoff §16, deferred to Phase 5)."
+}

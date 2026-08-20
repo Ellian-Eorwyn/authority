@@ -1,0 +1,8 @@
+{
+  "fixture": "external-id-shape",
+  "target": "L1",
+  "expect": [],
+  "expect_warnings": [
+    "external_id_shape"
+  ]
+}

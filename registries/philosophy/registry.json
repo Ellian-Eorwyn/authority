@@ -1,6 +1,6 @@
 {
   "registry_id": "reg-d680645e25dd",
-  "asr_spec_version": "0.1.0",
+  "asr_spec_version": "0.2.0",
   "title": "Philosophy & Epistemology",
   "description": "Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.)",
   "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
@@ -70,7 +70,7 @@
     "fetches": 3
   },
   "integrity": {
-    "schema_hash": "sha256:ed434785262eb1a34677ccdbeb6ddccb76ae21763bf1c747923e10353aad7c34"
+    "schema_hash": "sha256:478a40a8e0e31c62d0027f6472616dd59b675434db28722eaae87087cd63a398"
   },
   "provenance": {
     "produced_by": {

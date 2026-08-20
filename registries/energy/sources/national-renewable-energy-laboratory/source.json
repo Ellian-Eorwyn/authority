@@ -163,7 +163,7 @@
       ],
       "verification": {
         "state": "asserted",
-        "last_probe_id": "prb-4490d6e7ab15",
+        "last_probe_id": "prb-4c410e6dff9b",
         "last_verified_at": null,
         "window_days": null,
         "notes": "asserted until an api.data.gov key is stored (creds set nrel_api_key)"
@@ -201,7 +201,7 @@
       "endpoints": [],
       "verification": {
         "state": "broken",
-        "last_probe_id": "prb-ea6da92662c4",
+        "last_probe_id": "prb-a3eb347a4e09",
         "last_verified_at": null,
         "window_days": null,
         "notes": "nrel.gov DNS was unresolvable network-wide at seeding time (dig returned nothing for every nrel.gov host); re-probe later"
@@ -239,7 +239,7 @@
       "endpoints": [],
       "verification": {
         "state": "broken",
-        "last_probe_id": "prb-f48fbb995364",
+        "last_probe_id": "prb-ab414bdf7b1c",
         "last_verified_at": null,
         "window_days": null,
         "notes": "nrel.gov DNS was unresolvable network-wide at seeding time (dig returned nothing for every nrel.gov host); re-probe later"

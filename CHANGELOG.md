@@ -4,6 +4,53 @@ All notable changes to the ASR standard are documented here. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 standard adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] — 2026-08-18
+
+Backward-compatible minor revision: ASR grows from a curated authoritative-
+source registry into a machine-readable **source-selection and retrieval-
+routing layer**. Every addition is optional; all 0.1.0 registries validate
+unchanged and migrate deterministically (version stamp + schema hash only).
+New conformance rules are conditional — each fires only when its new field is
+present, so a conformant 0.1.0 registry stays conformant.
+
+### Added
+
+- **Officiality** (`officiality`, plus per-artifact `content.artifacts[].officiality`):
+  institutional status of material, kept distinct from evidential class and from
+  authority — officiality never sets tier (official is not true).
+- **Routing** (`guidance.routing`, `guidance.resolution`): per-task dispositions
+  (`preferred`/`acceptable`/`conditional`/`follow_primary`/`avoid`/`not_applicable`)
+  so authority-to-discover is expressible separately from authority-to-establish.
+- **Coverage** (`coverage`): completeness claim + basis, jurisdictions, temporal
+  range, and registry-local policy/sector facets — absence-as-evidence made explicit.
+- **Freshness** (`freshness`): three independent clocks (profile review, content
+  currency) separate from access verification; content freshness is never derived
+  from a probe.
+- **Structured organization identity** (`identity.operator`, with ROR/Wikidata),
+  alongside the retained free-text `publisher`.
+- **Upstream federation provenance** (`discovery.upstream`): where a profile was
+  imported/enriched from, without upgrading imported claims to verified or
+  adjudicated.
+- **OpenAPI / DCAT seam** (`access[].openapi`): a machine-readable API description
+  reference that never counts as operational verification.
+- New extensible vocabularies (`officiality`, `routing_disposition`, `completeness`,
+  `completeness_basis`, `content_freshness_basis`, `resolution_strategy`,
+  `upstream_registry`) and eight new `relation_type` edges (`indexes`,
+  `operated_by`, `official_source_for`, `discovery_for`, `resolves_to`,
+  `publishes`, `catalogs`, `derived_from_registry`).
+- Conformance rules **1.12** (coverage basis) and **1.13** (follow_primary
+  resolution), plus advisories `adjudication_by_import`,
+  `coverage_assessment_unsupported`, `external_id_shape`. Fixtures gain an
+  `expect_warnings` assertion for conditional warning-level rules.
+- `authority export --format agent-card`: a token-frugal routing projection.
+- `authority import <registry> re3data …`: a federation proof-of-concept
+  (new `authority_import.mjs`) that retains upstream provenance and manufactures
+  no verification or adjudication; imports land as staged candidates.
+- Crosswalks: `crosswalks/dcat.md`, `openapi.md`, `fairsharing.md`, `re3data.md`,
+  `ror.md`. New spec section `spec/10-federation-and-import.md`.
+- Human/agent projections reordered (spec/09.2) to surface officiality, routing,
+  coverage, freshness, and upstream provenance first.
+
 ## [0.1.0] — 2026-08-17
 
 Initial release of the Authoritative Source Registry standard.

@@ -1,0 +1,7 @@
+{
+  "fixture": "coverage-basis-missing",
+  "target": "L1",
+  "expect": [
+    "coverage_basis_missing"
+  ]
+}

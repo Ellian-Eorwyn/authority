@@ -1,5 +1,5 @@
 {
-  "asr_spec_version": "0.1.0",
+  "asr_spec_version": "0.2.0",
   "topics": [
     {
       "id": "energy-policy",
@@ -45,6 +45,60 @@
       "label": "Energy data",
       "description": "Statistical series and primary datasets.",
       "parent": null
+    },
+    {
+      "id": "policy-discovery",
+      "label": "Policy discovery",
+      "description": "Aggregators, indexes, and trackers used to LOCATE policy and legislation held elsewhere (follow to the primary).",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "legislation",
+      "label": "Legislation",
+      "description": "Bills, statutes, and legislative activity at federal and state levels.",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "regulation",
+      "label": "Regulation",
+      "description": "Regulatory dockets, proposed and final rules, and the regulatory agenda.",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "utility-regulation",
+      "label": "Utility regulation",
+      "description": "Public utility commissions, rate cases, interconnection, and resource planning.",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "climate-policy",
+      "label": "Climate policy",
+      "description": "Climate and clean-energy laws, policies, and instruments (national and comparative).",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "environmental-law",
+      "label": "Environmental law",
+      "description": "Environmental and natural-resource legislation, treaties, and case law.",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "international-comparison",
+      "label": "International comparison",
+      "description": "Cross-country policy databases and comparative instrument classifications.",
+      "parent": "energy-policy"
+    },
+    {
+      "id": "facility-data",
+      "label": "Facility data",
+      "description": "Canonical facility identity, permitting, compliance, and enforcement records.",
+      "parent": "energy-data"
+    },
+    {
+      "id": "research-data",
+      "label": "Research data",
+      "description": "Research-data repositories and meta-registries of scientific data resources.",
+      "parent": "energy-data"
     }
   ],
   "provenance": {
@@ -56,7 +110,7 @@
       "person": null
     },
     "created_at": "2026-08-18T02:43:59.974Z",
-    "modified_at": null
+    "modified_at": "2026-08-18T12:00:00.000Z"
   },
   "notes": ""
 }

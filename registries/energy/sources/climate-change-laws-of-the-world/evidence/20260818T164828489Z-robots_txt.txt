@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /_search
+Disallow: /document/carbon-markets-and-greenhouse-gasses-regulations-2023_3f7f
+Disallow: /documents/carbon-markets-and-greenhouse-gasses-regulations-2023_3f7f
+Disallow: /document/carbon-markets-and-greenhouse-gasses-regulations-2023_db2d
+Disallow: /documents/carbon-markets-and-greenhouse-gasses-regulations-2023_db2d

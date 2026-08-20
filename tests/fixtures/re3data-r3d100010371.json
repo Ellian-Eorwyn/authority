@@ -1,0 +1,10 @@
+{
+  "re3data_id": "r3d100010371",
+  "repositoryName": "Example Energy Data Repository",
+  "repositoryURL": "https://data.example.org/",
+  "description": "An open repository of energy-systems research datasets, used here as a deterministic import fixture (reserved .org domain; answers no real requests).",
+  "subjects": ["Energy", "Engineering"],
+  "api": [{ "apiType": "REST", "url": "https://data.example.org/api/v1" }],
+  "institutions": [{ "name": "Example Energy Institute", "ror": "https://ror.org/01bj3aw27" }],
+  "lastUpdate": "2026-06-01"
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /app/legislative-tracking/tagged-bills/
+Disallow: /app/admin/
+Disallow: /app/organization/
+Disallow: /app/teams/
+Sitemap: https://pluralpolicy.com/app/sitemap-index.xml

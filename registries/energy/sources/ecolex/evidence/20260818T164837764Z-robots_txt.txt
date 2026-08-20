@@ -1,0 +1,15 @@
+Crawl-delay: 30
+
+User-agent: *
+Disallow: /result/
+
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Sogou web spider
+Disallow: /
+

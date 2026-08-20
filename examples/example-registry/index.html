@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Example Registry</h1>
-<div class="sub">Fictional two-source registry exercising the ASR object model end to end (.test domains; every id and hash is real). — ASR registry <code>reg-00c0ffee0001</code>, spec 0.1.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub">Fictional two-source registry exercising the ASR object model end to end (.test domains; every id and hash is real). — ASR registry <code>reg-00c0ffee0001</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat ok"><b>2</b> verified</span></div>
 
 <main id="list">
@@ -87,15 +87,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Sighting counts and dates for a species · Seasonal presence questions</p>
+      
       <div class="shape"><strong>find sightings of a species</strong> <code>sightings-search</code><br>Query q with the common or scientific name; page with the offset param.<br><code>q=eastern-meadowlark</code></div>
       <div class="pitfall">⚠ The API caps page size at 50; ask for more and it silently clamps.</div>
       <p class="sub">Fictional exemplar: shows what a fully verified, exercised profile looks like.</p>
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (primary_dataset) by authority-fixtures — fixture<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">subnational · US-VT</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · dataset_file (csv, zip) · landing: direct · cadence: daily (active) — new sightings nightly</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -125,6 +127,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-17T12:00:00.000Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">fixture · added 2026-08-17</p>
     </section>
@@ -137,15 +142,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Historical orchard practice and cultivar naming, 1911–1974</p>
+      
       <div class="shape"><strong>find an article by topic and year</strong><br>Browse /year/&lt;yyyy&gt;/ indexes; article slugs contain the headline.<br><code>https://archive.orchardgazette.test/year/1952/</code></div>
       <div class="pitfall">⚠ Issue landing pages are thin; the scan PDF is behind the &#39;full scan&#39; link (landing_then_file).</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (trade_press, curated_reference) by authority-fixtures — fixture<br>
       adjudicated: tier 2, score 0.7 by E. Fixture (human review) at 2026-08-17T12:00:00.000Z</p>
+      
+      <h3>Jurisdiction</h3><p class="sub">subnational · US-VT</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · pdf_document (pdf) · landing: landing_then_file · cadence: static (archived) — digitization complete 2019</p>
-      <h3>Relations</h3><p><span class="chip">companion_of → asc-ca327093cdd0</span></p>
       <h3>Access</h3>
       
       <div class="access">
@@ -168,6 +175,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-17T12:00:00.000Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass render:skip</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">companion_of → asc-ca327093cdd0</span></p>
       <h3>Discovery</h3>
       <p class="sub">fixture · added 2026-08-17</p>
     </section>

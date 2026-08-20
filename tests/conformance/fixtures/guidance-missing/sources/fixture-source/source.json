@@ -164,7 +164,7 @@
   "provenance": {
     "produced_by": {
       "tool": "authority-fixtures",
-      "tool_version": "0.1.0",
+      "tool_version": "0.2.0",
       "model": null,
       "method": "fixture",
       "person": null

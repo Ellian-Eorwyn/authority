@@ -1,0 +1,196 @@
+{
+  "source_id": "asc-c7f66a4f4341",
+  "aliases": {},
+  "identity": {
+    "name": "OECD PINE",
+    "publisher": "OECD",
+    "homepage_url": "https://www.oecd.org/env/indicators-modelling-outlooks/policy-instruments-for-the-environment-database.htm",
+    "canonical_url": "https://www.oecd.org/env/indicators-modelling-outlooks/policy-instruments-for-the-environment-database.htm",
+    "description": "Policy Instruments for the Environment (PINE): an OECD database classifying environmentally related taxes, fees, subsidies, and tradable permits across countries.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Organisation for Economic Co-operation and Development",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "secondary",
+  "officiality": {
+    "default": "curated_secondary",
+    "basis": "OECD-maintained database of environmental policy instruments.",
+    "notes": ""
+  },
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "professional_org",
+        "primary_dataset"
+      ],
+      "rationale": "",
+      "asserted_by": "authority-seed (0.2.0 energy expansion)",
+      "asserted_at": "2026-08-18T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "international-comparison",
+      "environmental-law",
+      "climate-policy"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "html",
+          "xls"
+        ],
+        "notes": "policy-instrument records with classification"
+      }
+    ],
+    "landing_pattern": "portal_query",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Provider maintains systematic coverage of covered instrument types."
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "national"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    },
+    "policy_states": [],
+    "sectors": []
+  },
+  "access": [
+    {
+      "access_id": "acc-a1599e0307af",
+      "name": "site",
+      "type": "web_render",
+      "base_url": "https://www.oecd.org/env/indicators-modelling-outlooks/policy-instruments-for-the-environment-database.htm",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "blocked",
+        "last_probe_id": "prb-80b51c13c901",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "blocked",
+    "summary": "site: blocked"
+  },
+  "guidance": {
+    "best_for": [
+      "Comparative classification of environmental/energy policy instruments across countries."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "A classified secondary database; follow to the national instrument for legal detail."
+    ],
+    "routing": {
+      "discovery": "preferred",
+      "technical_claims": "acceptable",
+      "legal_status": "follow_primary"
+    },
+    "resolution": {
+      "strategy": "originating_authority",
+      "notes": ""
+    },
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "annual",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "aggregates",
+      "target": {
+        "name": "environmental policy instruments",
+        "url": "https://www.oecd.org/env/"
+      },
+      "notes": ""
+    }
+  ],
+  "discovery": {
+    "discovered_via": "analyst knowledge",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T12:00:00.000Z",
+    "added_by": "authority-seed",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.2.0",
+      "model": "claude-opus-4-8",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

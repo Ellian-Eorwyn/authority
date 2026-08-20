@@ -1,6 +1,6 @@
 {
   "registry_id": "reg-f4f70accf5d2",
-  "asr_spec_version": "0.1.0",
+  "asr_spec_version": "0.2.0",
   "title": "Energy Research",
   "description": "Authoritative sources for building decarbonization, heat pumps, and California/US energy policy — grounded in the CEC_FORGE Task 2 corpus, with EIA added as the API gap-fill.",
   "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
@@ -62,10 +62,101 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-5d9e4204dbc0",
+      "slug": "climate-change-laws-of-the-world",
+      "name": "Climate Change Laws of the World",
+      "path": "sources/climate-change-laws-of-the-world/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-8b460dc80ad2",
+      "slug": "climate-policy-radar",
+      "name": "Climate Policy Radar",
+      "path": "sources/climate-policy-radar/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-d6f6040f9ba0",
+      "slug": "congress-gov",
+      "name": "Congress.gov",
+      "path": "sources/congress-gov/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-d73262183991",
+      "slug": "data-gov",
+      "name": "Data.gov",
+      "path": "sources/data-gov/",
+      "verification_state": "broken"
+    },
+    {
       "source_id": "asc-071cb066d064",
       "slug": "dsire",
       "name": "DSIRE",
       "path": "sources/dsire/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-a7f0c922d985",
+      "slug": "ecolex",
+      "name": "ECOLEX",
+      "path": "sources/ecolex/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-6fcc79440d42",
+      "slug": "epa-echo",
+      "name": "EPA ECHO",
+      "path": "sources/epa-echo/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-f31ac734c187",
+      "slug": "epa-frs",
+      "name": "EPA Facility Registry Service",
+      "path": "sources/epa-frs/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-183fcd3e4c8f",
+      "slug": "fairsharing",
+      "name": "FAIRsharing",
+      "path": "sources/fairsharing/",
+      "verification_state": "asserted"
+    },
+    {
+      "source_id": "asc-fe1a08787cf4",
+      "slug": "govinfo",
+      "name": "GovInfo",
+      "path": "sources/govinfo/",
+      "verification_state": "asserted"
+    },
+    {
+      "source_id": "asc-2515fa3a8c75",
+      "slug": "iea-policies",
+      "name": "IEA Policies Database",
+      "path": "sources/iea-policies/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-1f1c9afb2840",
+      "slug": "loc-guide-to-law-online",
+      "name": "Guide to Law Online",
+      "path": "sources/loc-guide-to-law-online/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-297e0e0a21a7",
+      "slug": "naruc",
+      "name": "NARUC — State Utility Commissions",
+      "path": "sources/naruc/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7e57f4a6a30c",
+      "slug": "naseo",
+      "name": "NASEO — State Energy Offices",
+      "path": "sources/naseo/",
       "verification_state": "verified"
     },
     {
@@ -76,11 +167,60 @@
       "verification_state": "broken"
     },
     {
+      "source_id": "asc-af635c69276c",
+      "slug": "ncsl-energy-legislation",
+      "name": "NCSL State Energy Legislation Database",
+      "path": "sources/ncsl-energy-legislation/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-b120972ceacf",
+      "slug": "oecd-ifcma-climate-policy",
+      "name": "OECD Climate Actions and Policies Measurement Framework",
+      "path": "sources/oecd-ifcma-climate-policy/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-c7f66a4f4341",
+      "slug": "oecd-pine",
+      "name": "OECD PINE",
+      "path": "sources/oecd-pine/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-1bd0023ef80d",
+      "slug": "open-states",
+      "name": "Open States",
+      "path": "sources/open-states/",
+      "verification_state": "asserted"
+    },
+    {
       "source_id": "asc-2825f0b73374",
       "slug": "osti-gov",
       "name": "OSTI.GOV",
       "path": "sources/osti-gov/",
       "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-01920e9d5d84",
+      "slug": "re3data",
+      "name": "re3data",
+      "path": "sources/re3data/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7526d098b92d",
+      "slug": "reginfo-unified-agenda",
+      "name": "RegInfo — Unified Agenda",
+      "path": "sources/reginfo-unified-agenda/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-6f5fda013c78",
+      "slug": "regulations-gov",
+      "name": "Regulations.gov",
+      "path": "sources/regulations-gov/",
+      "verification_state": "blocked"
     },
     {
       "source_id": "asc-748da0edf004",
@@ -91,14 +231,14 @@
     }
   ],
   "counts": {
-    "sources": 10,
-    "access_methods": 16,
-    "endpoints": 4,
-    "probes": 23,
+    "sources": 30,
+    "access_methods": 46,
+    "endpoints": 12,
+    "probes": 59,
     "fetches": 1
   },
   "integrity": {
-    "schema_hash": "sha256:ed434785262eb1a34677ccdbeb6ddccb76ae21763bf1c747923e10353aad7c34"
+    "schema_hash": "sha256:478a40a8e0e31c62d0027f6472616dd59b675434db28722eaae87087cd63a398"
   },
   "provenance": {
     "produced_by": {

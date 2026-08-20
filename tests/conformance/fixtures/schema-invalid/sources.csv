@@ -1,2 +1,2 @@
-source_id,slug,name,publisher,role,class,tier_asserted,tier_adjudicated,topics,jurisdiction,cadence,lifecycle,access_types,verification_state,last_verified_at,homepage_url
-asc-a66fce027c84,fixture-source,Fixture Source,,publisher,primary,1,,general,not_applicable,static,active,api_rest,verified,2026-08-17T12:00:00.000Z,https://fixture.example.test/
+source_id,slug,name,publisher,role,class,officiality,tier_asserted,tier_adjudicated,topics,jurisdiction,cadence,lifecycle,routing_citation,completeness,access_types,verification_state,last_verified_at,homepage_url
+asc-a66fce027c84,fixture-source,Fixture Source,,publisher,primary,,1,,general,not_applicable,static,active,,,api_rest,verified,2026-08-17T12:00:00.000Z,https://fixture.example.test/

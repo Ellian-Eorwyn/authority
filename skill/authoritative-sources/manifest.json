@@ -2,7 +2,7 @@
   "name": "authoritative-sources",
   "type": "skill",
   "skill_file": "SKILL.md",
-  "asr_spec_version": "0.1.0",
+  "asr_spec_version": "0.2.0",
   "requires": { "runtime": "node>=18", "schemas": "../../schemas + ../../vocab (walk-up discovery; AUTHORITY_SCHEMA_DIR/AUTHORITY_VOCAB_DIR to override when vendored)" },
   "tools": [
     { "name": "authority-init", "command": "node scripts/authority.mjs init", "args_hint": "<dir> --title <t> [--topics a,b] [--contact <mailto>]", "description": "Scaffold a new registry for a topic area.", "destructive": false },

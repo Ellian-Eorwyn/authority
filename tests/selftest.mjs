@@ -176,5 +176,26 @@ eq(rollupState(["retired"]), "retired", "rollup: all retired");
 // --- CSV — spec/09.1 ---
 eq(writeCsv([["a", 'b"c', "d,e"], ["1", "", "x\ny"]]), 'a,"b""c","d,e"\n1,,"x\ny"\n', "csv RFC 4180 quoting");
 
+// --- 0.2.0 vocab & schema extension contract (spec/00.7, spec/02) ---
+{
+  const vocab = JSON.parse(fs.readFileSync(new URL("../vocab/vocab.json", import.meta.url), "utf8"));
+  const defs = vocab.$defs;
+  eq(vocab.asr_spec_version, "0.2.0", "vocab stamps 0.2.0");
+  for (const name of ["officiality", "routing_disposition", "completeness", "completeness_basis", "content_freshness_basis", "resolution_strategy", "upstream_registry"]) {
+    const d = defs[name];
+    ok(d && Array.isArray(d.anyOf) && d.anyOf.some((s) => s.pattern === "^x-[a-z0-9-]+$"), `vocab: ${name} present and extensible`);
+  }
+  for (const rel of ["indexes", "operated_by", "official_source_for", "discovery_for", "resolves_to", "publishes", "catalogs", "derived_from_registry"]) {
+    ok(defs.relation_type.anyOf[0].enum.includes(rel), `vocab: relation_type has ${rel}`);
+  }
+  const src = JSON.parse(fs.readFileSync(new URL("../schemas/source.schema.json", import.meta.url), "utf8"));
+  // officiality is a SIBLING of authority (never nested) — official is not true; officiality must not set tier.
+  ok(src.properties.officiality && !("officiality" in (src.properties.authority.properties || {})), "schema: officiality separate from authority (must not set tier)");
+  // content freshness never derives from a successful probe — no probe-shaped basis value exists.
+  ok(src.properties.freshness && !defs.content_freshness_basis.anyOf[0].enum.some((v) => /probe|verified_access/.test(v)), "schema: content_freshness_basis has no probe-derived value");
+  ok(src.properties.coverage && src.properties.discovery.properties.upstream && src.properties.guidance.properties.routing, "schema: coverage + discovery.upstream + guidance.routing present");
+  ok(src.$defs.access_method.properties.openapi && src.properties.identity.properties.operator, "schema: access.openapi + identity.operator present");
+}
+
 console.log(`selftest: ${pass} passed, ${failCount} failed`);
 process.exit(failCount ? 1 : 0);

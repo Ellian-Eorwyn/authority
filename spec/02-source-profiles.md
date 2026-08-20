@@ -18,11 +18,21 @@ content-addressed id** (§06.2). `publisher` names the operating entity when it
 differs from the name (e.g. name "OSTI.GOV", publisher "U.S. Department of
 Energy, Office of Scientific and Technical Information").
 
+`identity.operator` is the optional **structured** form of the operating
+organization — `{name, identifiers{ror, wikidata, other[]}}` — distinguishing
+the ORGANIZATION (which operates) from the SOURCE/SERVICE (which is operated).
+Use ROR ids for research organizations where they map; many regulators,
+standards bodies, and commercial services will not, and `operator` stays
+optional (the free-text `publisher` is untouched). When both an org and a
+service it runs are profiled, link them with an `operated_by` relation. The
+validator checks the `ror`/`wikidata` id shapes when present (advisory
+`external_id_shape`) but never requires them.
+
 A source whose canonical URL changes (domain move) is a **new source**; relate
 the two with `supersedes` / `superseded_by`. Ids are stable or they are
 worthless.
 
-## 2.2 Role and class
+## 2.2 Role, class, and officiality
 
 `source_role` says what the source *is structurally* (publisher, aggregator,
 index, repository, archive, mirror, community). `source_class` says its
@@ -31,6 +41,20 @@ a state agency (publisher) is usually primary; a well-run database of pointers
 (aggregator) is usually tertiary — and its profile SHOULD carry `relations:
 aggregates` edges plus guidance telling agents to follow entries to the
 underlying primaries rather than citing the aggregator itself.
+
+`officiality` is a third, independent axis: the **institutional status** of the
+source's material. `officiality.default` takes a value from
+`vocab.json#/$defs/officiality` — `source_of_record` (the legally operative or
+definitive edition), `official_service` (a service the issuing institution
+operates), `official_representation` (an institution's convenience rendering of
+material whose authoritative edition lives elsewhere), `official_mirror`,
+`curated_secondary`, `discovery_aggregator`, `unofficial`, `mixed`, or
+`unknown`. Where one service carries material of differing status — a government
+site with legally operative PDFs *and* convenience HTML *and* press releases —
+set `default` to `mixed` and record per-artifact officiality on
+`content.artifacts[].officiality`. **Officiality records provenance, not
+correctness, and MUST NOT set the authority tier**: official is not the same as
+true, and a conforming tool never infers a tier from officiality.
 
 ## 2.3 Authority — asserted vs adjudicated
 
@@ -92,6 +116,20 @@ characteristics), `pitfalls[]` (what wastes round-trips), `llm_notes`.
 Human-facing projections render guidance FIRST (§09) — it is the payoff of the
 profile. Required at L2 (`guidance_missing`).
 
+`guidance.routing` records, per task, *how to use* the source — the routing
+model that keeps discovery authority distinct from substantive authority. Keys
+are task names (`discovery`, `citation`, `legal_status`, `quantitative_claims`,
+`technical_claims` are conventional; any task key is allowed), each mapping to a
+`routing_disposition`: `preferred`, `acceptable`, `conditional`,
+`follow_primary`, `avoid`, or `not_applicable`. A `follow_primary` disposition
+means *search here to locate the material, then resolve to the source of record
+before making the claim*; it MUST be backed by `guidance.resolution`
+(`{strategy, notes}`, `strategy` from `resolution_strategy` — e.g.
+`originating_authority`) or by a `resolves_to` / `official_source_for` relation
+that names the primary (rule 1.13, `routing_primary_unresolved`). This lets a
+registry say "search this database first, but do not cite it as the final
+authority" without ambiguity.
+
 ## 2.8 Lifecycle
 
 `lifecycle.status` (active / dormant / archived / deprecated / defunct) and
@@ -107,6 +145,46 @@ a static archive is reachable daily but never updates.
 in-registry `{source_id}` or an external `{name, url}` for sources not yet
 profiled. `discovery` records how the source entered the registry
 (`discovered_via`, verbatim `retrieved_via` query, `first_added`, `added_by`,
-`import_ref` for corpus imports). Every profile carries a provenance stamp
+`import_ref` for corpus imports). For profiles federated from an external
+catalog, `discovery.upstream[]` records each upstream record — `{registry,
+record_id, record_url, retrieved_at, upstream_updated_at, mapping_version,
+inherited_fields[]}` — and `discovered_via` is conventionally
+`"registry_import"`; an imported claim is never a locally verified or
+adjudicated claim (§10). Every profile carries a provenance stamp
 (`schemas/provenance-stamp.schema.json`); `ext` and `aliases` follow the §0.7
 extension contract.
+
+## 2.10 Coverage
+
+`coverage` records how much of a domain the source spans and how completely —
+load-bearing for policy, legal, and legislative databases, where **absence from
+a comprehensive source is itself evidence** and absence from a selective one is
+not. `coverage.completeness` is a claim (`exhaustive`, `systematic`,
+`selective`, `opportunistic`, `unknown`) paired with a `basis`
+(`provider_asserted`, `independently_assessed`, `inferred`, `unknown`) — the two
+are kept apart because a provider's completeness claim is not independently
+established. A claim of `exhaustive`/`systematic` MUST state a basis (rule 1.12,
+`coverage_basis_missing`); a basis of `independently_assessed` SHOULD carry
+supporting notes. `coverage` also carries `jurisdictions[]`,
+`jurisdiction_levels[]`, a `temporal` range, and registry-local `policy_states[]`
+/ `sectors[]` facets (free strings in 0.2.0 — domain-specific facet vocabularies
+are registry-local, never universal core).
+
+## 2.11 Freshness
+
+`freshness` separates three questions the access-verification window (§04) must
+not be overloaded with:
+
+- **Profile freshness** — `profile_reviewed_at`, `profile_reviewed_by`,
+  `review_interval_days`: when a human last checked whether the source's
+  organization, interfaces, or scope changed.
+- **Content freshness** — `content_last_checked_at`, `content_current_through`,
+  `content_freshness_basis`: whether the source is maintaining the information it
+  claims to hold. `content_current_through` is **never** derived from a
+  successful probe — a working API can serve stale data, and a static archive can
+  be perfectly current for its intended scope. `content_freshness_basis`
+  (`provider_metadata`, `provider_asserted`, `independently_verified`,
+  `inferred`, `unknown`) records how the currency was determined.
+
+Access freshness — does the endpoint still work — remains the province of probes
+and the verification state machine (§04); these three clocks tick independently.

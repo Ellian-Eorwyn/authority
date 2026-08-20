@@ -1086,13 +1086,14 @@ export async function cmdFetch(args, ctx) {
 export function cmdExport(args, ctx) {
   const root = args.pos[0];
   const format = typeof args.flags.format === "string" ? args.flags.format : null;
-  if (!root || !format) fail("usage: authority export <registry> --format csv|json|markdown|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]");
+  if (!root || !format) fail("usage: authority export <registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]");
   const reg = loadRegistry(root);
   const now = nowDate();
   let text;
   if (format === "csv") text = ctx.renderSourcesCsv(reg, now);
   else if (format === "json") text = JSON.stringify(exportJson(reg, now), null, 2) + "\n";
   else if (format === "markdown") text = exportMarkdown(reg, now);
+  else if (format === "agent-card") text = JSON.stringify(exportAgentCard(reg, now), null, 2) + "\n";
   else if (format === "pi-canonical-sources") text = JSON.stringify(exportPiCanonicalSources(reg, now), null, 2) + "\n";
   else if (format === "pi-domain-strategies") text = JSON.stringify(exportPiDomainStrategies(reg, now), null, 2) + "\n";
   else if (format === "pi-provider-stub") text = JSON.stringify(exportPiProviderStub(reg, now), null, 2) + "\n";
@@ -1108,6 +1109,66 @@ export function cmdExport(args, ctx) {
 
 function sortedSources(reg) {
   return [...reg.sources].filter((s) => s.obj).sort((a, b) => (a.dirRel < b.dirRel ? -1 : 1));
+}
+
+/**
+ * agent-card (spec/09) — the token-frugal projection for a routing agent. For
+ * each source it answers, in order: when to use it, when not, whether to
+ * follow it to a primary, what it covers, the preferred access method, and how
+ * fresh the verification is. Deliberately compact: an agent should decide
+ * WHERE to search without reading the whole profile.
+ */
+function exportAgentCard(reg, now) {
+  const sources = sortedSources(reg).map((s) => {
+    const o = s.obj;
+    const access = o.access || [];
+    const states = access.map((a) => deriveState(a, s.probes, reg.registry, now));
+    // Preferred access: first verified, else first usable (not broken/blocked/retired), else first.
+    let pi = states.findIndex((st) => st === "verified");
+    if (pi < 0) pi = states.findIndex((st) => !["broken", "blocked", "retired"].includes(st));
+    if (pi < 0) pi = 0;
+    const pa = access[pi];
+    const routing = o.guidance?.routing || {};
+    const tasksBy = (disp) => Object.keys(routing).filter((k) => routing[k] === disp);
+    const lastVerified = access.map((a) => a.verification?.last_verified_at).filter(Boolean).sort().pop() || null;
+    return {
+      id: o.source_id,
+      name: o.identity.name,
+      role: o.source_role,
+      class: o.source_class,
+      officiality: o.officiality?.default || null,
+      use_for: o.guidance?.best_for || [],
+      caveats: o.guidance?.pitfalls || [],
+      routing: {
+        preferred_for: tasksBy("preferred"),
+        acceptable_for: tasksBy("acceptable"),
+        conditional_for: tasksBy("conditional"),
+        follow_primary_for: tasksBy("follow_primary"),
+        avoid_for: tasksBy("avoid"),
+      },
+      follow_to_primary: (routing.citation === "follow_primary" || routing.legal_status === "follow_primary")
+        ? (o.guidance?.resolution || { strategy: null, notes: "" })
+        : null,
+      jurisdiction: o.scope?.jurisdiction || null,
+      topics: o.scope?.topics || [],
+      coverage: o.coverage
+        ? { completeness: o.coverage.completeness || null, jurisdictions: o.coverage.jurisdictions || [], temporal: o.coverage.temporal || null }
+        : null,
+      preferred_access: pa
+        ? { name: pa.name, type: pa.type, base_url: pa.base_url, auth_required: !!pa.auth?.required, state: states[pi], openapi: pa.openapi?.url || null }
+        : null,
+      verification: { rollup: rollupState(states), last_verified_at: lastVerified },
+      content_current_through: o.freshness?.content_current_through || null,
+    };
+  });
+  return {
+    schemaVersion: 1,
+    generated_by: "authority export --format agent-card",
+    registry: reg.registry.registry_id,
+    asr_spec_version: reg.registry.asr_spec_version,
+    updatedAt: isoMs(now).slice(0, 10),
+    sources,
+  };
 }
 
 function exportJson(reg, now) {

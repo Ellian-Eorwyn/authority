@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// authority.mjs — the ASR reference CLI (spec 0.1.0). Zero dependencies,
+// authority.mjs — the ASR reference CLI (spec 0.2.0). Zero dependencies,
 // Node >= 18. Commands: init, add, validate, probe, fetch, creds, regen,
 // export, build-index, mint. The spec is normative; where this code and the
 // spec disagree, the spec governs and this is the bug.
@@ -26,7 +26,7 @@ import {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const TOOL_NAME = "authority";
-const TOOL_VERSION = "0.1.0";
+const TOOL_VERSION = "0.2.0";
 
 // ---------------------------------------------------------------------------
 // arg parsing: positional args + --flag / --flag value / repeated --param k=v
@@ -211,6 +211,7 @@ function cmdValidate(args) {
     if (adj && (adj.tier != null || adj.score != null)) {
       if (!adj.scored_by || !adj.scored_at) E("adjudication_unattributed", "L1", label, "adjudicated tier/score without scored_by + scored_at");
       if (o.provenance?.produced_by?.method === "model") W("adjudication_by_machine", "L1", label, "adjudication present on a model-written profile");
+      if (o.provenance?.produced_by?.method === "import") W("adjudication_by_import", "L1", label, "adjudicated authority on an imported profile — an import must not manufacture adjudication (spec/10)");
     }
 
     // aliases (advisory)
@@ -226,6 +227,15 @@ function cmdValidate(args) {
     for (const b of o.authority?.asserted?.basis || []) xCheck(b, "authority.basis");
     for (const a of o.content?.artifacts || []) xCheck(a.kind, "content.artifacts.kind");
     for (const r of o.relations || []) xCheck(r.type, "relations.type");
+    // 0.2.0 extensible fields (keep x- values visible)
+    xCheck(o.officiality?.default, "officiality.default");
+    for (const a of o.content?.artifacts || []) xCheck(a.officiality, "content.artifacts.officiality");
+    for (const [k, v] of Object.entries(o.guidance?.routing || {})) xCheck(v, `guidance.routing.${k}`);
+    xCheck(o.guidance?.resolution?.strategy, "guidance.resolution.strategy");
+    xCheck(o.coverage?.completeness?.claim, "coverage.completeness.claim");
+    xCheck(o.coverage?.completeness?.basis, "coverage.completeness.basis");
+    xCheck(o.freshness?.content_freshness_basis, "freshness.content_freshness_basis");
+    for (const u of o.discovery?.upstream || []) xCheck(u.registry, "discovery.upstream.registry");
 
     // unknown_field (advisory / strict error)
     for (const k of Object.keys(o)) {
@@ -239,6 +249,36 @@ function cmdValidate(args) {
       if (r.target?.source_id && !allSourceIds.has(r.target.source_id)) {
         E("dangling_relation", "L1", label, `relation ${r.type} -> ${r.target.source_id} not in registry`);
       }
+    }
+
+    // --- 0.2.0 semantic rules (conditional: each fires only when its field is
+    //     present, so 0.1.0 profiles without these fields are unaffected) ---
+    const comp = o.coverage?.completeness;
+    if (comp) {
+      // A strong completeness claim (absence = evidence) must state its basis.
+      if ((comp.claim === "exhaustive" || comp.claim === "systematic") && !comp.basis) {
+        E("coverage_basis_missing", "L1", label, `coverage completeness "${comp.claim}" requires a basis (spec/02)`);
+      }
+      if (comp.basis === "independently_assessed" && !(comp.notes && String(comp.notes).trim())) {
+        W("coverage_assessment_unsupported", "L1", label, "completeness basis independently_assessed without supporting notes");
+      }
+    }
+    // follow_primary routing must say HOW to reach the primary.
+    const routing = o.guidance?.routing;
+    if (routing && (routing.citation === "follow_primary" || routing.legal_status === "follow_primary")) {
+      const res = o.guidance?.resolution;
+      const hasResolution = !!(res && (res.strategy || (res.notes && String(res.notes).trim())));
+      const hasResolvingRelation = (o.relations || []).some((r) => r.type === "resolves_to" || r.type === "official_source_for");
+      if (!hasResolution && !hasResolvingRelation) {
+        E("routing_primary_unresolved", "L1", label, "guidance.routing says follow_primary but nothing identifies the primary (need guidance.resolution or a resolves_to/official_source_for relation)");
+      }
+    }
+    // External org-identifier shapes (advisory; external services are never
+    // mandatory for conformance).
+    const opIds = o.identity?.operator?.identifiers;
+    if (opIds) {
+      if (opIds.ror && !/^(https:\/\/ror\.org\/)?0[0-9a-z]{8}$/.test(opIds.ror)) W("external_id_shape", "L0", label, `operator.identifiers.ror "${opIds.ror}" is not a valid ROR id`);
+      if (opIds.wikidata && !/^Q[1-9][0-9]*$/.test(opIds.wikidata)) W("external_id_shape", "L0", label, `operator.identifiers.wikidata "${opIds.wikidata}" is not a valid QID`);
     }
 
     // --- access methods ---
@@ -528,9 +568,9 @@ function cmdValidate(args) {
 
 function renderSourcesCsv(reg, now = new Date()) {
   const header = [
-    "source_id", "slug", "name", "publisher", "role", "class",
+    "source_id", "slug", "name", "publisher", "role", "class", "officiality",
     "tier_asserted", "tier_adjudicated", "topics", "jurisdiction", "cadence",
-    "lifecycle", "access_types", "verification_state", "last_verified_at", "homepage_url",
+    "lifecycle", "routing_citation", "completeness", "access_types", "verification_state", "last_verified_at", "homepage_url",
   ];
   const rows = [header];
   const sorted = [...reg.sources].filter((s) => s.obj).sort((a, b) => (a.dirRel < b.dirRel ? -1 : 1));
@@ -552,12 +592,15 @@ function renderSourcesCsv(reg, now = new Date()) {
       o.identity?.publisher || "",
       o.source_role || "",
       o.source_class || "",
+      o.officiality?.default || "",
       o.authority?.asserted?.tier ?? "",
       o.authority?.adjudicated?.tier ?? "",
       (o.scope?.topics || []).join(";"),
       jur,
       o.lifecycle?.update_cadence || "",
       o.lifecycle?.status || "",
+      o.guidance?.routing?.citation || "",
+      o.coverage?.completeness?.claim || "",
       (o.access || []).map((a) => a.type).join(";"),
       rollupState(states),
       lastVerified,
@@ -582,7 +625,8 @@ const USAGE = `authority.mjs — Authoritative Source Registry reference CLI (AS
                 [--max-pages N] [--keep-sample] [--out <dir>]
   authority creds <set|list|check> [<ref>] [--registry <r>] [--keychain]
   authority regen <registry>
-  authority export <registry> --format csv|json|markdown|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
+  authority export <registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
+  authority import <registry> <adapter> <record-id|--from file.json> [--live] [--out <dir>]
   authority build-index <registry>
   authority mint <asc|acc|end|prb|fch>  < object.json
 `;
@@ -600,6 +644,7 @@ async function main() {
     case "fetch": return (await import("./authority_cmds.mjs")).cmdFetch(args, ctx());
     case "creds": return (await import("./authority_cmds.mjs")).cmdCreds(args, ctx());
     case "export": return (await import("./authority_cmds.mjs")).cmdExport(args, ctx());
+    case "import": return (await import("./authority_import.mjs")).cmdImport(args, ctx());
     case "build-index": return (await import("./build-index.mjs")).cmdBuildIndex(args, ctx());
     case "--help":
     case "help":

@@ -9,7 +9,15 @@
     "description": "Official U.S. energy statistics: electricity, natural gas, petroleum, consumption surveys (RECS/CBECS), all exposed through a keyed JSON API.",
     "languages": [
       "en"
-    ]
+    ],
+    "operator": {
+      "name": "U.S. Department of Energy, Energy Information Administration",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
   },
   "source_role": "publisher",
   "source_class": "primary",
@@ -181,7 +189,7 @@
       ],
       "verification": {
         "state": "asserted",
-        "last_probe_id": "prb-a27ca36c4273",
+        "last_probe_id": "prb-f883d047be54",
         "last_verified_at": null,
         "window_days": null,
         "notes": "asserted until a free API key is stored (creds set eia_api_key) — probing without it records auth_required, by design"
@@ -219,7 +227,7 @@
       "endpoints": [],
       "verification": {
         "state": "broken",
-        "last_probe_id": "prb-d0e335c41658",
+        "last_probe_id": "prb-8c75295f4e50",
         "last_verified_at": null,
         "window_days": null,
         "notes": "broken = Akamai edge denies plain fetchers (503); expected, see pitfalls"
@@ -251,7 +259,12 @@
       "API v2 routes are hierarchical — /electricity/retail-sales is one of many; browse /v2 with the key to discover others.",
       "Bracketed query params (data[0], facets[stateid][]) are literal — copy the example shape."
     ],
-    "llm_notes": "Key is free and instant; store it once with `authority creds set eia_api_key` and every registry can use it."
+    "llm_notes": "Key is free and instant; store it once with `authority creds set eia_api_key` and every registry can use it.",
+    "routing": {
+      "discovery": "preferred",
+      "quantitative_claims": "preferred",
+      "citation": "preferred"
+    }
   },
   "lifecycle": {
     "status": "active",
@@ -259,7 +272,16 @@
     "cadence_notes": "series-dependent; monthly electricity data lags ~2 months",
     "effective_date": null
   },
-  "relations": [],
+  "relations": [
+    {
+      "type": "operated_by",
+      "target": {
+        "name": "U.S. Department of Energy",
+        "url": "https://www.energy.gov/"
+      },
+      "notes": "EIA is a principal agency within DOE"
+    }
+  ],
   "discovery": {
     "discovered_via": "model knowledge (authority seeding pass)",
     "retrieved_via": "model knowledge; EIA absent from the CEC_FORGE corpus (gap-fill)",
@@ -279,5 +301,36 @@
     "modified_at": null
   },
   "ext": {},
-  "notes": ""
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "EIA is the statutory source of U.S. official energy statistics.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Comprehensive official U.S. energy statistics across fuels and sectors."
+    },
+    "jurisdictions": [
+      "US"
+    ],
+    "jurisdiction_levels": [
+      "national",
+      "subnational"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    },
+    "policy_states": [],
+    "sectors": [
+      "electricity",
+      "oil-gas",
+      "renewables",
+      "industry",
+      "transportation"
+    ]
+  }
 }

@@ -1,0 +1,185 @@
+{
+  "source_id": "asc-a66fce027c84",
+  "aliases": {},
+  "identity": {
+    "name": "Fixture Source",
+    "publisher": "",
+    "homepage_url": "https://fixture.example.test/",
+    "canonical_url": "https://fixture.example.test/",
+    "description": "",
+    "languages": [
+      "en"
+    ]
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "primary_dataset"
+      ],
+      "rationale": "fixture",
+      "asserted_by": "authority-fixtures",
+      "asserted_at": "2026-08-17T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "general"
+    ],
+    "jurisdiction": {
+      "level": "not_applicable",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json"
+        ],
+        "notes": ""
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-ca155ed80f35",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://api.fixture.example.test/v1",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": 1,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": 1,
+        "notes": ""
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-c71e81657947",
+          "name": "things",
+          "description": "",
+          "http_method": "GET",
+          "path_template": "/things?q={q}",
+          "params": [
+            {
+              "name": "q",
+              "required": true,
+              "type": "string",
+              "description": "query",
+              "example": "x"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "q": "x"
+            }
+          },
+          "example_request": "https://api.fixture.example.test/v1/things?q=x",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-ac5d23521749",
+        "last_verified_at": "2026-08-17T12:00:00.000Z",
+        "window_days": 3650,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "api: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Exercising the ASR reference implementation."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "This is a fixture on a reserved .test domain; it answers no real requests."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "follow_primary"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "static",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "fixture",
+    "retrieved_via": "",
+    "first_added": "2026-08-17T12:00:00.000Z",
+    "added_by": "authority-fixtures",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-fixtures",
+      "tool_version": "0.2.0",
+      "model": null,
+      "method": "fixture",
+      "person": null
+    },
+    "created_at": "2026-08-17T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

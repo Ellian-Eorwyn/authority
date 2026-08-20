@@ -18,6 +18,11 @@ cumulative and **computed from rules passed**, never from object counts.
 Severity E = error (blocks the level), W = warning (advisory, never blocks
 except under `--strict`).
 
+Rules tagged *(0.2.0, conditional)* were added in the 0.2.0 minor revision;
+each inspects a field that did not exist in 0.1.0 and fires only when that
+field is present, so every conformant 0.1.0 registry stays conformant
+unchanged.
+
 ### L0 Browsable
 
 | # | Rule | Code(s) | Sev |
@@ -43,8 +48,10 @@ except under `--strict`).
 | 1.7 | no secret values in tracked files: profiles, examples file, journals, evidence all scan clean; `credentials.json` untracked; refs well-formed | `credential_in_profile`, `credential_file_unignored`, `credential_ref_invalid` | E |
 | 1.8 | every auth-required method declares `scheme` + `credential_ref` (+ `location` for api_key schemes) | `auth_underspecified` | E |
 | 1.9 | robots posture recorded for every method where robots applies, with captured robots.txt evidence behind it | `robots_unrecorded`, `robots_evidence_missing` | E |
-| 1.10 | non-null adjudication carries `scored_by` + `scored_at`; model-written profiles with adjudication draw a warning | `adjudication_unattributed` E, `adjudication_by_machine` W | E/W |
+| 1.10 | non-null adjudication carries `scored_by` + `scored_at`; adjudication on a model-written or imported profile draws a warning (machine or import judgment must not masquerade as human adjudication) | `adjudication_unattributed` E, `adjudication_by_machine` W, `adjudication_by_import` W | E/W |
 | 1.11 | every profile and manifest carries a provenance stamp | `missing_provenance` | E |
+| 1.12 | *(0.2.0, conditional)* when `coverage.completeness.claim` is `exhaustive`/`systematic` it states a `basis`; a basis of `independently_assessed` carries supporting notes (absence-as-evidence must be grounded) | `coverage_basis_missing` E, `coverage_assessment_unsupported` W | E/W |
+| 1.13 | *(0.2.0, conditional)* when `guidance.routing` sets a task to `follow_primary`, the primary is identified — via `guidance.resolution` or a `resolves_to`/`official_source_for` relation | `routing_primary_unresolved` | E |
 
 ### L2 Operational
 
@@ -68,6 +75,7 @@ except under `--strict`).
 | `x_extension` | an `x-` vocabulary value in use |
 | `alias_collision` | one alias value maps to two objects |
 | `sample_hash_mismatch` | a tracked sample's bytes disagree with the NEWEST fetch record referencing it (samples are newest-wins, §07.4; older records' sample blocks are history) (E under `--strict`) |
+| `external_id_shape` | an `identity.operator` `ror`/`wikidata` identifier is malformed (0.2.0; external identifiers are never mandatory for conformance) |
 
 ## 8.2 The report
 
@@ -77,7 +85,7 @@ except under `--strict`).
 {
   "status": "error | warning | ok",
   "registry": "<registry_id>",
-  "asr_spec_version": "0.1.0",
+  "asr_spec_version": "0.2.0",
   "level": "none | L0 | L1 | L2",
   "operational_here": false,
   "counts": { "sources": 0, "access_methods": 0, "endpoints": 0, "probes": 0, "fetches": 0 },
@@ -104,8 +112,10 @@ promotes the marked warnings to errors.
 named by the code, plus `pass-l0`, `pass-l1`, `pass-l2` positive controls.
 Each carries `expected.json`:
 `{"fixture": "<name>", "expect": ["<code>", …]}` (empty array = must pass
-clean at the fixture's declared level). Fixtures are built by a committed
-deterministic script — every id and every evidence hash in them is real
+clean at the fixture's declared level). An optional `expect_warnings` array
+asserts advisory warning codes, for conditional rules whose violation is a
+warning rather than an error. Fixtures are built by a committed deterministic
+script — every id and every evidence hash in them is real
 (`tool.method: "fixture"`), because fixtures must never lie.
 
 ## 8.4 `operational_here`

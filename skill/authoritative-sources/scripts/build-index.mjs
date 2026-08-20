@@ -14,6 +14,7 @@ function nowDate() {
 }
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const rorUrl = (r) => (String(r).startsWith("http") ? String(r) : "https://ror.org/" + r);
 
 const STATE_META = {
   verified: { label: "verified", cls: "ok" },
@@ -85,7 +86,7 @@ export function cmdBuildIndex(args, ctx) {
     const lastVerified = v.access.map((x) => x.a.verification?.last_verified_at).filter(Boolean).sort().pop();
     return `<tr data-topics="${esc((o.scope?.topics || []).join(" "))}" data-state="${esc(v.roll)}" data-tier="${esc(String(tierAdj ?? tierAss ?? ""))}" data-types="${esc(v.access.map((x) => x.a.type).join(" "))}" data-text="${esc((o.identity.name + " " + (o.identity.publisher || "") + " " + slug).toLowerCase())}">
       <td><a href="#src=${esc(o.source_id)}">${esc(o.identity.name)}</a><div class="sub">${esc(o.identity.publisher || "")}</div></td>
-      <td><span class="chip">${esc(o.source_role)}</span></td>
+      <td><span class="chip">${esc(o.source_role)}</span>${o.officiality?.default ? `<div class="sub">${esc(o.officiality.default)}</div>` : ""}</td>
       <td>${tierAdj != null ? `<span class="chip tier adj" title="adjudicated by ${esc(o.authority.adjudicated.scored_by || "?")}">T${esc(String(tierAdj))}</span>` : `<span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T${esc(String(tierAss ?? "?"))}?</span>`}</td>
       <td>${(o.scope?.topics || []).map((t) => `<span class="chip">${esc(t)}</span>`).join(" ")}</td>
       <td class="sub">${esc(o.scope?.jurisdiction?.level || "")}${(o.scope?.jurisdiction?.regions || []).length ? " · " + esc(o.scope.jurisdiction.regions.join(", ")) : ""}</td>
@@ -99,8 +100,13 @@ export function cmdBuildIndex(args, ctx) {
     const o = v.o;
     const slug = path.basename(v.s.dirRel);
     const g = o.guidance || {};
+    const routeKeys = Object.keys(g.routing || {});
+    const routingHtml = routeKeys.length
+      ? `<p class="routing"><strong>Routing:</strong> ${routeKeys.map((k) => `<span class="chip">${esc(k)}: ${esc(g.routing[k])}</span>`).join(" ")}${g.resolution?.strategy ? ` <span class="sub">→ resolve via ${esc(g.resolution.strategy)}${g.resolution.notes ? " (" + esc(g.resolution.notes) + ")" : ""}</span>` : ""}</p>`
+      : "";
     const guidance = `
       ${(g.best_for || []).length ? `<p class="bestfor"><strong>Best for:</strong> ${g.best_for.map(esc).join(" · ")}</p>` : `<p class="bestfor muted">No guidance yet.</p>`}
+      ${routingHtml}
       ${(g.query_shapes || []).map((q) => `<div class="shape"><strong>${esc(q.task)}</strong>${q.endpoint ? ` <code>${esc(q.endpoint)}</code>` : ""}<br>${esc(q.recipe)}${q.example ? `<br><code>${esc(q.example)}</code>` : ""}</div>`).join("")}
       ${(g.pitfalls || []).map((p) => `<div class="pitfall">⚠ ${esc(p)}</div>`).join("")}
       ${g.llm_notes ? `<p class="sub">${esc(g.llm_notes)}</p>` : ""}`;
@@ -129,22 +135,36 @@ export function cmdBuildIndex(args, ctx) {
     }).join("");
 
     const rel = (o.relations || []).map((r) => `<span class="chip">${esc(r.type)} → ${esc(r.target?.source_id || r.target?.name || "?")}</span>`).join(" ");
+    const cov = o.coverage;
+    const c = cov?.completeness;
+    const coverageHtml = cov ? `<p class="sub">${c ? `completeness: <strong>${esc(c.claim || "?")}</strong>${c.basis ? ` (${esc(c.basis)})` : ""}${c.notes ? " — " + esc(c.notes) : ""}` : ""}${(cov.jurisdictions || []).length ? `${c ? "<br>" : ""}jurisdictions: ${cov.jurisdictions.map(esc).join(", ")}${(cov.jurisdiction_levels || []).length ? " (" + cov.jurisdiction_levels.map(esc).join(", ") + ")" : ""}` : ""}${cov.temporal && (cov.temporal.coverage_start || cov.temporal.coverage_end) ? `<br>temporal: ${esc(cov.temporal.coverage_start || "?")} → ${esc(cov.temporal.coverage_end || "?")}` : ""}${(cov.policy_states || []).length ? `<br>policy states: ${cov.policy_states.map(esc).join(", ")}` : ""}${(cov.sectors || []).length ? `<br>sectors: ${cov.sectors.map(esc).join(", ")}` : ""}</p>` : "";
+    const jur = o.scope?.jurisdiction;
+    const jurHtml = jur && (jur.level || (jur.regions || []).length) ? `<p class="sub">${esc(jur.level || "")}${(jur.regions || []).length ? " · " + esc(jur.regions.join(", ")) : ""}${jur.notes ? " — " + esc(jur.notes) : ""}</p>` : "";
+    const fr = o.freshness;
+    const freshnessHtml = fr ? `<p class="sub">${fr.content_current_through ? `content current through <strong>${esc(fr.content_current_through)}</strong>${fr.content_freshness_basis ? ` (${esc(fr.content_freshness_basis)})` : ""}` : ""}${fr.content_last_checked_at ? `<br>content last checked: ${esc(String(fr.content_last_checked_at).slice(0, 10))}` : ""}${fr.profile_reviewed_at ? `<br>profile reviewed: ${esc(String(fr.profile_reviewed_at).slice(0, 10))}${fr.profile_reviewed_by ? " by " + esc(fr.profile_reviewed_by) : ""}${fr.review_interval_days ? " (every " + esc(fr.review_interval_days) + "d)" : ""}` : ""}</p>` : "";
+    const ups = o.discovery?.upstream || [];
+    const upstreamHtml = ups.length ? ups.map((u) => `<div class="sub">imported from <strong>${esc(u.registry)}</strong> <code>${esc(u.record_id)}</code>${u.record_url ? ` <a href="${esc(u.record_url)}">↗</a>` : ""}${u.retrieved_at ? ` · retrieved ${esc(String(u.retrieved_at).slice(0, 10))}` : ""}${u.mapping_version ? ` · ${esc(u.mapping_version)}` : ""}${(u.inherited_fields || []).length ? `<br>inherited: ${u.inherited_fields.map(esc).join(", ")}` : ""}</div>`).join("") : "";
+    const op = o.identity.operator;
     return `
     <section class="detail" id="src=${esc(o.source_id)}" hidden>
       <p><a href="#" class="back">← all sources</a></p>
-      <h2>${esc(o.identity.name)} <span class="chip">${esc(o.source_role)}</span> <span class="chip">${esc(o.source_class)}</span> ${badge(v.roll, null, now)}</h2>
-      <div class="sub">${esc(o.identity.publisher || "")} · <a href="${esc(o.identity.homepage_url)}">${esc(o.identity.homepage_url)}</a> · <code>${esc(o.source_id)}</code> · <code>sources/${esc(slug)}/</code></div>
+      <h2>${esc(o.identity.name)} <span class="chip">${esc(o.source_role)}</span> <span class="chip">${esc(o.source_class)}</span>${o.officiality?.default ? ` <span class="chip" title="officiality — institutional status, not authority">${esc(o.officiality.default)}</span>` : ""} ${badge(v.roll, null, now)}</h2>
+      <div class="sub">${esc(o.identity.publisher || op?.name || "")}${op?.identifiers?.ror ? ` · <a href="${esc(rorUrl(op.identifiers.ror))}">ROR</a>` : ""} · <a href="${esc(o.identity.homepage_url)}">${esc(o.identity.homepage_url)}</a> · <code>${esc(o.source_id)}</code> · <code>sources/${esc(slug)}/</code></div>
       ${o.identity.description ? `<p>${esc(o.identity.description)}</p>` : ""}
       <h3>Guidance</h3>
       ${guidance}
       <h3>Authority</h3>
       <p class="sub">asserted: tier ${esc(String(o.authority?.asserted?.tier))} (${(o.authority?.asserted?.basis || []).map(esc).join(", ") || "no basis recorded"}) by ${esc(o.authority?.asserted?.asserted_by || "?")} — ${esc(o.authority?.asserted?.rationale || "")}<br>
       adjudicated: ${o.authority?.adjudicated?.tier != null || o.authority?.adjudicated?.score != null ? `tier ${esc(String(o.authority.adjudicated.tier ?? "—"))}${o.authority.adjudicated.score != null ? `, score ${esc(String(o.authority.adjudicated.score))}` : ""} by ${esc(o.authority.adjudicated.scored_by || "?")} at ${esc(o.authority.adjudicated.scored_at || "?")}` : "<em>pending human scoring pass</em>"}</p>
+      ${cov ? `<h3>Coverage</h3>${coverageHtml}` : ""}
+      ${jurHtml ? `<h3>Jurisdiction</h3>${jurHtml}` : ""}
       <h3>Content</h3>
-      <p class="sub">${(o.content?.artifacts || []).map((a) => `${esc(a.kind)}${(a.formats || []).length ? " (" + a.formats.map(esc).join(", ") + ")" : ""}`).join(" · ") || "—"} · landing: ${esc(o.content?.landing_pattern || "—")} · cadence: ${esc(o.lifecycle?.update_cadence || "?")} (${esc(o.lifecycle?.status || "?")})${o.lifecycle?.cadence_notes ? " — " + esc(o.lifecycle.cadence_notes) : ""}</p>
-      ${rel ? `<h3>Relations</h3><p>${rel}</p>` : ""}
+      <p class="sub">${(o.content?.artifacts || []).map((a) => `${esc(a.kind)}${(a.formats || []).length ? " (" + a.formats.map(esc).join(", ") + ")" : ""}${a.officiality ? " [" + esc(a.officiality) + "]" : ""}`).join(" · ") || "—"} · landing: ${esc(o.content?.landing_pattern || "—")} · cadence: ${esc(o.lifecycle?.update_cadence || "?")} (${esc(o.lifecycle?.status || "?")})${o.lifecycle?.cadence_notes ? " — " + esc(o.lifecycle.cadence_notes) : ""}</p>
       <h3>Access</h3>
       ${accessHtml}
+      ${fr ? `<h3>Freshness</h3>${freshnessHtml}` : ""}
+      ${upstreamHtml ? `<h3>Upstream provenance</h3>${upstreamHtml}` : ""}
+      ${rel ? `<h3>Relations</h3><p>${rel}</p>` : ""}
       <h3>Discovery</h3>
       <p class="sub">${esc(o.discovery?.discovered_via || "?")}${o.discovery?.retrieved_via ? ` — <code>${esc(o.discovery.retrieved_via)}</code>` : ""}${o.discovery?.import_ref ? ` · import ${esc(o.discovery.import_ref)}` : ""} · added ${esc((o.discovery?.first_added || "").slice(0, 10))}</p>
     </section>`;

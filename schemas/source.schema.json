@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.1.0/schemas/source.schema.json",
+  "$id": "https://provenance.dev/asr/0.2.0/schemas/source.schema.json",
   "title": "ASR Source Profile (source.json)",
   "description": "The operational profile of one authoritative source: what it is, why it is trusted, what it holds, how it is reached, and what evidence backs each access claim. A profile is a living document — probes update its verification blocks, humans update its adjudication and guidance — but it must never overstate: an access method's verification.state is DERIVED from probe records (§04), and machine-asserted authority is quarantined from human-adjudicated authority. What a source holds (content) and how it is reached (access) are separate blocks by design.",
   "type": "object",
@@ -12,6 +12,23 @@
       "properties": {
         "name": { "type": "string", "description": "The source's common name; the slug is computed from it (§06)." },
         "publisher": { "type": "string", "description": "The operating legal/organizational entity, when distinct from name." },
+        "operator": {
+          "type": "object",
+          "description": "Structured organizational identity for the operating entity — the richer form of `publisher`, which stays as free text (spec/02). Distinguishes ORGANIZATION (operates) from SOURCE/SERVICE. Identifiers are optional; many regulators, standards bodies, and commercial services will not map to ROR.",
+          "properties": {
+            "name": { "type": "string" },
+            "identifiers": {
+              "type": "object",
+              "properties": {
+                "ror": { "type": ["string", "null"], "description": "ROR id, e.g. \"https://ror.org/01bj3aw27\" or the bare \"01bj3aw27\" form (crosswalks/ror.md)." },
+                "wikidata": { "type": ["string", "null"], "description": "Wikidata QID, e.g. \"Q217810\"." },
+                "other": { "type": "array", "items": { "type": "string" }, "description": "Other identifiers as \"scheme:id\" strings." }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        },
         "homepage_url": { "type": "string", "description": "The public front door as given." },
         "canonical_url": { "type": "string", "description": "homepage_url normalized by the §06 URL algorithm; feeds identity. A changed canonical_url is a NEW source related by supersedes." },
         "description": { "type": "string" },
@@ -22,6 +39,16 @@
     },
     "source_role": { "$ref": "../vocab/vocab.json#/$defs/source_role" },
     "source_class": { "$ref": "../vocab/vocab.json#/$defs/source_class" },
+    "officiality": {
+      "type": "object",
+      "description": "Institutional provenance/status of the source's material (spec/02) — kept distinct from source_class (evidential distance) and from authority (which it MUST NOT set: official is not the same as true). `default` is the service-wide officiality; when a service carries material of differing status, set `default` to `mixed` and record per-artifact officiality in content.artifacts[].",
+      "properties": {
+        "default": { "$ref": "../vocab/vocab.json#/$defs/officiality" },
+        "basis": { "type": "string", "description": "Why this officiality holds, e.g. \"Operated by the issuing agency.\"" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
     "authority": {
       "type": "object",
       "description": "Why this source is trusted — in two quarantined halves. `asserted` may be written by a machine at add-time and is triage, not judgment. `adjudicated` is the human scoring pass: its tier/score are null until a person (or an explicitly attributed process) fills them, and the validator requires attribution when they are non-null (adjudication_unattributed) and warns when the profile's provenance says a model wrote it (adjudication_by_machine). Consumers that need one number use adjudicated.tier ?? asserted.tier and must preserve the distinction when re-exporting.",
@@ -79,6 +106,34 @@
       },
       "additionalProperties": true
     },
+    "coverage": {
+      "type": "object",
+      "description": "How much of a domain the source covers, and how completely (spec/02) — especially load-bearing for policy/legislative databases, where absence from an exhaustive/systematic source is itself evidence. A provider's completeness claim is not independently established: record the claim and its basis separately.",
+      "properties": {
+        "completeness": {
+          "type": "object",
+          "properties": {
+            "claim": { "$ref": "../vocab/vocab.json#/$defs/completeness" },
+            "basis": { "$ref": "../vocab/vocab.json#/$defs/completeness_basis" },
+            "notes": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "jurisdictions": { "type": "array", "items": { "type": "string" }, "description": "ISO 3166 codes covered, e.g. [\"US\", \"US-CA\"]." },
+        "jurisdiction_levels": { "type": "array", "items": { "$ref": "../vocab/vocab.json#/$defs/jurisdiction_level" } },
+        "temporal": {
+          "type": "object",
+          "properties": {
+            "coverage_start": { "type": ["string", "null"] },
+            "coverage_end": { "type": ["string", "null"], "description": "ISO date, year, or \"present\"." }
+          },
+          "additionalProperties": true
+        },
+        "policy_states": { "type": "array", "items": { "type": "string" }, "description": "Registry-local facet: policy lifecycle states covered (e.g. introduced, enacted, failed). Free strings in 0.2.0 — formal facet vocabularies are registry-local, not universal core." },
+        "sectors": { "type": "array", "items": { "type": "string" }, "description": "Registry-local facet: sectors covered (e.g. electricity, buildings). Free strings in 0.2.0." }
+      },
+      "additionalProperties": true
+    },
     "content": {
       "type": "object",
       "description": "WHAT the source holds — deliberately separate from access. artifacts describe the kinds of objects; landing_pattern records how many hops from a public URL to the artifact you actually want (the \"report landing page\" problem made explicit).",
@@ -90,6 +145,7 @@
             "properties": {
               "kind": { "$ref": "../vocab/vocab.json#/$defs/artifact_kind" },
               "formats": { "type": "array", "items": { "type": "string" }, "description": "File/wire formats as lowercase extensions or MIME-ish names, e.g. [\"pdf\"], [\"json\", \"csv\"]." },
+              "officiality": { "$ref": "../vocab/vocab.json#/$defs/officiality", "description": "Per-artifact officiality when a service mixes editions (e.g. source_of_record PDF vs official_representation HTML). Overrides the service-wide officiality.default for this kind." },
               "notes": { "type": "string" }
             },
             "required": ["kind"],
@@ -137,7 +193,28 @@
           }
         },
         "pitfalls": { "type": "array", "items": { "type": "string" } },
-        "llm_notes": { "type": "string", "description": "Anything else an agent should know before spending requests." }
+        "llm_notes": { "type": "string", "description": "Anything else an agent should know before spending requests." },
+        "routing": {
+          "type": "object",
+          "description": "How to USE this source per task (spec/02): discovery authority is not substantive authority. Keys are task names — discovery, citation, legal_status, quantitative_claims, technical_claims are the conventional ones, but any task key is allowed; each value is a routing_disposition. A follow_primary disposition SHOULD be backed by guidance.resolution or a resolves_to / official_source_for relation.",
+          "properties": {
+            "discovery": { "$ref": "../vocab/vocab.json#/$defs/routing_disposition" },
+            "citation": { "$ref": "../vocab/vocab.json#/$defs/routing_disposition" },
+            "legal_status": { "$ref": "../vocab/vocab.json#/$defs/routing_disposition" },
+            "quantitative_claims": { "$ref": "../vocab/vocab.json#/$defs/routing_disposition" },
+            "technical_claims": { "$ref": "../vocab/vocab.json#/$defs/routing_disposition" }
+          },
+          "additionalProperties": { "$ref": "../vocab/vocab.json#/$defs/routing_disposition" }
+        },
+        "resolution": {
+          "type": "object",
+          "description": "How to resolve a discovery record to the material that should support the claim, when routing says follow_primary (spec/02).",
+          "properties": {
+            "strategy": { "$ref": "../vocab/vocab.json#/$defs/resolution_strategy" },
+            "notes": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
       },
       "additionalProperties": true
     },
@@ -150,6 +227,19 @@
         "effective_date": { "type": ["string", "null"], "description": "For sources whose content takes force on a date (standards, statutes)." }
       },
       "required": ["status", "update_cadence"],
+      "additionalProperties": true
+    },
+    "freshness": {
+      "type": "object",
+      "description": "Three independent freshness clocks, deliberately separate from access verification (spec/04) and from lifecycle.update_cadence. PROFILE freshness: when a human last reviewed whether the source's organization/interfaces/scope changed. CONTENT freshness: whether the source is maintaining the information it claims to hold — content_current_through is NEVER derived from a successful probe (a working API can serve stale data; a static archive can be current for its scope).",
+      "properties": {
+        "profile_reviewed_at": { "type": ["string", "null"], "format": "date-time" },
+        "profile_reviewed_by": { "type": "string" },
+        "review_interval_days": { "type": ["integer", "null"], "minimum": 1 },
+        "content_last_checked_at": { "type": ["string", "null"], "format": "date-time" },
+        "content_current_through": { "type": ["string", "null"], "description": "ISO date/year the source's content is current through, e.g. \"2026-07-31\"." },
+        "content_freshness_basis": { "$ref": "../vocab/vocab.json#/$defs/content_freshness_basis" }
+      },
       "additionalProperties": true
     },
     "relations": {
@@ -182,7 +272,25 @@
         "retrieved_via": { "type": "string", "description": "The exact query or session action that surfaced it, verbatim." },
         "first_added": { "type": "string", "format": "date-time" },
         "added_by": { "type": "string" },
-        "import_ref": { "type": ["string", "null"], "description": "Id in the corpus this was imported from, e.g. \"FORGE-2B-017\"; null when not an import." }
+        "import_ref": { "type": ["string", "null"], "description": "Id in the corpus this was imported from, e.g. \"FORGE-2B-017\"; null when not an import." },
+        "upstream": {
+          "type": "array",
+          "description": "Federation provenance: external registries/catalogs this profile was imported or enriched from (spec/10). An imported claim is not a locally verified or adjudicated claim — importing records WHERE fields came from, never that access works or that authority was judged. When set, discovered_via is conventionally \"registry_import\".",
+          "items": {
+            "type": "object",
+            "properties": {
+              "registry": { "$ref": "../vocab/vocab.json#/$defs/upstream_registry" },
+              "record_id": { "type": "string", "description": "The upstream record's stable id, e.g. \"FAIRsharing.abc123\" or a re3data id." },
+              "record_url": { "type": "string" },
+              "retrieved_at": { "type": "string", "format": "date-time", "description": "When ASR fetched the upstream record." },
+              "upstream_updated_at": { "type": ["string", "null"], "format": "date-time", "description": "The upstream record's own last-modified time, when known." },
+              "mapping_version": { "type": "string", "description": "The adapter/crosswalk version, e.g. \"re3data-asr@1\"." },
+              "inherited_fields": { "type": "array", "items": { "type": "string" }, "description": "Dotted ASR field paths whose values were taken from this upstream record, e.g. [\"identity.name\", \"content.artifacts\"]." }
+            },
+            "required": ["registry", "record_id"],
+            "additionalProperties": true
+          }
+        }
       },
       "additionalProperties": true
     },
@@ -202,6 +310,15 @@
         "type": { "$ref": "../vocab/vocab.json#/$defs/access_type" },
         "base_url": { "type": "string" },
         "docs_url": { "type": ["string", "null"], "description": "Where the interface is documented." },
+        "openapi": {
+          "type": "object",
+          "description": "Reference to a machine-readable API description for this method (OpenAPI / DCAT endpointDescription seam; crosswalks/openapi.md, crosswalks/dcat.md). Declaring it does NOT make the method verified — the probe gate (spec/04) remains the sole authority on whether access works. ASR adds what the description omits: whether it works, credentials, politeness, probe strategy, and task guidance.",
+          "properties": {
+            "url": { "type": "string" },
+            "version": { "type": ["string", "null"], "description": "OpenAPI version string, e.g. \"3.1.0\", when known." }
+          },
+          "additionalProperties": true
+        },
         "auth": {
           "type": "object",
           "properties": {

@@ -11,7 +11,15 @@
     "description": "DOE's scientific and technical information portal: national-lab reports with a keyless JSON records API and stable biblio landing pages.",
     "languages": [
       "en"
-    ]
+    ],
+    "operator": {
+      "name": "U.S. Department of Energy, Office of Scientific and Technical Information",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
   },
   "source_role": "publisher",
   "source_class": "primary",
@@ -225,7 +233,12 @@
     "pitfalls": [
       "The API returns metadata; full text is one hop away on the biblio page (landing_then_file)."
     ],
-    "llm_notes": ""
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "technical_claims": "preferred",
+      "citation": "acceptable"
+    }
   },
   "lifecycle": {
     "status": "active",
@@ -233,7 +246,16 @@
     "cadence_notes": "",
     "effective_date": null
   },
-  "relations": [],
+  "relations": [
+    {
+      "type": "operated_by",
+      "target": {
+        "name": "U.S. Department of Energy",
+        "url": "https://www.energy.gov/"
+      },
+      "notes": "OSTI is a DOE office"
+    }
+  ],
   "discovery": {
     "discovered_via": "CEC_FORGE Task 2 Source Corpus (subtask 2.2)",
     "retrieved_via": "WebSearch: LBNL electrification of buildings drivers barriers OSTI",
@@ -253,5 +275,29 @@
     "modified_at": null
   },
   "ext": {},
-  "notes": ""
+  "notes": "",
+  "officiality": {
+    "default": "official_service",
+    "basis": "DOE's official repository of DOE-funded scientific and technical research.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Comprehensive for DOE-funded research outputs."
+    },
+    "jurisdictions": [
+      "US"
+    ],
+    "jurisdiction_levels": [
+      "national"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    },
+    "policy_states": [],
+    "sectors": []
+  }
 }

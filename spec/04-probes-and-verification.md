@@ -105,9 +105,15 @@ and flags drift). No tool may set `verified` by hand: L1's `unverified_claim`
 requires a matching `ok` probe record, present evidence, matching hashes, and
 fresh age — the gate line from §0.2.
 
-The window is deliberately independent of `lifecycle.update_cadence`: access
-stability and content rhythm are different clocks. Static archives can carry
-long per-method windows (e.g. 365); volatile APIs shorter ones.
+The window is deliberately independent of `lifecycle.update_cadence` **and of
+`freshness` (§02.11)**: access stability, content rhythm, and content currency
+are different clocks. Static archives can carry long per-method windows (e.g.
+365); volatile APIs shorter ones. Critically, a successful probe verifies only
+that the endpoint *works* — it says nothing about whether the data behind it is
+current. `freshness.content_current_through` MUST therefore never be derived
+from a probe outcome: a working API can serve stale data, and a static archive
+can be perfectly current for its scope. Content currency is recorded separately,
+with its own `content_freshness_basis`.
 
 ## 4.7 Probing discipline
 

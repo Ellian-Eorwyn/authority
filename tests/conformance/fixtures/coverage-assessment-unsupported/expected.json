@@ -1,0 +1,8 @@
+{
+  "fixture": "coverage-assessment-unsupported",
+  "target": "L1",
+  "expect": [],
+  "expect_warnings": [
+    "coverage_assessment_unsupported"
+  ]
+}

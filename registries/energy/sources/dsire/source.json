@@ -164,7 +164,16 @@
       "Treat entries as POINTERS: cite the underlying program document, not the DSIRE entry (aggregator semantics).",
       "The corpus marks this Tertiary-aggregator for exactly that reason."
     ],
-    "llm_notes": ""
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "follow_primary",
+      "legal_status": "follow_primary"
+    },
+    "resolution": {
+      "strategy": "originating_authority",
+      "notes": "Follow each DSIRE entry to the underlying state/utility program document."
+    }
   },
   "lifecycle": {
     "status": "active",
@@ -201,5 +210,34 @@
     "modified_at": null
   },
   "ext": {},
-  "notes": "Homepage canonicalized to dsireusa.org (www redirects there — first probe caught the move)."
+  "notes": "Homepage canonicalized to dsireusa.org (www redirects there — first probe caught the move).",
+  "officiality": {
+    "default": "discovery_aggregator",
+    "basis": "A curated index whose entries point at authoritative program documents.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Comprehensive for U.S. state/local/utility clean-energy incentives; confirm currency against the program."
+    },
+    "jurisdictions": [
+      "US"
+    ],
+    "jurisdiction_levels": [
+      "subnational",
+      "local"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    },
+    "policy_states": [],
+    "sectors": [
+      "renewables",
+      "buildings",
+      "electricity"
+    ]
+  }
 }

@@ -1,0 +1,233 @@
+{
+  "source_id": "asc-8b460dc80ad2",
+  "aliases": {},
+  "identity": {
+    "name": "Climate Policy Radar",
+    "publisher": "Climate Policy Radar CIC",
+    "homepage_url": "https://www.climatepolicyradar.org/",
+    "canonical_url": "https://www.climatepolicyradar.org/",
+    "description": "Open full-text search and structured data over the world's climate laws, policies, and UNFCCC submissions — a discovery layer over documents held by governments.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Climate Policy Radar CIC",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "index",
+  "source_class": "tertiary",
+  "officiality": {
+    "default": "discovery_aggregator",
+    "basis": "Full-text search infrastructure over climate laws and policies held elsewhere.",
+    "notes": ""
+  },
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "curated_reference"
+      ],
+      "rationale": "",
+      "asserted_by": "authority-seed (0.2.0 energy expansion)",
+      "asserted_at": "2026-08-18T12:00:00.000Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "climate-policy",
+      "policy-discovery",
+      "international-comparison"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "html",
+          "json"
+        ],
+        "notes": "document records with full-text passages"
+      }
+    ],
+    "landing_pattern": "search_then_record",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Provider aims for comprehensive coverage of national climate laws/policies; verify gaps."
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "national"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    },
+    "policy_states": [],
+    "sectors": []
+  },
+  "access": [
+    {
+      "access_id": "acc-8973acce6175",
+      "name": "app",
+      "type": "web_render",
+      "base_url": "https://app.climatepolicyradar.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-72a12b6efa17",
+        "last_verified_at": "2026-08-18T16:48:30.721Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    },
+    {
+      "access_id": "acc-bcc8f4950263",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.climatepolicyradar.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-e45009b1fb3c",
+        "last_verified_at": "2026-08-18T16:48:32.991Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "app: verified; site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Full-text discovery across national climate laws and policies."
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "A discovery/index layer; follow each document to its official government/legal source unless the record itself is authoritative."
+    ],
+    "routing": {
+      "discovery": "preferred",
+      "citation": "follow_primary",
+      "legal_status": "follow_primary"
+    },
+    "resolution": {
+      "strategy": "originating_authority",
+      "notes": "Follow to the government ministry / legal database that issued the document."
+    },
+    "llm_notes": ""
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "discovery_for",
+      "target": {
+        "name": "national climate laws & policies",
+        "url": "https://app.climatepolicyradar.org/"
+      },
+      "notes": ""
+    }
+  ],
+  "discovery": {
+    "discovered_via": "analyst knowledge",
+    "retrieved_via": "",
+    "first_added": "2026-08-18T12:00:00.000Z",
+    "added_by": "authority-seed",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.2.0",
+      "model": "claude-opus-4-8",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-18T12:00:00.000Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

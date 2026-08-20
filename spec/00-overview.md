@@ -1,6 +1,6 @@
 # ASR 00 — Overview
 
-**Authoritative Source Registry (ASR), version 0.1.0.** This specification
+**Authoritative Source Registry (ASR), version 0.2.0.** This specification
 defines a tool-independent format for per-domain registries of authoritative
 sources, profiled operationally. The key words MUST, MUST NOT, SHOULD, SHOULD
 NOT, and MAY are to be interpreted as described in RFC 2119.
@@ -18,15 +18,22 @@ An ASR registry makes that knowledge durable, checkable, and loadable. It is a
 folder of **source profiles** for one domain (energy policy, philosophy,
 natural history…), where each profile records:
 
-- **identity and authority** — what the source is and why it is trusted, with
-  machine triage quarantined from human adjudication (§02);
-- **scope and content** — topics, jurisdiction, and what kinds of artifacts the
-  source holds, separate from how they are reached (§02);
+- **identity, authority, and officiality** — what the source is, why it is
+  trusted (machine triage quarantined from human adjudication), and its
+  institutional status — official is not the same as true (§02);
+- **scope, content, and coverage** — topics, jurisdiction, the kinds of
+  artifacts the source holds (separate from how they are reached), and how
+  completely it covers its domain (§02);
 - **access** — every viable way in (API, bulk download, plain fetch, rendering
   required, blocked), down to endpoint recipes an agent can execute (§03);
-- **verification** — the evidence behind every access claim (§04);
-- **guidance** — what the source is best for, query shapes that work, pitfalls
-  that waste requests (§02).
+- **verification and freshness** — the evidence behind every access claim, and
+  separately whether the profile and the source's own content are still current
+  (§04);
+- **guidance and routing** — what the source is best for, query shapes that
+  work, pitfalls that waste requests, and — per task — whether to search here,
+  cite here, or follow the record to a primary source of record (§02);
+- **federation provenance** — for imported profiles, which external registry a
+  claim came from, kept distinct from local verification and adjudication (§10).
 
 ASR is the upstream sibling of the **Universal Provenance Corpus** (UPC). UPC
 guarantees the integrity of research material *after* collection — every
@@ -35,6 +42,18 @@ that says *where and how to collect* — every access claim traces to stored
 probe evidence. An ASR fetch emits a UPC-compatible retrieval sidecar (§07), so
 material collected through a registry can enter a provenance corpus without
 translation.
+
+More precisely, ASR is a machine-readable **source-selection and retrieval-
+routing layer**. Authority to help *discover* information is not the same as
+authority to *establish* it: a high-quality aggregator can be the best place to
+find a document while being the wrong thing to cite for its legal status. ASR
+models the whole routing chain — research question → domain/jurisdiction →
+discovery source → responsible institution → source of record → access method →
+artifact → UPC — rather than collapsing every question into one flat authority
+score. It can federate existing catalogs and registries while preserving the
+provenance of imported claims and keeping discovery utility, institutional
+officiality, evidential authority, operational access, and human adjudication
+explicitly distinct.
 
 ## 0.2 The one hard promise
 
@@ -105,6 +124,18 @@ A registry serves three audiences, and none may win at the expense of another:
    folder; nothing binds it to a parent repository or absolute path. (§01)
 10. **Storage is crash-safe and portable.** Atomic writes, append-only
     journals, portable filenames. (§01, §06)
+11. **Discovery is not establishment; officiality is not truth; provenance is
+    not adjudication.** A source can be the best place to *find* material
+    without being the source that *supports the claim*; institutional status
+    (`officiality`) records provenance, not correctness; an imported profile
+    records where it came from, not that its authority was judged. Routing
+    guidance, officiality, and federation provenance keep these apart, and none
+    may set the authority tier. (§02, §10)
+12. **Federation preserves the provenance of imported claims.** A registry MAY
+    ingest profiles from external catalogs, but an imported claim is never
+    silently upgraded: import records where a field came from; only a probe
+    makes access `verified`, and only a human (or an attributed process) makes
+    authority `adjudicated`. (§10)
 
 ## 0.5 The object model
 
@@ -114,7 +145,9 @@ REGISTRY ──contains──▶ SOURCE ──offers──▶ ACCESS METHOD ─�
                           │                  PROBE (§04)             FETCH (§07)
                           │                evidence records        exercise records
                           └── relations: aggregates / mirror_of / supersedes /
-                              superseded_by / part_of / api_for / companion_of
+                              superseded_by / part_of / api_for / companion_of /
+                              indexes / operated_by / official_source_for /
+                              discovery_for / resolves_to / publishes / catalogs
 ```
 
 | Object | File | Section |
@@ -129,7 +162,8 @@ REGISTRY ──contains──▶ SOURCE ──offers──▶ ACCESS METHOD ─�
 
 Credentials are references resolved outside the registry's tracked files (§05).
 Identifiers and their recipes are specified in §06; conformance levels, rules,
-and error codes in §08; projections and exports in §09.
+and error codes in §08; projections and exports in §09; federation, upstream
+provenance, and import in §10.
 
 ## 0.6 Self-containment and governance
 
@@ -159,7 +193,7 @@ document governs and the code is the bug**.
   registry was written against (§01), so readers can detect skew within a
   minor version.
 
-## 0.8 What ASR deliberately excludes (v0.1)
+## 0.8 What ASR deliberately excludes
 
 - **No fetching machinery beyond plain HTTP.** JavaScript rendering, browser
   automation, and CAPTCHA-adjacent behavior are the harness's concern; ASR

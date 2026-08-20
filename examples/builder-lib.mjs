@@ -14,11 +14,11 @@ import {
 } from "../skill/authoritative-sources/scripts/authority_common.mjs";
 
 export const TS = "2026-08-17T12:00:00.000Z";
-export const FIXTURE_TOOL = { name: "authority-fixtures", version: "0.1.0", method: "fixture" };
+export const FIXTURE_TOOL = { name: "authority-fixtures", version: "0.2.0", method: "fixture" };
 
 export function stamp() {
   return {
-    produced_by: { tool: "authority-fixtures", tool_version: "0.1.0", model: null, method: "fixture", person: null },
+    produced_by: { tool: "authority-fixtures", tool_version: "0.2.0", model: null, method: "fixture", person: null },
     created_at: TS,
     modified_at: null,
   };
@@ -112,7 +112,7 @@ export function addProbe(root, slugName, source, acc, { outcome = "ok", checks =
     checks: checks || [
       { check: "http", result: outcome === "ok" ? "pass" : "fail", detail: outcome === "ok" ? "HTTP 200" : outcome },
     ],
-    request: { method: "GET", url: acc.base_url, user_agent: "authority-fixtures/0.1.0" },
+    request: { method: "GET", url: acc.base_url, user_agent: "authority-fixtures/0.2.0" },
     response: response || { http_status: outcome === "ok" ? 200 : null, final_url: acc.base_url, content_type: "application/json", elapsed_ms: 10, headers_subset: {} },
     evidence,
     credential: credential || { ref: null, resolved_via: "none" },
@@ -148,7 +148,7 @@ export function addFetch(root, slugName, source, acc, ep, { bodyText, params = {
     source_id: source.source_id,
     fetched_at: TS,
     tool: FIXTURE_TOOL,
-    request: { method: ep.http_method, url, params, user_agent: "authority-fixtures/0.1.0" },
+    request: { method: ep.http_method, url, params, user_agent: "authority-fixtures/0.2.0" },
     retrieval: {
       original_url: url, final_url: url, fetch_status: "success", http_status: 200,
       content_type: "application/json", fetch_method: "http", fetched_at: TS,
@@ -180,7 +180,7 @@ export function writeRegistry(root, { registryId, title, description = "", topic
     writeJsonAtomic(path.join(dir, "source.json"), source);
   }
   writeJsonAtomic(path.join(root, "topics.json"), {
-    asr_spec_version: "0.1.0",
+    asr_spec_version: "0.2.0",
     topics,
     provenance: stamp(),
     notes: "",
@@ -189,7 +189,7 @@ export function writeRegistry(root, { registryId, title, description = "", topic
   fs.writeFileSync(path.join(root, ".gitignore"), "credentials.json\nfetched/\n.authority/\n*.tmp\n.*.tmp\n.DS_Store\n");
   writeJsonAtomic(path.join(root, "registry.json"), {
     registry_id: registryId,
-    asr_spec_version: "0.1.0",
+    asr_spec_version: "0.2.0",
     title,
     description,
     readme:

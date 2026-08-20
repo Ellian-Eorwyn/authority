@@ -93,3 +93,18 @@ rendering harness that actually drives the page MAY append its own probe
 record through the same schema with a `render` check of `pass`/`fail` and
 `tool.name` identifying itself; the record then carries the full-render
 claim. This keeps one evidence trail regardless of who probes.
+
+## 3.7 Machine-readable API descriptions
+
+When an access method's API already has an OpenAPI (or equivalent) description,
+declare it with `access[].openapi` (`{url, version}`) rather than duplicating
+the operation catalog: it is the OpenAPI / DCAT `endpointDescription` seam
+(`crosswalks/openapi.md`, `crosswalks/dcat.md`). Declaring `openapi.url`
+changes **nothing** about verification — a description that exists is not a
+method that works; only a probe (§04) moves a method to `verified`, and the
+validator's state derivation ignores `openapi` entirely. ASR's value sits on
+top of the description: whether it actually works, credentials by reference
+(§05), politeness and rate limits (§3.3), a `probe_hint` strategy, preferred
+operations and task guidance (§02), known pitfalls, and content freshness
+(§02.11). Where no machine-readable description exists, ASR's endpoint recipes
+(§3.5) stand on their own.

@@ -1,0 +1,44 @@
+# Begin robots.txt file
+#/-----------------------------------------------\
+#| In single portal/domain situations, uncomment the sitmap line and enter domain name
+#\-----------------------------------------------/
+
+Sitemap: https://www.ncsl.org/sitemap.aspx
+
+User-agent: *
+Disallow: /admin/
+Disallow: /App_GlobalResources/
+Disallow: /bin/
+Disallow: /Components/
+Disallow: /contest/
+Disallow: /controls/
+Disallow: /HttpModules/
+Disallow: /images/
+Disallow: /statefed/
+Disallow: /Install/
+Disallow: /Providers/
+Disallow: /template/
+Disallow: /ncsl-search-results/
+Crawl-delay: 5
+
+user-agent: AhrefsBot
+User-agent: Baiduspider
+User-agent: SemrushBot-SA
+User-agent: FemtosearchBot
+User-agent: SemrushBot
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+User-agent: AwarioRssBot
+User-agent: AwarioSmartBot
+User-agent: BLEXBot
+User-Agent: Monsidobot/2.2
+User-agent: barkrowler
+User-agent: TermlyBotAllow
+User-agent: GPTBot
+User-agent: Amazonbot
+User-agent: DotBot
+Crawl-delay: 10
+
+# End of robots.txt file

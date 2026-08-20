@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Philosophy &amp; Epistemology</h1>
-<div class="sub">Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.) — ASR registry <code>reg-d680645e25dd</code>, spec 0.1.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub">Authoritative non-paywalled sources for philosophical research: peer-reviewed encyclopedias, indexes, archives, and primary texts. (Consensus covers the journal literature.) — ASR registry <code>reg-d680645e25dd</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat ok"><b>5</b> verified</span> <span class="stat bad"><b>1</b> blocked</span></div>
 
 <main id="list">
@@ -127,15 +127,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Locating public-domain primary texts with direct download links</p>
+      
       <div class="shape"><strong>find a primary text</strong> <code>books</code><br>Search author+title; each result&#39;s formats map gives direct text/epub/html URLs on gutenberg.org.<br><code>search=kant critique</code></div>
       <div class="pitfall">⚠ Gutenberg editions are older translations — check the translator before quoting for scholarship.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (community_curated) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Clean keyless JSON API over Project Gutenberg&#39;s catalog — the practical machine door to public-domain primary texts.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · landing: direct · cadence: continuous (active) — mirrors Gutenberg catalog</p>
-      <h3>Relations</h3><p><span class="chip">api_for → Project Gutenberg</span></p>
       <h3>Access</h3>
       
       <div class="access">
@@ -155,6 +157,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:17.635Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         <div class="sub">fetches: 1 (1 ok)</div>
       </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">api_for → Project Gutenberg</span></p>
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -167,15 +172,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Accessible authoritative overviews; figures and movements SEP covers thinly</p>
+      
       <div class="shape"><strong>get an article</strong><br>Articles live at /&lt;kebab-slug&gt;/ (e.g. /epistemo/ uses abbreviated legacy slugs — search the site when a guess 404s).<br><code>https://iep.utm.edu/epistemic-injustice/</code></div>
       <div class="pitfall">⚠ Older articles use abbreviated slugs (/aristotl/); don&#39;t infer non-existence from one 404.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Peer-reviewed sibling to SEP with more accessible register; strong on figures and historical periods.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -188,6 +195,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:20.688Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -200,15 +210,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Mapping a concept&#39;s neighborhood (related ideas, thinkers) before reading · Machine-readable philosophy taxonomy</p>
+      
       <div class="shape"><strong>find related concepts</strong> <code>entity-search</code><br>Search the concept, then follow the entity&#39;s JSON (append .json to any entity URL) for related_ideas/related_thinkers.<br><code>q=coherentism</code></div>
       <div class="pitfall">⚠ Coverage follows the SEP corpus; niche contemporary topics may be missing.</div><div class="pitfall">⚠ The service is academically hosted — be gentle and expect occasional downtime.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (curated_reference, community_curated) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Machine-readable taxonomy of philosophical concepts, thinkers, and their relations; the structured index over the SEP-centric literature.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json, html) · landing: direct · cadence: irregular (dormant) — project updates episodically</p>
-      <h3>Relations</h3><p><span class="chip">aggregates → Stanford Encyclopedia of Philosophy</span></p>
       <h3>Access</h3>
       
       <div class="access">
@@ -228,6 +240,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:22.422Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         <div class="sub">fetches: 1 (1 ok)</div>
       </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">aggregates → Stanford Encyclopedia of Philosophy</span></p>
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -240,15 +255,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Finding the literature on a philosophical question · Category-based browsing of a subfield</p>
+      
       <div class="shape"><strong>survey literature on a topic</strong><br>Delegate to the rendering harness or a human browser (plain fetch is blocked); category pages philpapers.org/browse/&lt;category&gt; organize the field.</div>
       <div class="pitfall">⚠ Plain HTTP fetch returns 403 — this profile records `blocked` by design; use Consensus/browser paths for discovery instead.</div><div class="pitfall">⚠ Records point at publisher copies; open-access links vary in quality.</div>
       <p class="sub">The blocked state here is the honest exemplar: a source can be authoritative and still refuse automation.</p>
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (curated_reference, professional_org) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The comprehensive bibliography/index of philosophy; category taxonomy curated by editors. Indexes rather than hosts.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">structured_record (html, json) · landing: search_then_record · cadence: continuous (active)</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -271,6 +288,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:24.288Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">auth:skip</td><td class="sub"></td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -283,15 +303,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Open-access phil-sci preprints · Bulk metadata harvest of a subfield</p>
+      
       <div class="shape"><strong>harvest recent records</strong> <code>list-records</code><br>Standard OAI-PMH: Identify → ListRecords with oai_dc; resume via resumptionToken.</div>
       <div class="pitfall">⚠ Pitt&#39;s WAF permits the OAI Identify verb but rejects ListRecords/ListIdentifiers from unknown clients (HTTP 200 with an HTML block page) — bulk harvest needs coordination with the archive or a whitelisted client; fetch records this as partial, honestly.</div><div class="pitfall">⚠ OAI-PMH resumption requests must drop all other parameters (verb+resumptionToken only).</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — The preprint archive for philosophy of science; open access, EPrints-based with standard OAI-PMH.<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">pdf_document (pdf) · structured_record (xml) · landing: landing_then_file · cadence: continuous (active)</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -321,6 +343,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:24.817Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>
@@ -333,15 +358,17 @@
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Authoritative overviews of any philosophical topic, figure, or debate · Bibliographies that seed deeper reading</p>
+      
       <div class="shape"><strong>get an entry directly</strong><br>Entries live at /entries/&lt;kebab-slug&gt;/ — guess the slug from the topic name before searching.<br><code>https://plato.stanford.edu/entries/epistemology/</code></div><div class="shape"><strong>search when the slug is unknown</strong> <code>search</code><br>Use searcher.py; result links are entry URLs.<br><code>query=virtue+epistemology</code></div>
       <div class="pitfall">⚠ Cite the archived edition (via the entry&#39;s &#39;Author and Citation Info&#39;) when citation stability matters — the live entry revises.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 1 (peer_reviewed, curated_reference) by Claude (Fable 5) — authority seeding pass 2026-08-17 — Peer-reviewed, continuously revised reference; the strongest single source for the philosophy cluster (pi-forge&#39;s own editorial policy agrees).<br>
       adjudicated: <em>pending human scoring pass</em></p>
+      
+      <h3>Jurisdiction</h3><p class="sub">not_applicable</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · landing: direct · cadence: continuous (active) — entries revised on their own cycles; quarterly archives</p>
-      
       <h3>Access</h3>
       
       <div class="access">
@@ -361,6 +388,9 @@
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-08-18T02:47:26.654Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
+      
+      
+      
       <h3>Discovery</h3>
       <p class="sub">model knowledge (authority seeding pass) · added 2026-08-18</p>
     </section>

@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.1.0/vocab/vocab.json",
+  "$id": "https://provenance.dev/asr/0.2.0/vocab/vocab.json",
   "title": "ASR Controlled Vocabularies",
   "description": "Single source of truth for every closed enum in the Authoritative Source Registry standard. Object schemas $ref these definitions (e.g. \"vocab.json#/$defs/verification_state\") so terminology is defined in exactly one place. Extensible fields anyOf a closed enum with an \"x-\" prefixed escape hatch; validators report x- values as advisory x_extension warnings so non-standard vocabulary stays visible.",
-  "asr_spec_version": "0.1.0",
+  "asr_spec_version": "0.2.0",
   "$defs": {
     "source_role": {
       "description": "What the source IS structurally. A publisher originates content; an aggregator or index points at content held elsewhere (its entries are pointers — agents should follow them to the underlying primary documents rather than citing the aggregator as the authority); a repository or archive holds deposited/preserved materials; a mirror re-serves another source; a community source is collectively authored.",
@@ -85,9 +85,9 @@
       "enum": ["international", "supranational", "national", "subnational", "local", "not_applicable"]
     },
     "relation_type": {
-      "description": "Typed edge between sources. aggregates: this source indexes/points at the target's material. api_for: this source is the programmatic face of the target (e.g. a data API for an agency). part_of: organizational containment (a lab within a department). supersedes / superseded_by: succession, including domain moves (a moved homepage is a NEW source related by supersedes — ids are stable). companion_of: sibling services commonly used together.",
+      "description": "Typed edge between sources. aggregates: this source indexes/points at the target's material. api_for: this source is the programmatic face of the target (e.g. a data API for an agency). part_of: organizational containment (a lab within a department). supersedes / superseded_by: succession, including domain moves (a moved homepage is a NEW source related by supersedes — ids are stable). companion_of: sibling services commonly used together. indexes: this source builds a searchable index over the target's material (a normalized-search layer). operated_by: this source/service is run by the target organization (pairs with identity.operator). official_source_for: this source is the source of record for the target's material. discovery_for: this source is a discovery/routing layer into the target (agents locate here, then resolve). resolves_to: follow a record here to the target that should support the claim (pairs with guidance.routing follow_primary). publishes: this source originates/issues the target's material. catalogs: this source is a catalog entry/record describing the target. derived_from_registry: this profile was federated from the target upstream registry (see discovery.upstream).",
       "anyOf": [
-        { "enum": ["aggregates", "mirror_of", "supersedes", "superseded_by", "part_of", "api_for", "companion_of"] },
+        { "enum": ["aggregates", "mirror_of", "supersedes", "superseded_by", "part_of", "api_for", "companion_of", "indexes", "operated_by", "official_source_for", "discovery_for", "resolves_to", "publishes", "catalogs", "derived_from_registry"] },
         { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
       ]
     },
@@ -130,6 +130,55 @@
       "description": "How an object came to be written. human: typed by a person. model: authored by an LLM (adjudication blocks with method=model draw the adjudication_by_machine warning — machine judgment must not masquerade as human judgment). tool: computed mechanically (probe records, regen outputs). import: converted from an external corpus or manifest. fixture: written by a deterministic example/test builder — fixtures never lie, but they say what they are.",
       "anyOf": [
         { "enum": ["human", "model", "tool", "import", "fixture"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "officiality": {
+      "description": "Institutional provenance/status of a source's material — distinct from evidential class (source_class) and from authority. source_of_record: the legally operative or definitive edition (the statute as enacted, the Federal Register notice of record). official_service: a service the issuing/authorized institution operates (a government search portal, an agency API). official_representation: an institution's own convenience rendering of material whose authoritative edition lives elsewhere (an HTML transform of a PDF-of-record). official_mirror: an authorized re-serving of another official source. curated_secondary: a maintained secondary database that is not itself official. discovery_aggregator: an index/tracker whose value is locating material held elsewhere. unofficial: an unauthorized reproduction. mixed: the service carries material of differing officiality (set it per-artifact in content.artifacts). unknown: not yet determined. OFFICIALITY MUST NOT set authority tier — official is not the same as true (spec/02).",
+      "anyOf": [
+        { "enum": ["source_of_record", "official_service", "official_representation", "official_mirror", "curated_secondary", "discovery_aggregator", "unofficial", "mixed", "unknown"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "routing_disposition": {
+      "description": "How an agent should USE a source for a given task, keyed by task name in guidance.routing. preferred: a first-choice source for the task. acceptable: usable. conditional: usable only with the caveats stated in guidance. follow_primary: use to LOCATE material, then resolve to the source of record before making the claim (pair with guidance.resolution). avoid: not appropriate for the task. not_applicable: the task does not apply to this source. Discovery authority is not substantive authority: a source can be `preferred` for discovery and `follow_primary` for citation (spec/02).",
+      "anyOf": [
+        { "enum": ["preferred", "acceptable", "conditional", "follow_primary", "avoid", "not_applicable"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "completeness": {
+      "description": "How complete a source's coverage is over its declared scope — a provider claim until independently assessed (record the grounds in completeness_basis). exhaustive: every in-scope item is present by construction. systematic: comprehensive collection against a defined method. selective: a curated subset. opportunistic: whatever was gathered, with no completeness guarantee. unknown is honest and allowed. Absence from an exhaustive/systematic database means something; absence from a selective one means little (spec/02).",
+      "anyOf": [
+        { "enum": ["exhaustive", "systematic", "selective", "opportunistic", "unknown"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "completeness_basis": {
+      "description": "The grounds for a completeness claim, kept separate from the claim itself. provider_asserted: the provider states it. independently_assessed: ASR (or a cited party) assessed it — requires notes/evidence. inferred: deduced from scope/behavior. unknown. A provider's completeness claim is not independently established (spec/02).",
+      "anyOf": [
+        { "enum": ["provider_asserted", "independently_assessed", "inferred", "unknown"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "content_freshness_basis": {
+      "description": "How a content-freshness claim (freshness.content_current_through) was determined — NEVER derived from a successful access probe: a working API can serve stale data, and a static archive can be perfectly current for its scope (spec/04). provider_metadata: read from the source's own last-updated metadata. provider_asserted: the provider states a coverage date. independently_verified: ASR checked against a known-current reference. inferred. unknown.",
+      "anyOf": [
+        { "enum": ["provider_metadata", "provider_asserted", "independently_verified", "inferred", "unknown"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "resolution_strategy": {
+      "description": "How to get from a discovery/aggregator record to the material that should support the claim, used with guidance.routing follow_primary. originating_authority: follow the record to the institution that issued/governs the item. source_of_record: resolve to the definitive edition. publisher: resolve to the originating publisher. none_required: this source IS already the source of record. manual: resolution needs human judgment (documented in guidance.resolution.notes).",
+      "anyOf": [
+        { "enum": ["originating_authority", "source_of_record", "publisher", "none_required", "manual"] },
+        { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
+      ]
+    },
+    "upstream_registry": {
+      "description": "An external catalog/registry a source profile was federated from, recorded in discovery.upstream. An imported claim is NOT a locally verified or adjudicated claim: import provenance records WHERE a profile came from, never that its access works or that its authority was judged (spec/10). fairsharing / re3data / opendoar: research-resource meta-registries. datagov: a DCAT government data catalog. ror: organization identity. dcat: a generic DCAT catalog. loc_law: the Library of Congress Guide to Law Online. other: anything else (name it in record_url/notes).",
+      "anyOf": [
+        { "enum": ["fairsharing", "re3data", "opendoar", "datagov", "ror", "dcat", "loc_law", "other"] },
         { "type": "string", "pattern": "^x-[a-z0-9-]+$" }
       ]
     }

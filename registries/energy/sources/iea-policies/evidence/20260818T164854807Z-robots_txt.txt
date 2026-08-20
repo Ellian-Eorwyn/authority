@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /vhu7/
+Disallow: /search?
+Disallow: /search/

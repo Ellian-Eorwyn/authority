@@ -93,7 +93,7 @@ function writeManifest(dir, obj) {
 }
 
 /** Define one fixture. mutate(dir, handles) runs AFTER base+regen. */
-function fixture(name, expect, { target = "L1", strict = false, minLevel = null, baseOpts = {}, mutate = null, skipBase = false } = {}) {
+function fixture(name, expect, { target = "L1", strict = false, minLevel = null, baseOpts = {}, mutate = null, skipBase = false, expectWarnings = null } = {}) {
   const dir = path.join(FIXTURES, name);
   fs.mkdirSync(dir, { recursive: true });
   let handles = null;
@@ -108,6 +108,7 @@ function fixture(name, expect, { target = "L1", strict = false, minLevel = null,
     ...(strict ? { strict: true } : {}),
     ...(minLevel ? { min_level: minLevel } : {}),
     expect,
+    ...(expectWarnings ? { expect_warnings: expectWarnings } : {}),
   });
   built++;
 }
@@ -244,10 +245,10 @@ fixture("stale-verification", ["stale_verification"], {
     appendJsonl(path.join(dir, "sources", h.slug, "probes.jsonl"), {
       probe_id: mintPrbId(acc.access_id, oldTs),
       access_id: acc.access_id, source_id: o.source_id, probed_at: oldTs,
-      tool: { name: "authority-fixtures", version: "0.1.0", method: "fixture" },
+      tool: { name: "authority-fixtures", version: "0.2.0", method: "fixture" },
       outcome: "ok",
       checks: [{ check: "http", result: "pass", detail: "HTTP 200" }],
-      request: { method: "GET", url: acc.base_url, user_agent: "authority-fixtures/0.1.0" },
+      request: { method: "GET", url: acc.base_url, user_agent: "authority-fixtures/0.2.0" },
       response: { http_status: 200, final_url: acc.base_url, content_type: "application/json", elapsed_ms: 10, headers_subset: {} },
       evidence: [ev], credential: { ref: null, resolved_via: "none" }, notes: "",
     });
@@ -361,6 +362,68 @@ fixture("sample-hash-mismatch", ["sample_hash_mismatch"], {
     fs.writeFileSync(path.join(dir, sampleRel), "drifted bytes\n");
     lines[0].sample = { path: sampleRel, sha256: sha256Hex(Buffer.from("original bytes\n")), bytes: 15, truncated_at: null };
     fs.writeFileSync(p, lines.map((l) => JSON.stringify(l)).join("\n") + "\n");
+  },
+});
+
+// --- 0.2.0 semantic rules (conditional; fire only when the new field is set) ---
+fixture("coverage-basis-missing", ["coverage_basis_missing"], {
+  mutate: (dir, h) => {
+    const o = readSource(dir, h.slug);
+    o.coverage = { completeness: { claim: "systematic", basis: "", notes: "" } };
+    writeSource(dir, h.slug, o);
+  },
+});
+fixture("routing-primary-unresolved", ["routing_primary_unresolved"], {
+  mutate: (dir, h) => {
+    const o = readSource(dir, h.slug);
+    // follow_primary with no resolution strategy/notes and no resolves_to relation
+    o.guidance.routing = { discovery: "preferred", citation: "follow_primary" };
+    writeSource(dir, h.slug, o);
+  },
+});
+fixture("adjudication-by-import", [], {
+  expectWarnings: ["adjudication_by_import"],
+  mutate: (dir, h) => {
+    const o = readSource(dir, h.slug);
+    o.provenance.produced_by.method = "import";
+    // attributed (so adjudication_unattributed does NOT fire) — the point is that
+    // an IMPORT wrote an adjudication at all.
+    o.authority.adjudicated = { tier: 1, score: null, scored_by: "authority import", scored_at: TS, method: "import", notes: "" };
+    o.discovery = { ...o.discovery, discovered_via: "registry_import", upstream: [{ registry: "re3data", record_id: "r3d1", record_url: "https://www.re3data.org/repository/r3d1", retrieved_at: TS, upstream_updated_at: null, mapping_version: "re3data-asr@1", inherited_fields: ["identity.name"] }] };
+    writeSource(dir, h.slug, o);
+  },
+});
+fixture("external-id-shape", [], {
+  expectWarnings: ["external_id_shape"],
+  mutate: (dir, h) => {
+    const o = readSource(dir, h.slug);
+    o.identity.operator = { name: "Org", identifiers: { ror: "not-a-ror", wikidata: null, other: [] } };
+    writeSource(dir, h.slug, o);
+  },
+});
+fixture("coverage-assessment-unsupported", [], {
+  expectWarnings: ["coverage_assessment_unsupported"],
+  mutate: (dir, h) => {
+    const o = readSource(dir, h.slug);
+    o.coverage = { completeness: { claim: "selective", basis: "independently_assessed", notes: "" } };
+    writeSource(dir, h.slug, o);
+  },
+});
+// positive control: a profile using the 0.2.0 fields correctly stays clean at L2.
+fixture("pass-0-2-fields", [], {
+  target: "L2", minLevel: "L2",
+  mutate: (dir, h) => {
+    const o = readSource(dir, h.slug);
+    o.officiality = { default: "discovery_aggregator", basis: "operated by the fixture authority", notes: "" };
+    o.coverage = { completeness: { claim: "systematic", basis: "provider_asserted", notes: "" }, jurisdictions: ["US"], jurisdiction_levels: ["national"], temporal: { coverage_start: "2020", coverage_end: "present" }, policy_states: ["enacted"], sectors: ["electricity"] };
+    o.content.artifacts[0].officiality = "official_representation";
+    o.identity.operator = { name: "Fixture Org", identifiers: { ror: "https://ror.org/01bj3aw27", wikidata: "Q1", other: [] } };
+    o.guidance.routing = { discovery: "preferred", citation: "follow_primary" };
+    o.guidance.resolution = { strategy: "originating_authority", notes: "follow the record to its issuing authority" };
+    o.freshness = { profile_reviewed_at: TS, profile_reviewed_by: "fixtures", review_interval_days: 180, content_last_checked_at: TS, content_current_through: "2026-07-31", content_freshness_basis: "provider_metadata" };
+    o.access[0].openapi = { url: "https://api.fixture.example.test/openapi.json", version: "3.1.0" };
+    o.discovery = { ...o.discovery, discovered_via: "registry_import", upstream: [{ registry: "re3data", record_id: "r3d1", record_url: "https://www.re3data.org/repository/r3d1", retrieved_at: TS, upstream_updated_at: null, mapping_version: "re3data-asr@1", inherited_fields: ["identity.name"] }] };
+    writeSource(dir, h.slug, o);
   },
 });
 

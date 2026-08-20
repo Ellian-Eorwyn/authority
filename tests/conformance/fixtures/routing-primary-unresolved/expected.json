@@ -1,0 +1,7 @@
+{
+  "fixture": "routing-primary-unresolved",
+  "target": "L1",
+  "expect": [
+    "routing_primary_unresolved"
+  ]
+}
