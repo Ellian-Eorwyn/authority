@@ -85,6 +85,17 @@ preserve the distinction when re-exporting.
 9th-Circuit ruling with effect in CA"). `scope.temporal` records coverage
 (`coverage_start`, `coverage_end` — an ISO date, a year, or `"present"`).
 
+`scope.facets` is an optional, registry-local, **multi-axis** classification: a
+map of facet-axis id → value ids, e.g. `{"governance_domain": ["utility"],
+"sector": ["electricity"]}`. Where `topics` is a single-parent subject tree,
+facets are independent axes a source carries simultaneously — governance domain,
+sector, and policy stage at once — so an agent can select sources by faceted
+query without knowing their names (§09). Every axis id and value a profile uses
+MUST be declared in the registry's `facets.json` (§01.5; `unknown_facet_value`
+otherwise). Facet vocabularies are registry-local and never enter the universal
+core: energy axes and mycology axes do not share one list. `scope.facets`
+supersedes the 0.2.0 free-string `coverage.policy_states` / `coverage.sectors`.
+
 ## 2.5 Content model
 
 `content` describes WHAT the source holds, never how it is reached:
@@ -166,9 +177,9 @@ are kept apart because a provider's completeness claim is not independently
 established. A claim of `exhaustive`/`systematic` MUST state a basis (rule 1.12,
 `coverage_basis_missing`); a basis of `independently_assessed` SHOULD carry
 supporting notes. `coverage` also carries `jurisdictions[]`,
-`jurisdiction_levels[]`, a `temporal` range, and registry-local `policy_states[]`
-/ `sectors[]` facets (free strings in 0.2.0 — domain-specific facet vocabularies
-are registry-local, never universal core).
+`jurisdiction_levels[]`, and a `temporal` range. (The 0.2.0 free-string
+`policy_states[]` / `sectors[]` facets that lived here were promoted in 0.3.0 to
+declared, queryable `scope.facets` axes — §2.4, §01.5.)
 
 ## 2.11 Freshness
 

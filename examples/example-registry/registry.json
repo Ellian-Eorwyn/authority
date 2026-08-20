@@ -1,6 +1,6 @@
 {
   "registry_id": "reg-00c0ffee0001",
-  "asr_spec_version": "0.2.0",
+  "asr_spec_version": "0.3.0",
   "title": "Example Registry",
   "description": "Fictional two-source registry exercising the ASR object model end to end (.test domains; every id and hash is real).",
   "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
@@ -42,7 +42,7 @@
     "fetches": 1
   },
   "integrity": {
-    "schema_hash": "sha256:478a40a8e0e31c62d0027f6472616dd59b675434db28722eaae87087cd63a398"
+    "schema_hash": "sha256:de400063387a5fc0ac98af53e78f2d898efd8ac880591beebea9df107e664f4a"
   },
   "provenance": {
     "produced_by": {

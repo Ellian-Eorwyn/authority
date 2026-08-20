@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.2.0/vocab/vocab.json",
+  "$id": "https://provenance.dev/asr/0.3.0/vocab/vocab.json",
   "title": "ASR Controlled Vocabularies",
   "description": "Single source of truth for every closed enum in the Authoritative Source Registry standard. Object schemas $ref these definitions (e.g. \"vocab.json#/$defs/verification_state\") so terminology is defined in exactly one place. Extensible fields anyOf a closed enum with an \"x-\" prefixed escape hatch; validators report x- values as advisory x_extension warnings so non-standard vocabulary stays visible.",
-  "asr_spec_version": "0.2.0",
+  "asr_spec_version": "0.3.0",
   "$defs": {
     "source_role": {
       "description": "What the source IS structurally. A publisher originates content; an aggregator or index points at content held elsewhere (its entries are pointers — agents should follow them to the underlying primary documents rather than citing the aggregator as the authority); a repository or archive holds deposited/preserved materials; a mirror re-serves another source; a community source is collectively authored.",

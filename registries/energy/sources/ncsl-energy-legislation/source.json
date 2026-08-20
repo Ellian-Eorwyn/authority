@@ -48,7 +48,6 @@
   },
   "scope": {
     "topics": [
-      "legislation",
       "policy-discovery",
       "energy-policy"
     ],
@@ -63,6 +62,21 @@
       "coverage_start": null,
       "coverage_end": "present",
       "notes": ""
+    },
+    "facets": {
+      "governance_domain": [
+        "legislative"
+      ],
+      "sector": [
+        "electricity",
+        "buildings",
+        "renewables"
+      ],
+      "policy_stage": [
+        "introduced",
+        "enacted",
+        "failed"
+      ]
     }
   },
   "content": {
@@ -93,17 +107,7 @@
     "temporal": {
       "coverage_start": null,
       "coverage_end": "present"
-    },
-    "policy_states": [
-      "introduced",
-      "enacted",
-      "failed"
-    ],
-    "sectors": [
-      "electricity",
-      "buildings",
-      "renewables"
-    ]
+    }
   },
   "access": [
     {
@@ -201,7 +205,7 @@
       "person": null
     },
     "created_at": "2026-08-18T12:00:00.000Z",
-    "modified_at": null
+    "modified_at": "2026-08-20T12:00:00.000Z"
   },
   "ext": {},
   "notes": ""

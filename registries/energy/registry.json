@@ -1,6 +1,6 @@
 {
   "registry_id": "reg-f4f70accf5d2",
-  "asr_spec_version": "0.2.0",
+  "asr_spec_version": "0.3.0",
   "title": "Energy Research",
   "description": "Authoritative sources for building decarbonization, heat pumps, and California/US energy policy — grounded in the CEC_FORGE Task 2 corpus, with EIA added as the API gap-fill.",
   "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
@@ -13,6 +13,7 @@
   "sections": {
     "sources": "sources/",
     "topics": "topics.json",
+    "facets": "facets.json",
     "sources_csv": "sources.csv",
     "index_html": "index.html",
     "credentials_example": "credentials.example.json",
@@ -238,7 +239,7 @@
     "fetches": 1
   },
   "integrity": {
-    "schema_hash": "sha256:478a40a8e0e31c62d0027f6472616dd59b675434db28722eaae87087cd63a398"
+    "schema_hash": "sha256:de400063387a5fc0ac98af53e78f2d898efd8ac880591beebea9df107e664f4a"
   },
   "provenance": {
     "produced_by": {

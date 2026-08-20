@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.2.0/schemas/source.schema.json",
+  "$id": "https://provenance.dev/asr/0.3.0/schemas/source.schema.json",
   "title": "ASR Source Profile (source.json)",
   "description": "The operational profile of one authoritative source: what it is, why it is trusted, what it holds, how it is reached, and what evidence backs each access claim. A profile is a living document — probes update its verification blocks, humans update its adjudication and guidance — but it must never overstate: an access method's verification.state is DERIVED from probe records (§04), and machine-asserted authority is quarantined from human-adjudicated authority. What a source holds (content) and how it is reached (access) are separate blocks by design.",
   "type": "object",
@@ -102,6 +102,11 @@
             "notes": { "type": "string" }
           },
           "additionalProperties": true
+        },
+        "facets": {
+          "type": "object",
+          "description": "Registry-local, multi-axis classification: a map of facet-axis id -> value ids, e.g. {\"governance_domain\": [\"utility\"], \"sector\": [\"electricity\"]}. Every axis id and value id MUST be declared in the registry's facets.json (unknown_facet_value); axes are orthogonal. Supersedes the 0.2.0 free-string coverage.policy_states / coverage.sectors. Optional and registry-local — registries without a facets.json omit it. Deliberately unconstrained here (no propertyNames pattern): the authoritative check is the validator rule against the registry's own facets.json, exactly as scope.topics is a bare string array checked by unknown_topic.",
+          "additionalProperties": { "type": "array", "items": { "type": "string" } }
         }
       },
       "additionalProperties": true
@@ -128,9 +133,7 @@
             "coverage_end": { "type": ["string", "null"], "description": "ISO date, year, or \"present\"." }
           },
           "additionalProperties": true
-        },
-        "policy_states": { "type": "array", "items": { "type": "string" }, "description": "Registry-local facet: policy lifecycle states covered (e.g. introduced, enacted, failed). Free strings in 0.2.0 — formal facet vocabularies are registry-local, not universal core." },
-        "sectors": { "type": "array", "items": { "type": "string" }, "description": "Registry-local facet: sectors covered (e.g. electricity, buildings). Free strings in 0.2.0." }
+        }
       },
       "additionalProperties": true
     },

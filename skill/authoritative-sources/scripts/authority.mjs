@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// authority.mjs — the ASR reference CLI (spec 0.2.0). Zero dependencies,
+// authority.mjs — the ASR reference CLI (spec 0.3.0). Zero dependencies,
 // Node >= 18. Commands: init, add, validate, probe, fetch, creds, regen,
 // export, build-index, mint. The spec is normative; where this code and the
 // spec disagree, the spec governs and this is the bug.
@@ -26,7 +26,7 @@ import {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const TOOL_NAME = "authority";
-const TOOL_VERSION = "0.2.0";
+const TOOL_VERSION = "0.3.0";
 
 // ---------------------------------------------------------------------------
 // arg parsing: positional args + --flag / --flag value / repeated --param k=v
@@ -36,6 +36,7 @@ function parseArgs(argv) {
   const pos = [];
   const flags = {};
   const params = {};
+  const facets = []; // repeated --facet name=value pairs (query); accumulates like --param
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--param") {
@@ -43,6 +44,11 @@ function parseArgs(argv) {
       const eq = kv.indexOf("=");
       if (eq === -1) throw new Error("--param expects k=v, got: " + kv);
       params[kv.slice(0, eq)] = kv.slice(eq + 1);
+    } else if (a === "--facet") {
+      const kv = argv[++i] || "";
+      const eq = kv.indexOf("=");
+      if (eq === -1) throw new Error("--facet expects name=value, got: " + kv);
+      facets.push([kv.slice(0, eq), kv.slice(eq + 1)]);
     } else if (a.startsWith("--")) {
       const name = a.slice(2);
       const next = argv[i + 1];
@@ -52,7 +58,7 @@ function parseArgs(argv) {
       pos.push(a);
     }
   }
-  return { pos, flags, params };
+  return { pos, flags, params, facets };
 }
 
 function fail(msg, code = 2) {
@@ -126,7 +132,7 @@ function cmdValidate(args) {
     }));
     process.exit(1);
   }
-  const { registry, topics, sources, diagnostics } = reg;
+  const { registry, topics, facets, sources, diagnostics } = reg;
   const regName = path.basename(reg.root);
 
   for (const d of diagnostics) {
@@ -146,6 +152,18 @@ function cmdValidate(args) {
     const tErrs = validateWithSchema(schemaDir, "topics.schema.json", topics, "topics.json");
     for (const m of tErrs) E("topics_invalid", "L0", "topics.json", m);
     for (const t of topics.topics || []) topicIds.add(t.id);
+  }
+
+  // --- facets (rule 0.8, 0.3.0, conditional) ---
+  // facets.json is optional and registry-local; when present it must validate,
+  // and every facet name/value a source claims must be declared here. When
+  // absent, facetMap stays empty and the per-source check fires only if a source
+  // actually carries scope.facets (so facet-free registries are unaffected).
+  const facetMap = new Map(); // facet name -> Set(value id)
+  if (facets) {
+    const fErrs = validateWithSchema(schemaDir, "facets.schema.json", facets, "facets.json");
+    for (const m of fErrs) E("facets_invalid", "L0", "facets.json", m);
+    for (const f of facets.facets || []) facetMap.set(f.id, new Set((f.values || []).map((v) => v.id)));
   }
 
   // --- per-source structural rules ---
@@ -187,6 +205,23 @@ function cmdValidate(args) {
     // 0.7 topics known
     for (const t of o.scope?.topics || []) {
       if (topics && !topicIds.has(t)) E("unknown_topic", "L0", label, `topic "${t}" not in topics.json`);
+    }
+
+    // 0.8 facets known (conditional: only sources that USE scope.facets are checked)
+    for (const [fname, vals] of Object.entries(o.scope?.facets || {})) {
+      if (!facets) {
+        E("unknown_facet_value", "L0", label, `scope.facets.${fname} used but no facets.json is declared`,
+          "add facets.json + a sections.facets entry, then: authority regen " + regName);
+        continue;
+      }
+      if (!facetMap.has(fname)) {
+        E("unknown_facet_value", "L0", label, `facet "${fname}" not declared in facets.json`);
+        continue;
+      }
+      const allowed = facetMap.get(fname);
+      for (const v of vals || []) {
+        if (!allowed.has(v)) E("unknown_facet_value", "L0", label, `facet ${fname} value "${v}" not in facets.json`);
+      }
     }
 
     // 1.1 ids recompute
@@ -625,6 +660,7 @@ const USAGE = `authority.mjs — Authoritative Source Registry reference CLI (AS
                 [--max-pages N] [--keep-sample] [--out <dir>]
   authority creds <set|list|check> [<ref>] [--registry <r>] [--keychain]
   authority regen <registry>
+  authority query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>] [--json]
   authority export <registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
   authority import <registry> <adapter> <record-id|--from file.json> [--live] [--out <dir>]
   authority build-index <registry>
@@ -640,6 +676,7 @@ async function main() {
     case "init": return (await import("./authority_cmds.mjs")).cmdInit(args, ctx());
     case "add": return (await import("./authority_cmds.mjs")).cmdAdd(args, ctx());
     case "regen": return (await import("./authority_cmds.mjs")).cmdRegen(args, ctx());
+    case "query": return (await import("./authority_cmds.mjs")).cmdQuery(args, ctx());
     case "probe": return (await import("./authority_cmds.mjs")).cmdProbe(args, ctx());
     case "fetch": return (await import("./authority_cmds.mjs")).cmdFetch(args, ctx());
     case "creds": return (await import("./authority_cmds.mjs")).cmdCreds(args, ctx());

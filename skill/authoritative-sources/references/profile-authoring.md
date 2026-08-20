@@ -43,7 +43,10 @@ the skeleton is honest but thin.
 5. **lifecycle** — `status` + `update_cadence` are required; put what the
    enum can't say in `cadence_notes` ("updated as filed").
 6. **scope** — topics MUST exist in `topics.json` (add them there first);
-   jurisdiction as `{level, regions: ["US","US-CA"], notes}`.
+   jurisdiction as `{level, regions: ["US","US-CA"], notes}`. `scope.facets`
+   (`{axis: [values]}`, e.g. `{"governance_domain":["utility"]}`) MUST use axes
+   and values declared in `facets.json` (add them there first, like topics);
+   axes are orthogonal — carry as many as apply.
 7. **relations** — `aggregates` (and guidance saying "entries are pointers —
    cite the underlying document") for aggregator-role sources; `part_of` /
    `api_for` / `companion_of` / `supersedes` as facts warrant.

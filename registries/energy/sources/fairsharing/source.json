@@ -39,7 +39,6 @@
   },
   "scope": {
     "topics": [
-      "research-data",
       "policy-discovery"
     ],
     "jurisdiction": {
@@ -51,6 +50,11 @@
       "coverage_start": null,
       "coverage_end": "present",
       "notes": ""
+    },
+    "facets": {
+      "governance_domain": [
+        "research"
+      ]
     }
   },
   "content": {
@@ -80,9 +84,7 @@
     "temporal": {
       "coverage_start": null,
       "coverage_end": "present"
-    },
-    "policy_states": [],
-    "sectors": []
+    }
   },
   "access": [
     {
@@ -220,7 +222,7 @@
       "person": null
     },
     "created_at": "2026-08-18T12:00:00.000Z",
-    "modified_at": null
+    "modified_at": "2026-08-20T12:00:00.000Z"
   },
   "ext": {},
   "notes": "FAIRsharing IDs and import provenance are preserved when a resource is federated into a registry (crosswalks/fairsharing.md)."

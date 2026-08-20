@@ -49,6 +49,16 @@
       "coverage_start": null,
       "coverage_end": "present",
       "notes": ""
+    },
+    "facets": {
+      "governance_domain": [
+        "regulatory"
+      ],
+      "sector": [
+        "renewables",
+        "buildings",
+        "electricity"
+      ]
     }
   },
   "content": {
@@ -207,7 +217,7 @@
       "person": null
     },
     "created_at": "2026-08-18T02:43:59.974Z",
-    "modified_at": null
+    "modified_at": "2026-08-20T12:00:00.000Z"
   },
   "ext": {},
   "notes": "Homepage canonicalized to dsireusa.org (www redirects there — first probe caught the move).",
@@ -232,12 +242,6 @@
     "temporal": {
       "coverage_start": null,
       "coverage_end": "present"
-    },
-    "policy_states": [],
-    "sectors": [
-      "renewables",
-      "buildings",
-      "electricity"
-    ]
+    }
   }
 }

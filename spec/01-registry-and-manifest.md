@@ -11,6 +11,7 @@ registry moved or cloned elsewhere remains valid).
 <registry>/
   registry.json               # machine-owned manifest (regenerable, §1.3)
   topics.json                 # topic taxonomy (hand-authored, §1.5)
+  facets.json                 # facet vocabularies (hand-authored, optional, §1.5)
   sources.csv                 # projection (§09)
   index.html                  # projection (§09)
   credentials.example.json    # tracked: refs + placeholders, never values (§05)
@@ -85,7 +86,7 @@ verification_state}` per profile. The index is a cache of the profiles
 (regenerable); on disagreement the profiles govern and the finding is
 `counts_mismatch` / `csv_stale` class, repaired by regen.
 
-## 1.5 Topics (`topics.json`)
+## 1.5 Topics and facets (`topics.json`, `facets.json`)
 
 The topic taxonomy is **hand-authored, not regenerable** — it encodes human
 curation. Schema: `schemas/topics.schema.json`. Each topic has a kebab-case
@@ -97,6 +98,19 @@ Every topic id a profile claims in `scope.topics` MUST exist in `topics.json`
 (`unknown_topic`). Taxonomies are per-registry by design: a registry maps its
 topics onto consumer vocabularies (e.g. an agent harness's router topics) in
 its export configuration (§09), not by flattening its own taxonomy.
+
+**Facets** (`facets.json`, schema `schemas/facets.schema.json`) are the
+complementary hand-authored file: where `topics` is one single-parent subject
+tree, facets are **independent classification axes** a source carries at once
+(governance domain, sector, policy stage, …). The file declares an array of
+facet axes, each `{id, label, values:[{id, label}]}`; axis and value ids are
+slugs. A profile's `scope.facets` (§02.4) references them, and every axis id and
+value it uses MUST be declared here (`unknown_facet_value`). Like topics, facet
+vocabularies are **registry-local** — never part of the universal core — and the
+file is optional: a registry with no facet axes simply omits it, and the
+manifest points at it through `sections.facets` (default `facets.json`). Keeping
+facets a separate file from the single-parent `topics.json` keeps the two shapes
+— tree vs. orthogonal axes — from being conflated.
 
 ## 1.6 Integrity
 

@@ -1,0 +1,59 @@
+{
+  "asr_spec_version": "0.3.0",
+  "registry_id": "reg-f4f70accf5d2",
+  "facets": [
+    {
+      "id": "governance_domain",
+      "label": "Governance domain",
+      "description": "The branch or function of public governance whose activity the source primarily documents. Orthogonal to source_role (structure) and officiality (institutional status); a source may span several. Pruned to values that classify the profiled sources — market-operator is deferred (no RTO/ISO profiled yet).",
+      "values": [
+        { "id": "legislative", "label": "Legislative", "description": "Legislatures, bills, statutes, and legislative tracking." },
+        { "id": "regulatory", "label": "Regulatory", "description": "Executive-branch rulemaking: dockets, proposed and final rules, the regulatory agenda, and compliance/enforcement of rules." },
+        { "id": "utility", "label": "Utility", "description": "Public utility commissions and utility-sector regulation and programs (rate cases, interconnection, resource planning, efficiency-program evaluation)." },
+        { "id": "judicial", "label": "Judicial", "description": "Courts, litigation, and case law." },
+        { "id": "standards", "label": "Standards", "description": "Codes and standards bodies: building energy codes, appliance and technical standards, certification." },
+        { "id": "research", "label": "Research", "description": "Research institutions, national laboratories, and registries of research outputs or research-data repositories." },
+        { "id": "statistical", "label": "Statistical", "description": "Official statistical agencies publishing primary datasets and time series." },
+        { "id": "administrative", "label": "Administrative", "description": "Executive/administrative agencies and their data infrastructure: facility registries, open-data catalogs, state energy-office networks." },
+        { "id": "intergovernmental", "label": "Intergovernmental", "description": "Inter-governmental organizations' policy bodies and comparative policy databases (e.g. OECD, IEA)." }
+      ]
+    },
+    {
+      "id": "sector",
+      "label": "Energy sector",
+      "description": "Sector(s) of the energy system the source's material covers, for sources with a genuine sector focus. Sector-agnostic sources (general legislation, dockets, catalogs, research-data registries) omit it — their axis is governance_domain. Vocabulary pruned to values in use; seeded by the 0.2.0 free-string coverage.sectors.",
+      "values": [
+        { "id": "electricity", "label": "Electricity", "description": "Power generation, transmission, distribution, and markets." },
+        { "id": "buildings", "label": "Buildings", "description": "Residential and commercial building energy use and decarbonization." },
+        { "id": "industry", "label": "Industry", "description": "Industrial energy use and processes." },
+        { "id": "transportation", "label": "Transportation", "description": "Transportation energy and electrification." },
+        { "id": "renewables", "label": "Renewables", "description": "Renewable generation and clean-energy resources." },
+        { "id": "oil-gas", "label": "Oil & gas", "description": "Petroleum and natural-gas fuels." }
+      ]
+    },
+    {
+      "id": "policy_stage",
+      "label": "Policy lifecycle stage",
+      "description": "Lifecycle stage(s) of policy or regulation the source covers. Migrated from the 0.2.0 free-string coverage.policy_states; the planned-vs-effective split is exactly what routing sends to a source of record.",
+      "values": [
+        { "id": "introduced", "label": "Introduced", "description": "Bill introduced or measure proposed in a legislature." },
+        { "id": "planned", "label": "Planned", "description": "Announced or planned regulatory action not yet issued (e.g. the Unified Agenda)." },
+        { "id": "enacted", "label": "Enacted", "description": "Passed/adopted into law or issued as a final rule." },
+        { "id": "effective", "label": "Effective", "description": "In force on its effective date." },
+        { "id": "failed", "label": "Failed", "description": "Died, was rejected, or failed to advance." }
+      ]
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "authority-seed",
+      "tool_version": "0.3.0",
+      "model": "claude-fable-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-08-20T12:00:00.000Z",
+    "modified_at": null
+  },
+  "notes": "Phase 5 facets, pruned to what the 30 energy profiles exercise. policy_instrument deferred (no data); governance_domain market-operator deferred (no RTO/ISO profiles yet). policy_stage 'planned' authored for the Unified Agenda."
+}

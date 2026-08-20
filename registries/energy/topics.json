@@ -1,5 +1,5 @@
 {
-  "asr_spec_version": "0.2.0",
+  "asr_spec_version": "0.3.0",
   "topics": [
     {
       "id": "energy-policy",
@@ -53,24 +53,6 @@
       "parent": "energy-policy"
     },
     {
-      "id": "legislation",
-      "label": "Legislation",
-      "description": "Bills, statutes, and legislative activity at federal and state levels.",
-      "parent": "energy-policy"
-    },
-    {
-      "id": "regulation",
-      "label": "Regulation",
-      "description": "Regulatory dockets, proposed and final rules, and the regulatory agenda.",
-      "parent": "energy-policy"
-    },
-    {
-      "id": "utility-regulation",
-      "label": "Utility regulation",
-      "description": "Public utility commissions, rate cases, interconnection, and resource planning.",
-      "parent": "energy-policy"
-    },
-    {
       "id": "climate-policy",
       "label": "Climate policy",
       "description": "Climate and clean-energy laws, policies, and instruments (national and comparative).",
@@ -87,18 +69,6 @@
       "label": "International comparison",
       "description": "Cross-country policy databases and comparative instrument classifications.",
       "parent": "energy-policy"
-    },
-    {
-      "id": "facility-data",
-      "label": "Facility data",
-      "description": "Canonical facility identity, permitting, compliance, and enforcement records.",
-      "parent": "energy-data"
-    },
-    {
-      "id": "research-data",
-      "label": "Research data",
-      "description": "Research-data repositories and meta-registries of scientific data resources.",
-      "parent": "energy-data"
     }
   ],
   "provenance": {
@@ -110,7 +80,7 @@
       "person": null
     },
     "created_at": "2026-08-18T02:43:59.974Z",
-    "modified_at": "2026-08-18T12:00:00.000Z"
+    "modified_at": "2026-08-20T12:00:00.000Z"
   },
-  "notes": ""
+  "notes": "Phase 5 (0.3.0): the facet-ish topics legislation/regulation/utility-regulation/facility-data/research-data were demoted to scope.facets (governance_domain) and removed from this taxonomy."
 }

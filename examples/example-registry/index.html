@@ -38,7 +38,7 @@
   details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
 </style>
 <h1>Example Registry</h1>
-<div class="sub">Fictional two-source registry exercising the ASR object model end to end (.test domains; every id and hash is real). — ASR registry <code>reg-00c0ffee0001</code>, spec 0.2.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="sub">Fictional two-source registry exercising the ASR object model end to end (.test domains; every id and hash is real). — ASR registry <code>reg-00c0ffee0001</code>, spec 0.3.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
 <div class="banner"><span class="stat ok"><b>2</b> verified</span></div>
 
 <main id="list">
@@ -48,11 +48,12 @@
     <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
     <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>bulk_download</option><option>web_fetch</option><option>web_render</option></select>
+    
   </div>
   <div class="tablewrap">
   <table id="tbl">
     <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
-    <tr data-topics="bird-sightings" data-state="verified" data-tier="1" data-types="api_rest bulk_download" data-text="meadowlark observatory data service meadowlark observatory (fictional) meadowlark-observatory-data-service">
+    <tr data-topics="bird-sightings" data-facets="" data-state="verified" data-tier="1" data-types="api_rest bulk_download" data-text="meadowlark observatory data service meadowlark observatory (fictional) meadowlark-observatory-data-service">
       <td><a href="#src=asc-ca327093cdd0">Meadowlark Observatory Data Service</a><div class="sub">Meadowlark Observatory (fictional)</div></td>
       <td><span class="chip">publisher</span></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
@@ -60,9 +61,9 @@
       <td class="sub">subnational · US-VT</td>
       <td class="sub">daily</td>
       <td><span class="chip">api_rest</span> <span class="chip">bulk_download</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 3d ago</span></td>
     </tr>
-<tr data-topics="orchard-trade-press" data-state="verified" data-tier="2" data-types="web_fetch web_render" data-text="orchard gazette archive orchard gazette trust (fictional) orchard-gazette-archive">
+<tr data-topics="orchard-trade-press" data-facets="" data-state="verified" data-tier="2" data-types="web_fetch web_render" data-text="orchard gazette archive orchard gazette trust (fictional) orchard-gazette-archive">
       <td><a href="#src=asc-3316339d3d95">Orchard Gazette Archive</a><div class="sub">Orchard Gazette Trust (fictional)</div></td>
       <td><span class="chip">archive</span></td>
       <td><span class="chip tier adj" title="adjudicated by E. Fixture (human review)">T2</span></td>
@@ -70,7 +71,7 @@
       <td class="sub">subnational · US-VT</td>
       <td class="sub">static</td>
       <td><span class="chip">web_fetch</span> <span class="chip">web_render</span></td>
-      <td><span class="badge ok">verified 0d ago</span></td>
+      <td><span class="badge ok">verified 3d ago</span></td>
     </tr>
   </table>
   </div>
@@ -95,13 +96,14 @@
       <p class="sub">asserted: tier 1 (primary_dataset) by authority-fixtures — fixture<br>
       adjudicated: <em>pending human scoring pass</em></p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">subnational · US-VT</p>
       <h3>Content</h3>
       <p class="sub">structured_record (json) · dataset_file (csv, zip) · landing: direct · cadence: daily (active) — new sightings nightly</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 3d ago</span></h4>
         <div class="sub">https://api.meadowlark.test/v2</div>
         
         
@@ -118,7 +120,7 @@
         <div class="sub">fetches: 1 (1 ok)</div>
       </div>
       <div class="access">
-        <h4><code>bulk</code> <span class="chip">bulk_download</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>bulk</code> <span class="chip">bulk_download</span> <span class="badge ok">verified 3d ago</span></h4>
         <div class="sub">https://data.meadowlark.test/snapshots/</div>
         
         <div class="sub">robots: allowed</div>
@@ -150,13 +152,14 @@
       <p class="sub">asserted: tier 2 (trade_press, curated_reference) by authority-fixtures — fixture<br>
       adjudicated: tier 2, score 0.7 by E. Fixture (human review) at 2026-08-17T12:00:00.000Z</p>
       
+      
       <h3>Jurisdiction</h3><p class="sub">subnational · US-VT</p>
       <h3>Content</h3>
       <p class="sub">html_page (html) · pdf_document (pdf) · landing: landing_then_file · cadence: static (archived) — digitization complete 2019</p>
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 3d ago</span></h4>
         <div class="sub">https://archive.orchardgazette.test/</div>
         
         <div class="sub">robots: allowed</div>
@@ -166,7 +169,7 @@
         
       </div>
       <div class="access">
-        <h4><code>scan-portal</code> <span class="chip">web_render</span> <span class="badge ok">verified 0d ago</span> <span class="chip" title="reachability verified; JS rendering delegated to the harness (spec/03.6)">transport-only</span></h4>
+        <h4><code>scan-portal</code> <span class="chip">web_render</span> <span class="badge ok">verified 3d ago</span> <span class="chip" title="reachability verified; JS rendering delegated to the harness (spec/03.6)">transport-only</span></h4>
         <div class="sub">https://archive.orchardgazette.test/scans/</div>
         
         <div class="sub">robots: allowed</div>
@@ -187,6 +190,7 @@
 (function () {
   var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
       fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
   function apply() {
     var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
     document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
@@ -194,11 +198,15 @@
         && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
         && (!st || tr.dataset.state === st)
         && (!tier || tr.dataset.tier === tier)
-        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1);
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
       tr.style.display = show ? "" : "none";
     });
   }
-  [q, ft, fs, fr, fy].forEach(function (el) { el.addEventListener("input", apply); });
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
   function route() {
     var hash = location.hash.replace(/^#/, "");
     var list = document.getElementById("list");

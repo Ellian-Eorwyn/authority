@@ -4,6 +4,48 @@ All notable changes to the ASR standard are documented here. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 standard adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] — 2026-08-20
+
+Backward-compatible minor revision: **registry-local facets** turn the flat
+topic tree into multi-axis, queryable classification. The universal core grows
+by exactly one optional field (`scope.facets`) and one conditional conformance
+rule; all energy facet *values* stay registry-local. Registries with no
+`facets.json` validate unchanged (version stamp + schema hash only).
+
+### Added
+
+- **Facets** (`scope.facets`, `facets.json`, `schemas/facets.schema.json`,
+  `sections.facets`): a profile carries independent classification axes
+  (governance domain, sector, policy stage) as `{axis: [values]}`, validated
+  against the registry's hand-authored facet vocabulary. Orthogonal to topics
+  (a single-parent tree) and to `source_role`/`officiality`.
+- **Conformance rule 0.8** (`facets_invalid`, `unknown_facet_value`; L0,
+  conditional): fires only when a profile carries `scope.facets`.
+- **`authority query`**: faceted source selection —
+  `--facet name=value` (AND across axes, OR within), `--topic`, `--region`
+  (subnational reaches national), `--task` (ranks by routing disposition) —
+  resolving *which sources settle a question* without knowing their names.
+- **agent-card** projection now carries `facets` (envelope `schemaVersion` → 2);
+  the HTML browser gains one filter dropdown per declared facet axis.
+
+### Changed
+
+- **Energy registry** migrated to the clean end-state: the facet-ish topics
+  `legislation`/`regulation`/`utility-regulation`/`facility-data`/`research-data`
+  were removed from `topics.json` and demoted to `governance_domain` facet
+  values; all 30 sources backfilled with `governance_domain`. `sector` is
+  carried by the 12 sources with a genuine sector focus (seeded by the migrated
+  `coverage.sectors`, extended to the utility/regulatory/standards/research
+  bodies whose sector is unambiguous — e.g. CPUC electricity+gas, CEC
+  electricity/buildings/transportation/renewables); sector-agnostic sources omit
+  it. `policy_stage` is carried where evidenced.
+
+### Removed
+
+- **`coverage.policy_states` / `coverage.sectors`** (the 0.2.0 free-string
+  facets): promoted to declared `scope.facets` axes. Existing values migrated;
+  the fields are gone from the schema and spec §2.10.
+
 ## [0.2.0] — 2026-08-18
 
 Backward-compatible minor revision: ASR grows from a curated authoritative-
