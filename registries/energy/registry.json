@@ -8,7 +8,7 @@
   "defaults": {
     "verification_window_days": 90,
     "politeness_delay_ms": 1200,
-    "user_agent_contact": "mailto:ellianeorwyn@gmail.com"
+    "user_agent_contact": "mailto:eorywn@ucdavis.edu"
   },
   "sections": {
     "sources": "sources/",
@@ -236,7 +236,7 @@
     "access_methods": 46,
     "endpoints": 12,
     "probes": 59,
-    "fetches": 1
+    "fetches": 8
   },
   "integrity": {
     "schema_hash": "sha256:de400063387a5fc0ac98af53e78f2d898efd8ac880591beebea9df107e664f4a"

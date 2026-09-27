@@ -39,7 +39,7 @@
 </style>
 <h1>Scholarly Literature</h1>
 <div class="sub">Where and how academic literature may be discovered and honestly fetched, for the Hermes deep-research skill (pilot: residential electrification — heat pumps, HPWHs, induction, and electrical panel/service capacity). — ASR registry <code>reg-1db286e2fa94</code>, spec 0.3.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
-<div class="banner"><span class="stat ok"><b>2</b> verified</span> <span class="stat muted"><b>2</b> asserted</span> <span class="stat bad"><b>1</b> blocked</span></div>
+<div class="banner"><span class="stat ok"><b>3</b> verified</span> <span class="stat muted"><b>1</b> asserted</span> <span class="stat bad"><b>1</b> blocked</span></div>
 
 <main id="list">
   <div class="filters">
@@ -93,7 +93,7 @@
       <td><span class="chip">web_render</span></td>
       <td><span class="badge muted">asserted — never probed</span></td>
     </tr>
-<tr data-topics="open-access-discovery full-text-retrieval" data-facets="access_model:keyed content_depth:oa_location" data-state="asserted" data-tier="2" data-types="api_rest" data-text="unpaywall ourresearch unpaywall">
+<tr data-topics="open-access-discovery full-text-retrieval" data-facets="access_model:keyed content_depth:oa_location" data-state="verified" data-tier="2" data-types="api_rest" data-text="unpaywall ourresearch unpaywall">
       <td><a href="#src=asc-51f30bd0a93f">Unpaywall</a><div class="sub">OurResearch</div></td>
       <td><span class="chip">index</span><div class="sub">discovery_aggregator</div></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -101,7 +101,7 @@
       <td class="sub">international</td>
       <td class="sub">daily</td>
       <td><span class="chip">api_rest</span></td>
-      <td><span class="badge muted">asserted — never probed</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
   </table>
   </div>
@@ -155,7 +155,7 @@
           
         </div>
         <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:49:29.281Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
-        <div class="sub">fetches: 1 (1 ok)</div>
+        <div class="sub">fetches: 10 (10 ok)</div>
       </div>
       
       
@@ -208,7 +208,7 @@
           
         </div>
         <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:50:52.438Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-27T00:50:05.135Z</td><td><span class="badge warn">degraded</span></td><td class="sub">http:fail</td><td class="sub">429</td></tr><tr><td>2026-09-27T00:49:29.042Z</td><td><span class="badge warn">degraded</span></td><td class="sub">http:fail</td><td class="sub">429</td></tr></table></details>
-        <div class="sub">fetches: 2 (1 ok)</div>
+        <div class="sub">fetches: 15 (8 ok)</div>
       </div>
       
       
@@ -328,7 +328,7 @@
 
     <section class="detail" id="src=asc-51f30bd0a93f" hidden>
       <p><a href="#" class="back">← all sources</a></p>
-      <h2>Unpaywall <span class="chip">index</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">discovery_aggregator</span> <span class="badge muted">asserted — never probed</span></h2>
+      <h2>Unpaywall <span class="chip">index</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">discovery_aggregator</span> <span class="badge ok">verified</span></h2>
       <div class="sub">OurResearch · <a href="https://unpaywall.org/">https://unpaywall.org/</a> · <code>asc-51f30bd0a93f</code> · <code>sources/unpaywall/</code></div>
       <p>Database of legal open-access copies of scholarly articles, keyed by DOI: for each DOI, the OA status and every known free-to-read location with version and licence.</p>
       <h3>Guidance</h3>
@@ -349,7 +349,7 @@
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge muted">asserted — never probed</span></h4>
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
         <div class="sub">https://api.unpaywall.org/v2 · <a href="https://unpaywall.org/products/api">docs</a></div>
         <div class="sub">auth: api_key_query · ref <code>scholarly_contact_email</code> · <a href="https://unpaywall.org/products/api">get a key</a></div>
         
@@ -362,7 +362,7 @@
           <div class="example"><code>https://api.unpaywall.org/v2/10.1016/j.enpol.2025.114712?email=$CREDENTIAL</code></div>
           
         </div>
-        <div class="sub muted">never probed</div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T01:24:18.331Z</td><td><span class="badge ok">ok</span></td><td class="sub">auth:pass http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       

@@ -149,9 +149,9 @@
         }
       ],
       "verification": {
-        "state": "asserted",
-        "last_probe_id": null,
-        "last_verified_at": null,
+        "state": "verified",
+        "last_probe_id": "prb-3a6783f39ba9",
+        "last_verified_at": "2026-09-27T01:24:18.331Z",
         "window_days": null,
         "notes": "Waiver: awaiting Ellie's choice of contact email (credential_ref scholarly_contact_email is intentionally unresolved; the API refuses calls without one). Probe once the ref resolves."
       },
@@ -159,8 +159,8 @@
     }
   ],
   "verification": {
-    "state": "asserted",
-    "summary": "api: asserted"
+    "state": "verified",
+    "summary": "api: verified"
   },
   "guidance": {
     "best_for": [

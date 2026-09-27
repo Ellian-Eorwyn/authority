@@ -8,7 +8,7 @@
   "defaults": {
     "verification_window_days": 90,
     "politeness_delay_ms": 1000,
-    "user_agent_contact": ""
+    "user_agent_contact": "mailto:eorywn@ucdavis.edu"
   },
   "sections": {
     "sources": "sources/",
@@ -53,15 +53,15 @@
       "slug": "unpaywall",
       "name": "Unpaywall",
       "path": "sources/unpaywall/",
-      "verification_state": "asserted"
+      "verification_state": "verified"
     }
   ],
   "counts": {
     "sources": 5,
     "access_methods": 6,
     "endpoints": 8,
-    "probes": 7,
-    "fetches": 4
+    "probes": 8,
+    "fetches": 26
   },
   "integrity": {
     "schema_hash": "sha256:de400063387a5fc0ac98af53e78f2d898efd8ac880591beebea9df107e664f4a"
