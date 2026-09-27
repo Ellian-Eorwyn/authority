@@ -8,7 +8,7 @@
   "defaults": {
     "verification_window_days": 90,
     "politeness_delay_ms": 1000,
-    "user_agent_contact": "mailto:eorywn@ucdavis.edu"
+    "user_agent_contact": "mailto:eorwyn@ucdavis.edu"
   },
   "sections": {
     "sources": "sources/",
