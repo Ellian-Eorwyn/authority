@@ -1,0 +1,254 @@
+{
+  "source_id": "asc-51f30bd0a93f",
+  "aliases": {},
+  "identity": {
+    "name": "Unpaywall",
+    "publisher": "OurResearch",
+    "homepage_url": "https://unpaywall.org/",
+    "canonical_url": "https://unpaywall.org/",
+    "description": "Database of legal open-access copies of scholarly articles, keyed by DOI: for each DOI, the OA status and every known free-to-read location with version and licence.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "OurResearch",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "index",
+  "source_class": "tertiary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "curated_reference"
+      ],
+      "rationale": "The standard lawful-OA finder: it only lists copies hosted by publishers or repositories, with version and licence recorded. It says where a free copy is; the content's authority is the publisher's (or the repository's for AAMs). Tier 2 as an index.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+      "asserted_at": "2026-09-27T00:49:28.964Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "open-access-discovery",
+      "full-text-retrieval"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": "Global literature; the pilot filters to US single-family housing at query time."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "access_model": [
+        "keyed"
+      ],
+      "content_depth": [
+        "oa_location"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json"
+        ],
+        "notes": "is_oa, oa_status (gold/hybrid/bronze/green/closed), best_oa_location {url, url_for_pdf, version, license, host_type}, oa_locations[]."
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": "url_for_pdf is often a direct PDF; some point at a repository landing page (landing_then_file)."
+  },
+  "access": [
+    {
+      "access_id": "acc-613c0ca24893",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://api.unpaywall.org/v2",
+      "docs_url": "https://unpaywall.org/products/api",
+      "auth": {
+        "required": true,
+        "scheme": "api_key_query",
+        "credential_ref": "scholarly_contact_email",
+        "location": {
+          "in": "query",
+          "name": "email"
+        },
+        "signup_url": "https://unpaywall.org/products/api",
+        "notes": "Not a secret key: Unpaywall requires a contact email on every call. It is referenced by name so Ellie's address never lands in a tracked file; the ref is deliberately unresolved until Ellie chooses which address to use."
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": 1000,
+        "daily_budget": 100000,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "Provider-documented 100,000 calls/day per email; above that use the data snapshot. Budget is provider_asserted."
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": "Data is CC0."
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-ae917def65b3",
+          "name": "oa-by-doi",
+          "description": "OA status and legal free locations for one DOI.",
+          "http_method": "GET",
+          "path_template": "/{doi}",
+          "params": [
+            {
+              "name": "doi",
+              "required": true,
+              "type": "string",
+              "description": "Bare DOI. The CLI URL-encodes the slash (%2F); untested against Unpaywall until the contact ref resolves.",
+              "example": "10.1016/j.enpol.2025.114712"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": null,
+            "notes": "Single object; 404 when the DOI is unknown to Unpaywall; 422 when the email is missing or a placeholder."
+          },
+          "probe_hint": {
+            "params": {
+              "doi": "10.1016/j.enpol.2025.114712"
+            }
+          },
+          "example_request": "https://api.unpaywall.org/v2/10.1016/j.enpol.2025.114712?email=$CREDENTIAL",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "asserted",
+        "last_probe_id": null,
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "Waiver: awaiting Ellie's choice of contact email (credential_ref scholarly_contact_email is intentionally unresolved; the API refuses calls without one). Probe once the ref resolves."
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "asserted",
+    "summary": "api: asserted"
+  },
+  "guidance": {
+    "best_for": [
+      "DOI -> lawful free full-text URL (PDF or landing page), with version and licence",
+      "Deciding whether a paper needs keyed or institutional access at all"
+    ],
+    "query_shapes": [
+      {
+        "task": "find a legal OA copy",
+        "access": "api",
+        "endpoint": "oa-by-doi",
+        "recipe": "doi=10.x/y; prefer best_oa_location with version publishedVersion; record version + license in the UPC source; fetch url_for_pdf through the page reader / pdf-harvest.",
+        "example": "--param doi=10.1016/j.enpol.2025.114712"
+      }
+    ],
+    "pitfalls": [
+      "An acceptedVersion (AAM) or submittedVersion copy is not the version of record: page numbers and wording can differ; record the version and do not cite page numbers from it as if they were the journal's.",
+      "oa_status bronze (free on the publisher site, no licence) can disappear; capture the bytes when found.",
+      "license may be null even for a free copy; free-to-read is not free-to-redistribute.",
+      "OpenAlex's best_oa_location carries the same data in batch (50 DOIs per call); use Unpaywall for single lookups or when OpenAlex lacks the DOI.",
+      "The email is mandatory; a placeholder like test@example.com is rejected, and a real address must be Ellie's choice (credential_ref scholarly_contact_email)."
+    ],
+    "llm_notes": "Run before any institutional attempt: a lawful OA copy removes the need to touch UC Davis or Elsevier entitlements.",
+    "routing": {
+      "discovery": "not_applicable",
+      "citation": "follow_primary",
+      "quantitative_claims": "avoid",
+      "technical_claims": "avoid",
+      "full_text": "preferred"
+    },
+    "resolution": {
+      "strategy": "publisher",
+      "notes": "Cite the published article (DOI); the OA location is only where the bytes were read. Record host_type (publisher/repository) and version in the UPC source."
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "daily",
+    "cadence_notes": "Data refreshed continuously from publisher and repository crawls.",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "companion_of",
+      "target": {
+        "source_id": "asc-1957a4f7bc82"
+      },
+      "notes": "Same operator; OpenAlex's open_access / best_oa_location fields are built from Unpaywall data."
+    }
+  ],
+  "discovery": {
+    "discovered_via": "model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references",
+    "retrieved_via": "",
+    "first_added": "2026-09-27T00:49:28.964Z",
+    "added_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "2.1.283",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:49:28.964Z",
+    "modified_at": "2026-09-27T00:52:23.026Z"
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "discovery_aggregator",
+    "basis": "Index of copies hosted elsewhere.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Covers Crossref DOIs; OA detection depends on crawl coverage of repositories."
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

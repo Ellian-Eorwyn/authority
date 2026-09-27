@@ -1,0 +1,388 @@
+{
+  "source_id": "asc-1957a4f7bc82",
+  "aliases": {},
+  "identity": {
+    "name": "OpenAlex",
+    "publisher": "OurResearch",
+    "homepage_url": "https://openalex.org/",
+    "canonical_url": "https://openalex.org/",
+    "description": "Open catalogue of the global research system (works, authors, sources, institutions, topics) with a keyless JSON API; ingests Crossref, PubMed, repositories and Unpaywall OA locations.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "OurResearch",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "index",
+  "source_class": "tertiary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "curated_reference",
+        "community_curated"
+      ],
+      "rationale": "Broadest open index of scholarly works and the best free discovery surface for building-science and energy-policy literature. It is a pointer layer: records are machine-assembled from Crossref, PubMed, repositories and publisher sites, with ML-assigned topics, so it settles where a work is and what cites it, never what the work says. Tier 2 as a discovery index; the article of record is the publisher's.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+      "asserted_at": "2026-09-27T00:49:28.964Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "scholarly-metadata",
+      "open-access-discovery"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": "Global literature; the pilot filters to US single-family housing at query time."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "access_model": [
+        "open"
+      ],
+      "content_depth": [
+        "metadata",
+        "abstract",
+        "oa_location"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "json"
+        ],
+        "notes": "Work records: DOI, title, authorships, primary_location, best_oa_location, open_access.oa_status, referenced_works, cited_by_count, abstract_inverted_index, topics."
+      }
+    ],
+    "landing_pattern": "search_then_record",
+    "notes": "Full text is never served here; primary_location / best_oa_location point at the publisher or repository copy."
+  },
+  "access": [
+    {
+      "access_id": "acc-01f6350c9f75",
+      "name": "api",
+      "type": "api_rest",
+      "base_url": "https://api.openalex.org",
+      "docs_url": "https://docs.openalex.org/",
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": "https://openalex.org/rest-api",
+        "notes": "Keyless calls work for filters/lookups within the anonymous credit budget. OpenAlex offers a free API key (query param api_key) for uninterrupted search and a larger budget — proposed credential_ref openalex_api_key — and still honours a mailto contact (credential_ref scholarly_contact_email). The reference CLI injects a credential only when auth.required is true and only one per method, so neither is sent today; see ext.hermes. Never put a literal key or mailto in params."
+      },
+      "limits": {
+        "requests_per_second": 10,
+        "politeness_delay_ms": 1000,
+        "daily_budget": 1000,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "Observed 2026-09-27 (response headers, anonymous): usage is metered in credits — X-RateLimit-Limit 1000 credits/day (X-RateLimit-Limit-USD 0.1), a DOI filter call cost 1 credit (USD 0.0001), reset daily. Search calls cost more and anonymous search was refused with 429 ('search cluster under elevated load', Retry-After ~30 s). daily_budget 1000 is a request ceiling that can only over-count headroom for search; a free API key raises the budget. 10 req/s is the provider's documented ceiling; the 1 s delay is our choice."
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": "OpenAlex data is CC0."
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-fd04f85a0f66",
+          "name": "works-search",
+          "description": "Full-text-index search over works (title, abstract, fulltext n-grams) with optional filters; cursor-paged.",
+          "http_method": "GET",
+          "path_template": "/works?search={search}&filter={filter}&per_page={per_page}&cursor={cursor}&select={select}",
+          "params": [
+            {
+              "name": "search",
+              "required": false,
+              "type": "string",
+              "description": "Relevance search over title/abstract/fulltext. Omit to page a pure filter.",
+              "example": "electrical panel capacity heat pump"
+            },
+            {
+              "name": "filter",
+              "required": false,
+              "type": "string",
+              "description": "Comma-joined filters, e.g. title.search:X, publication_year:2015-2026, is_oa:true, type:article, topics.id:Tnnnn, doi:10.x/y|10.x/z.",
+              "example": "publication_year:2015-2026,type:article"
+            },
+            {
+              "name": "per_page",
+              "required": false,
+              "type": "integer",
+              "description": "Results per page (1-200; default 25).",
+              "example": 25
+            },
+            {
+              "name": "cursor",
+              "required": false,
+              "type": "string",
+              "description": "Cursor paging: pass * on the first request; the CLI then follows meta.next_cursor. Without it only page 1 is reachable.",
+              "example": "*"
+            },
+            {
+              "name": "select",
+              "required": false,
+              "type": "string",
+              "description": "Comma list of top-level fields to return (keeps payloads small).",
+              "example": "id,doi,title,publication_year,primary_location,best_oa_location,open_access,cited_by_count"
+            }
+          ],
+          "pagination": {
+            "style": "cursor",
+            "page_param": "cursor",
+            "size_param": "per_page",
+            "cursor_path": "meta.next_cursor",
+            "max_page_size": 200,
+            "notes": "Start with cursor=*; next_cursor is null on the last page. Basic page= paging stops at 10,000 results."
+          },
+          "response": {
+            "format": "json",
+            "record_path": "results",
+            "notes": "meta.count is the total hit count; group_by responses use group_by[] instead of results."
+          },
+          "example_request": "https://api.openalex.org/works?search=electrical%20panel%20capacity%20heat%20pump&per_page=25&cursor=*&select=id,doi,title,publication_year,best_oa_location",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-49a55cfbfcdc",
+          "name": "works-by-doi",
+          "description": "Look up one or many works by DOI (up to 50 DOIs OR-joined with |) through the doi filter.",
+          "http_method": "GET",
+          "path_template": "/works?filter=doi:{doi}&per_page={per_page}&select={select}",
+          "params": [
+            {
+              "name": "doi",
+              "required": true,
+              "type": "string",
+              "description": "Bare DOI (10.x/y), or several joined with |. The CLI URL-encodes it; the filter value is decoded server-side.",
+              "example": "10.1016/j.enpol.2025.114712"
+            },
+            {
+              "name": "per_page",
+              "required": false,
+              "type": "integer",
+              "description": "Set to the number of DOIs when batching (max 200, but keep DOI batches at 50).",
+              "example": 50
+            },
+            {
+              "name": "select",
+              "required": false,
+              "type": "string",
+              "description": "Fields to return.",
+              "example": "id,doi,title,primary_location,best_oa_location,open_access"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": "results",
+            "notes": "Zero results means OpenAlex does not know that DOI (not that the DOI is invalid)."
+          },
+          "probe_hint": {
+            "params": {
+              "doi": "10.1016/j.enpol.2025.114712",
+              "per_page": 1,
+              "select": "id,doi,title"
+            }
+          },
+          "example_request": "https://api.openalex.org/works?filter=doi:10.1016/j.enpol.2025.114712&select=id,doi,title,best_oa_location",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-a01a6ac210f0",
+        "last_verified_at": "2026-09-27T00:50:52.438Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "api: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "First-pass discovery of peer-reviewed and grey literature on the pilot topic (panel/service-capacity barriers to heat pump, HPWH and induction retrofits in existing US single-family homes)",
+      "Citation chasing: referenced_works (backward) and filter=cites:W… (forward)",
+      "Batch DOI -> OA status and best_oa_location before spending keyed or institutional access",
+      "De-duplicating a candidate list by DOI / OpenAlex id"
+    ],
+    "query_shapes": [
+      {
+        "task": "keyword discovery",
+        "access": "api",
+        "endpoint": "works-search",
+        "recipe": "search= plain words; add filter=publication_year:2015-2026,type:article to cut noise; select= the fields you need; cursor=* to page. Fetched successfully 2026-09-27 (fch-38746ae65fef).",
+        "example": "--param search='electrical panel capacity heat pump' --param per_page=5 --param select=id,doi,title,publication_year,best_oa_location"
+      },
+      {
+        "task": "title-only precision search",
+        "access": "api",
+        "endpoint": "works-search",
+        "recipe": "Omit search; use filter=title.search:<words> (AND of words in the title). Good for 'panel upgrade', 'service upgrade', '100 amp'. Counts as a search call (throttled anonymously; 429 when tried 2026-09-27).",
+        "example": "--param filter='title.search:electrical panel,publication_year:2015-2026' --param per_page=10 --param select=id,doi,title,publication_year,open_access"
+      },
+      {
+        "task": "topic-scoped discovery",
+        "access": "api",
+        "endpoint": "works-search",
+        "recipe": "Find a relevant topic id from a seed paper's topics[] (T-number; e.g. the Energy Policy panel-capacity survey W4411331675 carries T10603 Smart Grid Energy Management), then filter=topics.id:Tnnnn with search= for the specific angle. Concepts (concepts.id / C-numbers) are the deprecated predecessor of topics; prefer topics.",
+        "example": "--param filter='topics.id:T10603' --param search='electrification retrofit'"
+      },
+      {
+        "task": "DOI lookup / batch OA check",
+        "access": "api",
+        "endpoint": "works-by-doi",
+        "recipe": "doi=10.x/y (or up to 50 joined with |); read open_access.oa_status and best_oa_location.pdf_url.",
+        "example": "--param doi=10.1016/j.enpol.2025.114712"
+      },
+      {
+        "task": "forward citations",
+        "access": "api",
+        "endpoint": "works-search",
+        "recipe": "filter=cites:W<openalex id> lists works citing a seed paper.",
+        "example": "--param filter='cites:W4411331675' --param per_page=50"
+      }
+    ],
+    "pitfalls": [
+      "Anonymous search is throttled: on 2026-09-27 anonymous search calls (search= and filter=title.search:) got 429 three times out of four ('Anonymous search is temporarily rate-limited while the search cluster is under elevated load', Retry-After ~30 s), while DOI-filter lookups succeeded. On 429 honour Retry-After once, never loop; fall back to Crossref works-query, or get a free API key (openalex_api_key) — the real fix for deep-research.",
+      "Cost: an anonymous search cost USD 0.001 (10 credits) and a DOI filter USD 0.0001 (1 credit) against a USD 0.10 (1,000 credit) daily allowance, i.e. roughly 100 searches a day keyless. Always send select= (5 unselected records were 118 KB).",
+      "OpenAlex is a pointer layer: cite the publisher's version of record (resolve the DOI), never the OpenAlex record.",
+      "Abstracts come as abstract_inverted_index (word -> positions), not text; rebuilding one is fine for triage but it is not quotable — quote from the fetched article bytes (UPC gate).",
+      "search= is executed as fulltext.search and is noisy for technical phrases: 'electrical panel capacity heat pump' returned 57,350 hits led by PV/thermal 'panel' papers, and missed the on-topic Energy Policy panel-capacity survey (10.1016/j.enpol.2025.114712). Use title.search, quoted phrases, or seed-paper citation chasing for precision.",
+      "Without cursor=* only page 1 is returned (the CLI follows meta.next_cursor only when a cursor was sent).",
+      "ML-assigned topics and author disambiguation are imperfect; do not treat topics as a subject classification of record.",
+      "Filter values with commas or colons must stay inside one filter= parameter; separate filters with commas, alternatives with |."
+    ],
+    "llm_notes": "Default discovery source for deep-research. Record the exact request URL and the fetch sidecar sha256 when a result set seeds a corpus, so the corpus can show how each candidate was found.",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "follow_primary",
+      "quantitative_claims": "avoid",
+      "technical_claims": "avoid",
+      "full_text": "conditional"
+    },
+    "resolution": {
+      "strategy": "publisher",
+      "notes": "Resolve doi (https://doi.org/<doi>) to the publisher landing page for the version of record; use best_oa_location only as a lawful copy to read, recording its version (publishedVersion / acceptedVersion / submittedVersion) and licence."
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "Snapshot data refreshed continuously; entity schema changes are announced on the OpenAlex blog/changelog.",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "aggregates",
+      "target": {
+        "source_id": "asc-33ee865a7e80"
+      },
+      "notes": "OpenAlex ingests every Crossref DOI record."
+    }
+  ],
+  "discovery": {
+    "discovered_via": "model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references",
+    "retrieved_via": "",
+    "first_added": "2026-09-27T00:49:28.964Z",
+    "added_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "2.1.283",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:49:28.964Z",
+    "modified_at": "2026-09-27T00:52:23.026Z"
+  },
+  "ext": {
+    "hermes": {
+      "optional_credentials": [
+        {
+          "credential_ref": "openalex_api_key",
+          "location": {
+            "in": "query",
+            "name": "api_key"
+          },
+          "applies_to": [
+            "api"
+          ],
+          "notes": "Free key from openalex.org; lifts the anonymous search throttle and credit budget. Not injectable by the reference CLI for a keyless method."
+        },
+        {
+          "credential_ref": "scholarly_contact_email",
+          "location": {
+            "in": "query",
+            "name": "mailto"
+          },
+          "applies_to": [
+            "api"
+          ],
+          "notes": "Polite-pool contact; awaiting Ellie's choice of contact email."
+        }
+      ]
+    }
+  },
+  "notes": "",
+  "officiality": {
+    "default": "discovery_aggregator",
+    "basis": "Machine-assembled index of works published elsewhere.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "provider_asserted",
+      "notes": "Claims ~250M+ works, ingesting all Crossref DOIs plus PubMed and repositories; coverage of grey literature (utility, lab and consultancy reports) is uneven."
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

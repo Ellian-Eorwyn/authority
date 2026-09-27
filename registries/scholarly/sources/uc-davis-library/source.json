@@ -1,0 +1,223 @@
+{
+  "source_id": "asc-5c57285fc052",
+  "aliases": {},
+  "identity": {
+    "name": "UC Davis Library",
+    "publisher": "University of California, Davis",
+    "homepage_url": "https://library.ucdavis.edu/",
+    "canonical_url": "https://library.ucdavis.edu/",
+    "description": "UC Davis Library's licensed e-resources, reached as an entitlement: campus IP via the library VPN (Ivanti), or publisher SSO ('Access through your institution') in the Hermes Chrome session.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "University of California, Davis",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "aggregator",
+  "source_class": "tertiary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "curated_reference"
+      ],
+      "rationale": "Not a publisher: it licenses and routes to publishers' versions of record. Its authority for this registry is as a lawful access route, so tier 2; the authority of what it reaches belongs to each publisher.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+      "asserted_at": "2026-09-27T00:49:28.964Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "institutional-access",
+      "full-text-retrieval"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": "Entitlement covers UC Davis affiliates only; content is global."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "access_model": [
+        "institutional",
+        "subscription"
+      ],
+      "content_depth": [
+        "full_text"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "pdf_document",
+        "formats": [
+          "pdf"
+        ],
+        "notes": "Publisher PDFs reached with UC Davis entitlement."
+      },
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "Publisher article pages."
+      }
+    ],
+    "landing_pattern": "landing_then_file",
+    "notes": "Article landing page on the publisher site, then the PDF, both inside an entitled session."
+  },
+  "access": [
+    {
+      "access_id": "acc-841400a7bfb5",
+      "name": "browser-session",
+      "type": "web_render",
+      "base_url": "https://library.ucdavis.edu/",
+      "docs_url": null,
+      "auth": {
+        "required": true,
+        "scheme": "session_cookie",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": "Interactive SSO (CAS/Shibboleth) or campus IP via the library VPN; never automated by the reference CLI. Hermes uses its own Chrome session with Ellie present, per ~/.hermes/skills/pdf-harvest/references/uc-davis-route.md."
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": 15000,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "pdf-harvest rules: >=6 s between publisher requests (>=15 s on the VPN), jittered; per-session cap (default 60, 30 on VPN) and per-publisher daily cap; stop on the first 429/503/Cloudflare 403."
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": "Licensed e-resources are for UC Davis affiliates' personal research; systematic bulk downloading breaches most publisher licences — ask the library for TDM access instead."
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "asserted",
+        "last_probe_id": "prb-45d3d207cac0",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "Waiver: interactive SSO; Hermes Chrome session per pdf-harvest references/uc-davis-route.md. The reference CLI never automates session_cookie auth, so this method stays asserted; only robots.txt is probed."
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "asserted",
+    "summary": "browser-session: asserted"
+  },
+  "guidance": {
+    "best_for": [
+      "Version-of-record PDFs from publishers that do not gate downloads on automation (IOP, Nature) with UC Davis entitlement",
+      "Human-in-the-loop retrieval (assisted mode) for bot-walled publishers (Elsevier web, Wiley, T&F, SAGE, OUP)"
+    ],
+    "query_shapes": [
+      {
+        "task": "entitled PDF retrieval",
+        "access": "browser-session",
+        "endpoint": "",
+        "recipe": "Settle the network first (session_ctl.py netcheck; disable the Tailscale exit node so the Ivanti VPN carries traffic, egress in UC Davis space), Ellie passes any human check in the Hermes Chrome window, preflight must print READY, then harvest_sink.py + fetch_direct.py / the in-page harness at the vpn profile pace.",
+        "example": "python3 ~/.hermes/skills/pdf-harvest/scripts/session_ctl.py preflight --workdir ~/pdf_scrape/<corpus>"
+      }
+    ],
+    "pitfalls": [
+      "Most big publishers gate programmatic PDF retrieval regardless of entitlement (measured 2 of 24 hosts succeeded); do not promise a bulk harvest — prefer OA (Unpaywall) and publisher APIs.",
+      "Toggling a VPN mid-session voids Cloudflare clearance; one network per session.",
+      "A clean 403 in a working session means no subscription: record no-subscription, never work around it.",
+      "Never defeat a CAPTCHA or Cloudflare challenge; Ellie clicks in their own browser context and the clearance is inherited.",
+      "Never navigate to /pdf or /pdfft URLs directly; fetch from the article page."
+    ],
+    "llm_notes": "Last resort after Unpaywall/OpenAlex OA and publisher APIs. Requires Ellie present; plan multiple sessions for large corpora.",
+    "routing": {
+      "discovery": "not_applicable",
+      "citation": "follow_primary",
+      "quantitative_claims": "not_applicable",
+      "technical_claims": "not_applicable",
+      "full_text": "conditional"
+    },
+    "resolution": {
+      "strategy": "publisher",
+      "notes": "What arrives is the publisher's version of record; cite the article by DOI, record the publisher URL as the UPC retrieval URL."
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "irregular",
+    "cadence_notes": "Licences change at subscription renewals.",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "companion_of",
+      "target": {
+        "source_id": "asc-9fa5a9529521"
+      },
+      "notes": "Campus/VPN egress can give Article Retrieval full-text entitlement; the library can also issue an Elsevier insttoken."
+    }
+  ],
+  "discovery": {
+    "discovered_via": "model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references",
+    "retrieved_via": "",
+    "first_added": "2026-09-27T00:49:28.964Z",
+    "added_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "2.1.283",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:49:28.964Z",
+    "modified_at": "2026-09-27T00:52:23.026Z"
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "official_service",
+    "basis": "The university's own access service for licensed content.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "unknown",
+      "basis": "unknown",
+      "notes": "Entitlement varies by publisher, title and year."
+    },
+    "jurisdictions": [
+      "US-CA"
+    ],
+    "jurisdiction_levels": [
+      "subnational"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

@@ -19,13 +19,49 @@
     "fetched": "fetched/",
     "facets": "facets.json"
   },
-  "sources": [],
+  "sources": [
+    {
+      "source_id": "asc-33ee865a7e80",
+      "slug": "crossref",
+      "name": "Crossref",
+      "path": "sources/crossref/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-1957a4f7bc82",
+      "slug": "openalex",
+      "name": "OpenAlex",
+      "path": "sources/openalex/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-9fa5a9529521",
+      "slug": "sciencedirect",
+      "name": "ScienceDirect",
+      "path": "sources/sciencedirect/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-5c57285fc052",
+      "slug": "uc-davis-library",
+      "name": "UC Davis Library",
+      "path": "sources/uc-davis-library/",
+      "verification_state": "asserted"
+    },
+    {
+      "source_id": "asc-51f30bd0a93f",
+      "slug": "unpaywall",
+      "name": "Unpaywall",
+      "path": "sources/unpaywall/",
+      "verification_state": "asserted"
+    }
+  ],
   "counts": {
-    "sources": 0,
-    "access_methods": 0,
-    "endpoints": 0,
-    "probes": 0,
-    "fetches": 0
+    "sources": 5,
+    "access_methods": 6,
+    "endpoints": 8,
+    "probes": 7,
+    "fetches": 4
   },
   "integrity": {
     "schema_hash": "sha256:de400063387a5fc0ac98af53e78f2d898efd8ac880591beebea9df107e664f4a"
