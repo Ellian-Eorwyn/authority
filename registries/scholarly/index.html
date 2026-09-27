@@ -1,0 +1,412 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scholarly Literature — ASR registry</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1d21; --muted:#6a737d; --line:#e1e4e8; --card:#f6f8fa;
+          --ok:#116329; --okbg:#dafbe1; --warn:#7d4e00; --warnbg:#fff8c5; --bad:#a40e26; --badbg:#ffebe9; --chip:#eaeef2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+            --ok:#3fb950; --okbg:#12261e; --warn:#d29922; --warnbg:#272115; --bad:#f85149; --badbg:#25171c; --chip:#21262d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font:14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; } h2 { font-size:18px; } h3 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:20px 0 6px; }
+  h4 { margin: 0 0 2px; font-size: 14px; }
+  a { color:inherit; } .sub { color:var(--muted); font-size:12.5px; } .muted { color:var(--muted); }
+  code { background:var(--chip); padding:1px 5px; border-radius:4px; font:12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap:anywhere; }
+  .chip { display:inline-block; background:var(--chip); border-radius:10px; padding:0 8px; font-size:11.5px; white-space:nowrap; }
+  .chip.tier.adj { background:var(--okbg); color:var(--ok); font-weight:600; }
+  .chip.tier.ass { background:var(--warnbg); color:var(--warn); }
+  .badge { display:inline-block; border-radius:6px; padding:1px 8px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--okbg); color:var(--ok); } .badge.warn { background:var(--warnbg); color:var(--warn); }
+  .badge.bad { background:var(--badbg); color:var(--bad); } .badge.muted { background:var(--chip); color:var(--muted); }
+  .banner { margin:10px 0 16px; } .stat { margin-right:14px; } .stat.ok b { color:var(--ok); } .stat.warn b { color:var(--warn); } .stat.bad b { color:var(--bad); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .filters input, .filters select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:13px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  table.mini td, table.mini th { padding:3px 8px; font-size:12px; }
+  .access, .shape { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .endpoint { border-top:1px dashed var(--line); margin-top:8px; padding-top:8px; }
+  .example { margin-top:4px; }
+  .pitfall { color:var(--warn); margin:4px 0; }
+  .bestfor { font-size:15px; }
+  footer { margin-top:28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:10px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
+</style>
+<h1>Scholarly Literature</h1>
+<div class="sub">Where and how academic literature may be discovered and honestly fetched, for the Hermes deep-research skill (pilot: residential electrification — heat pumps, HPWHs, induction, and electrical panel/service capacity). — ASR registry <code>reg-1db286e2fa94</code>, spec 0.3.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="banner"><span class="stat ok"><b>3</b> verified</span> <span class="stat muted"><b>1</b> asserted</span> <span class="stat bad"><b>1</b> blocked</span></div>
+
+<main id="list">
+  <div class="filters">
+    <input id="q" type="search" placeholder="filter by name…">
+    <select id="ftopic"><option value="">topic: all</option><option>full-text-retrieval</option><option>institutional-access</option><option>open-access-discovery</option><option>scholarly-metadata</option></select>
+    <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
+    <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>web_render</option></select>
+    <select class="ffacet" data-facet="access_model"><option value="">Access model: all</option><option>institutional</option><option>keyed</option><option>open</option><option>subscription</option></select><select class="ffacet" data-facet="content_depth"><option value="">Content depth: all</option><option>abstract</option><option>full_text</option><option>metadata</option><option>oa_location</option></select>
+  </div>
+  <div class="tablewrap">
+  <table id="tbl">
+    <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
+    <tr data-topics="scholarly-metadata open-access-discovery" data-facets="access_model:open content_depth:metadata content_depth:abstract" data-state="verified" data-tier="2" data-types="api_rest" data-text="crossref crossref crossref">
+      <td><a href="#src=asc-33ee865a7e80">Crossref</a><div class="sub">Crossref</div></td>
+      <td><span class="chip">index</span><div class="sub">discovery_aggregator</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">scholarly-metadata</span> <span class="chip">open-access-discovery</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">api_rest</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="scholarly-metadata open-access-discovery" data-facets="access_model:open content_depth:metadata content_depth:abstract content_depth:oa_location" data-state="verified" data-tier="2" data-types="api_rest" data-text="openalex ourresearch openalex">
+      <td><a href="#src=asc-1957a4f7bc82">OpenAlex</a><div class="sub">OurResearch</div></td>
+      <td><span class="chip">index</span><div class="sub">discovery_aggregator</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">scholarly-metadata</span> <span class="chip">open-access-discovery</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">api_rest</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="full-text-retrieval institutional-access" data-facets="access_model:keyed access_model:subscription access_model:institutional content_depth:metadata content_depth:abstract content_depth:full_text" data-state="blocked" data-tier="1" data-types="api_rest api_rest" data-text="sciencedirect elsevier sciencedirect">
+      <td><a href="#src=asc-9fa5a9529521">ScienceDirect</a><div class="sub">Elsevier</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">full-text-retrieval</span> <span class="chip">institutional-access</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">api_rest</span> <span class="chip">api_rest</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="institutional-access full-text-retrieval" data-facets="access_model:institutional access_model:subscription content_depth:full_text" data-state="asserted" data-tier="2" data-types="web_render" data-text="uc davis library university of california, davis uc-davis-library">
+      <td><a href="#src=asc-5c57285fc052">UC Davis Library</a><div class="sub">University of California, Davis</div></td>
+      <td><span class="chip">aggregator</span><div class="sub">official_service</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">institutional-access</span> <span class="chip">full-text-retrieval</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_render</span></td>
+      <td><span class="badge muted">asserted — never probed</span></td>
+    </tr>
+<tr data-topics="open-access-discovery full-text-retrieval" data-facets="access_model:keyed content_depth:oa_location" data-state="verified" data-tier="2" data-types="api_rest" data-text="unpaywall ourresearch unpaywall">
+      <td><a href="#src=asc-51f30bd0a93f">Unpaywall</a><div class="sub">OurResearch</div></td>
+      <td><span class="chip">index</span><div class="sub">discovery_aggregator</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">open-access-discovery</span> <span class="chip">full-text-retrieval</span></td>
+      <td class="sub">international</td>
+      <td class="sub">daily</td>
+      <td><span class="chip">api_rest</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>Credential coverage</h3><div class="tablewrap"><table><tr><th>ref</th><th>needed by</th><th>resolution chain (spec/05)</th></tr><tr><td><code>elsevier_api_key</code></td><td class="sub">sciencedirect#article-api, sciencedirect#object-api</td><td class="sub">env <code>AUTHORITY_CRED_ELSEVIER_API_KEY</code> / <code>FORGE_API_KEY_ELSEVIER_API_KEY</code> → credentials.json → keychain</td></tr>
+<tr><td><code>scholarly_contact_email</code></td><td class="sub">unpaywall#api</td><td class="sub">env <code>AUTHORITY_CRED_SCHOLARLY_CONTACT_EMAIL</code> / <code>FORGE_API_KEY_SCHOLARLY_CONTACT_EMAIL</code> → credentials.json → keychain</td></tr></table></div>
+</main>
+
+
+    <section class="detail" id="src=asc-33ee865a7e80" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Crossref <span class="chip">index</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">discovery_aggregator</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Crossref · <a href="https://www.crossref.org/">https://www.crossref.org/</a> · <code>asc-33ee865a7e80</code> · <code>sources/crossref/</code></div>
+      <p>DOI registration agency for most scholarly publishers; its REST API serves the publisher-deposited metadata for every Crossref DOI (titles, authors, venue, dates, licences, full-text links, funders, references where open).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Authoritative bibliographic facts for a DOI (title, authors, venue, dates, publisher) · Licence URLs and publisher text-mining links for a DOI (license[], link[]) · Resolving messy reference strings to DOIs (query.bibliographic) · Second discovery index to cross-check OpenAlex recall on the pilot topic</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: follow_primary</span> <span class="chip">quantitative_claims: avoid</span> <span class="chip">technical_claims: avoid</span> <span class="chip">full_text: not_applicable</span> <span class="sub">→ resolve via publisher (Follow https://doi.org/&lt;DOI&gt; (or message.resource.primary.URL) to the publisher&#39;s version of record.)</span></p>
+      <div class="shape"><strong>keyword discovery</strong> <code>works-query</code><br>query= words + filter=from-pub-date:2015,type:journal-article; select= to trim; cursor=* for deep paging.<br><code>--param query=&#39;electrical panel capacity heat pump&#39; --param rows=20</code></div><div class="shape"><strong>reference string -&gt; DOI</strong> <code>works-query</code><br>query_bibliographic=&lt;full citation string&gt;, rows=3; accept only a hit whose title and year match.<br><code>--param query_bibliographic=&#39;Assessing electrification readiness in U.S. single-family homes electrical panel capacities 2025&#39; --param rows=3</code></div><div class="shape"><strong>DOI metadata / licence</strong> <code>work-by-doi</code><br>doi=10.x/y; read message.license[] and message.link[].<br><code>--param doi=10.1016/j.enpol.2025.114712</code></div>
+      <div class="pitfall">⚠ Relevance search is broad: many hits are loosely related; filter by type and date and read titles before fetching.</div><div class="pitfall">⚠ Abstracts are present only when the publisher deposited them, as JATS XML strings.</div><div class="pitfall">⚠ license[] describes what the publisher asserted at deposit; it is not an OA guarantee and may carry an embargo start date.</div><div class="pitfall">⚠ Public-pool limits are low (1 concurrent request); never parallelise against it.</div><div class="pitfall">⚠ Only Crossref DOIs resolve here; DataCite DOIs (datasets, some reports) 404.</div>
+      <p class="sub">Use to confirm bibliographic facts and licences before a paper enters the UPC corpus; cite the article, not Crossref.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference) by Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26 — The registration record behind most journal DOIs, so it is the most reliable source for bibliographic facts (who published what, where, when, under which licence URL). Metadata is deposited by publishers and varies in completeness; it points to the article rather than holding it. Tier 2 as an index; the article of record is the publisher&#39;s.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>exhaustive</strong> (provider_asserted) — Exhaustive for Crossref-registered DOIs by construction; it does not cover DataCite DOIs or undeposited grey literature.<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">access_model: <span class="chip">open</span><br>content_depth: <span class="chip">metadata</span> <span class="chip">abstract</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international — Global literature; the pilot filters to US single-family housing at query time.</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · landing: search_then_record · cadence: continuous (active) — Publishers deposit and update continuously.</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://api.crossref.org · <a href="https://api.crossref.org/swagger-ui/index.html">docs</a></div>
+        
+        
+        <div class="sub">limits: 5 rps </div>
+        
+        <div class="endpoint">
+          <code>GET /works?query={query}&amp;query.bibliographic={query_bibliographic}&amp;filter={filter}&amp;rows={rows}&amp;cursor={cursor}&amp;select={select}&amp;sort={sort}</code> <span class="sub">works-query</span>
+          <div class="sub">Bibliographic query over works with filters; cursor-paged deep paging.</div>
+          <div class="sub">params: <code>query</code>, <code>query_bibliographic</code>, <code>filter</code>, <code>rows</code>, <code>cursor</code>, <code>select</code>, <code>sort</code></div>
+          <div class="example"><code>https://api.crossref.org/works?query=electrical%20panel%20capacity%20heat%20pump&amp;filter=from-pub-date:2015,type:journal-article&amp;rows=20&amp;cursor=*&amp;select=DOI,title,issued,publisher,license,link</code></div>
+          <div class="sub">pagination: cursor</div>
+        </div>
+        <div class="endpoint">
+          <code>GET /works/{doi}</code> <span class="sub">work-by-doi</span>
+          <div class="sub">The registration record for one DOI.</div>
+          <div class="sub">params: <code>doi</code>*</div>
+          <div class="example"><code>https://api.crossref.org/works/10.1016%2Fj.enpol.2025.114712</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:49:29.281Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 10 (10 ok)</div>
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references · added 2026-09-27</p>
+    </section>
+
+    <section class="detail" id="src=asc-1957a4f7bc82" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>OpenAlex <span class="chip">index</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">discovery_aggregator</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">OurResearch · <a href="https://openalex.org/">https://openalex.org/</a> · <code>asc-1957a4f7bc82</code> · <code>sources/openalex/</code></div>
+      <p>Open catalogue of the global research system (works, authors, sources, institutions, topics) with a keyless JSON API; ingests Crossref, PubMed, repositories and Unpaywall OA locations.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> First-pass discovery of peer-reviewed and grey literature on the pilot topic (panel/service-capacity barriers to heat pump, HPWH and induction retrofits in existing US single-family homes) · Citation chasing: referenced_works (backward) and filter=cites:W… (forward) · Batch DOI -&gt; OA status and best_oa_location before spending keyed or institutional access · De-duplicating a candidate list by DOI / OpenAlex id</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: follow_primary</span> <span class="chip">quantitative_claims: avoid</span> <span class="chip">technical_claims: avoid</span> <span class="chip">full_text: conditional</span> <span class="sub">→ resolve via publisher (Resolve doi (https://doi.org/&lt;doi&gt;) to the publisher landing page for the version of record; use best_oa_location only as a lawful copy to read, recording its version (publishedVersion / acceptedVersion / submittedVersion) and licence.)</span></p>
+      <div class="shape"><strong>keyword discovery</strong> <code>works-search</code><br>search= plain words; add filter=publication_year:2015-2026,type:article to cut noise; select= the fields you need; cursor=* to page. Fetched successfully 2026-09-27 (fch-38746ae65fef).<br><code>--param search=&#39;electrical panel capacity heat pump&#39; --param per_page=5 --param select=id,doi,title,publication_year,best_oa_location</code></div><div class="shape"><strong>title-only precision search</strong> <code>works-search</code><br>Omit search; use filter=title.search:&lt;words&gt; (AND of words in the title). Good for &#39;panel upgrade&#39;, &#39;service upgrade&#39;, &#39;100 amp&#39;. Counts as a search call (throttled anonymously; 429 when tried 2026-09-27).<br><code>--param filter=&#39;title.search:electrical panel,publication_year:2015-2026&#39; --param per_page=10 --param select=id,doi,title,publication_year,open_access</code></div><div class="shape"><strong>topic-scoped discovery</strong> <code>works-search</code><br>Find a relevant topic id from a seed paper&#39;s topics[] (T-number; e.g. the Energy Policy panel-capacity survey W4411331675 carries T10603 Smart Grid Energy Management), then filter=topics.id:Tnnnn with search= for the specific angle. Concepts (concepts.id / C-numbers) are the deprecated predecessor of topics; prefer topics.<br><code>--param filter=&#39;topics.id:T10603&#39; --param search=&#39;electrification retrofit&#39;</code></div><div class="shape"><strong>DOI lookup / batch OA check</strong> <code>works-by-doi</code><br>doi=10.x/y (or up to 50 joined with |); read open_access.oa_status and best_oa_location.pdf_url.<br><code>--param doi=10.1016/j.enpol.2025.114712</code></div><div class="shape"><strong>forward citations</strong> <code>works-search</code><br>filter=cites:W&lt;openalex id&gt; lists works citing a seed paper.<br><code>--param filter=&#39;cites:W4411331675&#39; --param per_page=50</code></div>
+      <div class="pitfall">⚠ Anonymous search is throttled: on 2026-09-27 anonymous search calls (search= and filter=title.search:) got 429 three times out of four (&#39;Anonymous search is temporarily rate-limited while the search cluster is under elevated load&#39;, Retry-After ~30 s), while DOI-filter lookups succeeded. On 429 honour Retry-After once, never loop; fall back to Crossref works-query, or get a free API key (openalex_api_key) — the real fix for deep-research.</div><div class="pitfall">⚠ Cost: an anonymous search cost USD 0.001 (10 credits) and a DOI filter USD 0.0001 (1 credit) against a USD 0.10 (1,000 credit) daily allowance, i.e. roughly 100 searches a day keyless. Always send select= (5 unselected records were 118 KB).</div><div class="pitfall">⚠ OpenAlex is a pointer layer: cite the publisher&#39;s version of record (resolve the DOI), never the OpenAlex record.</div><div class="pitfall">⚠ Abstracts come as abstract_inverted_index (word -&gt; positions), not text; rebuilding one is fine for triage but it is not quotable — quote from the fetched article bytes (UPC gate).</div><div class="pitfall">⚠ search= is executed as fulltext.search and is noisy for technical phrases: &#39;electrical panel capacity heat pump&#39; returned 57,350 hits led by PV/thermal &#39;panel&#39; papers, and missed the on-topic Energy Policy panel-capacity survey (10.1016/j.enpol.2025.114712). Use title.search, quoted phrases, or seed-paper citation chasing for precision.</div><div class="pitfall">⚠ Without cursor=* only page 1 is returned (the CLI follows meta.next_cursor only when a cursor was sent).</div><div class="pitfall">⚠ ML-assigned topics and author disambiguation are imperfect; do not treat topics as a subject classification of record.</div><div class="pitfall">⚠ Filter values with commas or colons must stay inside one filter= parameter; separate filters with commas, alternatives with |.</div>
+      <p class="sub">Default discovery source for deep-research. Record the exact request URL and the fetch sidecar sha256 when a result set seeds a corpus, so the corpus can show how each candidate was found.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference, community_curated) by Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26 — Broadest open index of scholarly works and the best free discovery surface for building-science and energy-policy literature. It is a pointer layer: records are machine-assembled from Crossref, PubMed, repositories and publisher sites, with ML-assigned topics, so it settles where a work is and what cites it, never what the work says. Tier 2 as a discovery index; the article of record is the publisher&#39;s.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>systematic</strong> (provider_asserted) — Claims ~250M+ works, ingesting all Crossref DOIs plus PubMed and repositories; coverage of grey literature (utility, lab and consultancy reports) is uneven.<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">access_model: <span class="chip">open</span><br>content_depth: <span class="chip">metadata</span> <span class="chip">abstract</span> <span class="chip">oa_location</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international — Global literature; the pilot filters to US single-family housing at query time.</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · landing: search_then_record · cadence: continuous (active) — Snapshot data refreshed continuously; entity schema changes are announced on the OpenAlex blog/changelog.</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://api.openalex.org · <a href="https://docs.openalex.org/">docs</a></div>
+        
+        
+        <div class="sub">limits: 10 rps · 1000/day</div>
+        
+        <div class="endpoint">
+          <code>GET /works?search={search}&amp;filter={filter}&amp;per_page={per_page}&amp;cursor={cursor}&amp;select={select}</code> <span class="sub">works-search</span>
+          <div class="sub">Full-text-index search over works (title, abstract, fulltext n-grams) with optional filters; cursor-paged.</div>
+          <div class="sub">params: <code>search</code>, <code>filter</code>, <code>per_page</code>, <code>cursor</code>, <code>select</code></div>
+          <div class="example"><code>https://api.openalex.org/works?search=electrical%20panel%20capacity%20heat%20pump&amp;per_page=25&amp;cursor=*&amp;select=id,doi,title,publication_year,best_oa_location</code></div>
+          <div class="sub">pagination: cursor</div>
+        </div>
+        <div class="endpoint">
+          <code>GET /works?filter=doi:{doi}&amp;per_page={per_page}&amp;select={select}</code> <span class="sub">works-by-doi</span>
+          <div class="sub">Look up one or many works by DOI (up to 50 DOIs OR-joined with |) through the doi filter.</div>
+          <div class="sub">params: <code>doi</code>*, <code>per_page</code>, <code>select</code></div>
+          <div class="example"><code>https://api.openalex.org/works?filter=doi:10.1016/j.enpol.2025.114712&amp;select=id,doi,title,best_oa_location</code></div>
+          
+        </div>
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:50:52.438Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-27T00:50:05.135Z</td><td><span class="badge warn">degraded</span></td><td class="sub">http:fail</td><td class="sub">429</td></tr><tr><td>2026-09-27T00:49:29.042Z</td><td><span class="badge warn">degraded</span></td><td class="sub">http:fail</td><td class="sub">429</td></tr></table></details>
+        <div class="sub">fetches: 15 (8 ok)</div>
+      </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">aggregates → asc-33ee865a7e80</span></p>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references · added 2026-09-27</p>
+    </section>
+
+    <section class="detail" id="src=asc-9fa5a9529521" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>ScienceDirect <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">Elsevier · <a href="https://www.sciencedirect.com/">https://www.sciencedirect.com/</a> · <code>asc-9fa5a9529521</code> · <code>sources/sciencedirect/</code></div>
+      <p>Elsevier&#39;s journal and book platform (Energy and Buildings, Energy Policy, Applied Energy, Energy Research &amp; Social Science, The Electricity Journal …), reached programmatically through the Elsevier Article Retrieval and Object Retrieval APIs.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Version-of-record text of Elsevier papers (Energy and Buildings, Energy Policy, Applied Energy, ERSS …) when the key or campus IP is entitled · Accepted author manuscripts (AAM-PDF) via Object Retrieval when full text is not entitled · Quoting findings, figures and numbers from Elsevier articles into a UPC corpus</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: not_applicable</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span> <span class="chip">technical_claims: preferred</span> <span class="chip">full_text: conditional</span> <span class="sub">→ resolve via none_required (Publisher of record for its own journals.)</span></p>
+      <div class="shape"><strong>article metadata/abstract</strong> <code>article-by-doi</code><br>doi=10.1016/…, view=META_ABS, http_accept=text/xml.<br><code>--param doi=10.1016/j.enpol.2025.114712 --param view=META_ABS</code></div><div class="shape"><strong>full text of record (entitled)</strong> <code>article-by-doi</code><br>view=FULL from a UC Davis campus/VPN egress, or with an insttoken (not injectable by the CLI yet). Check originalText is present; absence = not entitled.<br><code>--param doi=10.1016/j.enpol.2025.114712 --param view=FULL</code></div><div class="shape"><strong>accepted manuscript</strong> <code>objects-by-doi</code><br>List objects; if a choice whose @type contains AAM exists, fetch its $ URL with the same key header (outside the CLI: the object URL is not a declared endpoint); record version=acceptedVersion in UPC.<br><code>--param doi=10.1016/j.enpol.2025.114712</code></div>
+      <div class="pitfall">⚠ &#39;AUTHENTICATION_ERROR — Requestor configuration settings insufficient&#39; means the key is not provisioned for that API (or not entitled), not that the key is wrong.</div><div class="pitfall">⚠ A 200 response without originalText is metadata only: the key/IP is not entitled to full text for that item.</div><div class="pitfall">⚠ AAMs are post-peer-review but not the typeset version: never cite page numbers from them as the journal&#39;s.</div><div class="pitfall">⚠ Never scrape www.sciencedirect.com PDF routes (Cloudflare-gated against automation even with entitlement); use these APIs or a human click (pdf-harvest assisted mode).</div><div class="pitfall">⚠ Bulk full-text pulls need a TDM entitlement: ask the UC Davis library for an insttoken rather than looping on campus IP.</div>
+      <p class="sub">Use only for DOIs with prefix 10.1016 (and other Elsevier prefixes). Try Unpaywall first; come here for the version of record or when no OA copy exists.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (peer_reviewed) by Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26 — Publisher of record for a large share of the building-energy and energy-policy literature the pilot needs; the Article Retrieval API returns the version of record itself. Peer review is the journals&#39;; tier 1 is for the article of record, not an endorsement of every paper&#39;s claims.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>exhaustive</strong> (provider_asserted) — Exhaustive for Elsevier&#39;s own journals only.<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">access_model: <span class="chip">keyed</span> <span class="chip">subscription</span> <span class="chip">institutional</span><br>content_depth: <span class="chip">metadata</span> <span class="chip">abstract</span> <span class="chip">full_text</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international — Global literature; the pilot filters to US single-family housing at query time.</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (xml, json) · pdf_document (pdf) · landing: direct · cadence: continuous (active) — Articles published continuously; API versions change rarely.</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>article-api</code> <span class="chip">api_rest</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://api.elsevier.com/content/article · <a href="https://dev.elsevier.com/documentation/ArticleRetrievalAPI.wadl">docs</a></div>
+        <div class="sub">auth: api_key_header · ref <code>elsevier_api_key</code> · <a href="https://dev.elsevier.com/apikey/manage">get a key</a></div>
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /doi/{doi}?httpAccept={http_accept}&amp;view={view}</code> <span class="sub">article-by-doi</span>
+          <div class="sub">Retrieve an article by DOI (full text when entitled).</div>
+          <div class="sub">params: <code>doi</code>*, <code>http_accept</code>, <code>view</code></div>
+          <div class="example"><code>curl -H &#39;X-ELS-APIKey: $CREDENTIAL&#39; &#39;https://api.elsevier.com/content/article/doi/10.1016/j.enpol.2025.114712?httpAccept=text/xml&amp;view=META&#39;</code></div>
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /pii/{pii}?httpAccept={http_accept}&amp;view={view}</code> <span class="sub">article-by-pii</span>
+          <div class="sub">Retrieve an article by ScienceDirect PII (no slash, so no path-encoding question).</div>
+          <div class="sub">params: <code>pii</code>*, <code>http_accept</code>, <code>view</code></div>
+          <div class="example"><code>curl -H &#39;X-ELS-APIKey: $CREDENTIAL&#39; &#39;https://api.elsevier.com/content/article/pii/&lt;PII&gt;?httpAccept=text/xml&#39;</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:51:15.355Z</td><td><span class="badge bad">auth_invalid</span></td><td class="sub">auth:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>object-api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://api.elsevier.com/content/object · <a href="https://dev.elsevier.com/documentation/ObjectRetrievalAPI.wadl">docs</a></div>
+        <div class="sub">auth: api_key_header · ref <code>elsevier_api_key</code> · <a href="https://dev.elsevier.com/apikey/manage">get a key</a></div>
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /doi/{doi}?httpAccept={http_accept}</code> <span class="sub">objects-by-doi</span>
+          <div class="sub">List an article&#39;s retrievable objects (figures, supplementary files, and often AAM-PDF, the accepted author manuscript).</div>
+          <div class="sub">params: <code>doi</code>*, <code>http_accept</code></div>
+          <div class="example"><code>curl -H &#39;X-ELS-APIKey: $CREDENTIAL&#39; &#39;https://api.elsevier.com/content/object/doi/10.1016/j.enpol.2025.114712?httpAccept=application/json&#39;</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:51:15.619Z</td><td><span class="badge ok">ok</span></td><td class="sub">auth:pass http:pass api_parse:pass</td><td class="sub">300</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
+      </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">publishes → Energy and Buildings (Elsevier)</span></p>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references · added 2026-09-27</p>
+    </section>
+
+    <section class="detail" id="src=asc-5c57285fc052" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>UC Davis Library <span class="chip">aggregator</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">official_service</span> <span class="badge muted">asserted — never probed</span></h2>
+      <div class="sub">University of California, Davis · <a href="https://library.ucdavis.edu/">https://library.ucdavis.edu/</a> · <code>asc-5c57285fc052</code> · <code>sources/uc-davis-library/</code></div>
+      <p>UC Davis Library&#39;s licensed e-resources, reached as an entitlement: campus IP via the library VPN (Ivanti), or publisher SSO (&#39;Access through your institution&#39;) in the Hermes Chrome session.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Version-of-record PDFs from publishers that do not gate downloads on automation (IOP, Nature) with UC Davis entitlement · Human-in-the-loop retrieval (assisted mode) for bot-walled publishers (Elsevier web, Wiley, T&amp;F, SAGE, OUP)</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: not_applicable</span> <span class="chip">citation: follow_primary</span> <span class="chip">quantitative_claims: not_applicable</span> <span class="chip">technical_claims: not_applicable</span> <span class="chip">full_text: conditional</span> <span class="sub">→ resolve via publisher (What arrives is the publisher&#39;s version of record; cite the article by DOI, record the publisher URL as the UPC retrieval URL.)</span></p>
+      <div class="shape"><strong>entitled PDF retrieval</strong><br>Settle the network first (session_ctl.py netcheck; disable the Tailscale exit node so the Ivanti VPN carries traffic, egress in UC Davis space), Ellie passes any human check in the Hermes Chrome window, preflight must print READY, then harvest_sink.py + fetch_direct.py / the in-page harness at the vpn profile pace.<br><code>python3 ~/.hermes/skills/pdf-harvest/scripts/session_ctl.py preflight --workdir ~/pdf_scrape/&lt;corpus&gt;</code></div>
+      <div class="pitfall">⚠ Most big publishers gate programmatic PDF retrieval regardless of entitlement (measured 2 of 24 hosts succeeded); do not promise a bulk harvest — prefer OA (Unpaywall) and publisher APIs.</div><div class="pitfall">⚠ Toggling a VPN mid-session voids Cloudflare clearance; one network per session.</div><div class="pitfall">⚠ A clean 403 in a working session means no subscription: record no-subscription, never work around it.</div><div class="pitfall">⚠ Never defeat a CAPTCHA or Cloudflare challenge; Ellie clicks in their own browser context and the clearance is inherited.</div><div class="pitfall">⚠ Never navigate to /pdf or /pdfft URLs directly; fetch from the article page.</div>
+      <p class="sub">Last resort after Unpaywall/OpenAlex OA and publisher APIs. Requires Ellie present; plan multiple sessions for large corpora.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference) by Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26 — Not a publisher: it licenses and routes to publishers&#39; versions of record. Its authority for this registry is as a lawful access route, so tier 2; the authority of what it reaches belongs to each publisher.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>unknown</strong> (unknown) — Entitlement varies by publisher, title and year.<br>jurisdictions: US-CA (subnational)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">access_model: <span class="chip">institutional</span> <span class="chip">subscription</span><br>content_depth: <span class="chip">full_text</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international — Entitlement covers UC Davis affiliates only; content is global.</p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · html_page (html) · landing: landing_then_file · cadence: irregular (active) — Licences change at subscription renewals.</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>browser-session</code> <span class="chip">web_render</span> <span class="badge muted">asserted — never probed</span></h4>
+        <div class="sub">https://library.ucdavis.edu/</div>
+        <div class="sub">auth: session_cookie · ref <code>?</code></div>
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T00:50:52.759Z</td><td><span class="badge bad">auth_required</span></td><td class="sub">robots:pass auth:skip</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">companion_of → asc-9fa5a9529521</span></p>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references · added 2026-09-27</p>
+    </section>
+
+    <section class="detail" id="src=asc-51f30bd0a93f" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Unpaywall <span class="chip">index</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">discovery_aggregator</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">OurResearch · <a href="https://unpaywall.org/">https://unpaywall.org/</a> · <code>asc-51f30bd0a93f</code> · <code>sources/unpaywall/</code></div>
+      <p>Database of legal open-access copies of scholarly articles, keyed by DOI: for each DOI, the OA status and every known free-to-read location with version and licence.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> DOI -&gt; lawful free full-text URL (PDF or landing page), with version and licence · Deciding whether a paper needs keyed or institutional access at all</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: not_applicable</span> <span class="chip">citation: follow_primary</span> <span class="chip">quantitative_claims: avoid</span> <span class="chip">technical_claims: avoid</span> <span class="chip">full_text: preferred</span> <span class="sub">→ resolve via publisher (Cite the published article (DOI); the OA location is only where the bytes were read. Record host_type (publisher/repository) and version in the UPC source.)</span></p>
+      <div class="shape"><strong>find a legal OA copy</strong> <code>oa-by-doi</code><br>doi=10.x/y; prefer best_oa_location with version publishedVersion; record version + license in the UPC source; fetch url_for_pdf through the page reader / pdf-harvest.<br><code>--param doi=10.1016/j.enpol.2025.114712</code></div>
+      <div class="pitfall">⚠ An acceptedVersion (AAM) or submittedVersion copy is not the version of record: page numbers and wording can differ; record the version and do not cite page numbers from it as if they were the journal&#39;s.</div><div class="pitfall">⚠ oa_status bronze (free on the publisher site, no licence) can disappear; capture the bytes when found.</div><div class="pitfall">⚠ license may be null even for a free copy; free-to-read is not free-to-redistribute.</div><div class="pitfall">⚠ OpenAlex&#39;s best_oa_location carries the same data in batch (50 DOIs per call); use Unpaywall for single lookups or when OpenAlex lacks the DOI.</div><div class="pitfall">⚠ The email is mandatory; a placeholder like test@example.com is rejected, and a real address must be Ellie&#39;s choice (credential_ref scholarly_contact_email).</div>
+      <p class="sub">Run before any institutional attempt: a lawful OA copy removes the need to touch UC Davis or Elsevier entitlements.</p>
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference) by Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26 — The standard lawful-OA finder: it only lists copies hosted by publishers or repositories, with version and licence recorded. It says where a free copy is; the content&#39;s authority is the publisher&#39;s (or the repository&#39;s for AAMs). Tier 2 as an index.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>systematic</strong> (provider_asserted) — Covers Crossref DOIs; OA detection depends on crawl coverage of repositories.<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">access_model: <span class="chip">keyed</span><br>content_depth: <span class="chip">oa_location</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international — Global literature; the pilot filters to US single-family housing at query time.</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · landing: direct · cadence: daily (active) — Data refreshed continuously from publisher and repository crawls.</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://api.unpaywall.org/v2 · <a href="https://unpaywall.org/products/api">docs</a></div>
+        <div class="sub">auth: api_key_query · ref <code>scholarly_contact_email</code> · <a href="https://unpaywall.org/products/api">get a key</a></div>
+        
+        <div class="sub">limits: · 100000/day</div>
+        
+        <div class="endpoint">
+          <code>GET /{doi}</code> <span class="sub">oa-by-doi</span>
+          <div class="sub">OA status and legal free locations for one DOI.</div>
+          <div class="sub">params: <code>doi</code>*</div>
+          <div class="example"><code>https://api.unpaywall.org/v2/10.1016/j.enpol.2025.114712?email=$CREDENTIAL</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-27T01:24:18.331Z</td><td><span class="badge ok">ok</span></td><td class="sub">auth:pass http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      <h3>Relations</h3><p><span class="chip">companion_of → asc-1957a4f7bc82</span></p>
+      <h3>Discovery</h3>
+      <p class="sub">model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references · added 2026-09-27</p>
+    </section>
+
+<footer>Authoritative Source Registry — every access claim is backed by stored evidence, or it says so. Built by authority build-index; regenerate with <code>authority regen</code>.</footer>
+<script>
+(function () {
+  var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
+      fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
+  function apply() {
+    var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
+    document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
+      var show = (!text || tr.dataset.text.indexOf(text) !== -1)
+        && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
+        && (!st || tr.dataset.state === st)
+        && (!tier || tr.dataset.tier === tier)
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
+      tr.style.display = show ? "" : "none";
+    });
+  }
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
+  function route() {
+    var hash = location.hash.replace(/^#/, "");
+    var list = document.getElementById("list");
+    var showList = !hash || hash.indexOf("src=") !== 0;
+    list.hidden = !showList;
+    document.querySelectorAll(".detail").forEach(function (d) { d.hidden = true; });
+    if (!showList) {
+      var el = document.getElementById(hash);
+      if (el) el.hidden = false; else list.hidden = false;
+    }
+  }
+  window.addEventListener("hashchange", route);
+  document.querySelectorAll(".back").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); location.hash = ""; }); });
+  route();
+})();
+</script>

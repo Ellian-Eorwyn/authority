@@ -1,0 +1,72 @@
+{
+  "asr_spec_version": "0.3.0",
+  "registry_id": "reg-1db286e2fa94",
+  "facets": [
+    {
+      "id": "access_model",
+      "label": "Access model",
+      "description": "What it takes to get a response from the source's preferred access method. Orthogonal to authority: a keyed or subscription source is not more authoritative for being gated.",
+      "values": [
+        {
+          "id": "open",
+          "label": "Open",
+          "description": "No key or login; anyone can call it (possibly with a shared rate limit)."
+        },
+        {
+          "id": "keyed",
+          "label": "Keyed",
+          "description": "A free or self-service key, token or contact identifier is required or strongly expected (credential_ref)."
+        },
+        {
+          "id": "subscription",
+          "label": "Subscription",
+          "description": "Content is licensed; the key or session must carry a subscription entitlement for full text."
+        },
+        {
+          "id": "institutional",
+          "label": "Institutional",
+          "description": "Entitlement comes from Ellie's institution (UC Davis) via campus IP, library VPN, SSO session, or an institutional token."
+        }
+      ]
+    },
+    {
+      "id": "content_depth",
+      "label": "Content depth",
+      "description": "How far toward quotable text the source's responses go.",
+      "values": [
+        {
+          "id": "metadata",
+          "label": "Metadata",
+          "description": "Bibliographic records only (titles, authors, DOIs, venues, citation links)."
+        },
+        {
+          "id": "abstract",
+          "label": "Abstract",
+          "description": "Abstracts (or reconstructed abstracts) as well as metadata."
+        },
+        {
+          "id": "oa_location",
+          "label": "OA location",
+          "description": "Pointers to legal free-to-read copies (URL, version, licence)."
+        },
+        {
+          "id": "full_text",
+          "label": "Full text",
+          "description": "The article bytes themselves (PDF, XML, HTML)."
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "2.1.283",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:45:46.300Z",
+    "modified_at": null
+  },
+  "notes": "Two axes chosen so the deep-research skill can ask, e.g., --facet access_model=open --facet content_depth=full_text. Licence/OA status of an individual work is a per-record fact, not a source facet (see report)."
+}

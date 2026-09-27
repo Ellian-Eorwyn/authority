@@ -1,0 +1,447 @@
+{
+  "source_id": "asc-9fa5a9529521",
+  "aliases": {},
+  "identity": {
+    "name": "ScienceDirect",
+    "publisher": "Elsevier",
+    "homepage_url": "https://www.sciencedirect.com/",
+    "canonical_url": "https://www.sciencedirect.com/",
+    "description": "Elsevier's journal and book platform (Energy and Buildings, Energy Policy, Applied Energy, Energy Research & Social Science, The Electricity Journal …), reached programmatically through the Elsevier Article Retrieval and Object Retrieval APIs.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Elsevier",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "peer_reviewed"
+      ],
+      "rationale": "Publisher of record for a large share of the building-energy and energy-policy literature the pilot needs; the Article Retrieval API returns the version of record itself. Peer review is the journals'; tier 1 is for the article of record, not an endorsement of every paper's claims.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+      "asserted_at": "2026-09-27T00:49:28.964Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "full-text-retrieval",
+      "institutional-access"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": "Global literature; the pilot filters to US single-family housing at query time."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "access_model": [
+        "keyed",
+        "subscription",
+        "institutional"
+      ],
+      "content_depth": [
+        "metadata",
+        "abstract",
+        "full_text"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "structured_record",
+        "formats": [
+          "xml",
+          "json"
+        ],
+        "notes": "Article Retrieval: full-text-retrieval-response (coredata + originalText) when the key/insttoken is entitled; metadata/abstract otherwise."
+      },
+      {
+        "kind": "pdf_document",
+        "formats": [
+          "pdf"
+        ],
+        "notes": "Object Retrieval: article objects, often including AAM-PDF (accepted author manuscript)."
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": "The website's PDF route is bot-walled (Cloudflare) even with entitlement; the APIs are the sanctioned programmatic route."
+  },
+  "access": [
+    {
+      "access_id": "acc-2a7dfca98321",
+      "name": "article-api",
+      "type": "api_rest",
+      "base_url": "https://api.elsevier.com/content/article",
+      "docs_url": "https://dev.elsevier.com/documentation/ArticleRetrievalAPI.wadl",
+      "auth": {
+        "required": true,
+        "scheme": "api_key_header",
+        "credential_ref": "elsevier_api_key",
+        "location": {
+          "in": "header",
+          "name": "X-ELS-APIKey"
+        },
+        "signup_url": "https://dev.elsevier.com/apikey/manage",
+        "notes": "Key in header X-ELS-APIKey (credential_ref elsevier_api_key). Full text additionally needs entitlement: a campus IP or an institutional token in header X-ELS-Insttoken (credential_ref elsevier_insttoken). The reference CLI injects only ONE credential per method, so the insttoken cannot be sent by `authority fetch` today (see ext.hermes)."
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": 1000,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "Elsevier sets per-key quotas and throttles (typically on the order of 10 req/s with a weekly cap for Article Retrieval); read X-RateLimit-* headers and the key's settings page. Not independently verified."
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": "Use is governed by the Elsevier API Service Agreement and, for TDM, the institution's licence."
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-ca3f17e17adb",
+          "name": "article-by-doi",
+          "description": "Retrieve an article by DOI (full text when entitled).",
+          "http_method": "GET",
+          "path_template": "/doi/{doi}?httpAccept={http_accept}&view={view}",
+          "params": [
+            {
+              "name": "doi",
+              "required": true,
+              "type": "string",
+              "description": "Elsevier DOI (10.1016/…). The CLI URL-encodes the slash.",
+              "example": "10.1016/j.enpol.2025.114712"
+            },
+            {
+              "name": "http_accept",
+              "required": false,
+              "type": "string",
+              "description": "text/xml (default, full-text XML) or application/json; text/plain for plain text.",
+              "example": "text/xml"
+            },
+            {
+              "name": "view",
+              "required": false,
+              "type": "string",
+              "description": "META, META_ABS, META_ABS_REF, FULL (FULL needs entitlement).",
+              "example": "META_ABS"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "xml",
+            "record_path": null,
+            "notes": "full-text-retrieval-response; coredata carries dc:title, prism:doi, openaccess flags; originalText only when entitled."
+          },
+          "probe_hint": {
+            "params": {
+              "doi": "10.1016/j.enpol.2025.114712",
+              "http_accept": "text/xml",
+              "view": "META"
+            }
+          },
+          "example_request": "curl -H 'X-ELS-APIKey: $CREDENTIAL' 'https://api.elsevier.com/content/article/doi/10.1016/j.enpol.2025.114712?httpAccept=text/xml&view=META'",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-fdf3b44d3288",
+          "name": "article-by-pii",
+          "description": "Retrieve an article by ScienceDirect PII (no slash, so no path-encoding question).",
+          "http_method": "GET",
+          "path_template": "/pii/{pii}?httpAccept={http_accept}&view={view}",
+          "params": [
+            {
+              "name": "pii",
+              "required": true,
+              "type": "string",
+              "description": "ScienceDirect PII (e.g. S0301421525002198; Crossref alternative-id carries it).",
+              "example": "S0301421525002198"
+            },
+            {
+              "name": "http_accept",
+              "required": false,
+              "type": "string",
+              "description": "text/xml or application/json.",
+              "example": "text/xml"
+            },
+            {
+              "name": "view",
+              "required": false,
+              "type": "string",
+              "description": "META, META_ABS, FULL.",
+              "example": "META_ABS"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "xml",
+            "record_path": null,
+            "notes": ""
+          },
+          "example_request": "curl -H 'X-ELS-APIKey: $CREDENTIAL' 'https://api.elsevier.com/content/article/pii/<PII>?httpAccept=text/xml'",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "blocked",
+        "last_probe_id": "prb-663ff966fa94",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": "Probed 2026-09-27 with this machine's self-service key from a non-campus egress: HTTP 403 even for view=META on a gold-OA article, so the key is not provisioned for Article Retrieval (matches pdf-harvest's 2026-09-08 finding). The derived state is therefore blocked; re-probe after the library issues an insttoken or the key gains Article Retrieval, or from a campus/VPN egress."
+      },
+      "notes": ""
+    },
+    {
+      "access_id": "acc-bf1301a321fd",
+      "name": "object-api",
+      "type": "api_rest",
+      "base_url": "https://api.elsevier.com/content/object",
+      "docs_url": "https://dev.elsevier.com/documentation/ObjectRetrievalAPI.wadl",
+      "auth": {
+        "required": true,
+        "scheme": "api_key_header",
+        "credential_ref": "elsevier_api_key",
+        "location": {
+          "in": "header",
+          "name": "X-ELS-APIKey"
+        },
+        "signup_url": "https://dev.elsevier.com/apikey/manage",
+        "notes": "Same key as article-api. Verified 2026-09-27 with the self-service key. Self-service keys usually reach Object Retrieval even when Article Retrieval full text is refused (pdf-harvest uc-davis-route.md, measured 2026-09-08)."
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": 1000,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": "Per-key quotas as for article-api; not independently verified."
+      },
+      "robots": {
+        "applies": false,
+        "posture": "not_applicable",
+        "checked_path": null,
+        "tos_url": null,
+        "tos_notes": "Elsevier API Service Agreement."
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-28ad5cc7a7d5",
+          "name": "objects-by-doi",
+          "description": "List an article's retrievable objects (figures, supplementary files, and often AAM-PDF, the accepted author manuscript).",
+          "http_method": "GET",
+          "path_template": "/doi/{doi}?httpAccept={http_accept}",
+          "params": [
+            {
+              "name": "doi",
+              "required": true,
+              "type": "string",
+              "description": "Elsevier DOI (10.1016/…).",
+              "example": "10.1016/j.enpol.2025.114712"
+            },
+            {
+              "name": "http_accept",
+              "required": false,
+              "type": "string",
+              "description": "application/json for the object list.",
+              "example": "application/json"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "json",
+            "record_path": "choices.choice",
+            "notes": "Answers HTTP 300 Multiple Choices with {choices:{choice:[{@ref, @type, $}]}}; $ is the object URL (fetch with the same key header). @type values seen: IMAGE-DOWNSAMPLED, IMAGE-THUMBNAIL, IMAGE-HIGH-RES, ALTIMG; an AAM appears as a type containing 'AAM' (pdf-harvest fetch_elsevier_api.py). The 2026-09-27 probe DOI (a gold-OA article) listed 51 image objects and no AAM."
+          },
+          "probe_hint": {
+            "params": {
+              "doi": "10.1016/j.enpol.2025.114712",
+              "http_accept": "application/json"
+            }
+          },
+          "example_request": "curl -H 'X-ELS-APIKey: $CREDENTIAL' 'https://api.elsevier.com/content/object/doi/10.1016/j.enpol.2025.114712?httpAccept=application/json'",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-9f94e6751f50",
+        "last_verified_at": "2026-09-27T00:51:15.619Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "blocked",
+    "summary": "article-api: blocked; object-api: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Version-of-record text of Elsevier papers (Energy and Buildings, Energy Policy, Applied Energy, ERSS …) when the key or campus IP is entitled",
+      "Accepted author manuscripts (AAM-PDF) via Object Retrieval when full text is not entitled",
+      "Quoting findings, figures and numbers from Elsevier articles into a UPC corpus"
+    ],
+    "query_shapes": [
+      {
+        "task": "article metadata/abstract",
+        "access": "article-api",
+        "endpoint": "article-by-doi",
+        "recipe": "doi=10.1016/…, view=META_ABS, http_accept=text/xml.",
+        "example": "--param doi=10.1016/j.enpol.2025.114712 --param view=META_ABS"
+      },
+      {
+        "task": "full text of record (entitled)",
+        "access": "article-api",
+        "endpoint": "article-by-doi",
+        "recipe": "view=FULL from a UC Davis campus/VPN egress, or with an insttoken (not injectable by the CLI yet). Check originalText is present; absence = not entitled.",
+        "example": "--param doi=10.1016/j.enpol.2025.114712 --param view=FULL"
+      },
+      {
+        "task": "accepted manuscript",
+        "access": "object-api",
+        "endpoint": "objects-by-doi",
+        "recipe": "List objects; if a choice whose @type contains AAM exists, fetch its $ URL with the same key header (outside the CLI: the object URL is not a declared endpoint); record version=acceptedVersion in UPC.",
+        "example": "--param doi=10.1016/j.enpol.2025.114712"
+      }
+    ],
+    "pitfalls": [
+      "'AUTHENTICATION_ERROR — Requestor configuration settings insufficient' means the key is not provisioned for that API (or not entitled), not that the key is wrong.",
+      "A 200 response without originalText is metadata only: the key/IP is not entitled to full text for that item.",
+      "AAMs are post-peer-review but not the typeset version: never cite page numbers from them as the journal's.",
+      "Never scrape www.sciencedirect.com PDF routes (Cloudflare-gated against automation even with entitlement); use these APIs or a human click (pdf-harvest assisted mode).",
+      "Bulk full-text pulls need a TDM entitlement: ask the UC Davis library for an insttoken rather than looping on campus IP."
+    ],
+    "llm_notes": "Use only for DOIs with prefix 10.1016 (and other Elsevier prefixes). Try Unpaywall first; come here for the version of record or when no OA copy exists.",
+    "routing": {
+      "discovery": "not_applicable",
+      "citation": "preferred",
+      "quantitative_claims": "preferred",
+      "technical_claims": "preferred",
+      "full_text": "conditional"
+    },
+    "resolution": {
+      "strategy": "none_required",
+      "notes": "Publisher of record for its own journals."
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "Articles published continuously; API versions change rarely.",
+    "effective_date": null
+  },
+  "relations": [
+    {
+      "type": "publishes",
+      "target": {
+        "name": "Energy and Buildings (Elsevier)",
+        "url": "https://www.sciencedirect.com/journal/energy-and-buildings"
+      },
+      "notes": "One of the core journals for the pilot; others include Energy Policy, Applied Energy and Energy Research & Social Science."
+    }
+  ],
+  "discovery": {
+    "discovered_via": "model knowledge (Hermes scholarly registry pass), cross-checked against pdf-harvest references",
+    "retrieved_via": "",
+    "first_added": "2026-09-27T00:49:28.964Z",
+    "added_by": "Claude (Opus 5.5) — Hermes scholarly registry pass 2026-09-26",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "2.1.283",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:49:28.964Z",
+    "modified_at": "2026-09-27T00:52:23.026Z"
+  },
+  "ext": {
+    "hermes": {
+      "optional_credentials": [
+        {
+          "credential_ref": "elsevier_insttoken",
+          "location": {
+            "in": "header",
+            "name": "X-ELS-Insttoken"
+          },
+          "applies_to": [
+            "article-api",
+            "object-api"
+          ],
+          "notes": "Institutional token from UC Davis Library; the reference CLI cannot inject a second credential, so a Hermes script must add this header itself if Ellie obtains one."
+        }
+      ]
+    }
+  },
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The publisher's platform for its own journals' versions of record.",
+    "notes": "AAMs from Object Retrieval are author versions, not the version of record."
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "exhaustive",
+      "basis": "provider_asserted",
+      "notes": "Exhaustive for Elsevier's own journals only."
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+credentials.json
+fetched/
+.authority/
+*.tmp
+.*.tmp
+.DS_Store
