@@ -33,6 +33,12 @@ method MUST declare `credential_ref` (a registry-unique slug matching
 ({in, name}) saying where the key travels (`auth_underspecified` otherwise).
 `signup_url` tells a human where to obtain a key.
 
+A method may also declare a secret scheme with `required: false`: the
+credential is **optional**. The method works without it (e.g. a keyless quota)
+and a key only raises limits. A conforming tool sends an optional credential
+when its `credential_ref` resolves and fetches keyless otherwise, and redacts
+it from records exactly as a required one.
+
 **A secret value anywhere in a tracked file is the error
 `credential_in_profile`** — the validator scans for it (§08). Resolution of
 refs to values is §05. The convention of naming refs after an existing

@@ -882,6 +882,12 @@ export async function cmdFetch(args, ctx) {
       finishSkip("not_applicable", `credential "${acc.auth.credential_ref}" unresolved — tried: ${resolved.tried.join(", ")}`);
     }
     credValue = resolved.value;
+  } else if (acc.auth?.credential_ref && ["api_key_query", "api_key_header", "bearer_token"].includes(acc.auth.scheme)) {
+    // Optional credential (spec/03.2): required is false, so the method works
+    // keyless; send the key when it resolves (a larger quota), else go keyless.
+    const resolved = resolveCredential(acc.auth.credential_ref, reg.root);
+    record.credential = { ref: acc.auth.credential_ref, resolved_via: resolved.via };
+    credValue = resolved.value;
   }
 
   // 4. robots posture from the profile (latest probe wrote it)

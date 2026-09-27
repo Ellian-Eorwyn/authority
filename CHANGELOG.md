@@ -4,6 +4,19 @@ All notable changes to the ASR standard are documented here. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 standard adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Optional credentials** (spec/03.2): `auth.required: false` with a secret
+  scheme and `credential_ref` means the key is optional. `authority fetch`
+  sends it when it resolves and fetches keyless otherwise, redacted from the
+  record as before. First use: OpenAlex `api_key` (scholarly registry).
+
+### Fixed
+
+- Registry contact address: `eorwyn@ucdavis.edu` (was typed `eorywn@`).
+
 ## [0.3.0] — 2026-08-20
 
 Backward-compatible minor revision: **registry-local facets** turn the flat

@@ -89,10 +89,14 @@
       "docs_url": "https://docs.openalex.org/",
       "auth": {
         "required": false,
-        "scheme": "none",
-        "credential_ref": null,
+        "scheme": "api_key_query",
+        "credential_ref": "openalex_api_key",
         "signup_url": "https://openalex.org/rest-api",
-        "notes": "Keyless calls work for filters/lookups within the anonymous credit budget. OpenAlex offers a free API key (query param api_key) for uninterrupted search and a larger budget — proposed credential_ref openalex_api_key — and still honours a mailto contact (credential_ref scholarly_contact_email). The reference CLI injects a credential only when auth.required is true and only one per method, so neither is sent today; see ext.hermes. Never put a literal key or mailto in params."
+        "notes": "Keyless calls work for filters/lookups within the anonymous credit budget; anonymous search is throttled. OpenAlex's free API key (query param api_key) lifts that: the key is optional (required: false), so the reference CLI sends it when openalex_api_key resolves and fetches keyless otherwise, redacting it from every record (spec/03.2). The mailto contact rides in the User-Agent (registry user_agent_contact). Never put a literal key or mailto in params.",
+        "location": {
+          "in": "query",
+          "name": "api_key"
+        }
       },
       "limits": {
         "requests_per_second": 10,
@@ -348,7 +352,7 @@
           "applies_to": [
             "api"
           ],
-          "notes": "Free key from openalex.org; lifts the anonymous search throttle and credit budget. Not injectable by the reference CLI for a keyless method."
+          "notes": "Free key from openalex.org; lifts the anonymous search throttle and credit budget. Now declared in access[0].auth as an optional credential, which the reference CLI sends when it resolves (2026-09-27)."
         },
         {
           "credential_ref": "scholarly_contact_email",
@@ -359,7 +363,7 @@
           "applies_to": [
             "api"
           ],
-          "notes": "Polite-pool contact; awaiting Ellie's choice of contact email."
+          "notes": "Polite-pool contact eorwyn@ucdavis.edu (Ellie, 2026-09-27). Sent in the User-Agent; the CLI injects only one credential per method, and that slot is the API key."
         }
       ]
     }
