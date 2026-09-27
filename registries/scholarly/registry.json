@@ -1,0 +1,46 @@
+{
+  "registry_id": "reg-1db286e2fa94",
+  "asr_spec_version": "0.3.0",
+  "title": "Scholarly Literature",
+  "description": "Where and how academic literature may be discovered and honestly fetched, for the Hermes deep-research skill (pilot: residential electrification — heat pumps, HPWHs, induction, and electrical panel/service capacity).",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1000,
+    "user_agent_contact": ""
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/",
+    "facets": "facets.json"
+  },
+  "sources": [],
+  "counts": {
+    "sources": 0,
+    "access_methods": 0,
+    "endpoints": 0,
+    "probes": 0,
+    "fetches": 0
+  },
+  "integrity": {
+    "schema_hash": "sha256:de400063387a5fc0ac98af53e78f2d898efd8ac880591beebea9df107e664f4a"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority",
+      "tool_version": "0.3.0",
+      "model": null,
+      "method": "tool",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:45:20.753Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

@@ -1,0 +1,45 @@
+{
+  "asr_spec_version": "0.3.0",
+  "topics": [
+    {
+      "id": "scholarly-metadata",
+      "label": "Scholarly metadata",
+      "description": "Bibliographic records for articles, reports and books: DOI, title, authors, venue, year, abstract, references and citations. Used to find and identify literature; not itself quotable evidence.",
+      "parent": null,
+      "objective": "Pilot question: What barriers do electrical panel and service capacity create for replacing gas appliances with heat pumps, HPWHs and induction in existing US single-family homes, and what workarounds are documented? Stage: search and de-duplicate candidate literature (building-science, energy-policy and housing journals, conference papers, lab reports) by DOI."
+    },
+    {
+      "id": "open-access-discovery",
+      "label": "Open-access discovery",
+      "description": "Locating a legal, free-to-read copy of a known work (publisher OA, repository preprint or accepted manuscript) and its licence.",
+      "parent": "scholarly-metadata",
+      "objective": "Pilot question: What barriers do electrical panel and service capacity create for replacing gas appliances with heat pumps, HPWHs and induction in existing US single-family homes, and what workarounds are documented? Stage: for each candidate DOI, find a lawful OA copy before spending any institutional or keyed access."
+    },
+    {
+      "id": "full-text-retrieval",
+      "label": "Full-text retrieval",
+      "description": "Fetching the bytes of an article (PDF, XML, HTML) so quotations can be verified against stored source bytes (UPC).",
+      "parent": null,
+      "objective": "Pilot question: What barriers do electrical panel and service capacity create for replacing gas appliances with heat pumps, HPWHs and induction in existing US single-family homes, and what workarounds are documented? Stage: pull each selected paper into the project's UPC corpus so every quote about panel upgrades, service limits and workarounds passes the byte-for-byte gate."
+    },
+    {
+      "id": "institutional-access",
+      "label": "Institutional access",
+      "description": "Subscription content reached through an entitlement: a publisher API key (optionally with an institutional token) or the UC Davis Library's IP/SSO entitlement.",
+      "parent": "full-text-retrieval",
+      "objective": "Pilot question: What barriers do electrical panel and service capacity create for replacing gas appliances with heat pumps, HPWHs and induction in existing US single-family homes, and what workarounds are documented? Stage: retrieve the version of record for paywalled papers that the OA route could not supply, within the licence and politeness rules."
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "2.1.283",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-27T00:45:46.300Z",
+    "modified_at": null
+  },
+  "notes": "Hand-authored for the Hermes deep-research pilot (roadmap item 1). Topics describe the retrieval stages of a literature pipeline, not the subject matter; subject scoping is done per query."
+}
