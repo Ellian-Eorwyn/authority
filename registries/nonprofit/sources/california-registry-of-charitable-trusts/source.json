@@ -1,0 +1,196 @@
+{
+  "source_id": "asc-1a4b061f086c",
+  "aliases": {},
+  "identity": {
+    "name": "California Registry of Charitable Trusts",
+    "publisher": "California Department of Justice, Office of the Attorney General",
+    "homepage_url": "https://oag.ca.gov/charities",
+    "canonical_url": "https://oag.ca.gov/charities",
+    "description": "California's registry of charities: registration status (current, delinquent, suspended) and filed annual reports (RRF-1, with the 990 attached) for organizations soliciting in California.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "California Department of Justice, Office of the Attorney General",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "government_agency",
+        "regulation"
+      ],
+      "rationale": "The state regulator of charities; source of record for California registration status. Tier 1 for status.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T00:26:43.967Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "organization-identity",
+      "financials"
+    ],
+    "jurisdiction": {
+      "level": "subnational",
+      "regions": [
+        "US-CA"
+      ],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "content_depth": [
+        "status_record"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "registry search and records"
+      },
+      {
+        "kind": "pdf_document",
+        "formats": [
+          "pdf"
+        ],
+        "notes": "filed reports"
+      }
+    ],
+    "landing_pattern": "search_then_record",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-f4b46532bb81",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://oag.ca.gov/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-6fac029f590c",
+        "last_verified_at": "2026-09-30T00:26:44.055Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "California registration status (good standing or delinquent)",
+      "Filed RRF-1 reports"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "The registry search (rct.doj.ca.gov) is an interactive ASP.NET app; fetch record pages, don't automate the search form."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "acceptable",
+      "citation": "preferred",
+      "legal_status": "preferred"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T00:26:43.967Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:26:43.967Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "State charity regulator.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "exhaustive",
+      "basis": "provider_asserted",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US-CA"
+    ],
+    "jurisdiction_levels": [
+      "subnational"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

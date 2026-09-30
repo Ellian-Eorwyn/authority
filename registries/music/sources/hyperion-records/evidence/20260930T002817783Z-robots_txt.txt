@@ -1,0 +1,20 @@
+User-agent: *
+Disallow: /3rd Party/
+Disallow: /Anon/
+Disallow: /AnonMember/
+Disallow: /ARCHIVE/
+Disallow: /audiotest/
+Disallow: /css_new/
+Disallow: /css/
+Disallow: /Member/
+Disallow: /mp3_extr/
+Disallow: /notes/
+Disallow: /shop/
+Disallow: /site/
+Disallow: /Static/
+Disallow: /swf/
+Disallow: /Templates/
+Disallow: /Users/
+Disallow: /hyperdeal/
+Disallow: /tw.asp
+Sitemap: https://www.hyperion-records.co.uk/sitemap-albums.asp

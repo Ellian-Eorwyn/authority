@@ -1,0 +1,35 @@
+Sitemap: https://projects.propublica.org/sitemaps/projects-sitemaps/coronavirus-bailouts/siteindex.xml
+Sitemap: https://projects.propublica.org/sitemaps/projects-sitemaps/nypd-ccrb/siteindex.xml
+Sitemap: https://projects.propublica.org/sitemaps/projects-sitemaps/chicken/sitemap.xml.gz
+Sitemap: https://projects.propublica.org/sitemaps/projects-sitemaps/nonprofits/sitemap.xml.gz
+Sitemap: https://projects.propublica.org/sitemaps/projects-sitemaps/supreme-connections/sitemap.xml.gz
+
+User-Agent: *
+Allow: /checkup/$
+Disallow: /checkup/*
+Allow: /treatment/$
+Disallow: /527-explorer/search*
+Disallow: /treatment/*
+Disallow: /nursing-homes/findings/search*
+Disallow: /docdollars/search*
+Disallow: /docdollars/query*
+Disallow: /nonprofits/search*
+Disallow: /nonprofits/name_search*
+Disallow: /nonprofits/full_text_search*
+Disallow: /nonprofits/redirect_to_990*
+Disallow: /nonprofits/display_990*
+Disallow: /nonprofits/download-filing*
+Disallow: /nonprofits/download-xml*
+Disallow: /nonprofits/subscriptions/*
+Disallow: /itemizer/filing*
+Disallow: /electionbot/search*
+Disallow: /test/*
+Disallow: /stg/*
+Disallow: /staging/*
+
+# Sends bad Accept header that blows up rails
+# http://www.seokicks.de/robot.html
+User-Agent: SEOkicks-Robot
+Disallow: /
+User-Agent: seokicks
+Disallow: /

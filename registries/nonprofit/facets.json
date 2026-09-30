@@ -1,0 +1,40 @@
+{
+  "asr_spec_version": "0.4.0",
+  "registry_id": "reg-3e245840a8bb",
+  "facets": [
+    {
+      "id": "content_depth",
+      "label": "Content depth",
+      "description": "How much of a filing the source returns.",
+      "values": [
+        {
+          "id": "summary",
+          "label": "Summary figures",
+          "description": "Headline totals per filing (e.g. IRS SOI extract fields)."
+        },
+        {
+          "id": "full_return",
+          "label": "Full return",
+          "description": "The whole e-filed return as structured data (IRS XML)."
+        },
+        {
+          "id": "status_record",
+          "label": "Status record",
+          "description": "Registration or exemption status, not financial detail."
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-29T00:00:00.000Z",
+    "modified_at": null
+  },
+  "notes": ""
+}
