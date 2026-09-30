@@ -1,0 +1,209 @@
+{
+  "source_id": "asc-c61e0996e97a",
+  "aliases": {},
+  "identity": {
+    "name": "Philharmonia Baroque Orchestra & Chorale",
+    "publisher": "Philharmonia Baroque Orchestra & Chorale",
+    "homepage_url": "https://philharmonia.org/",
+    "canonical_url": "https://philharmonia.org/",
+    "description": "Philharmonia Baroque's official site: seasons, and its institutional giving page.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Philharmonia Baroque Orchestra & Chorale",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "professional_org"
+      ],
+      "rationale": "The orchestra's own statements about itself and whom it thanks: source of record for its supporters as it lists them.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T05:33:14.027Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "organization",
+      "seasons-and-programs"
+    ],
+    "jurisdiction": {
+      "level": "local",
+      "regions": [
+        "US-CA"
+      ],
+      "notes": "San Francisco, California."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "supporter and season pages"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-15469f177896",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://philharmonia.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-f72b44afeeca",
+          "name": "institutional-giving",
+          "description": "Institutional giving: how foundations and companies support it.",
+          "http_method": "GET",
+          "path_template": "/support/institutional-giving/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-817ab30510d2",
+        "last_verified_at": "2026-09-30T05:33:38.820Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Which foundations, companies and agencies support it (for funder research)"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "The institutional page may describe giving without listing supporters by name."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred",
+      "quantitative_claims": "conditional"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "irregular",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T05:33:14.027Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T05:33:14.027Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The orchestra's own site.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US-CA"
+    ],
+    "jurisdiction_levels": [
+      "local"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

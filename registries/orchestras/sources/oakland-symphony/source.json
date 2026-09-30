@@ -1,0 +1,210 @@
+{
+  "source_id": "asc-5f993ae27ce1",
+  "aliases": {},
+  "identity": {
+    "name": "Oakland Symphony",
+    "publisher": "East Bay Performing Arts",
+    "homepage_url": "https://www.oaklandsymphony.org/",
+    "canonical_url": "https://www.oaklandsymphony.org/",
+    "description": "Oakland Symphony's official site (legal name East Bay Performing Arts, EIN 94-3081554): seasons and sponsorship; its donor list is in its online program book.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "East Bay Performing Arts",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "professional_org"
+      ],
+      "rationale": "The orchestra's own statements about itself and whom it thanks: source of record for its supporters as it lists them.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T05:33:16.263Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "organization",
+      "seasons-and-programs"
+    ],
+    "jurisdiction": {
+      "level": "local",
+      "regions": [
+        "US-CA"
+      ],
+      "notes": "Oakland, California."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "supporter and season pages"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-12e622ba1d94",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.oaklandsymphony.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-07e7b5e06fc6",
+          "name": "business-sponsorship",
+          "description": "Business and corporate sponsorship.",
+          "http_method": "GET",
+          "path_template": "/support-us/businesses-corporate/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-7c53871ca3cd",
+        "last_verified_at": "2026-09-30T05:33:40.730Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Which foundations, companies and agencies support it (for funder research)"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "The full donor list is in the online program book on audienceaccess.co (see the Audience Access source).",
+      "Its legal name, East Bay Performing Arts, is what IRS records use."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred",
+      "quantitative_claims": "conditional"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "irregular",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T05:33:16.263Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T05:33:16.263Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The orchestra's own site.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US-CA"
+    ],
+    "jurisdiction_levels": [
+      "local"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

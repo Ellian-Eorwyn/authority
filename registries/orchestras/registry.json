@@ -20,19 +20,61 @@
   },
   "sources": [
     {
+      "source_id": "asc-426753b35db3",
+      "slug": "audience-access-online-program-books",
+      "name": "Audience Access (online program books)",
+      "path": "sources/audience-access-online-program-books/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-0e88070e0a77",
       "slug": "berkeley-symphony",
       "name": "Berkeley Symphony",
       "path": "sources/berkeley-symphony/",
       "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-3a5826577cd0",
+      "slug": "california-symphony",
+      "name": "California Symphony",
+      "path": "sources/california-symphony/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-3d5ac40ae4ec",
+      "slug": "marin-symphony",
+      "name": "Marin Symphony",
+      "path": "sources/marin-symphony/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-5f993ae27ce1",
+      "slug": "oakland-symphony",
+      "name": "Oakland Symphony",
+      "path": "sources/oakland-symphony/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-c61e0996e97a",
+      "slug": "philharmonia-baroque-orchestra-chorale",
+      "name": "Philharmonia Baroque Orchestra & Chorale",
+      "path": "sources/philharmonia-baroque-orchestra-chorale/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-2f159e049a30",
+      "slug": "santa-rosa-symphony",
+      "name": "Santa Rosa Symphony",
+      "path": "sources/santa-rosa-symphony/",
+      "verification_state": "verified"
     }
   ],
   "counts": {
-    "sources": 1,
-    "access_methods": 1,
-    "endpoints": 6,
-    "probes": 2,
-    "fetches": 1
+    "sources": 7,
+    "access_methods": 7,
+    "endpoints": 12,
+    "probes": 17,
+    "fetches": 7
   },
   "integrity": {
     "schema_hash": "sha256:d28d58ea66b9d8294d1d4bd57f0c966b5ee18bdf3c945c4c59d4ec19fc01c6b7"
