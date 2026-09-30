@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://provenance.dev/asr/0.4.0/schemas/profile.schema.json",
+  "title": "ASR Research Profile (profiles/<name>.json)",
+  "description": "A named, ordered selection of registries for one line of work (spec/11). A research profile says only WHERE to look: which registries, in what priority, optionally narrowed to some of each registry's own topics and facet values. It never restates or overrides anything a source profile owns (access, auth, limits, robots, routing), and it carries nothing about a client or a question. Not to be confused with a source profile (source.json, spec/02).",
+  "type": "object",
+  "properties": {
+    "asr_spec_version": { "type": "string" },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^prf-[0-9a-f]{12}$",
+      "description": "Content-addressed: prf- + first 12 hex of sha256(\"prf\\n\" + name) (spec/06.1)."
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Slug; MUST equal the file's basename without .json."
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "contact": {
+      "type": ["string", "null"],
+      "description": "URL or mailto: for whoever maintains the profile. Registries keep their own contact for fetch User-Agents."
+    },
+    "registries": {
+      "type": "array",
+      "minItems": 1,
+      "description": "In priority order: a consumer consults the first entry first and reports results grouped in this order.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Relative path from this profile file to the registry folder (the one holding registry.json). No absolute paths (spec/01.1 location independence)."
+          },
+          "registry_id": {
+            "type": "string",
+            "pattern": "^reg-[0-9a-f]{12}$",
+            "description": "The registry's own id, as a check that the path still points at the intended registry (profile_registry_mismatch)."
+          },
+          "use": {
+            "type": "string",
+            "description": "One line: what this registry is for within the profile."
+          },
+          "topics": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional narrowing to topic ids declared in THAT registry's topics.json (a topic's descendants are included). Absent = all topics."
+          },
+          "facets": {
+            "type": "object",
+            "additionalProperties": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "description": "Optional default facet filter, {<facet-id>: [<value-id>...]}, using THAT registry's facets.json (facets are registry-local, spec/01.5). Same semantics as query --facet: AND across axes, OR within one. A caller's own --facet on the same axis replaces the default."
+          },
+          "notes": { "type": "string" }
+        },
+        "required": ["path", "registry_id"],
+        "additionalProperties": true
+      }
+    },
+    "provenance": { "$ref": "provenance-stamp.schema.json" },
+    "notes": { "type": "string" },
+    "ext": { "type": "object", "additionalProperties": true }
+  },
+  "required": ["asr_spec_version", "profile_id", "name", "title", "registries"],
+  "additionalProperties": true
+}

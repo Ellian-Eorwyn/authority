@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.3.0/schemas/source.schema.json",
+  "$id": "https://provenance.dev/asr/0.4.0/schemas/source.schema.json",
   "title": "ASR Source Profile (source.json)",
   "description": "The operational profile of one authoritative source: what it is, why it is trusted, what it holds, how it is reached, and what evidence backs each access claim. A profile is a living document — probes update its verification blocks, humans update its adjudication and guidance — but it must never overstate: an access method's verification.state is DERIVED from probe records (§04), and machine-asserted authority is quarantined from human-adjudicated authority. What a source holds (content) and how it is reached (access) are separate blocks by design.",
   "type": "object",

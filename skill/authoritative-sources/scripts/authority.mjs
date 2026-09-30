@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// authority.mjs — the ASR reference CLI (spec 0.3.0). Zero dependencies,
+// authority.mjs — the ASR reference CLI (spec 0.4.0). Zero dependencies,
 // Node >= 18. Commands: init, add, validate, probe, fetch, creds, regen,
-// export, build-index, mint. The spec is normative; where this code and the
+// query, profile, export, build-index, mint. The spec is normative; where this code and the
 // spec disagree, the spec governs and this is the bug.
 //
 // Machine-facing commands print one JSON object in the harness tool-contract
@@ -14,7 +14,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   sha256Hex, sha256File, jcs,
-  mintRegId, mintAscId, mintAccId, mintEndId, mintPrbId, mintFchId, ID_PATTERNS,
+  mintRegId, mintAscId, mintAccId, mintEndId, mintPrbId, mintFchId, mintPrfId, ID_PATTERNS,
   isoMs, tsCompact, canonicalUrl, slugify, slugifyWithCollision, checkFilename,
   atomicWriteFile, writeJsonAtomic, appendJsonl, readJSON, readJSONLSafe, writeCsv,
   validateWithSchema, findStandardDirs, computeSchemaHash, resolveInside,
@@ -26,7 +26,7 @@ import {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const TOOL_NAME = "authority";
-const TOOL_VERSION = "0.3.0";
+const TOOL_VERSION = "0.4.0";
 
 // ---------------------------------------------------------------------------
 // arg parsing: positional args + --flag / --flag value / repeated --param k=v
@@ -92,8 +92,11 @@ function cmdMint(args) {
   } else if (kind === "fch") {
     if (!obj.endpoint_id || !obj.request_url || !obj.fetched_at) fail("mint fch needs {endpoint_id, request_url, fetched_at}");
     id = mintFchId(obj.endpoint_id, obj.request_url, obj.fetched_at);
+  } else if (kind === "prf") {
+    if (!obj.name) fail("mint prf needs {name}");
+    id = mintPrfId(obj.name);
   } else {
-    fail("mint kind must be one of: asc acc end prb fch");
+    fail("mint kind must be one of: asc acc end prb fch prf");
   }
   process.stdout.write(id + "\n");
 }
@@ -661,10 +664,13 @@ const USAGE = `authority.mjs — Authoritative Source Registry reference CLI (AS
   authority creds <set|list|check> [<ref>] [--registry <r>] [--keychain]
   authority regen <registry>
   authority query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>] [--json]
+  authority query --profile <name|path> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>]
+  authority profile list [--profiles <dir>]
+  authority profile show|validate <name|path> [--profiles <dir>]
   authority export <registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
   authority import <registry> <adapter> <record-id|--from file.json> [--live] [--out <dir>]
   authority build-index <registry>
-  authority mint <asc|acc|end|prb|fch>  < object.json
+  authority mint <asc|acc|end|prb|fch|prf>  < object.json
 `;
 
 async function main() {
@@ -680,6 +686,7 @@ async function main() {
     case "probe": return (await import("./authority_cmds.mjs")).cmdProbe(args, ctx());
     case "fetch": return (await import("./authority_cmds.mjs")).cmdFetch(args, ctx());
     case "creds": return (await import("./authority_cmds.mjs")).cmdCreds(args, ctx());
+    case "profile": return (await import("./authority_profiles.mjs")).cmdProfile(args, ctx());
     case "export": return (await import("./authority_cmds.mjs")).cmdExport(args, ctx());
     case "import": return (await import("./authority_import.mjs")).cmdImport(args, ctx());
     case "build-index": return (await import("./build-index.mjs")).cmdBuildIndex(args, ctx());

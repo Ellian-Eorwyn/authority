@@ -1,0 +1,375 @@
+{
+  "source_id": "asc-0e88070e0a77",
+  "aliases": {},
+  "identity": {
+    "name": "Berkeley Symphony",
+    "publisher": "Berkeley Symphony Orchestra",
+    "homepage_url": "https://www.berkeleysymphony.org/",
+    "canonical_url": "https://www.berkeleysymphony.org/",
+    "description": "Berkeley Symphony's official site (WordPress): season series and event pages, venue and people pages, mission and history, and season press releases as PDFs.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Berkeley Symphony Orchestra",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "professional_org"
+      ],
+      "rationale": "The orchestra's own statements about its own concerts and organization: source of record for programs, dates and self-description (not for claims about quality or history beyond its own).",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T00:26:27.242Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "seasons-and-programs",
+      "organization",
+      "press-and-news"
+    ],
+    "jurisdiction": {
+      "level": "local",
+      "regions": [
+        "US-CA"
+      ],
+      "notes": "Berkeley, California."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "event, series, venue and person pages"
+      },
+      {
+        "kind": "pdf_document",
+        "formats": [
+          "pdf"
+        ],
+        "notes": "season press releases under /wp-content/uploads/"
+      },
+      {
+        "kind": "structured_record",
+        "formats": [
+          "xml"
+        ],
+        "notes": "Yoast sitemaps listing every event, season, venue and person page"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-cb6907fcb531",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.berkeleysymphony.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-837c7690a73a",
+          "name": "sitemap-index",
+          "description": "Yoast sitemap index: page, season, event, venue, person and category sitemaps.",
+          "http_method": "GET",
+          "path_template": "/sitemap_index.xml",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "xml",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-a35038b1bea3",
+          "name": "event-sitemap",
+          "description": "Every event page URL with lastmod.",
+          "http_method": "GET",
+          "path_template": "/event-sitemap.xml",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "xml",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-91f14b6cb620",
+          "name": "event",
+          "description": "One concert: date, venue, program, performers.",
+          "http_method": "GET",
+          "path_template": "/event/{slug}/",
+          "params": [
+            {
+              "name": "slug",
+              "required": true,
+              "type": "string",
+              "description": "event slug from the event sitemap",
+              "example": "inheritance"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "slug": "inheritance"
+            }
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-6d0f347afd39",
+          "name": "series-overview",
+          "description": "The current season's series.",
+          "http_method": "GET",
+          "path_template": "/series-overview/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-3e70b2f05e73",
+          "name": "mission-and-history",
+          "description": "Mission and history.",
+          "http_method": "GET",
+          "path_template": "/mission-and-history/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-0dc10205451c",
+          "name": "meet-our-orchestra",
+          "description": "Musicians roster.",
+          "http_method": "GET",
+          "path_template": "/meet-our-orchestra/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-2ab0f1f2dbc3",
+        "last_verified_at": "2026-09-30T00:26:27.494Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "What Berkeley Symphony is playing, where and when, with whom",
+      "How the orchestra describes itself (mission, history, people)"
+    ],
+    "query_shapes": [
+      {
+        "task": "list concerts",
+        "access": "site",
+        "endpoint": "event-sitemap",
+        "recipe": "read <loc> entries, then fetch each /event/<slug>/ page through the page reader.",
+        "example": ""
+      }
+    ],
+    "pitfalls": [
+      "The WordPress REST API does not expose events or seasons (custom types); use the sitemaps.",
+      "Old seasons' event pages stay live; check the date on each page.",
+      "Season announcements are PDFs under /wp-content/uploads/<year>/<month>/."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred",
+      "quantitative_claims": "conditional"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "weekly",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T00:26:27.242Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:26:27.242Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The orchestra's own site.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "systematic",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US-CA"
+    ],
+    "jurisdiction_levels": [
+      "local"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

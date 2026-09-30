@@ -4,9 +4,29 @@ All notable changes to the ASR standard are documented here. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 standard adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.4.0] — 2026-09-29
+
+Backward-compatible minor revision: **research profiles** (spec/11), a layer
+above registries that records which registries a line of work consults, so a
+consumer need not hardcode registry names. Registries stamped 0.3.0 validate
+unchanged.
 
 ### Added
+
+- **Research profiles** (`profiles/<name>.json`, `schemas/profile.schema.json`,
+  spec/11): an ordered list of registries by relative path and id, each
+  optionally narrowed to its own topics and facet values. Content-addressed
+  `prf-` id (spec/06.1). A profile may never restate source-owned members
+  (`profile_overrides_source`).
+- `authority profile list|show|validate` and `authority query --profile`:
+  the §09 query per registry in profile order, grouped; a registry that does
+  not declare a requested facet axis or topic is skipped with the reason.
+- `authority mint prf`.
+- Probes record a redirect to a bot check or waiting room (Queue-it,
+  Cloudflare challenge) as `blocked`, not `moved` (spec/04.2): the site has not
+  moved, it refuses automated access. Such sources stay in the registry, so
+  another route can be profiled later.
+- First profile: `eei` (scholarly, then energy).
 
 - **Optional credentials** (spec/03.2): `auth.required: false` with a secret
   scheme and `credential_ref` means the key is optional. `authority fetch`

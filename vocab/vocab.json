@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.3.0/vocab/vocab.json",
+  "$id": "https://provenance.dev/asr/0.4.0/vocab/vocab.json",
   "title": "ASR Controlled Vocabularies",
   "description": "Single source of truth for every closed enum in the Authoritative Source Registry standard. Object schemas $ref these definitions (e.g. \"vocab.json#/$defs/verification_state\") so terminology is defined in exactly one place. Extensible fields anyOf a closed enum with an \"x-\" prefixed escape hatch; validators report x- values as advisory x_extension warnings so non-standard vocabulary stays visible.",
-  "asr_spec_version": "0.3.0",
+  "asr_spec_version": "0.4.0",
   "$defs": {
     "source_role": {
       "description": "What the source IS structurally. A publisher originates content; an aggregator or index points at content held elsewhere (its entries are pointers — agents should follow them to the underlying primary documents rather than citing the aggregator as the authority); a repository or archive holds deposited/preserved materials; a mirror re-serves another source; a community source is collectively authored.",
@@ -46,7 +46,7 @@
       "enum": ["verified", "stale", "asserted", "degraded", "broken", "blocked", "retired"]
     },
     "probe_outcome": {
-      "description": "Terminal outcome of one probe execution. ok: all checks passed. degraded: reachable with warning signs. failed: network or server failure (retryable class: timeout, dns_error, tls_error recorded separately for diagnosis). blocked: refused with an auth-independent 4xx. robots_disallowed: robots.txt disallows the probed path — no request was made past the robots check. auth_required: a credential was needed and did not resolve — the claim stays asserted, never an error. auth_invalid: a credential resolved but was rejected (401/403 with credential present). moved: permanent redirect off the profiled base URL — the profile needs updating.",
+      "description": "Terminal outcome of one probe execution. ok: all checks passed. degraded: reachable with warning signs. failed: network or server failure (retryable class: timeout, dns_error, tls_error recorded separately for diagnosis). blocked: refused with an auth-independent 4xx, or redirected to a bot-check or waiting-room interstitial (spec/04.2). robots_disallowed: robots.txt disallows the probed path — no request was made past the robots check. auth_required: a credential was needed and did not resolve — the claim stays asserted, never an error. auth_invalid: a credential resolved but was rejected (401/403 with credential present). moved: permanent redirect off the profiled base URL — the profile needs updating.",
       "enum": ["ok", "degraded", "failed", "blocked", "robots_disallowed", "auth_required", "auth_invalid", "timeout", "dns_error", "tls_error", "moved"]
     },
     "probe_check": {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.3.0/schemas/fetch-record.schema.json",
+  "$id": "https://provenance.dev/asr/0.4.0/schemas/fetch-record.schema.json",
   "title": "ASR Fetch Record (fetches.jsonl line and .fetch.json sidecar)",
   "description": "One exercised recipe: real data pulled through a profiled endpoint. The same object is appended to the source's tracked fetches.jsonl AND written beside the payload as <payload>.fetch.json — so the registry remembers every exercised recipe even after gitignored payloads are cleaned up. The retrieval block is field-compatible with UPC source.retrieval by construction (crosswalks/upc.md): a fetched payload can seed a UPC source without translation. Recorded URLs and params are secret-redacted; the payload itself is whatever the source returned.",
   "type": "object",

@@ -70,9 +70,11 @@ node scripts/authority.mjs fetch <registry> <source> <endpoint> [--param k=v ...
 node scripts/authority.mjs creds <set|list|check> [<ref>] [--registry <r>] [--keychain]
 node scripts/authority.mjs regen <registry>
 node scripts/authority.mjs query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>]
+node scripts/authority.mjs query --profile <name|path> [--facet name=value ...] [--topic <id>] [--task <t>]
+node scripts/authority.mjs profile list|show|validate [<name|path>] [--profiles <dir>]
 node scripts/authority.mjs export <registry> --format csv|json|markdown|agent-card|pi-canonical-sources|pi-domain-strategies|pi-provider-stub [-o <file>]
 node scripts/authority.mjs build-index <registry>
-node scripts/authority.mjs mint <asc|acc|end|prb|fch>  < object.json
+node scripts/authority.mjs mint <asc|acc|end|prb|fch|prf>  < object.json
 ```
 
 - **validate** — the spec/08 rule engine: schemas, recomputed ids, the
@@ -91,6 +93,12 @@ node scripts/authority.mjs mint <asc|acc|end|prb|fch>  < object.json
 - **query** — faceted source selection over `scope.facets` + topic/region: AND
   across axes, OR within one; `--task` ranks by routing disposition then tier
   then verification. Read-only; each hit carries the agent-card fields.
+- **profile / query --profile** — research profiles (spec/11): a named,
+  ordered set of registries for a line of work (`profiles/<name>.json`, e.g.
+  `eei`). `query --profile` runs the query per registry in profile order,
+  results grouped; a registry that does not declare a requested facet axis or
+  topic is skipped with the reason, never widened. A profile only chooses
+  where to look; it can never loosen a source's access, limits or robots.
 - **build-index** — self-contained offline `index.html` browser with
   verification badges and credential coverage.
 

@@ -1,0 +1,187 @@
+{
+  "source_id": "asc-589c3f91b797",
+  "aliases": {},
+  "identity": {
+    "name": "Alex Nante (official site)",
+    "publisher": "Alex Nante",
+    "homepage_url": "https://alexnante.com/en/",
+    "canonical_url": "https://alexnante.com/en",
+    "description": "Composer Alex Nante's official site: biography, works list and news. His publisher is Durand Salabert Eschig (Universal Music Publishing).",
+    "languages": [
+      "en",
+      "fr",
+      "es"
+    ],
+    "operator": {
+      "name": "Alex Nante",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "professional_org"
+      ],
+      "rationale": "The composer's own statements about his works and premieres. Tier 2 (self-description).",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T00:27:25.945Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "performers",
+      "composers-and-works"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "reader_access": [
+        "free"
+      ],
+      "voice": [
+        "artist"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "biography, works, news"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-3117c9b793ae",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://alexnante.com/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "no_robots",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-1ff8d1be019b",
+        "last_verified_at": "2026-09-30T00:29:13.263Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Alex Nante's biography, works list and premieres (e.g. Vater unser)"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "The site is multilingual (French default); use the /en/ pages."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "acceptable",
+      "citation": "preferred"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "irregular",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T00:27:25.945Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:27:25.945Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

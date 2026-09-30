@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.3.0/schemas/registry.schema.json",
+  "$id": "https://provenance.dev/asr/0.4.0/schemas/registry.schema.json",
   "title": "ASR Registry Manifest (registry.json)",
   "description": "The machine-owned root manifest of a registry. It is a REGENERABLE projection of the source profiles plus hand-set registry metadata (title, defaults, contact): `authority regen` rebuilds sections, the source index, counts, and integrity atomically, and doing so is also the crash-recovery move. Tools resolve objects through `sections` and the source index — never by hard-coding paths. The manifest is self-describing: `readme` and `rules_note` teach a tool that has never heard of ASR what the folder is.",
   "type": "object",

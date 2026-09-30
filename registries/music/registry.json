@@ -1,0 +1,152 @@
+{
+  "registry_id": "reg-6a6e91e4038a",
+  "asr_spec_version": "0.4.0",
+  "title": "Music Writing and Reference",
+  "description": "Writing about music for listeners and presenters: program notes, liner notes, essays, criticism, local arts press, artists' own sites, and reference works. Built for orchestra programs; free-to-read sources are marked with the reader_access facet.",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1000,
+    "user_agent_contact": "mailto:eorwyn@ucdavis.edu"
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/",
+    "facets": "facets.json"
+  },
+  "sources": [
+    {
+      "source_id": "asc-589c3f91b797",
+      "slug": "alex-nante-official-site",
+      "name": "Alex Nante (official site)",
+      "path": "sources/alex-nante-official-site/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-71b4523af074",
+      "slug": "bachtrack",
+      "name": "Bachtrack",
+      "path": "sources/bachtrack/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-e55663f3cd37",
+      "slug": "berkeleyside",
+      "name": "Berkeleyside",
+      "path": "sources/berkeleyside/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-832589156add",
+      "slug": "broadwayworld",
+      "name": "BroadwayWorld",
+      "path": "sources/broadwayworld/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-c98e4b6aaea4",
+      "slug": "classical-california-kdfc",
+      "name": "Classical California (KDFC)",
+      "path": "sources/classical-california-kdfc/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-6ba4cdd53e89",
+      "slug": "hyperion-records",
+      "name": "Hyperion Records",
+      "path": "sources/hyperion-records/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-bee48e422790",
+      "slug": "imslp",
+      "name": "IMSLP",
+      "path": "sources/imslp/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-723784965199",
+      "slug": "kent-nagano-official-site",
+      "name": "Kent Nagano (official site)",
+      "path": "sources/kent-nagano-official-site/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-90e9562b826f",
+      "slug": "la-phil",
+      "name": "LA Phil",
+      "path": "sources/la-phil/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-a677dba52f01",
+      "slug": "mari-kodama-official-site",
+      "name": "Mari Kodama (official site)",
+      "path": "sources/mari-kodama-official-site/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-3113500a6f80",
+      "slug": "san-francisco-classical-voice",
+      "name": "San Francisco Classical Voice",
+      "path": "sources/san-francisco-classical-voice/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-be009952416e",
+      "slug": "san-francisco-symphony",
+      "name": "San Francisco Symphony",
+      "path": "sources/san-francisco-symphony/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-cee707dcc035",
+      "slug": "substack",
+      "name": "Substack",
+      "path": "sources/substack/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-e68bd10fd8a9",
+      "slug": "the-art-of-listening",
+      "name": "The Art of Listening",
+      "path": "sources/the-art-of-listening/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-99cd7dd3796c",
+      "slug": "wikipedia-english",
+      "name": "Wikipedia (English)",
+      "path": "sources/wikipedia-english/",
+      "verification_state": "verified"
+    }
+  ],
+  "counts": {
+    "sources": 15,
+    "access_methods": 18,
+    "endpoints": 5,
+    "probes": 52,
+    "fetches": 0
+  },
+  "integrity": {
+    "schema_hash": "sha256:d28d58ea66b9d8294d1d4bd57f0c966b5ee18bdf3c945c4c59d4ec19fc01c6b7"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority",
+      "tool_version": "0.4.0",
+      "model": null,
+      "method": "tool",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:22:00.038Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

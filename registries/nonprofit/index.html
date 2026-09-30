@@ -1,0 +1,337 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nonprofit Filings — ASR registry</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1d21; --muted:#6a737d; --line:#e1e4e8; --card:#f6f8fa;
+          --ok:#116329; --okbg:#dafbe1; --warn:#7d4e00; --warnbg:#fff8c5; --bad:#a40e26; --badbg:#ffebe9; --chip:#eaeef2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+            --ok:#3fb950; --okbg:#12261e; --warn:#d29922; --warnbg:#272115; --bad:#f85149; --badbg:#25171c; --chip:#21262d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font:14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; } h2 { font-size:18px; } h3 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:20px 0 6px; }
+  h4 { margin: 0 0 2px; font-size: 14px; }
+  a { color:inherit; } .sub { color:var(--muted); font-size:12.5px; } .muted { color:var(--muted); }
+  code { background:var(--chip); padding:1px 5px; border-radius:4px; font:12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap:anywhere; }
+  .chip { display:inline-block; background:var(--chip); border-radius:10px; padding:0 8px; font-size:11.5px; white-space:nowrap; }
+  .chip.tier.adj { background:var(--okbg); color:var(--ok); font-weight:600; }
+  .chip.tier.ass { background:var(--warnbg); color:var(--warn); }
+  .badge { display:inline-block; border-radius:6px; padding:1px 8px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--okbg); color:var(--ok); } .badge.warn { background:var(--warnbg); color:var(--warn); }
+  .badge.bad { background:var(--badbg); color:var(--bad); } .badge.muted { background:var(--chip); color:var(--muted); }
+  .banner { margin:10px 0 16px; } .stat { margin-right:14px; } .stat.ok b { color:var(--ok); } .stat.warn b { color:var(--warn); } .stat.bad b { color:var(--bad); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .filters input, .filters select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:13px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  table.mini td, table.mini th { padding:3px 8px; font-size:12px; }
+  .access, .shape { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .endpoint { border-top:1px dashed var(--line); margin-top:8px; padding-top:8px; }
+  .example { margin-top:4px; }
+  .pitfall { color:var(--warn); margin:4px 0; }
+  .bestfor { font-size:15px; }
+  footer { margin-top:28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:10px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
+</style>
+<h1>Nonprofit Filings</h1>
+<div class="sub">US nonprofit filings: identity (EIN, exemption status), Form 990 financials, staff and governance counts, and (later) grants made by private foundations. The filed return is the source of record; aggregators are for finding it. — ASR registry <code>reg-3e245840a8bb</code>, spec 0.4.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="banner"><span class="stat ok"><b>4</b> verified</span></div>
+
+<main id="list">
+  <div class="filters">
+    <input id="q" type="search" placeholder="filter by name…">
+    <select id="ftopic"><option value="">topic: all</option><option>financials</option><option>grants-made</option><option>organization-identity</option><option>staff-and-governance</option></select>
+    <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
+    <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>web_fetch</option></select>
+    <select class="ffacet" data-facet="content_depth"><option value="">Content depth: all</option><option>full_return</option><option>status_record</option><option>summary</option></select>
+  </div>
+  <div class="tablewrap">
+  <table id="tbl">
+    <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
+    <tr data-topics="organization-identity financials" data-facets="content_depth:status_record" data-state="verified" data-tier="1" data-types="web_fetch" data-text="california registry of charitable trusts california department of justice, office of the attorney general california-registry-of-charitable-trusts">
+      <td><a href="#src=asc-1a4b061f086c">California Registry of Charitable Trusts</a><div class="sub">California Department of Justice, Office of the Attorney General</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">organization-identity</span> <span class="chip">financials</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="financials staff-and-governance grants-made" data-facets="content_depth:full_return" data-state="verified" data-tier="1" data-types="api_rest web_fetch" data-text="givingtuesday 990 data lake givingtuesday data commons givingtuesday-990-data-lake">
+      <td><a href="#src=asc-595175c50808">GivingTuesday 990 Data Lake</a><div class="sub">GivingTuesday Data Commons</div></td>
+      <td><span class="chip">mirror</span><div class="sub">official_mirror</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">financials</span> <span class="chip">staff-and-governance</span> <span class="chip">grants-made</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">monthly</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="organization-identity" data-facets="content_depth:status_record" data-state="verified" data-tier="1" data-types="web_fetch" data-text="irs tax exempt organization search internal revenue service irs-tax-exempt-organization-search">
+      <td><a href="#src=asc-e73b7f1f7746">IRS Tax Exempt Organization Search</a><div class="sub">Internal Revenue Service</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">organization-identity</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">monthly</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="organization-identity financials staff-and-governance" data-facets="content_depth:summary" data-state="verified" data-tier="2" data-types="api_rest web_fetch" data-text="propublica nonprofit explorer propublica propublica-nonprofit-explorer">
+      <td><a href="#src=asc-4a846ff1752f">ProPublica Nonprofit Explorer</a><div class="sub">ProPublica</div></td>
+      <td><span class="chip">aggregator</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">organization-identity</span> <span class="chip">financials</span> <span class="chip">staff-and-governance</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">monthly</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+  </table>
+  </div>
+
+  
+</main>
+
+
+    <section class="detail" id="src=asc-1a4b061f086c" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>California Registry of Charitable Trusts <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">California Department of Justice, Office of the Attorney General · <a href="https://oag.ca.gov/charities">https://oag.ca.gov/charities</a> · <code>asc-1a4b061f086c</code> · <code>sources/california-registry-of-charitable-trusts/</code></div>
+      <p>California&#39;s registry of charities: registration status (current, delinquent, suspended) and filed annual reports (RRF-1, with the 990 attached) for organizations soliciting in California.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> California registration status (good standing or delinquent) · Filed RRF-1 reports</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: preferred</span> <span class="chip">legal_status: preferred</span></p>
+      
+      <div class="pitfall">⚠ The registry search (rct.doj.ca.gov) is an interactive ASP.NET app; fetch record pages, don&#39;t automate the search form.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, regulation) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — The state regulator of charities; source of record for California registration status. Tier 1 for status.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>exhaustive</strong> (provider_asserted)<br>jurisdictions: US-CA (subnational)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">content_depth: <span class="chip">status_record</span></p>
+      <h3>Jurisdiction</h3><p class="sub">subnational · US-CA</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: search_then_record · cadence: continuous (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://oag.ca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:44.055Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-595175c50808" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>GivingTuesday 990 Data Lake <span class="chip">mirror</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">official_mirror</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">GivingTuesday Data Commons · <a href="https://990data.givingtuesday.org/">https://990data.givingtuesday.org/</a> · <code>asc-595175c50808</code> · <code>sources/givingtuesday-990-data-lake/</code></div>
+      <p>Public mirror of the IRS Form 990-series e-file returns as the original XML, one file per return keyed by the IRS object id, on a public S3 bucket.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Employee and volunteer counts (Part I lines 5-6) · Any line of the return, byte for byte, for quote-checked facts · Foundation grant lists (990-PF, Schedule I) for funder research</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: not_applicable</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span></p>
+      <div class="shape"><strong>staff count for a year</strong> <code>return-xml</code><br>object_id from ProPublica organization.latest_object_id (or its filings); read TaxYr and TotalEmployeeCnt / TotalVolunteersCnt.<br><code>--param object_id=202611629349301406</code></div>
+      <div class="pitfall">⚠ TotalEmployeeCnt is the number of W-2s issued in the calendar year, not staff or FTEs. For an orchestra it includes every per-service musician, so it can be far larger than the office staff.</div><div class="pitfall">⚠ TaxYr is the year the fiscal year began: TaxYr 2024 with TaxPeriodEndDt 2025-06-30 is FY2024-25. Label figures by the period dates.</div><div class="pitfall">⚠ The file starts with a UTF-8 BOM; strip it before XML parsing, but quote from the stored bytes.</div><div class="pitfall">⚠ Paper filings and very recent returns are absent; a 404 means not mirrored, not &#39;no return&#39;.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (primary_dataset) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — The bytes are the organization&#39;s own e-filed return as released by the IRS (the source of record), mirrored unmodified. Tier 1 for what a return says; the mirror adds nothing.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>systematic</strong> (provider_asserted) — E-filed 990, 990-EZ, 990-PF, 990-T returns released by the IRS.<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">content_depth: <span class="chip">full_return</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (xml) · landing: direct · cadence: monthly (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>xml</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://gt990datalake-rawdata.s3.amazonaws.com · <a href="https://990data.givingtuesday.org/">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /EfileData/XmlFiles/{object_id}_public.xml</code> <span class="sub">return-xml</span>
+          <div class="sub">One e-filed return by IRS object id.</div>
+          <div class="sub">params: <code>object_id</code>*</div>
+          <div class="example"><code>https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202611629349301406_public.xml</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:40.854Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://990data.givingtuesday.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:41.215Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-e73b7f1f7746" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>IRS Tax Exempt Organization Search <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Internal Revenue Service · <a href="https://www.irs.gov/charities-non-profits/search-for-tax-exempt-organizations">https://www.irs.gov/charities-non-profits/search-for-tax-exempt-organizations</a> · <code>asc-e73b7f1f7746</code> · <code>sources/irs-tax-exempt-organization-search/</code></div>
+      <p>The IRS&#39;s own search of exempt organizations: Publication 78 deductibility, automatic revocations, determination letters, and 990-N (e-Postcard) filings.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Is the organization currently exempt and eligible for deductible gifts? · Revocations and determination letters</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: preferred</span> <span class="chip">legal_status: preferred</span></p>
+      
+      <div class="pitfall">⚠ The search itself (apps.irs.gov/app/eos) is an interactive app; record status by EIN with the date checked.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — The IRS is the authority on federal exemption status. Tier 1 for status; it carries no financial detail.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>exhaustive</strong> (provider_asserted)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">content_depth: <span class="chip">status_record</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: search_then_record · cadence: monthly (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.irs.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:42.716Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-4a846ff1752f" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>ProPublica Nonprofit Explorer <span class="chip">aggregator</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">ProPublica · <a href="https://projects.propublica.org/nonprofits/">https://projects.propublica.org/nonprofits/</a> · <code>asc-4a846ff1752f</code> · <code>sources/propublica-nonprofit-explorer/</code></div>
+      <p>Searchable republication of IRS exempt-organization data: the EO Business Master File and the IRS SOI annual extract of Form 990 financial fields, with links to each filing. Keyless JSON API.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Finding an organization&#39;s EIN and every filing year · Headline revenue, expenses, assets and contributions by tax year · latest_object_id, the key to the full IRS XML return</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: follow_primary</span> <span class="chip">quantitative_claims: acceptable</span> <span class="sub">→ resolve via source_of_record (Cite the filed Form 990 (EIN, tax period, object id); ProPublica is where it was found.)</span></p>
+      <div class="shape"><strong>EIN from a name</strong> <code>org-search</code><br>q=&lt;name&gt;; check city/state and NTEE (A69 = symphony orchestras) before trusting a hit.<br><code>--param q=&quot;Berkeley Symphony&quot;</code></div><div class="shape"><strong>financial history</strong> <code>organization</code><br>ein=&lt;digits&gt;; filings_with_data[] newest first; tax_prd_yr is the year the fiscal year STARTED (tax_prd 202307 = FY Jul 2023–Jun 2024).<br><code>--param ein=237219508</code></div>
+      <div class="pitfall">⚠ No employee or volunteer counts: those are in the full return (Part I lines 5-6); take latest_object_id to the IRS e-file XML (990 data lake).</div><div class="pitfall">⚠ The XML download and the full-filing pages sit behind a bot check (HTTP 403 &#39;Security Check&#39;); never try to get around it. Use the 990 data lake for the XML.</div><div class="pitfall">⚠ filings_with_data lags the filings by a year or more; filings_without_data lists newer returns that only have a PDF.</div><div class="pitfall">⚠ formtype: 0 = 990, 1 = 990-EZ, 2 = 990-PF.</div><div class="pitfall">⚠ Figures are the IRS SOI extract&#39;s, which can differ from the return after amendments; cite the return (EIN, tax period, object id).</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (curated_reference, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Faithful republication of IRS data by a nonprofit newsroom, widely used and keyless. Tier 2: it is a finder and summary, not the filing itself; figures should be cited to the return (tax year, object id).<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>systematic</strong> (provider_asserted) — All organizations in the IRS EO BMF; extracted financials for e-filed years.<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">content_depth: <span class="chip">summary</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · pdf_document (pdf) · landing: direct · cadence: monthly (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://projects.propublica.org/nonprofits/api/v2 · <a href="https://projects.propublica.org/nonprofits/api">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /search.json?q={q}&amp;page={page}</code> <span class="sub">org-search</span>
+          <div class="sub">Find organizations by name/keyword; returns EIN, NTEE, city, state.</div>
+          <div class="sub">params: <code>q</code>*, <code>page</code></div>
+          <div class="example"><code>https://projects.propublica.org/nonprofits/api/v2/search.json?q=Berkeley%20Symphony</code></div>
+          <div class="sub">pagination: page_number</div>
+        </div>
+        <div class="endpoint">
+          <code>GET /organizations/{ein}.json</code> <span class="sub">organization</span>
+          <div class="sub">One organization by EIN with every filing ProPublica has (with and without extracted data).</div>
+          <div class="sub">params: <code>ein</code>*</div>
+          <div class="example"><code>https://projects.propublica.org/nonprofits/api/v2/organizations/237219508.json</code></div>
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:39.454Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://projects.propublica.org/nonprofits/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:39.536Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+<footer>Authoritative Source Registry — every access claim is backed by stored evidence, or it says so. Built by authority build-index; regenerate with <code>authority regen</code>.</footer>
+<script>
+(function () {
+  var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
+      fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
+  function apply() {
+    var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
+    document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
+      var show = (!text || tr.dataset.text.indexOf(text) !== -1)
+        && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
+        && (!st || tr.dataset.state === st)
+        && (!tier || tr.dataset.tier === tier)
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
+      tr.style.display = show ? "" : "none";
+    });
+  }
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
+  function route() {
+    var hash = location.hash.replace(/^#/, "");
+    var list = document.getElementById("list");
+    var showList = !hash || hash.indexOf("src=") !== 0;
+    list.hidden = !showList;
+    document.querySelectorAll(".detail").forEach(function (d) { d.hidden = true; });
+    if (!showList) {
+      var el = document.getElementById(hash);
+      if (el) el.hidden = false; else list.hidden = false;
+    }
+  }
+  window.addEventListener("hashchange", route);
+  document.querySelectorAll(".back").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); location.hash = ""; }); });
+  route();
+})();
+</script>
