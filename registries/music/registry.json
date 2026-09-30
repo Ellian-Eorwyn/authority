@@ -348,7 +348,7 @@
     "access_methods": 51,
     "endpoints": 13,
     "probes": 154,
-    "fetches": 0
+    "fetches": 12
   },
   "integrity": {
     "schema_hash": "sha256:d28d58ea66b9d8294d1d4bd57f0c966b5ee18bdf3c945c4c59d4ec19fc01c6b7"

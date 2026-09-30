@@ -62,7 +62,7 @@
         "mixed"
       ],
       "voice": [
-        "presenter"
+        "platform"
       ]
     }
   },
@@ -305,7 +305,8 @@
     ],
     "pitfalls": [
       "Posts with audience 'only_paid' are cut short for non-subscribers; screen them out for free-to-read lists.",
-      "The archive API is undocumented; if it changes, fall back to the RSS feed and SearXNG site: search."
+      "The archive API is undocumented; if it changes, fall back to the RSS feed and SearXNG site: search.",
+      "Published by a chamber-music presenter, but its signed essays are critics' writing, not concert copy: they count as independent essays that may be linked or quoted with credit (Ellie, 2026-09-30)."
     ],
     "llm_notes": "",
     "routing": {
