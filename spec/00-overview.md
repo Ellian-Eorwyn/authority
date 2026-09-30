@@ -1,6 +1,6 @@
 # ASR 00 — Overview
 
-**Authoritative Source Registry (ASR), version 0.3.0.** This specification
+**Authoritative Source Registry (ASR), version 0.4.0.** This specification
 defines a tool-independent format for per-domain registries of authoritative
 sources, profiled operationally. The key words MUST, MUST NOT, SHOULD, SHOULD
 NOT, and MAY are to be interpreted as described in RFC 2119.
@@ -159,11 +159,13 @@ REGISTRY ──contains──▶ SOURCE ──offers──▶ ACCESS METHOD ─�
 | Endpoint | inline in an access method, `endpoints[]` | §03 |
 | Probe record | `sources/<slug>/probes.jsonl` + `evidence/` | §04 |
 | Fetch record | `sources/<slug>/fetches.jsonl` + sidecars | §07 |
+| Research profile | `profiles/<name>.json` (above registries) | §11 |
 
 Credentials are references resolved outside the registry's tracked files (§05).
 Identifiers and their recipes are specified in §06; conformance levels, rules,
 and error codes in §08; projections and exports in §09; federation, upstream
-provenance, and import in §10.
+provenance, and import in §10; research profiles, which select registries
+for a line of work, in §11.
 
 ## 0.6 Self-containment and governance
 

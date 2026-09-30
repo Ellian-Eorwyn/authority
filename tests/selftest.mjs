@@ -12,8 +12,10 @@ import {
   canonicalUrl, slugify, slugifyWithCollision, checkFilename,
   deriveState, rollupState, latestProbeFor, effectiveWindowDays, OUTCOME_TO_STATE,
   redactSecret, scanForSecrets, resolveCredential, credEnvName,
-  appendJsonl, readJSONLSafe, writeCsv, atomicWriteFile,
+  appendJsonl, readJSONLSafe, writeCsv, atomicWriteFile, mintPrfId,
 } from "../skill/authoritative-sources/scripts/authority_common.mjs";
+import { checkProfile, expandTopics } from "../skill/authoritative-sources/scripts/authority_profiles.mjs";
+import { spawnSync } from "node:child_process";
 
 let pass = 0, failCount = 0;
 function ok(cond, name) {
@@ -180,7 +182,7 @@ eq(writeCsv([["a", 'b"c', "d,e"], ["1", "", "x\ny"]]), 'a,"b""c","d,e"\n1,,"x\ny
 {
   const vocab = JSON.parse(fs.readFileSync(new URL("../vocab/vocab.json", import.meta.url), "utf8"));
   const defs = vocab.$defs;
-  eq(vocab.asr_spec_version, "0.3.0", "vocab stamps 0.3.0");
+  eq(vocab.asr_spec_version, "0.4.0", "vocab stamps 0.4.0");
   for (const name of ["officiality", "routing_disposition", "completeness", "completeness_basis", "content_freshness_basis", "resolution_strategy", "upstream_registry"]) {
     const d = defs[name];
     ok(d && Array.isArray(d.anyOf) && d.anyOf.some((s) => s.pattern === "^x-[a-z0-9-]+$"), `vocab: ${name} present and extensible`);
@@ -200,6 +202,57 @@ eq(writeCsv([["a", 'b"c', "d,e"], ["1", "", "x\ny"]]), 'a,"b""c","d,e"\n1,,"x\ny
   ok(!src.properties.coverage.properties.policy_states && !src.properties.coverage.properties.sectors, "schema: coverage.policy_states/sectors removed (migrated to facets)");
   const facetsSchema = JSON.parse(fs.readFileSync(new URL("../schemas/facets.schema.json", import.meta.url), "utf8"));
   ok(facetsSchema.properties.facets && facetsSchema.required.includes("facets"), "schema: facets.schema.json declares a required facets array");
+}
+
+// --- Research profiles — spec/11 ---
+{
+  const SCRIPTS = new URL("../skill/authoritative-sources/scripts/", import.meta.url).pathname;
+  const CLI = path.join(SCRIPTS, "authority.mjs");
+  const ctx = { SCRIPT_DIR: SCRIPTS };
+  eq(mintPrfId("eei"), mintPrfId("eei"), "prf deterministic");
+  ok(/^prf-[0-9a-f]{12}$/.test(mintPrfId("eei")) && mintPrfId("eei") !== mintPrfId("symphony"), "prf format + keyed on name");
+
+  // A scratch copy of the example registry, given a child topic and one facet axis.
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "asr-profile-"));
+  const regDir = path.join(tmp, "registries", "demo");
+  fs.cpSync(new URL("../examples/example-registry", import.meta.url).pathname, regDir, { recursive: true });
+  const topicsPath = path.join(regDir, "topics.json");
+  const topics = JSON.parse(fs.readFileSync(topicsPath, "utf8"));
+  topics.topics.push({ id: "raptors", label: "Raptors", description: "", parent: "bird-sightings" });
+  fs.writeFileSync(topicsPath, JSON.stringify(topics, null, 2));
+  fs.writeFileSync(path.join(regDir, "facets.json"), JSON.stringify({ facets: [{ id: "reader_access", label: "Reader access", values: [{ id: "free", label: "Free" }, { id: "paid", label: "Paid" }] }] }));
+  const regId = JSON.parse(fs.readFileSync(path.join(regDir, "registry.json"), "utf8")).registry_id;
+  eq([...expandTopics(topics, ["bird-sightings"])].sort(), ["bird-sightings", "raptors"], "expandTopics includes descendants");
+
+  const profDir = path.join(tmp, "profiles");
+  fs.mkdirSync(profDir);
+  const good = {
+    asr_spec_version: "0.4.0", profile_id: mintPrfId("demo"), name: "demo", title: "Demo",
+    registries: [{ path: "../registries/demo", registry_id: regId, topics: ["bird-sightings"], facets: { reader_access: ["free"] } }],
+  };
+  const write = (name, obj) => { const f = path.join(profDir, name + ".json"); fs.writeFileSync(f, JSON.stringify(obj)); return f; };
+  const codes = (f) => checkProfile(f, ctx).errors.map((e) => e.code).sort();
+  eq(codes(write("demo", good)), [], "profile: valid profile has no errors");
+  eq(codes(write("other", good)), ["profile_name_mismatch"], "profile: name must match file");
+  eq(codes(write("demo", { ...good, profile_id: mintPrfId("x") })), ["id_mismatch"], "profile: id recomputed from name");
+  const bad = (patch) => ({ ...good, registries: [{ ...good.registries[0], ...patch }] });
+  eq(codes(write("demo", bad({ registry_id: "reg-000000000000" }))), ["profile_registry_mismatch"], "profile: registry_id checked");
+  eq(codes(write("demo", bad({ path: "../registries/nope" }))), ["profile_registry_missing"], "profile: missing registry");
+  eq(codes(write("demo", bad({ path: regDir }))), ["profile_path_absolute"], "profile: absolute path refused");
+  eq(codes(write("demo", bad({ topics: ["fish"] }))), ["unknown_topic"], "profile: topics must be declared");
+  eq(codes(write("demo", bad({ facets: { reader_access: ["metered"] } }))), ["unknown_facet_value"], "profile: facet values must be declared");
+  eq(codes(write("demo", bad({ credential_ref: "x" }))), ["profile_overrides_source"], "profile: cannot carry source-owned fields");
+  eq(codes(write("demo", { ...good, registries: [good.registries[0], good.registries[0]] })), ["profile_registry_duplicate"], "profile: duplicate registry");
+
+  // query --profile: a filter the registry cannot express skips it, never widens.
+  write("demo", good);
+  const q = (...extra) => JSON.parse(spawnSync("node", [CLI, "query", "--profile", "demo", "--profiles", profDir, ...extra], { encoding: "utf8" }).stdout).data;
+  const g0 = q().groups[0];
+  eq(g0.applied, { facets: { reader_access: ["free"] }, topics: ["bird-sightings", "raptors"] }, "query --profile: registry defaults applied");
+  eq(q("--facet", "sector=energy").groups[0].skipped, "does not declare facet sector", "query --profile: undeclared facet skips the registry");
+  eq(q("--topic", "fish").groups[0].skipped, "does not declare topic fish", "query --profile: undeclared topic skips the registry");
+  eq(q("--facet", "reader_access=paid").groups[0].applied.facets, { reader_access: ["paid"] }, "query --profile: caller facet replaces the default axis");
+  fs.rmSync(tmp, { recursive: true, force: true });
 }
 
 console.log(`selftest: ${pass} passed, ${failCount} failed`);

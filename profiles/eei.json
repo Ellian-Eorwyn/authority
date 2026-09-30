@@ -1,0 +1,32 @@
+{
+  "asr_spec_version": "0.4.0",
+  "profile_id": "prf-7f7a6787b389",
+  "name": "eei",
+  "title": "EEI market-transformation research",
+  "description": "Ellie's work at the UC Davis Energy and Efficiency Institute (MTRP): scholarly literature first, then energy-sector grey literature and agency records. This is the selection Hermes deep-research used before profiles existed (--registries scholarly,energy).",
+  "contact": "mailto:eorwyn@ucdavis.edu",
+  "registries": [
+    {
+      "path": "../registries/scholarly",
+      "registry_id": "reg-1db286e2fa94",
+      "use": "Peer-reviewed and scholarly metadata, open-access discovery, and full-text retrieval routes."
+    },
+    {
+      "path": "../registries/energy",
+      "registry_id": "reg-f4f70accf5d2",
+      "use": "Energy agencies, regulators, labs and program administrators: reports, dockets and data (OSTI and grey literature)."
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-29T00:00:00.000Z",
+    "modified_at": null
+  },
+  "notes": ""
+}

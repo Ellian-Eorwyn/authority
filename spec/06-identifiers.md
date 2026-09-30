@@ -22,6 +22,7 @@ whitespace, shortest-form numbers, minimal string escapes.
 | Endpoint | `end-` | `"end\n" + access_id + "\n" + http_method + "\n" + path_template` (the template verbatim, placeholders included) |
 | Probe | `prb-` | `"prb\n" + access_id + "\n" + probed_at` (RFC 3339 UTC, millisecond precision) |
 | Fetch | `fch-` | `"fch\n" + endpoint_id + "\n" + request_url_redacted + "\n" + fetched_at` |
+| Research profile | `prf-` | `"prf\n" + name` (the profile's slug, §11) |
 
 The `asc-` prefix and `"asc\n"` key-domain are deliberately distinct from
 UPC's `src-`/`"src\n"`: an ASR source is a *service profile*, a UPC source is

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://provenance.dev/asr/0.3.0/schemas/facets.schema.json",
+  "$id": "https://provenance.dev/asr/0.4.0/schemas/facets.schema.json",
   "title": "ASR Facet Vocabularies (facets.json)",
   "description": "The registry's hand-authored, multi-axis facet vocabularies. A profile MAY carry scope.facets: {<facet-id>: [<value-id>, ...]}; every facet id and value id it uses MUST be declared here (unknown_facet_value). Facets are registry-local by design — energy axes and mycology axes do not share one list — and orthogonal: one source may carry governance_domain AND sector AND policy_stage at once. Kept a separate file from topics.json because topics are a single-parent subject tree while facets are independent axes; like topics.json and unlike the manifest, this file is hand-curated, never regenerated. Supersedes the 0.2.0 free-string coverage.policy_states / coverage.sectors.",
   "type": "object",

@@ -1135,22 +1135,51 @@ function regionMatches(regions, R) {
   return (regions || []).some((sr) => sr === R || R.startsWith(sr + "-") || sr.startsWith(R + "-"));
 }
 
-export function cmdQuery(args, ctx) {
+export async function cmdQuery(args, ctx) {
+  if (typeof args.flags.profile === "string") {
+    return (await import("./authority_profiles.mjs")).cmdProfileQuery(args, ctx);
+  }
   const root = args.pos[0];
-  if (!root) fail("usage: authority query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>] [--json]");
+  if (!root) fail("usage: authority query <registry> [--facet name=value ...] [--topic <id>] [--region <ISO>] [--task <t>] [--json]\n       authority query --profile <name|path> [same filters]");
   const reg = loadRegistry(root);
   const now = nowDate();
 
   // Group requested facet pairs by axis: AND across axes, OR within an axis.
-  const wanted = new Map(); // name -> Set(value)
-  for (const [name, value] of (args.facets || [])) {
-    if (!wanted.has(name)) wanted.set(name, new Set());
-    wanted.get(name).add(value);
-  }
+  const wanted = facetMap(args.facets);
   const topic = typeof args.flags.topic === "string" ? args.flags.topic : null;
   const region = typeof args.flags.region === "string" ? args.flags.region : null;
   const task = typeof args.flags.task === "string" ? args.flags.task : null;
 
+  const results = selectSources(reg, { wanted, topics: topic ? new Set([topic]) : null, region, task }, now);
+
+  printResult(toolResult({
+    status: "ok",
+    data: {
+      registry: reg.registry.registry_id,
+      query: { facets: Object.fromEntries([...wanted].map(([k, v]) => [k, [...v]])), topic, region, task },
+      count: results.length,
+      results,
+    },
+  }));
+}
+
+/** [[name, value], ...] -> Map(name -> Set(value)). */
+export function facetMap(pairs) {
+  const wanted = new Map();
+  for (const [name, value] of (pairs || [])) {
+    if (!wanted.has(name)) wanted.set(name, new Set());
+    wanted.get(name).add(value);
+  }
+  return wanted;
+}
+
+/**
+ * The query core, shared by `query <registry>` and `query --profile` (spec/11):
+ * filter one registry's sources by facet axes (AND across axes, OR within one),
+ * a topic set (null = any), and region; rank by routing disposition for the
+ * task, then tier, then verification state, then name.
+ */
+export function selectSources(reg, { wanted, topics, region, task }, now) {
   const matched = [];
   for (const s of sortedSources(reg)) {
     const o = s.obj;
@@ -1164,7 +1193,7 @@ export function cmdQuery(args, ctx) {
       matchedFacets[name] = hits;
     }
     if (!ok) continue;
-    if (topic && !(o.scope?.topics || []).includes(topic)) continue;
+    if (topics && !(o.scope?.topics || []).some((t) => topics.has(t))) continue;
     if (region && !regionMatches(o.scope?.jurisdiction?.regions, region)) continue;
     matched.push({ s, matchedFacets });
   }
@@ -1184,20 +1213,10 @@ export function cmdQuery(args, ctx) {
     stateRank(a) - stateRank(b) ||
     (a.s.obj.identity.name < b.s.obj.identity.name ? -1 : 1));
 
-  const results = matched.map((m) => ({
+  return matched.map((m) => ({
     ...projectAgentCardSource(m.s, reg, now),
     matched_facets: m.matchedFacets,
     routing_for_task: task ? (m.s.obj.guidance?.routing?.[task] ?? null) : null,
-  }));
-
-  printResult(toolResult({
-    status: "ok",
-    data: {
-      registry: reg.registry.registry_id,
-      query: { facets: Object.fromEntries([...wanted].map(([k, v]) => [k, [...v]])), topic, region, task },
-      count: results.length,
-      results,
-    },
   }));
 }
 
