@@ -143,12 +143,20 @@
           "notes": ""
         },
         {
-          "endpoint_id": "end-a35038b1bea3",
-          "name": "event-sitemap",
-          "description": "Every event page URL with lastmod.",
+          "endpoint_id": "end-57d8b6ec40cd",
+          "name": "sitemap",
+          "description": "One child sitemap named in the index (page-, season-, event-, venue-, person-sitemap.xml): URLs with lastmod.",
           "http_method": "GET",
-          "path_template": "/event-sitemap.xml",
-          "params": [],
+          "path_template": "/{name}",
+          "params": [
+            {
+              "name": "name",
+              "required": true,
+              "type": "string",
+              "description": "sitemap file name from the index",
+              "example": "event-sitemap.xml"
+            }
+          ],
           "pagination": {
             "style": "none",
             "page_param": null,
@@ -163,7 +171,9 @@
             "notes": ""
           },
           "probe_hint": {
-            "params": {}
+            "params": {
+              "name": "event-sitemap.xml"
+            }
           },
           "example_request": "",
           "notes": ""
@@ -285,8 +295,8 @@
       ],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-2ab0f1f2dbc3",
-        "last_verified_at": "2026-09-30T00:26:27.494Z",
+        "last_probe_id": "prb-78af0ace2df0",
+        "last_verified_at": "2026-09-30T00:39:14.781Z",
         "window_days": null,
         "notes": ""
       },
@@ -306,9 +316,9 @@
       {
         "task": "list concerts",
         "access": "site",
-        "endpoint": "event-sitemap",
-        "recipe": "read <loc> entries, then fetch each /event/<slug>/ page through the page reader.",
-        "example": ""
+        "endpoint": "sitemap",
+        "recipe": "name=event-sitemap.xml; read <loc> and <lastmod>, then fetch each /event/<slug>/ page through the page reader.",
+        "example": "--param name=event-sitemap.xml"
       }
     ],
     "pitfalls": [

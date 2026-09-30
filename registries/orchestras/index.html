@@ -79,7 +79,7 @@
       
       <p class="bestfor"><strong>Best for:</strong> What Berkeley Symphony is playing, where and when, with whom · How the orchestra describes itself (mission, history, people)</p>
       <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: conditional</span></p>
-      <div class="shape"><strong>list concerts</strong> <code>event-sitemap</code><br>read &lt;loc&gt; entries, then fetch each /event/&lt;slug&gt;/ page through the page reader.</div>
+      <div class="shape"><strong>list concerts</strong> <code>sitemap</code><br>name=event-sitemap.xml; read &lt;loc&gt; and &lt;lastmod&gt;, then fetch each /event/&lt;slug&gt;/ page through the page reader.<br><code>--param name=event-sitemap.xml</code></div>
       <div class="pitfall">⚠ The WordPress REST API does not expose events or seasons (custom types); use the sitemaps.</div><div class="pitfall">⚠ Old seasons&#39; event pages stay live; check the date on each page.</div><div class="pitfall">⚠ Season announcements are PDFs under /wp-content/uploads/&lt;year&gt;/&lt;month&gt;/.</div>
       
       <h3>Authority</h3>
@@ -107,9 +107,9 @@
           
         </div>
         <div class="endpoint">
-          <code>GET /event-sitemap.xml</code> <span class="sub">event-sitemap</span>
-          <div class="sub">Every event page URL with lastmod.</div>
-          
+          <code>GET /{name}</code> <span class="sub">sitemap</span>
+          <div class="sub">One child sitemap named in the index (page-, season-, event-, venue-, person-sitemap.xml): URLs with lastmod.</div>
+          <div class="sub">params: <code>name</code>*</div>
           
           
         </div>
@@ -141,8 +141,8 @@
           
           
         </div>
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:27.494Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
-        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:39:14.781Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:27.494Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
       </div>
       
       
