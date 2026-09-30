@@ -158,6 +158,66 @@
           "notes": ""
         },
         {
+          "endpoint_id": "end-e99eeff6fc97",
+          "name": "org-search-filtered",
+          "description": "Search by keyword within a state and a broad NTEE group (1 = Arts); returns EIN, NTEE code, city.",
+          "http_method": "GET",
+          "path_template": "/search.json?q={q}&state%5Bid%5D={state}&ntee%5Bid%5D={ntee}&page={page}",
+          "params": [
+            {
+              "name": "q",
+              "required": true,
+              "type": "string",
+              "description": "keywords",
+              "example": "symphony"
+            },
+            {
+              "name": "state",
+              "required": true,
+              "type": "string",
+              "description": "two-letter state",
+              "example": "CA"
+            },
+            {
+              "name": "ntee",
+              "required": true,
+              "type": "integer",
+              "description": "broad NTEE group (1 = Arts, Culture & Humanities)",
+              "example": "1"
+            },
+            {
+              "name": "page",
+              "required": true,
+              "type": "integer",
+              "description": "0-based page",
+              "example": "0"
+            }
+          ],
+          "pagination": {
+            "style": "page_number",
+            "page_param": "page",
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": "25 per page; page is 0-based."
+          },
+          "response": {
+            "format": "json",
+            "record_path": "organizations",
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "q": "symphony",
+              "state": "CA",
+              "ntee": "1",
+              "page": "0"
+            }
+          },
+          "example_request": "https://projects.propublica.org/nonprofits/api/v2/search.json?q=symphony&state%5Bid%5D=CA&ntee%5Bid%5D=1&page=0",
+          "notes": ""
+        },
+        {
           "endpoint_id": "end-f6e122f7e416",
           "name": "organization",
           "description": "One organization by EIN with every filing ProPublica has (with and without extracted data).",
@@ -196,8 +256,8 @@
       ],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-275a4044dbbd",
-        "last_verified_at": "2026-09-30T00:26:39.454Z",
+        "last_probe_id": "prb-6c6d78a37984",
+        "last_verified_at": "2026-09-30T05:05:18.252Z",
         "window_days": null,
         "notes": ""
       },
@@ -234,8 +294,8 @@
       "endpoints": [],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-2feba1b5cce4",
-        "last_verified_at": "2026-09-30T00:26:39.536Z",
+        "last_probe_id": "prb-610b1aa01c24",
+        "last_verified_at": "2026-09-30T05:05:18.353Z",
         "window_days": null,
         "notes": ""
       },

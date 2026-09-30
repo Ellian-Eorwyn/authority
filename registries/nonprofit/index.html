@@ -39,7 +39,7 @@
 </style>
 <h1>Nonprofit Filings</h1>
 <div class="sub">US nonprofit filings: identity (EIN, exemption status), Form 990 financials, staff and governance counts, and (later) grants made by private foundations. The filed return is the source of record; aggregators are for finding it. — ASR registry <code>reg-3e245840a8bb</code>, spec 0.4.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
-<div class="banner"><span class="stat ok"><b>4</b> verified</span></div>
+<div class="banner"><span class="stat ok"><b>5</b> verified</span></div>
 
 <main id="list">
   <div class="filters">
@@ -47,7 +47,7 @@
     <select id="ftopic"><option value="">topic: all</option><option>financials</option><option>grants-made</option><option>organization-identity</option><option>staff-and-governance</option></select>
     <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
-    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>web_fetch</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>bulk_download</option><option>web_fetch</option></select>
     <select class="ffacet" data-facet="content_depth"><option value="">Content depth: all</option><option>full_return</option><option>status_record</option><option>summary</option></select>
   </div>
   <div class="tablewrap">
@@ -71,6 +71,16 @@
       <td class="sub">national · US</td>
       <td class="sub">monthly</td>
       <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="organization-identity financials" data-facets="content_depth:status_record" data-state="verified" data-tier="1" data-types="bulk_download web_fetch" data-text="irs exempt organizations business master file internal revenue service irs-exempt-organizations-business-master-file">
+      <td><a href="#src=asc-57860fd54c55">IRS Exempt Organizations Business Master File</a><div class="sub">Internal Revenue Service</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">organization-identity</span> <span class="chip">financials</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">monthly</td>
+      <td><span class="chip">bulk_download</span> <span class="chip">web_fetch</span></td>
       <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
 <tr data-topics="organization-identity" data-facets="content_depth:status_record" data-state="verified" data-tier="1" data-types="web_fetch" data-text="irs tax exempt organization search internal revenue service irs-tax-exempt-organization-search">
@@ -129,7 +139,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:44.055Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:22.908Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:50.898Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:44.055Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -175,8 +185,8 @@
           <div class="example"><code>https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202611629349301406_public.xml</code></div>
           
         </div>
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:40.854Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
-        
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:19.707Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:45.906Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:40.854Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 2 (2 ok)</div>
       </div>
       <div class="access">
         <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
@@ -185,7 +195,70 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:41.215Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:20.161Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:46.279Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:41.215Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-57860fd54c55" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>IRS Exempt Organizations Business Master File <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Internal Revenue Service · <a href="https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf">https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf</a> · <code>asc-57860fd54c55</code> · <code>sources/irs-exempt-organizations-business-master-file/</code></div>
+      <p>The IRS&#39;s monthly extract of every tax-exempt organization: EIN, name, city, state, ZIP, NTEE code, ruling date, and the latest asset, income and revenue amounts, as one CSV per state and per region.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Every symphony orchestra (NTEE A69) in a state or region, with its EIN and latest revenue · Choosing peers by budget band</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: conditional</span> <span class="chip">quantitative_claims: conditional</span></p>
+      <div class="shape"><strong>orchestras in a state</strong> <code>state-file</code><br>state=ca; keep NTEE_CD starting A69; REVENUE_AMT is the latest on file.<br><code>--param state=ca</code></div>
+      <div class="pitfall">⚠ REVENUE_AMT is whatever the IRS last recorded (it can be years old, and is 0 for 990-N filers); take figures from the return.</div><div class="pitfall">⚠ Files are large (California&#39;s is tens of megabytes); fetch once per run.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — The IRS&#39;s own register of exempt organizations. Tier 1 for identity and classification; its revenue is the latest the IRS has on file, so cite the return itself for figures.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>systematic</strong> (provider_asserted)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">content_depth: <span class="chip">status_record</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">dataset_file (csv) · landing: direct · cadence: monthly (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>bulk</code> <span class="chip">bulk_download</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.irs.gov/pub/irs-soi · <a href="https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /eo_{state}.csv</code> <span class="sub">state-file</span>
+          <div class="sub">Every exempt organization in one state (CSV).</div>
+          <div class="sub">params: <code>state</code>*</div>
+          <div class="example"><code>https://www.irs.gov/pub/irs-soi/eo_ca.csv</code></div>
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /eo{region}.csv</code> <span class="sub">region-file</span>
+          <div class="sub">Every exempt organization in one IRS region, 1-4 (CSV).</div>
+          <div class="sub">params: <code>region</code>*</div>
+          <div class="example"><code>https://www.irs.gov/pub/irs-soi/eo1.csv</code></div>
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:16.497Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:42.727Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.irs.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:16.838Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:43.003Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -224,7 +297,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:42.716Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:21.661Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:49.635Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:42.716Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -271,14 +344,21 @@
           <div class="sub">pagination: page_number</div>
         </div>
         <div class="endpoint">
+          <code>GET /search.json?q={q}&amp;state%5Bid%5D={state}&amp;ntee%5Bid%5D={ntee}&amp;page={page}</code> <span class="sub">org-search-filtered</span>
+          <div class="sub">Search by keyword within a state and a broad NTEE group (1 = Arts); returns EIN, NTEE code, city.</div>
+          <div class="sub">params: <code>q</code>*, <code>state</code>*, <code>ntee</code>*, <code>page</code>*</div>
+          <div class="example"><code>https://projects.propublica.org/nonprofits/api/v2/search.json?q=symphony&amp;state%5Bid%5D=CA&amp;ntee%5Bid%5D=1&amp;page=0</code></div>
+          <div class="sub">pagination: page_number</div>
+        </div>
+        <div class="endpoint">
           <code>GET /organizations/{ein}.json</code> <span class="sub">organization</span>
           <div class="sub">One organization by EIN with every filing ProPublica has (with and without extracted data).</div>
           <div class="sub">params: <code>ein</code>*</div>
           <div class="example"><code>https://projects.propublica.org/nonprofits/api/v2/organizations/237219508.json</code></div>
           
         </div>
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:39.454Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
-        
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:18.252Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:44.436Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:39.454Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 2 (2 ok)</div>
       </div>
       <div class="access">
         <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
@@ -287,7 +367,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:26:39.536Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T05:05:18.353Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T05:04:44.550Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:39.536Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       

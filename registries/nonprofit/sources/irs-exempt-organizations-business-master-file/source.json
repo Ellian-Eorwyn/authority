@@ -1,17 +1,17 @@
 {
-  "source_id": "asc-595175c50808",
+  "source_id": "asc-57860fd54c55",
   "aliases": {},
   "identity": {
-    "name": "GivingTuesday 990 Data Lake",
-    "publisher": "GivingTuesday Data Commons",
-    "homepage_url": "https://990data.givingtuesday.org/",
-    "canonical_url": "https://990data.givingtuesday.org/",
-    "description": "Public mirror of the IRS Form 990-series e-file returns as the original XML, one file per return keyed by the IRS object id, on a public S3 bucket.",
+    "name": "IRS Exempt Organizations Business Master File",
+    "publisher": "Internal Revenue Service",
+    "homepage_url": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
+    "canonical_url": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
+    "description": "The IRS's monthly extract of every tax-exempt organization: EIN, name, city, state, ZIP, NTEE code, ruling date, and the latest asset, income and revenue amounts, as one CSV per state and per region.",
     "languages": [
       "en"
     ],
     "operator": {
-      "name": "GivingTuesday Data Commons",
+      "name": "Internal Revenue Service",
       "identifiers": {
         "ror": null,
         "wikidata": null,
@@ -19,17 +19,18 @@
       }
     }
   },
-  "source_role": "mirror",
+  "source_role": "publisher",
   "source_class": "primary",
   "authority": {
     "asserted": {
       "tier": 1,
       "basis": [
+        "government_agency",
         "primary_dataset"
       ],
-      "rationale": "The bytes are the organization's own e-filed return as released by the IRS (the source of record), mirrored unmodified. Tier 1 for what a return says; the mirror adds nothing.",
+      "rationale": "The IRS's own register of exempt organizations. Tier 1 for identity and classification; its revenue is the latest the IRS has on file, so cite the return itself for figures.",
       "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
-      "asserted_at": "2026-09-30T00:26:40.712Z"
+      "asserted_at": "2026-09-30T05:04:42.555Z"
     },
     "adjudicated": {
       "tier": null,
@@ -42,9 +43,8 @@
   },
   "scope": {
     "topics": [
-      "financials",
-      "staff-and-governance",
-      "grants-made"
+      "organization-identity",
+      "financials"
     ],
     "jurisdiction": {
       "level": "national",
@@ -60,18 +60,18 @@
     },
     "facets": {
       "content_depth": [
-        "full_return"
+        "status_record"
       ]
     }
   },
   "content": {
     "artifacts": [
       {
-        "kind": "structured_record",
+        "kind": "dataset_file",
         "formats": [
-          "xml"
+          "csv"
         ],
-        "notes": "IRS efile Return XML (namespace http://www.irs.gov/efile): ReturnHeader (TaxYr, TaxPeriodBeginDt/EndDt, Filer EIN) and ReturnData (IRS990: TotalEmployeeCnt, TotalVolunteersCnt, CYTotalRevenueAmt, CYContributionsGrantsAmt, CYProgramServiceRevenueAmt, CYTotalExpensesAmt, Form990PartVIISectionAGrp officers; IRS990PF / IRS990ScheduleI grants)."
+        "notes": "EIN, NAME, CITY, STATE, ZIP, NTEE_CD, RULING, ASSET_AMT, INCOME_AMT, REVENUE_AMT, TAX_PERIOD, FOUNDATION"
       }
     ],
     "landing_pattern": "direct",
@@ -79,11 +79,11 @@
   },
   "access": [
     {
-      "access_id": "acc-9eb3560d3871",
-      "name": "xml",
-      "type": "api_rest",
-      "base_url": "https://gt990datalake-rawdata.s3.amazonaws.com",
-      "docs_url": "https://990data.givingtuesday.org/",
+      "access_id": "acc-ae276477162f",
+      "name": "bulk",
+      "type": "bulk_download",
+      "base_url": "https://www.irs.gov/pub/irs-soi",
+      "docs_url": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
       "auth": {
         "required": false,
         "scheme": "none",
@@ -93,7 +93,7 @@
       },
       "limits": {
         "requests_per_second": null,
-        "politeness_delay_ms": 500,
+        "politeness_delay_ms": 2000,
         "daily_budget": null,
         "monthly_budget": null,
         "concurrency": null,
@@ -108,18 +108,18 @@
       },
       "endpoints": [
         {
-          "endpoint_id": "end-4fd7385ae406",
-          "name": "return-xml",
-          "description": "One e-filed return by IRS object id.",
+          "endpoint_id": "end-095d0e6fee21",
+          "name": "state-file",
+          "description": "Every exempt organization in one state (CSV).",
           "http_method": "GET",
-          "path_template": "/EfileData/XmlFiles/{object_id}_public.xml",
+          "path_template": "/eo_{state}.csv",
           "params": [
             {
-              "name": "object_id",
+              "name": "state",
               "required": true,
               "type": "string",
-              "description": "IRS e-file object id (ProPublica latest_object_id)",
-              "example": "202611629349301406"
+              "description": "two-letter state, lowercase",
+              "example": "ca"
             }
           ],
           "pagination": {
@@ -131,33 +131,69 @@
             "notes": ""
           },
           "response": {
-            "format": "xml",
+            "format": "csv",
             "record_path": null,
             "notes": ""
           },
           "probe_hint": {
             "params": {
-              "object_id": "202611629349301406"
+              "state": "de"
             }
           },
-          "example_request": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202611629349301406_public.xml",
+          "example_request": "https://www.irs.gov/pub/irs-soi/eo_ca.csv",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-dba92136ef9d",
+          "name": "region-file",
+          "description": "Every exempt organization in one IRS region, 1-4 (CSV).",
+          "http_method": "GET",
+          "path_template": "/eo{region}.csv",
+          "params": [
+            {
+              "name": "region",
+              "required": true,
+              "type": "integer",
+              "description": "region 1-4",
+              "example": "1"
+            }
+          ],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "csv",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {
+              "region": "4"
+            }
+          },
+          "example_request": "https://www.irs.gov/pub/irs-soi/eo1.csv",
           "notes": ""
         }
       ],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-623e3c858756",
-        "last_verified_at": "2026-09-30T05:05:19.707Z",
+        "last_probe_id": "prb-fda1105b142e",
+        "last_verified_at": "2026-09-30T05:05:16.497Z",
         "window_days": null,
         "notes": ""
       },
       "notes": ""
     },
     {
-      "access_id": "acc-f5f4496f3555",
+      "access_id": "acc-d7ad2bc76c7b",
       "name": "site",
       "type": "web_fetch",
-      "base_url": "https://990data.givingtuesday.org/",
+      "base_url": "https://www.irs.gov/",
       "docs_url": null,
       "auth": {
         "required": false,
@@ -184,8 +220,8 @@
       "endpoints": [],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-88b66aaea3d0",
-        "last_verified_at": "2026-09-30T05:05:20.161Z",
+        "last_probe_id": "prb-30a579ae97e5",
+        "last_verified_at": "2026-09-30T05:05:16.838Z",
         "window_days": null,
         "notes": ""
       },
@@ -194,34 +230,31 @@
   ],
   "verification": {
     "state": "verified",
-    "summary": "xml: verified; site: verified"
+    "summary": "bulk: verified; site: verified"
   },
   "guidance": {
     "best_for": [
-      "Employee and volunteer counts (Part I lines 5-6)",
-      "Any line of the return, byte for byte, for quote-checked facts",
-      "Foundation grant lists (990-PF, Schedule I) for funder research"
+      "Every symphony orchestra (NTEE A69) in a state or region, with its EIN and latest revenue",
+      "Choosing peers by budget band"
     ],
     "query_shapes": [
       {
-        "task": "staff count for a year",
-        "access": "xml",
-        "endpoint": "return-xml",
-        "recipe": "object_id from ProPublica organization.latest_object_id (or its filings); read TaxYr and TotalEmployeeCnt / TotalVolunteersCnt.",
-        "example": "--param object_id=202611629349301406"
+        "task": "orchestras in a state",
+        "access": "bulk",
+        "endpoint": "state-file",
+        "recipe": "state=ca; keep NTEE_CD starting A69; REVENUE_AMT is the latest on file.",
+        "example": "--param state=ca"
       }
     ],
     "pitfalls": [
-      "TotalEmployeeCnt is the number of W-2s issued in the calendar year, not staff or FTEs. For an orchestra it includes every per-service musician, so it can be far larger than the office staff.",
-      "TaxYr is the year the fiscal year began: TaxYr 2024 with TaxPeriodEndDt 2025-06-30 is FY2024-25. Label figures by the period dates.",
-      "The file starts with a UTF-8 BOM; strip it before XML parsing, but quote from the stored bytes.",
-      "Paper filings and very recent returns are absent; a 404 means not mirrored, not 'no return'."
+      "REVENUE_AMT is whatever the IRS last recorded (it can be years old, and is 0 for 990-N filers); take figures from the return.",
+      "Files are large (California's is tens of megabytes); fetch once per run."
     ],
     "llm_notes": "",
     "routing": {
-      "discovery": "not_applicable",
-      "citation": "preferred",
-      "quantitative_claims": "preferred"
+      "discovery": "preferred",
+      "citation": "conditional",
+      "quantitative_claims": "conditional"
     }
   },
   "lifecycle": {
@@ -234,7 +267,7 @@
   "discovery": {
     "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
     "retrieved_via": "",
-    "first_added": "2026-09-30T00:26:40.712Z",
+    "first_added": "2026-09-30T05:04:42.555Z",
     "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
     "import_ref": null
   },
@@ -246,21 +279,21 @@
       "method": "model",
       "person": null
     },
-    "created_at": "2026-09-30T00:26:40.712Z",
+    "created_at": "2026-09-30T05:04:42.555Z",
     "modified_at": null
   },
   "ext": {},
   "notes": "",
   "officiality": {
-    "default": "official_mirror",
-    "basis": "Unmodified copy of IRS-released e-file XML.",
+    "default": "source_of_record",
+    "basis": "The IRS's own register.",
     "notes": ""
   },
   "coverage": {
     "completeness": {
       "claim": "systematic",
       "basis": "provider_asserted",
-      "notes": "E-filed 990, 990-EZ, 990-PF, 990-T returns released by the IRS."
+      "notes": ""
     },
     "jurisdictions": [
       "US"

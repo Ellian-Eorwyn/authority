@@ -35,6 +35,13 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-57860fd54c55",
+      "slug": "irs-exempt-organizations-business-master-file",
+      "name": "IRS Exempt Organizations Business Master File",
+      "path": "sources/irs-exempt-organizations-business-master-file/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-e73b7f1f7746",
       "slug": "irs-tax-exempt-organization-search",
       "name": "IRS Tax Exempt Organization Search",
@@ -50,11 +57,11 @@
     }
   ],
   "counts": {
-    "sources": 4,
-    "access_methods": 6,
-    "endpoints": 3,
-    "probes": 6,
-    "fetches": 0
+    "sources": 5,
+    "access_methods": 8,
+    "endpoints": 6,
+    "probes": 22,
+    "fetches": 4
   },
   "integrity": {
     "schema_hash": "sha256:d28d58ea66b9d8294d1d4bd57f0c966b5ee18bdf3c945c4c59d4ec19fc01c6b7"
