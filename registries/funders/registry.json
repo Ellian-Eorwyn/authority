@@ -70,6 +70,20 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-9e09d5c0d220",
+      "slug": "fleishhacker-foundation",
+      "name": "Fleishhacker Foundation",
+      "path": "sources/fleishhacker-foundation/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-eb91585693b8",
+      "slug": "kenneth-rainin-foundation",
+      "name": "Kenneth Rainin Foundation",
+      "path": "sources/kenneth-rainin-foundation/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-b8e7efdcda9e",
       "slug": "national-endowment-for-the-arts",
       "name": "National Endowment for the Arts",
@@ -82,14 +96,42 @@
       "name": "New Music USA",
       "path": "sources/new-music-usa/",
       "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-d41865048198",
+      "slug": "the-clorox-company-foundation",
+      "name": "The Clorox Company Foundation",
+      "path": "sources/the-clorox-company-foundation/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-c1452dca2734",
+      "slug": "the-presser-foundation",
+      "name": "The Presser Foundation",
+      "path": "sources/the-presser-foundation/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-e5e4f87c6316",
+      "slug": "walter-elise-haas-fund",
+      "name": "Walter & Elise Haas Fund",
+      "path": "sources/walter-elise-haas-fund/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-b3ead1a9aa45",
+      "slug": "zellerbach-family-foundation-community-arts",
+      "name": "Zellerbach Family Foundation Community Arts",
+      "path": "sources/zellerbach-family-foundation-community-arts/",
+      "verification_state": "verified"
     }
   ],
   "counts": {
-    "sources": 9,
-    "access_methods": 10,
-    "endpoints": 17,
-    "probes": 20,
-    "fetches": 1
+    "sources": 15,
+    "access_methods": 16,
+    "endpoints": 24,
+    "probes": 36,
+    "fetches": 3
   },
   "integrity": {
     "schema_hash": "sha256:d28d58ea66b9d8294d1d4bd57f0c966b5ee18bdf3c945c4c59d4ec19fc01c6b7"

@@ -1,17 +1,17 @@
 {
-  "source_id": "asc-728b1f5c01b5",
+  "source_id": "asc-e5e4f87c6316",
   "aliases": {},
   "identity": {
-    "name": "New Music USA",
-    "publisher": "New Music USA",
-    "homepage_url": "https://www.newmusicusa.org/",
-    "canonical_url": "https://www.newmusicusa.org/",
-    "description": "A national service organization for new music: the Organization Fund and other programs, with rounds, amounts and all grantees.",
+    "name": "Walter & Elise Haas Fund",
+    "publisher": "Walter & Elise Haas Fund",
+    "homepage_url": "https://haassr.org/",
+    "canonical_url": "https://haassr.org/",
+    "description": "A San Francisco family foundation: its grantmaking in the arts, and whether it takes unsolicited proposals.",
     "languages": [
       "en"
     ],
     "operator": {
-      "name": "New Music USA",
+      "name": "Walter & Elise Haas Fund",
       "identifiers": {
         "ror": null,
         "wikidata": null,
@@ -27,9 +27,9 @@
       "basis": [
         "professional_org"
       ],
-      "rationale": "The organization's own program pages.",
+      "rationale": "The fund's own grantmaking page.",
       "asserted_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
-      "asserted_at": "2026-09-30T04:34:07.972Z"
+      "asserted_at": "2026-09-30T05:39:05.418Z"
     },
     "adjudicated": {
       "tier": null,
@@ -42,13 +42,12 @@
   },
   "scope": {
     "topics": [
-      "grant-programs",
-      "past-awards"
+      "grant-programs"
     ],
     "jurisdiction": {
-      "level": "national",
+      "level": "local",
       "regions": [
-        "US"
+        "US-CA"
       ],
       "notes": ""
     },
@@ -62,7 +61,7 @@
         "foundation"
       ],
       "application": [
-        "open"
+        "mixed"
       ]
     }
   },
@@ -73,7 +72,7 @@
         "formats": [
           "html"
         ],
-        "notes": "program pages, grantee list"
+        "notes": "grantmaking page"
       }
     ],
     "landing_pattern": "direct",
@@ -81,10 +80,10 @@
   },
   "access": [
     {
-      "access_id": "acc-39bf9f0407af",
+      "access_id": "acc-f7ec092723ad",
       "name": "site",
       "type": "web_fetch",
-      "base_url": "https://newmusicusa.org/",
+      "base_url": "https://haassr.org/",
       "docs_url": null,
       "auth": {
         "required": false,
@@ -110,63 +109,11 @@
       },
       "endpoints": [
         {
-          "endpoint_id": "end-8d52398ec49e",
-          "name": "get-funding",
-          "description": "All funding programs.",
+          "endpoint_id": "end-ececcd8894b9",
+          "name": "grantmaking",
+          "description": "Grantmaking: programs and how to approach the fund.",
           "http_method": "GET",
-          "path_template": "/get-funding/",
-          "params": [],
-          "pagination": {
-            "style": "none",
-            "page_param": null,
-            "size_param": null,
-            "cursor_path": null,
-            "max_page_size": null,
-            "notes": ""
-          },
-          "response": {
-            "format": "html",
-            "record_path": null,
-            "notes": ""
-          },
-          "probe_hint": {
-            "params": {}
-          },
-          "example_request": "",
-          "notes": ""
-        },
-        {
-          "endpoint_id": "end-62e94b409cd2",
-          "name": "organization-fund",
-          "description": "Organization Fund: for organizations presenting new music; amounts, round dates.",
-          "http_method": "GET",
-          "path_template": "/program/organization-fund/",
-          "params": [],
-          "pagination": {
-            "style": "none",
-            "page_param": null,
-            "size_param": null,
-            "cursor_path": null,
-            "max_page_size": null,
-            "notes": ""
-          },
-          "response": {
-            "format": "html",
-            "record_path": null,
-            "notes": ""
-          },
-          "probe_hint": {
-            "params": {}
-          },
-          "example_request": "",
-          "notes": ""
-        },
-        {
-          "endpoint_id": "end-63c28e689ebb",
-          "name": "all-grantees",
-          "description": "Every grantee, by program and year.",
-          "http_method": "GET",
-          "path_template": "/get-funding/all-grantees/",
+          "path_template": "/grantmaking/",
           "params": [],
           "pagination": {
             "style": "none",
@@ -190,8 +137,8 @@
       ],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-7d858a747b7f",
-        "last_verified_at": "2026-09-30T05:38:58.339Z",
+        "last_probe_id": "prb-fdfe5c8b5e0e",
+        "last_verified_at": "2026-09-30T05:39:05.536Z",
         "window_days": null,
         "notes": ""
       },
@@ -204,11 +151,11 @@
   },
   "guidance": {
     "best_for": [
-      "Funding for organizations that present new music and premieres"
+      "Bay Area arts funding by a major family foundation"
     ],
     "query_shapes": [],
     "pitfalls": [
-      "Project Grants was retired; the Organization Fund is the program for presenters."
+      "Much of its arts funding is by invitation; read how it takes proposals."
     ],
     "llm_notes": "",
     "routing": {
@@ -219,7 +166,7 @@
   },
   "lifecycle": {
     "status": "active",
-    "update_cadence": "annual",
+    "update_cadence": "irregular",
     "cadence_notes": "",
     "effective_date": null
   },
@@ -227,7 +174,7 @@
   "discovery": {
     "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
     "retrieved_via": "",
-    "first_added": "2026-09-30T04:34:07.972Z",
+    "first_added": "2026-09-30T05:39:05.418Z",
     "added_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
     "import_ref": null
   },
@@ -239,14 +186,14 @@
       "method": "model",
       "person": null
     },
-    "created_at": "2026-09-30T04:34:07.972Z",
+    "created_at": "2026-09-30T05:39:05.418Z",
     "modified_at": null
   },
   "ext": {},
   "notes": "",
   "officiality": {
     "default": "source_of_record",
-    "basis": "The organization's own site.",
+    "basis": "The fund's own site.",
     "notes": ""
   },
   "coverage": {
@@ -256,10 +203,10 @@
       "notes": ""
     },
     "jurisdictions": [
-      "US"
+      "US-CA"
     ],
     "jurisdiction_levels": [
-      "national"
+      "local"
     ],
     "temporal": {
       "coverage_start": null,

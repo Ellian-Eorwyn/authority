@@ -1,0 +1,26 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+Sitemap: https://www.thecloroxcompany.com/wp-sitemap.xml
+
+# Electro SEO Exclude
+User-agent: *
+Disallow: https://www.thecloroxcompany.com/blog/promoting-community-well-being-with-27-new-grants/
+Disallow: https://www.thecloroxcompany.com/release/
+Disallow: https://www.thecloroxcompany.com/search/
+Disallow: https://www.thecloroxcompany.com/incident/
+Disallow: https://www.thecloroxcompany.com/brands/what-were-made-of/smart-label/ingredients-post/
+Disallow: https://www.thecloroxcompany.com/press-releases/
+# End Electro SEO Exclude
+
+# The Clorox Company Theme Rules
+
+# TCC sites 
+Disallow: /wp-content/sds/ 
+Disallow: /DPA.pdf
+
+User-agent: Ezooms
+Disallow: /
+
+# End The Clorox Company Theme Rules
