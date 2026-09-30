@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /.resources/*/webresources/*
+Allow: /.imaging/
+Disallow: /.magnolia/* 
+Disallow: /.rest/* 
+Disallow: /*~*
+Disallow: /bfs-de/*
+Sitemap: https://www.berlinerfestspiele.de/sitemap.xml

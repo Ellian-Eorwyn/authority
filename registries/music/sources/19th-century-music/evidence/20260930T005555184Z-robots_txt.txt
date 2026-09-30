@@ -1,0 +1,35 @@
+
+User-agent: 008
+Disallow: /
+
+User-agent: *
+Disallow: /bin/
+Disallow: /config/
+Disallow: /app_data/
+Disallow: /dlls/
+Disallow: /App_Themes/
+Disallow: /signin.aspx
+Disallow: /searchresults.aspx
+Disallow: /search-results
+Disallow: /advancedsearch.aspx
+Disallow: /advanced-search
+Disallow: /DownloadFile/
+Disallow: /downloadimage.aspx
+Disallow: /Citation/Download
+Disallow: /Shibboleth.sso/
+Disallow: /SignInShibboleth.aspx
+Disallow: /lookup/external-ref
+Disallow: /user/logout
+Disallow: /cgi/pmidlookup
+Disallow: /Themes/Client/app/img/favicons/manifest.json
+Disallow: /lookup/google-scholar
+Disallow: /store/*
+Allow: /cassette.axd/stylesheet/
+Allow: /cassette.axd/script/
+Allow: /cassette.axd/manifest.xml
+Disallow: /*.axd
+Disallow: /DocumentViewer/*
+Disallow: /sign-in?*
+Disallow: /my-account/register?*
+Disallow: /specificToClient1/
+Sitemap: https://online.ucpress.edu/data/sitemap/sitemap.xml

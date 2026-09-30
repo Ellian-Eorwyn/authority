@@ -1,0 +1,12 @@
+User-agent: *
+Allow: 
+Allow: 
+Disallow: /what-s-on/2021sub
+Disallow: /tc/what-s-on/2021sub
+Disallow: /sc/what-s-on/2021sub
+Disallow: /what-s-on/2021sub/subscription-faq
+Disallow: /tc/what-s-on/2021sub/subscription-faq
+Disallow: /sc/what-s-on/2021sub/subscription-faq
+Disallow: /page2
+Disallow: /tc/page2
+Disallow: /sc/page2

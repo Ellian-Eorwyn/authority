@@ -111,18 +111,18 @@
       },
       "endpoints": [],
       "verification": {
-        "state": "blocked",
-        "last_probe_id": "prb-7062c04dc505",
-        "last_verified_at": null,
+        "state": "verified",
+        "last_probe_id": "prb-1be35f90acf9",
+        "last_verified_at": "2026-09-30T00:54:55.635Z",
         "window_days": null,
         "notes": ""
       },
-      "notes": "Probe sees a 302 to the Queue-it waiting room; recorded as blocked, not moved."
+      "notes": "Intermittent Queue-it waiting room; the probe records it as blocked when it is up."
     }
   ],
   "verification": {
-    "state": "blocked",
-    "summary": "site: blocked"
+    "state": "verified",
+    "summary": "site: verified"
   },
   "guidance": {
     "best_for": [
@@ -130,11 +130,11 @@
     ],
     "query_shapes": [],
     "pitfalls": [
-      "Blocked for automated access (2026-09-29): every request is redirected to a Queue-it waiting room (waitingroom.sfsymphony.org, 'Site Safetynet'), a bot check. Never try to get past it. Kept in the registry so another route (an API, a feed, a published data set, or permission) can be added later."
+      "At times every request is redirected to a Queue-it waiting room (waitingroom.sfsymphony.org, 'Site Safetynet'), a bot check: seen on the first probe 2026-09-29, gone an hour later. Never try to get past it; when it appears the page is a gap, and the probe records the source as blocked."
     ],
     "llm_notes": "",
     "routing": {
-      "discovery": "avoid",
+      "discovery": "preferred",
       "citation": "acceptable"
     }
   },

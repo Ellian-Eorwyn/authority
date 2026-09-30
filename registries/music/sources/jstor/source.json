@@ -1,0 +1,189 @@
+{
+  "source_id": "asc-aad618395ba2",
+  "aliases": {},
+  "identity": {
+    "name": "JSTOR",
+    "publisher": "ITHAKA",
+    "homepage_url": "https://www.jstor.org/",
+    "canonical_url": "https://www.jstor.org/",
+    "description": "Digital library of scholarly journals, including most musicology journals.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "ITHAKA",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "aggregator",
+  "source_class": "secondary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "peer_reviewed",
+        "curated_reference"
+      ],
+      "rationale": "Hosts the journals of record for musicology. Tier 2 as a host; cite the journal article.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T00:53:56.335Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "musicology"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "reader_access": [
+        "paid"
+      ],
+      "voice": [
+        "reference"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "pdf_document",
+        "formats": [
+          "pdf"
+        ],
+        "notes": "articles"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-d48bbfae1e7b",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.jstor.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-c21d55108f86",
+        "last_verified_at": "2026-09-30T00:55:53.718Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Knowing which scholarly article exists on a work (then look for an open-access copy)"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Most articles need an institutional login: not free to read, so a digest links an open copy (Unpaywall/OpenAlex) or leaves it out."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "acceptable",
+      "citation": "follow_primary"
+    },
+    "resolution": {
+      "strategy": "publisher",
+      "notes": "Cite the journal article (DOI)."
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T00:53:56.335Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:53:56.335Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "official_representation",
+    "basis": "",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

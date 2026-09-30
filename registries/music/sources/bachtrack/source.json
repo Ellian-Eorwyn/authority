@@ -110,8 +110,8 @@
       "endpoints": [],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-e7e7ce29e530",
-        "last_verified_at": "2026-09-30T00:28:56.299Z",
+        "last_probe_id": "prb-acbfbb50327e",
+        "last_verified_at": "2026-09-30T00:54:49.498Z",
         "window_days": null,
         "notes": ""
       },

@@ -1,0 +1,24 @@
+Sitemap: https://interlude.hk/sitemap_index.xml
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /readme.html
+Disallow: /license.txt
+Disallow: /xmlrpc.php
+
+User-agent: Googlebot
+Disallow: /*.php$
+Disallow: /*.js$
+Disallow: /*.inc$
+Disallow: /*.css$
+Disallow: /*.gz$
+Disallow: /*.wmv$
+Disallow: /*.cgi$
+Disallow: /*.xhtml$
+Disallow: /*?*
+Disallow: /*.txt$
+
+User-agent: Googlebot-Image
+Disallow:

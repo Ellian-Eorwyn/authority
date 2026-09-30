@@ -108,8 +108,8 @@
       "endpoints": [],
       "verification": {
         "state": "verified",
-        "last_probe_id": "prb-f69df04a9c2f",
-        "last_verified_at": "2026-09-30T00:29:07.560Z",
+        "last_probe_id": "prb-2f5dd8e5fd31",
+        "last_verified_at": "2026-09-30T00:54:59.827Z",
         "window_days": null,
         "notes": ""
       },

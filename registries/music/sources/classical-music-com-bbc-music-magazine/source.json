@@ -1,0 +1,187 @@
+{
+  "source_id": "asc-922fff742847",
+  "aliases": {},
+  "identity": {
+    "name": "Classical-Music.com (BBC Music Magazine)",
+    "publisher": "BBC Music Magazine",
+    "homepage_url": "https://www.classical-music.com/",
+    "canonical_url": "https://www.classical-music.com/",
+    "description": "BBC Music Magazine's site: guides to works, composer features and recording recommendations.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "BBC Music Magazine",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "secondary",
+  "authority": {
+    "asserted": {
+      "tier": 2,
+      "basis": [
+        "editorial"
+      ],
+      "rationale": "BBC Music Magazine: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T00:53:34.001Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "essays-and-features",
+      "composers-and-works",
+      "reviews-and-criticism"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "reader_access": [
+        "free"
+      ],
+      "voice": [
+        "press"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "articles and guides"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-c54934e99dbe",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.classical-music.com/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-84045c2b8534",
+        "last_verified_at": "2026-09-30T00:55:33.808Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "A guide to a work: its story, what to listen for, recommended recordings"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Popular writing: check dates and anecdotes against a primary or scholarly source."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "acceptable",
+      "technical_claims": "follow_primary"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "irregular",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T00:53:34.001Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:53:34.001Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "curated_secondary",
+    "basis": "",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

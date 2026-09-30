@@ -1,0 +1,188 @@
+{
+  "source_id": "asc-25a9a03e4a7b",
+  "aliases": {},
+  "identity": {
+    "name": "Encyclopaedia Britannica",
+    "publisher": "Encyclopaedia Britannica, Inc.",
+    "homepage_url": "https://www.britannica.com/",
+    "canonical_url": "https://www.britannica.com/",
+    "description": "Edited encyclopedia with composer and work entries.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "Encyclopaedia Britannica, Inc.",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "tertiary",
+  "authority": {
+    "asserted": {
+      "tier": 3,
+      "basis": [
+        "curated_reference"
+      ],
+      "rationale": "Edited reference for orientation, not a citation for a digest. Tier 3.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+      "asserted_at": "2026-09-30T00:53:59.597Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "composers-and-works"
+    ],
+    "jurisdiction": {
+      "level": "international",
+      "regions": [],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "reader_access": [
+        "metered"
+      ],
+      "voice": [
+        "reference"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "articles"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-95c567b74194",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://www.britannica.com/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [],
+      "verification": {
+        "state": "blocked",
+        "last_probe_id": "prb-add025ab865e",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "blocked",
+    "summary": "site: blocked"
+  },
+  "guidance": {
+    "best_for": [
+      "Orientation on a composer"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Plain HTTP clients get a Cloudflare challenge (403, 2026-09-29); kept for another route later."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "acceptable",
+      "citation": "follow_primary"
+    },
+    "resolution": {
+      "strategy": "manual",
+      "notes": "Follow the entry's own references, or a scholarly source."
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "continuous",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T00:53:59.597Z",
+    "added_by": "Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:53:59.597Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "curated_secondary",
+    "basis": "",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [],
+    "jurisdiction_levels": [
+      "international"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

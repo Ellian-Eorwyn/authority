@@ -39,21 +39,31 @@
 </style>
 <h1>Music Writing and Reference</h1>
 <div class="sub">Writing about music for listeners and presenters: program notes, liner notes, essays, criticism, local arts press, artists&#39; own sites, and reference works. Built for orchestra programs; free-to-read sources are marked with the reader_access facet. — ASR registry <code>reg-6a6e91e4038a</code>, spec 0.4.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
-<div class="banner"><span class="stat ok"><b>13</b> verified</span> <span class="stat bad"><b>2</b> blocked</span></div>
+<div class="banner"><span class="stat ok"><b>40</b> verified</span> <span class="stat bad"><b>1</b> broken</span> <span class="stat bad"><b>5</b> blocked</span></div>
 
 <main id="list">
   <div class="filters">
     <input id="q" type="search" placeholder="filter by name…">
-    <select id="ftopic"><option value="">topic: all</option><option>composers-and-works</option><option>essays-and-features</option><option>local-arts-press</option><option>performers</option><option>program-notes</option><option>reviews-and-criticism</option></select>
+    <select id="ftopic"><option value="">topic: all</option><option>archives</option><option>composers-and-works</option><option>essays-and-features</option><option>local-arts-press</option><option>musicology</option><option>performers</option><option>program-notes</option><option>reviews-and-criticism</option></select>
     <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
     <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
     <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>feed</option><option>web_fetch</option></select>
-    <select class="ffacet" data-facet="reader_access"><option value="">Reader access: all</option><option>free</option><option>mixed</option></select><select class="ffacet" data-facet="voice"><option value="">Voice: all</option><option>artist</option><option>platform</option><option>presenter</option><option>press</option><option>reference</option></select>
+    <select class="ffacet" data-facet="reader_access"><option value="">Reader access: all</option><option>free</option><option>metered</option><option>mixed</option><option>paid</option></select><select class="ffacet" data-facet="voice"><option value="">Voice: all</option><option>artist</option><option>platform</option><option>presenter</option><option>press</option><option>reference</option></select>
   </div>
   <div class="tablewrap">
   <table id="tbl">
     <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
-    <tr data-topics="performers composers-and-works" data-facets="reader_access:free voice:artist" data-state="verified" data-tier="2" data-types="web_fetch" data-text="alex nante (official site) alex nante alex-nante-official-site">
+    <tr data-topics="musicology" data-facets="reader_access:paid voice:reference" data-state="blocked" data-tier="1" data-types="web_fetch" data-text="19th-century music university of california press 19th-century-music">
+      <td><a href="#src=asc-47f142441270">19th-Century Music</a><div class="sub">University of California Press</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">musicology</span></td>
+      <td class="sub">international</td>
+      <td class="sub">quarterly</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="performers composers-and-works" data-facets="reader_access:free voice:artist" data-state="verified" data-tier="2" data-types="web_fetch" data-text="alex nante (official site) alex nante alex-nante-official-site">
       <td><a href="#src=asc-589c3f91b797">Alex Nante (official site)</a><div class="sub">Alex Nante</div></td>
       <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -83,6 +93,26 @@
       <td><span class="chip">web_fetch</span></td>
       <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
+<tr data-topics="performers essays-and-features" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="berliner festspiele berliner festspiele berliner-festspiele">
+      <td><a href="#src=asc-b9730a7e60a6">Berliner Festspiele</a><div class="sub">Berliner Festspiele</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">performers</span> <span class="chip">essays-and-features</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="boston symphony orchestra boston symphony orchestra boston-symphony-orchestra">
+      <td><a href="#src=asc-96681fec00ca">Boston Symphony Orchestra</a><div class="sub">Boston Symphony Orchestra</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-MA</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
 <tr data-topics="local-arts-press" data-facets="reader_access:free voice:press" data-state="verified" data-tier="3" data-types="web_fetch" data-text="broadwayworld broadwayworld broadwayworld">
       <td><a href="#src=asc-832589156add">BroadwayWorld</a><div class="sub">BroadwayWorld</div></td>
       <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
@@ -93,6 +123,16 @@
       <td><span class="chip">web_fetch</span></td>
       <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
+<tr data-topics="essays-and-features composers-and-works" data-facets="reader_access:free voice:press" data-state="verified" data-tier="3" data-types="web_fetch" data-text="classic fm classic fm classic-fm">
+      <td><a href="#src=asc-5175596150ff">Classic FM</a><div class="sub">Classic FM</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
 <tr data-topics="local-arts-press composers-and-works" data-facets="reader_access:free voice:press" data-state="verified" data-tier="3" data-types="web_fetch" data-text="classical california (kdfc) classical california classical-california-kdfc">
       <td><a href="#src=asc-c98e4b6aaea4">Classical California (KDFC)</a><div class="sub">Classical California</div></td>
       <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
@@ -100,6 +140,136 @@
       <td><span class="chip">local-arts-press</span> <span class="chip">composers-and-works</span></td>
       <td class="sub">local · US-CA</td>
       <td class="sub">daily</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="essays-and-features composers-and-works reviews-and-criticism" data-facets="reader_access:free voice:press" data-state="verified" data-tier="2" data-types="web_fetch" data-text="classical-music.com (bbc music magazine) bbc music magazine classical-music-com-bbc-music-magazine">
+      <td><a href="#src=asc-922fff742847">Classical-Music.com (BBC Music Magazine)</a><div class="sub">BBC Music Magazine</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span> <span class="chip">reviews-and-criticism</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="reviews-and-criticism composers-and-works" data-facets="reader_access:free voice:press" data-state="broken" data-tier="3" data-types="web_fetch" data-text="classical net classical net classical-net">
+      <td><a href="#src=asc-beac1a297e0a">Classical Net</a><div class="sub">Classical Net</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">reviews-and-criticism</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">broken</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="dubuque symphony orchestra dubuque symphony orchestra dubuque-symphony-orchestra">
+      <td><a href="#src=asc-709498af4682">Dubuque Symphony Orchestra</a><div class="sub">Dubuque Symphony Orchestra</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-IA</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="performers composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="durand salabert eschig universal music publishing classical durand-salabert-eschig">
+      <td><a href="#src=asc-b86b511cd788">Durand Salabert Eschig</a><div class="sub">Universal Music Publishing Classical</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">performers</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="composers-and-works" data-facets="reader_access:metered voice:reference" data-state="blocked" data-tier="3" data-types="web_fetch" data-text="encyclopaedia britannica encyclopaedia britannica, inc. encyclopaedia-britannica">
+      <td><a href="#src=asc-25a9a03e4a7b">Encyclopaedia Britannica</a><div class="sub">Encyclopaedia Britannica, Inc.</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="musicology" data-facets="reader_access:free voice:reference" data-state="blocked" data-tier="2" data-types="web_fetch" data-text="escholarship (university of california) university of california, california digital library escholarship-university-of-california">
+      <td><a href="#src=asc-ae604257adaf">eScholarship (University of California)</a><div class="sub">University of California, California Digital Library</div></td>
+      <td><span class="chip">repository</span><div class="sub">official_representation</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">musicology</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="fort collins symphony fort collins symphony fort-collins-symphony">
+      <td><a href="#src=asc-f8d4e3a90751">Fort Collins Symphony</a><div class="sub">Fort Collins Symphony</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-CO</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="essays-and-features composers-and-works" data-facets="reader_access:free voice:press" data-state="verified" data-tier="3" data-types="web_fetch" data-text="fugue for thought fugue for thought fugue-for-thought">
+      <td><a href="#src=asc-23735f663775">Fugue for Thought</a><div class="sub">Fugue for Thought</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="essays-and-features composers-and-works" data-facets="reader_access:free voice:artist" data-state="verified" data-tier="3" data-types="web_fetch" data-text="gianmaria griglio (conductor) gianmaria griglio gianmaria-griglio-conductor">
+      <td><a href="#src=asc-2c62c935f382">Gianmaria Griglio (conductor)</a><div class="sub">Gianmaria Griglio</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="performers" data-facets="reader_access:free voice:artist" data-state="verified" data-tier="2" data-types="web_fetch" data-text="harrisonparrott harrisonparrott harrisonparrott">
+      <td><a href="#src=asc-f75120aee0a2">HarrisonParrott</a><div class="sub">HarrisonParrott</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">performers</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="performers composers-and-works" data-facets="reader_access:free voice:presenter" data-state="blocked" data-tier="2" data-types="web_fetch" data-text="henry lemoine henry lemoine henry-lemoine">
+      <td><a href="#src=asc-1dbd7e96c970">Henry Lemoine</a><div class="sub">Henry Lemoine</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">performers</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="hollywood bowl los angeles philharmonic hollywood-bowl">
+      <td><a href="#src=asc-4b90cb548f03">Hollywood Bowl</a><div class="sub">Los Angeles Philharmonic</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-CA</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="hong kong philharmonic orchestra hong kong philharmonic orchestra hong-kong-philharmonic-orchestra">
+      <td><a href="#src=asc-057b1866196d">Hong Kong Philharmonic Orchestra</a><div class="sub">Hong Kong Philharmonic Orchestra</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">national · HK</td>
+      <td class="sub">irregular</td>
       <td><span class="chip">web_fetch</span></td>
       <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
@@ -118,6 +288,46 @@
       <td><span class="chip">repository</span><div class="sub">unofficial</div></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
       <td><span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="essays-and-features composers-and-works" data-facets="reader_access:free voice:press" data-state="verified" data-tier="2" data-types="web_fetch" data-text="interlude interlude interlude">
+      <td><a href="#src=asc-92c5dbc49b07">Interlude</a><div class="sub">Interlude</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="performers composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="international mendelssohn festival international mendelssohn festival (hamburg) international-mendelssohn-festival">
+      <td><a href="#src=asc-5343d70be4c0">International Mendelssohn Festival</a><div class="sub">International Mendelssohn Festival (Hamburg)</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">performers</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="archives composers-and-works" data-facets="reader_access:free voice:reference" data-state="verified" data-tier="3" data-types="web_fetch api_rest" data-text="internet archive internet archive internet-archive">
+      <td><a href="#src=asc-7da0e2b718cf">Internet Archive</a><div class="sub">Internet Archive</div></td>
+      <td><span class="chip">archive</span><div class="sub">unofficial</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">archives</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">continuous</td>
+      <td><span class="chip">web_fetch</span> <span class="chip">api_rest</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="musicology" data-facets="reader_access:paid voice:reference" data-state="verified" data-tier="2" data-types="web_fetch" data-text="jstor ithaka jstor">
+      <td><a href="#src=asc-aad618395ba2">JSTOR</a><div class="sub">ITHAKA</div></td>
+      <td><span class="chip">aggregator</span><div class="sub">official_representation</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">musicology</span></td>
       <td class="sub">international</td>
       <td class="sub">continuous</td>
       <td><span class="chip">web_fetch</span></td>
@@ -143,11 +353,101 @@
       <td><span class="chip">web_fetch</span></td>
       <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
+<tr data-topics="archives musicology composers-and-works" data-facets="reader_access:free voice:reference" data-state="verified" data-tier="1" data-types="api_rest web_fetch" data-text="library of congress library of congress library-of-congress">
+      <td><a href="#src=asc-293c80cb43a5">Library of Congress</a><div class="sub">Library of Congress</div></td>
+      <td><span class="chip">archive</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">archives</span> <span class="chip">musicology</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
 <tr data-topics="performers" data-facets="reader_access:free voice:artist" data-state="verified" data-tier="2" data-types="web_fetch" data-text="mari kodama (official site) mari kodama mari-kodama-official-site">
       <td><a href="#src=asc-a677dba52f01">Mari Kodama (official site)</a><div class="sub">Mari Kodama</div></td>
       <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
       <td><span class="chip">performers</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="essays-and-features composers-and-works" data-facets="reader_access:free voice:artist" data-state="verified" data-tier="3" data-types="web_fetch" data-text="michael lewanski (conductor) michael lewanski michael-lewanski-conductor">
+      <td><a href="#src=asc-2788833827ac">Michael Lewanski (conductor)</a><div class="sub">Michael Lewanski</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="musicology" data-facets="reader_access:free voice:reference" data-state="verified" data-tier="1" data-types="web_fetch" data-text="music theory online society for music theory music-theory-online">
+      <td><a href="#src=asc-abf6022cf857">Music Theory Online</a><div class="sub">Society for Music Theory</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">musicology</span></td>
+      <td class="sub">international</td>
+      <td class="sub">quarterly</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="nashville symphony nashville symphony nashville-symphony">
+      <td><a href="#src=asc-aaf06600f6aa">Nashville Symphony</a><div class="sub">Nashville Symphony</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-TN</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="new mexico philharmonic new mexico philharmonic new-mexico-philharmonic">
+      <td><a href="#src=asc-4d23cd56cc71">New Mexico Philharmonic</a><div class="sub">New Mexico Philharmonic</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-NM</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="3" data-types="web_fetch" data-text="orchlab orchlab orchlab">
+      <td><a href="#src=asc-2abfa6854ee9">OrchLab</a><div class="sub">OrchLab</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T3?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="essays-and-features composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="piano inspires the frances clark center for keyboard pedagogy piano-inspires">
+      <td><a href="#src=asc-2ed086e28f87">Piano Inspires</a><div class="sub">The Frances Clark Center for Keyboard Pedagogy</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">essays-and-features</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">international</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="princeton symphony orchestra princeton symphony orchestra princeton-symphony-orchestra">
+      <td><a href="#src=asc-7f67e02d78fa">Princeton Symphony Orchestra</a><div class="sub">Princeton Symphony Orchestra</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-NJ</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="runyan program notes runyan program notes runyan-program-notes">
+      <td><a href="#src=asc-109d1db9b82f">Runyan Program Notes</a><div class="sub">Runyan Program Notes</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
       <td class="sub">international</td>
       <td class="sub">irregular</td>
       <td><span class="chip">web_fetch</span></td>
@@ -163,7 +463,7 @@
       <td><span class="chip">web_fetch</span></td>
       <td><span class="badge bad">blocked</span></td>
     </tr>
-<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="blocked" data-tier="2" data-types="web_fetch" data-text="san francisco symphony san francisco symphony san-francisco-symphony">
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="san francisco symphony san francisco symphony san-francisco-symphony">
       <td><a href="#src=asc-be009952416e">San Francisco Symphony</a><div class="sub">San Francisco Symphony</div></td>
       <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
       <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
@@ -171,7 +471,7 @@
       <td class="sub">local · US-CA</td>
       <td class="sub">weekly</td>
       <td><span class="chip">web_fetch</span></td>
-      <td><span class="badge bad">blocked</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
 <tr data-topics="essays-and-features reviews-and-criticism composers-and-works" data-facets="reader_access:mixed voice:platform" data-state="verified" data-tier="3" data-types="web_fetch" data-text="substack substack inc. substack">
       <td><a href="#src=asc-cee707dcc035">Substack</a><div class="sub">Substack Inc.</div></td>
@@ -193,6 +493,16 @@
       <td><span class="chip">api_rest</span> <span class="chip">feed</span> <span class="chip">web_fetch</span></td>
       <td><span class="badge ok">verified 0d ago</span></td>
     </tr>
+<tr data-topics="program-notes composers-and-works" data-facets="reader_access:free voice:presenter" data-state="verified" data-tier="2" data-types="web_fetch" data-text="tucson symphony orchestra tucson symphony orchestra tucson-symphony-orchestra">
+      <td><a href="#src=asc-6d833e95ce86">Tucson Symphony Orchestra</a><div class="sub">Tucson Symphony Orchestra</div></td>
+      <td><span class="chip">publisher</span><div class="sub">curated_secondary</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T2?</span></td>
+      <td><span class="chip">program-notes</span> <span class="chip">composers-and-works</span></td>
+      <td class="sub">local · US-AZ</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
 <tr data-topics="composers-and-works performers" data-facets="reader_access:free voice:reference" data-state="verified" data-tier="3" data-types="web_fetch api_rest" data-text="wikipedia (english) wikimedia foundation wikipedia-english">
       <td><a href="#src=asc-99cd7dd3796c">Wikipedia (English)</a><div class="sub">Wikimedia Foundation</div></td>
       <td><span class="chip">publisher</span><div class="sub">unofficial</div></td>
@@ -209,6 +519,45 @@
   
 </main>
 
+
+    <section class="detail" id="src=asc-47f142441270" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>19th-Century Music <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">University of California Press · <a href="https://online.ucpress.edu/ncm">https://online.ucpress.edu/ncm</a> · <code>asc-47f142441270</code> · <code>sources/19th-century-music/</code></div>
+      <p>Peer-reviewed journal on the music of the long nineteenth century (e.g. the early versions of the Hebrides Overture).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> The scholarship behind a program note: versions, sources, reception</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: preferred</span></p>
+      
+      <div class="pitfall">⚠ Subscription journal; plain HTTP clients also get a Cloudflare challenge (403, 2026-09-29). Kept so an open copy or other route can be found.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (peer_reviewed) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — The field&#39;s journal of record for Mendelssohn scholarship. Tier 1.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">paid</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: direct · cadence: quarterly (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://online.ucpress.edu/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:55.184Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:53:58.211Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
 
     <section class="detail" id="src=asc-589c3f91b797" hidden>
       <p><a href="#" class="back">← all sources</a></p>
@@ -239,7 +588,7 @@
         <div class="sub">robots: no_robots</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:13.263Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:28.307Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:26.034Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:06.352Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:06.617Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:13.263Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:28.307Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:26.034Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -278,7 +627,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:56.299Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:13.060Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:05.511Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:49.498Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:49.952Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:56.299Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:13.060Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:05.511Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -317,7 +666,92 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:52.279Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:09.400Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:57.938Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:46.070Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:45.346Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:52.279Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:09.400Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:57.938Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-b9730a7e60a6" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Berliner Festspiele <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Berliner Festspiele · <a href="https://www.berlinerfestspiele.de/">https://www.berlinerfestspiele.de/</a> · <code>asc-b9730a7e60a6</code> · <code>sources/berliner-festspiele/</code></div>
+      <p>Berlin&#39;s festival presenter (Musikfest Berlin); its media library has artist conversations (e.g. with Alex Nante, 2026).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Interviews and conversations with composers and performers</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Mostly German; audio and video conversations may have no transcript.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Berliner Festspiele: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.berlinerfestspiele.de/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:56:07.301Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:54:10.586Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-96681fec00ca" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Boston Symphony Orchestra <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Boston Symphony Orchestra · <a href="https://www.bso.org/">https://www.bso.org/</a> · <code>asc-96681fec00ca</code> · <code>sources/boston-symphony-orchestra/</code></div>
+      <p>The BSO&#39;s works pages carry program notes on the repertoire it performs.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Boston Symphony Orchestra publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-MA (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-MA</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.bso.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /works/{slug}</code> <span class="sub">work</span>
+          <div class="sub">Program note for one work.</div>
+          <div class="sub">params: <code>slug</code>*</div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:13.395Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:13.735Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -356,7 +790,46 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:58.544Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:15.250Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:07.944Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:51.345Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:51.820Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:58.544Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:15.250Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:07.944Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-5175596150ff" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Classic FM <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Classic FM · <a href="https://www.classicfm.com/">https://www.classicfm.com/</a> · <code>asc-5175596150ff</code> · <code>sources/classic-fm/</code></div>
+      <p>UK classical radio station&#39;s guides and features on composers and works.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> An accessible introduction to a work for newcomers</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Classic FM: writing for listeners, free to read. Tier 3; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">press</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.classicfm.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:35.230Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:35.562Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -395,7 +868,521 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:54.647Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:11.427Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (4)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:47.826Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:48.047Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:54.647Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:11.427Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-922fff742847" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Classical-Music.com (BBC Music Magazine) <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">BBC Music Magazine · <a href="https://www.classical-music.com/">https://www.classical-music.com/</a> · <code>asc-922fff742847</code> · <code>sources/classical-music-com-bbc-music-magazine/</code></div>
+      <p>BBC Music Magazine&#39;s site: guides to works, composer features and recording recommendations.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A guide to a work: its story, what to listen for, recommended recordings</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — BBC Music Magazine: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">press</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.classical-music.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:33.808Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:34.100Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-beac1a297e0a" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Classical Net <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge bad">broken</span></h2>
+      <div class="sub">Classical Net · <a href="https://www.classical.net/">https://www.classical.net/</a> · <code>asc-beac1a297e0a</code> · <code>sources/classical-net/</code></div>
+      <p>Long-running classical music site: reviews, composer pages and essays.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Readable background on a work or composer for concertgoers</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ TLS certificate error on 2026-09-29 (plain clients refuse the connection); kept so it can be re-probed.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Classical Net: writing for listeners, free to read. Tier 3; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">press</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">broken</span></h4>
+        <div class="sub">https://www.classical.net/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:45.658Z</td><td><span class="badge bad">tls_error</span></td><td class="sub">robots:skip http:fail</td><td class="sub"></td></tr><tr><td>2026-09-30T00:53:46.609Z</td><td><span class="badge bad">tls_error</span></td><td class="sub">robots:skip http:fail</td><td class="sub"></td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-709498af4682" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Dubuque Symphony Orchestra <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Dubuque Symphony Orchestra · <a href="https://dubuquesymphony.org/">https://dubuquesymphony.org/</a> · <code>asc-709498af4682</code> · <code>sources/dubuque-symphony-orchestra/</code></div>
+      <p>Dubuque Symphony&#39;s program notes, published as PDFs per concert.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Dubuque Symphony Orchestra publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-IA (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-IA</p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://dubuquesymphony.org/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:26.739Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:26.879Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-b86b511cd788" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Durand Salabert Eschig <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Universal Music Publishing Classical · <a href="https://www.durand-salabert-eschig.com/en-GB/">https://www.durand-salabert-eschig.com/en-GB/</a> · <code>asc-b86b511cd788</code> · <code>sources/durand-salabert-eschig/</code></div>
+      <p>Music publisher (Universal Music Publishing Classical): composer pages and works catalogues, including Alex Nante.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A composer&#39;s works list, premieres and scoring from the publisher</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Universal Music Publishing Classical: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.durand-salabert-eschig.com/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:56:05.384Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:54:08.732Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-25a9a03e4a7b" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Encyclopaedia Britannica <span class="chip">publisher</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">Encyclopaedia Britannica, Inc. · <a href="https://www.britannica.com/">https://www.britannica.com/</a> · <code>asc-25a9a03e4a7b</code> · <code>sources/encyclopaedia-britannica/</code></div>
+      <p>Edited encyclopedia with composer and work entries.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Orientation on a composer</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: follow_primary</span> <span class="sub">→ resolve via manual (Follow the entry&#39;s own references, or a scholarly source.)</span></p>
+      
+      <div class="pitfall">⚠ Plain HTTP clients get a Cloudflare challenge (403, 2026-09-29); kept for another route later.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (curated_reference) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Edited reference for orientation, not a citation for a digest. Tier 3.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">metered</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: continuous (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://www.britannica.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:56.430Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:53:59.695Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-ae604257adaf" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>eScholarship (University of California) <span class="chip">repository</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">official_representation</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">University of California, California Digital Library · <a href="https://escholarship.org/">https://escholarship.org/</a> · <code>asc-ae604257adaf</code> · <code>sources/escholarship-university-of-california/</code></div>
+      <p>UC&#39;s open-access repository: dissertations, theses and articles, including musicology (e.g. Mendelssohn reception, conductors&#39; guides).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Open-access dissertations and articles on a work&#39;s history, reception and performance</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: conditional</span> <span class="chip">citation: acceptable</span></p>
+      
+      <div class="pitfall">⚠ Plain HTTP clients get 403 from its CDN (2026-09-29). Discover items through OpenAlex (which indexes them, open access) and read them through the page reader; skip any it reports blocked.</div><div class="pitfall">⚠ A GraphQL API exists (escholarship.org/graphql) but filters only by keyword tag, not full text.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (peer_reviewed, curated_reference) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Authors&#39; own open-access copies of scholarship. Tier 2: dissertations are not peer-reviewed articles.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · html_page (html) · landing: direct · cadence: continuous (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://escholarship.org/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:51.131Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:53:53.720Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-f8d4e3a90751" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Fort Collins Symphony <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Fort Collins Symphony · <a href="https://fcsymphony.org/">https://fcsymphony.org/</a> · <code>asc-f8d4e3a90751</code> · <code>sources/fort-collins-symphony/</code></div>
+      <p>Fort Collins Symphony&#39;s program notes (one page per work).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Plain HTTP clients get 403 (2026-09-29); read pages through the page reader and skip any it reports blocked.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Fort Collins Symphony publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-CO (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-CO</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://fcsymphony.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:17.993Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:18.365Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-23735f663775" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Fugue for Thought <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Fugue for Thought · <a href="https://fugueforthought.de/">https://fugueforthought.de/</a> · <code>asc-23735f663775</code> · <code>sources/fugue-for-thought/</code></div>
+      <p>An amateur&#39;s long-form essays on classical works (the site calls itself &#39;an amateur does classical music&#39;).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Readable background on a work or composer for concertgoers</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ An amateur writer by the site&#39;s own description: enjoyable listening notes, not an authority.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Fugue for Thought: writing for listeners, free to read. Tier 3; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">press</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://fugueforthought.de/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:40.969Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:41.733Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-2c62c935f382" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Gianmaria Griglio (conductor) <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Gianmaria Griglio · <a href="https://gianmariagriglio.com/">https://gianmariagriglio.com/</a> · <code>asc-2c62c935f382</code> · <code>sources/gianmaria-griglio-conductor/</code></div>
+      <p>A conductor and composer&#39;s essays, including a conductor&#39;s analysis of the Hebrides Overture.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A performer&#39;s analysis: how a conductor hears and shapes a work</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Gianmaria Griglio: writing for listeners, free to read. Tier 3; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">artist</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://gianmariagriglio.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:42.193Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:43.030Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-f75120aee0a2" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>HarrisonParrott <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">HarrisonParrott · <a href="https://www.harrisonparrott.com/">https://www.harrisonparrott.com/</a> · <code>asc-f75120aee0a2</code> · <code>sources/harrisonparrott/</code></div>
+      <p>Artist management agency: official biographies and news of the artists it represents (e.g. Kent Nagano).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> An artist&#39;s official, current biography and news</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Promotional by nature: good for facts of a career, not judgements of it.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — HarrisonParrott: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">artist</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.harrisonparrott.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:57.696Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:54:01.001Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-1dbd7e96c970" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Henry Lemoine <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">Henry Lemoine · <a href="https://www.henry-lemoine.com/en/">https://www.henry-lemoine.com/en/</a> · <code>asc-1dbd7e96c970</code> · <code>sources/henry-lemoine/</code></div>
+      <p>French music publisher; composer biographies and catalogues (including Alex Nante).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A composer&#39;s biography and works list from a publisher</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Henry Lemoine: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://www.henry-lemoine.com/</div>
+        
+        <div class="sub">robots: no_robots</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:56:04.139Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:54:07.426Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-4b90cb548f03" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Hollywood Bowl <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Los Angeles Philharmonic · <a href="https://www.hollywoodbowl.com/">https://www.hollywoodbowl.com/</a> · <code>asc-4b90cb548f03</code> · <code>sources/hollywood-bowl/</code></div>
+      <p>The Hollywood Bowl&#39;s music database (the LA Phil&#39;s), with program notes per piece.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Los Angeles Philharmonic publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-CA (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-CA</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.hollywoodbowl.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /musicdb/pieces/{id}/{slug}</code> <span class="sub">piece</span>
+          <div class="sub">Program note for one piece.</div>
+          <div class="sub">params: <code>id</code>*, <code>slug</code>*</div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:23.438Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:23.487Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-057b1866196d" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Hong Kong Philharmonic Orchestra <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Hong Kong Philharmonic Orchestra · <a href="https://www.hkphil.org/">https://www.hkphil.org/</a> · <code>asc-057b1866196d</code> · <code>sources/hong-kong-philharmonic-orchestra/</code></div>
+      <p>HK Phil&#39;s &#39;Watch and listen&#39; pages: notes and recordings on works it has played.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Hong Kong Philharmonic Orchestra publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: HK (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · HK</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.hkphil.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:24.687Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:24.778Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -441,7 +1428,7 @@
           
           
         </div>
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:01.072Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:17.783Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:10.656Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:53.918Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:54.547Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:01.072Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:17.783Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:10.656Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -480,7 +1467,180 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:06.088Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:20.855Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:17.236Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:58.344Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:59.037Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:06.088Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:20.855Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:17.236Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-92c5dbc49b07" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Interlude <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Interlude · <a href="https://interlude.hk/">https://interlude.hk/</a> · <code>asc-92c5dbc49b07</code> · <code>sources/interlude/</code></div>
+      <p>Online classical music magazine: articles on works, composers and anniversaries.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Readable background on a work or composer for concertgoers</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Interlude: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">press</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://interlude.hk/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:37.173Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:37.554Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-5343d70be4c0" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>International Mendelssohn Festival <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">International Mendelssohn Festival (Hamburg) · <a href="https://mendelssohn-festival.com/en/">https://mendelssohn-festival.com/en/</a> · <code>asc-5343d70be4c0</code> · <code>sources/international-mendelssohn-festival/</code></div>
+      <p>Hamburg&#39;s International Mendelssohn Festival: artist pages (e.g. Mari Kodama) and programs.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Festival artist biographies and Mendelssohn programming</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — International Mendelssohn Festival (Hamburg): writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://mendelssohn-festival.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:59.623Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:54:02.995Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-7da0e2b718cf" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Internet Archive <span class="chip">archive</span> <span class="chip">tertiary</span> <span class="chip" title="officiality — institutional status, not authority">unofficial</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Internet Archive · <a href="https://archive.org/">https://archive.org/</a> · <code>asc-7da0e2b718cf</code> · <code>sources/internet-archive/</code></div>
+      <p>Digital library: public-domain books (19th-century biographies, letters, dictionaries), recordings and scores, with a search API.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Public-domain primary sources: Mendelssohn&#39;s letters, early biographies, 19th-century reviews</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: follow_primary</span> <span class="sub">→ resolve via publisher (Cite the original publication the scan reproduces.)</span></p>
+      
+      <div class="pitfall">⚠ Cite the scanned publication (author, title, year), not the Archive; check the scan&#39;s date and edition.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (community_curated) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Scans of original publications (the scanned book is the source); metadata is community-entered. Tier 3 as a finder.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>opportunistic</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · structured_record (json) · landing: direct · cadence: continuous (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://archive.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:49.752Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:51.739Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>search-api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://archive.org</div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /advancedsearch.php?q={q}&amp;fl[]=identifier&amp;fl[]=title&amp;fl[]=year&amp;rows={rows}&amp;output=json</code> <span class="sub">advanced-search</span>
+          <div class="sub">Search items; JSON with identifiers and titles.</div>
+          <div class="sub">params: <code>q</code>*, <code>rows</code></div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:50.857Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:52.974Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-aad618395ba2" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>JSTOR <span class="chip">aggregator</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">official_representation</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">ITHAKA · <a href="https://www.jstor.org/">https://www.jstor.org/</a> · <code>asc-aad618395ba2</code> · <code>sources/jstor/</code></div>
+      <p>Digital library of scholarly journals, including most musicology journals.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Knowing which scholarly article exists on a work (then look for an open-access copy)</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: follow_primary</span> <span class="sub">→ resolve via publisher (Cite the journal article (DOI).)</span></p>
+      
+      <div class="pitfall">⚠ Most articles need an institutional login: not free to read, so a digest links an open copy (Unpaywall/OpenAlex) or leaves it out.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (peer_reviewed, curated_reference) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Hosts the journals of record for musicology. Tier 2 as a host; cite the journal article.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">paid</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">pdf_document (pdf) · landing: direct · cadence: continuous (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.jstor.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:53.718Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:56.437Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -519,7 +1679,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:07.560Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:22.335Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:18.769Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:59.827Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:00.522Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:07.560Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:22.335Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:18.769Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -565,7 +1725,70 @@
           
           
         </div>
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:59.819Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:16.545Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:09.268Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:52.638Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:53.198Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:59.819Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:16.545Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:09.268Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-293c80cb43a5" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Library of Congress <span class="chip">archive</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Library of Congress · <a href="https://www.loc.gov/">https://www.loc.gov/</a> · <code>asc-293c80cb43a5</code> · <code>sources/library-of-congress/</code></div>
+      <p>The Library of Congress, including the Felix Mendelssohn digital collection (manuscripts, letters) with curators&#39; articles and essays; a JSON API on every page (fo=json).</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Primary sources on Mendelssohn (letters, manuscripts) and curators&#39; essays such as his revival of Bach</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span></p>
+      
+      <div class="pitfall">⚠ HTML pages answer plain clients with a Cloudflare challenge (403, 2026-09-29); the fo=json API works. Read essay pages through the page reader and skip any it reports blocked.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — A national library&#39;s digitized primary sources and curators&#39; essays. Tier 1 for what its holdings are and say.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · structured_record (json) · image (jpg) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>json-api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.loc.gov · <a href="https://www.loc.gov/apis/json-and-yaml/">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /collections/{collection}/?q={q}&amp;fo=json</code> <span class="sub">collection-search</span>
+          <div class="sub">Search one collection; JSON with results[] (title, url, date, description).</div>
+          <div class="sub">params: <code>collection</code>*, <code>q</code>*</div>
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /collections/{collection}/articles-and-essays/?fo=json</code> <span class="sub">collection-essays</span>
+          <div class="sub">A collection&#39;s articles and essays, as JSON.</div>
+          <div class="sub">params: <code>collection</code>*</div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:48.401Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:49.408Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.loc.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:48.482Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:50.410Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -604,7 +1827,333 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:08.824Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:23.595Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:20.856Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:01.104Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:01.839Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:08.824Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:23.595Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:20.856Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-2788833827ac" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Michael Lewanski (conductor) <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Michael Lewanski · <a href="http://www.michaellewanski.com/">http://www.michaellewanski.com/</a> · <code>asc-2788833827ac</code> · <code>sources/michael-lewanski-conductor/</code></div>
+      <p>A conductor&#39;s blog essays on works he has conducted.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A performer&#39;s essay on a work</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Michael Lewanski: writing for listeners, free to read. Tier 3; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">artist</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">http://www.michaellewanski.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:44.301Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:45.196Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-abf6022cf857" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Music Theory Online <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Society for Music Theory · <a href="https://mtosmt.org/">https://mtosmt.org/</a> · <code>asc-abf6022cf857</code> · <code>sources/music-theory-online/</code></div>
+      <p>The Society for Music Theory&#39;s peer-reviewed open-access journal.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Peer-reviewed analysis of a work, free</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: acceptable</span> <span class="chip">citation: preferred</span></p>
+      
+      <div class="pitfall">⚠ Technical analysis for specialists: pick articles a curious listener can follow.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (peer_reviewed, professional_org) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Peer-reviewed, open access, published by the scholarly society. Tier 1 for analysis.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">reference</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: quarterly (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://mtosmt.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:52.354Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:55.015Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-aaf06600f6aa" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Nashville Symphony <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Nashville Symphony · <a href="https://www.nashvillesymphony.org/">https://www.nashvillesymphony.org/</a> · <code>asc-aaf06600f6aa</code> · <code>sources/nashville-symphony/</code></div>
+      <p>Nashville Symphony&#39;s classical program notes, one page per work.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Nashville Symphony publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-TN (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-TN</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.nashvillesymphony.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /classical-program-notes/{slug}/</code> <span class="sub">program-note</span>
+          <div class="sub">Program note for one work.</div>
+          <div class="sub">params: <code>slug</code>*</div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:14.758Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:15.181Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-4d23cd56cc71" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>New Mexico Philharmonic <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">New Mexico Philharmonic · <a href="https://nmphil.org/">https://nmphil.org/</a> · <code>asc-4d23cd56cc71</code> · <code>sources/new-mexico-philharmonic/</code></div>
+      <p>New Mexico Philharmonic&#39;s &#39;Music in New Mexico&#39; program notes.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — New Mexico Philharmonic publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-NM (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-NM</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://nmphil.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:22.113Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:22.031Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-2abfa6854ee9" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>OrchLab <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">OrchLab · <a href="https://orchlab.org/">https://orchlab.org/</a> · <code>asc-2abfa6854ee9</code> · <code>sources/orchlab/</code></div>
+      <p>Listening guides to orchestral works.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A listening guide: what to listen for, section by section</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 3 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — OrchLab: writing for listeners, free to read. Tier 3; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://orchlab.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:28.505Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:28.637Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-2ed086e28f87" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Piano Inspires <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">The Frances Clark Center for Keyboard Pedagogy · <a href="https://pianoinspires.com/">https://pianoinspires.com/</a> · <code>asc-2ed086e28f87</code> · <code>sources/piano-inspires/</code></div>
+      <p>The Frances Clark Center&#39;s articles for pianists, including piano history.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Piano-focused history of a concerto or pianist</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — The Frances Clark Center for Keyboard Pedagogy: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://pianoinspires.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:38.435Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:38.878Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-7f67e02d78fa" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Princeton Symphony Orchestra <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Princeton Symphony Orchestra · <a href="https://www.princetonsymphony.org/">https://www.princetonsymphony.org/</a> · <code>asc-7f67e02d78fa</code> · <code>sources/princeton-symphony-orchestra/</code></div>
+      <p>Princeton Symphony Orchestra&#39;s program notes.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Princeton Symphony Orchestra publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-NJ (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-NJ</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.princetonsymphony.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /{slug}</code> <span class="sub">page</span>
+          <div class="sub">One program-note page.</div>
+          <div class="sub">params: <code>slug</code>*</div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:20.841Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:20.702Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-109d1db9b82f" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Runyan Program Notes <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Runyan Program Notes · <a href="https://www.runyanprogramnotes.com/">https://www.runyanprogramnotes.com/</a> · <code>asc-109d1db9b82f</code> · <code>sources/runyan-program-notes/</code></div>
+      <p>An independent program-note writer&#39;s library of notes on the orchestral repertoire.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A full program note on a standard work, free</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ Popular writing: check dates and anecdotes against a primary or scholarly source.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Runyan Program Notes: writing for listeners, free to read. Tier 2; follow factual claims to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">international</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.runyanprogramnotes.com/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:31.604Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:31.754Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -643,7 +2192,7 @@
         <div class="sub">robots: no_robots</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:51.048Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:28:08.171Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:26:56.660Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:44.811Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:52:44.110Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:28:51.048Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:28:08.171Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T00:26:56.660Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
         
       </div>
       
@@ -655,15 +2204,15 @@
 
     <section class="detail" id="src=asc-be009952416e" hidden>
       <p><a href="#" class="back">← all sources</a></p>
-      <h2>San Francisco Symphony <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge bad">blocked</span></h2>
+      <h2>San Francisco Symphony <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
       <div class="sub">San Francisco Symphony · <a href="https://www.sfsymphony.org/">https://www.sfsymphony.org/</a> · <code>asc-be009952416e</code> · <code>sources/san-francisco-symphony/</code></div>
       <p>San Francisco Symphony&#39;s site: concert pages and program notes.</p>
       <h3>Guidance</h3>
       
       <p class="bestfor"><strong>Best for:</strong> Program notes on works the SF Symphony has played</p>
-      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: avoid</span> <span class="chip">citation: acceptable</span></p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span></p>
       
-      <div class="pitfall">⚠ Blocked for automated access (2026-09-29): every request is redirected to a Queue-it waiting room (waitingroom.sfsymphony.org, &#39;Site Safetynet&#39;), a bot check. Never try to get past it. Kept in the registry so another route (an API, a feed, a published data set, or permission) can be added later.</div>
+      <div class="pitfall">⚠ At times every request is redirected to a Queue-it waiting room (waitingroom.sfsymphony.org, &#39;Site Safetynet&#39;), a bot check: seen on the first probe 2026-09-29, gone an hour later. Never try to get past it; when it appears the page is a gap, and the probe records the source as blocked.</div>
       
       <h3>Authority</h3>
       <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — A major orchestra&#39;s program notes. Tier 2.<br>
@@ -676,13 +2225,13 @@
       <h3>Access</h3>
       
       <div class="access">
-        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
         <div class="sub">https://www.sfsymphony.org/</div>
         
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:30:00.452Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:02.846Z</td><td><span class="badge bad">moved</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (4)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:55.635Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:56.264Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:30:00.452Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:02.846Z</td><td><span class="badge bad">moved</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -721,7 +2270,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:49.449Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:06.533Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:54.892Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:43.180Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:42.397Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:49.449Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:06.533Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:54.892Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -767,7 +2316,7 @@
           <div class="example"><code>https://chambermusicsociety.substack.com/api/v1/archive?sort=new&amp;search=Mendelssohn</code></div>
           <div class="sub">pagination: offset_limit</div>
         </div>
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:47.088Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:04.102Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:51.925Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:40.674Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:39.703Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:47.088Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:04.102Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:51.925Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       <div class="access">
@@ -784,7 +2333,7 @@
           
           
         </div>
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:47.164Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:04.181Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:52.212Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:40.895Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:39.996Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:47.164Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:04.181Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:52.212Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       <div class="access">
@@ -794,7 +2343,53 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:28:48.248Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:05.336Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:53.543Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:41.964Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:41.172Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:48.248Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:05.336Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:26:53.543Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-6d833e95ce86" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Tucson Symphony Orchestra <span class="chip">publisher</span> <span class="chip">secondary</span> <span class="chip" title="officiality — institutional status, not authority">curated_secondary</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">Tucson Symphony Orchestra · <a href="https://www.tucsonsymphony.org/">https://www.tucsonsymphony.org/</a> · <code>asc-6d833e95ce86</code> · <code>sources/tucson-symphony-orchestra/</code></div>
+      <p>Tucson Symphony&#39;s program notes by composer and work.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> A program note on a work this orchestra has played: what to listen for, the story behind it</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: acceptable</span> <span class="chip">technical_claims: follow_primary</span></p>
+      
+      <div class="pitfall">⚠ A program note is written for one concert; check it discusses the same version of the work.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 2 (professional_org, editorial) by Claude (Opus 5.5) — Hermes symphony registry pass 2026-09-29 — Tucson Symphony Orchestra publishes signed or house program notes for the works it performs, free to read. Tier 2: authoritative context for listeners; follow dates and first performances to primary sources.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-AZ (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">reader_access: <span class="chip">free</span><br>voice: <span class="chip">presenter</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-AZ</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.tucsonsymphony.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /program-notes/{composer}/{work}/</code> <span class="sub">program-note</span>
+          <div class="sub">Program note for one work.</div>
+          <div class="sub">params: <code>composer</code>*, <code>work</code>*</div>
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:55:16.751Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:53:17.089Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       
@@ -833,7 +2428,7 @@
         <div class="sub">robots: allowed</div>
         
         
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:04.819Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:19.551Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:14.658Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:57.073Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:57.776Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:04.819Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:19.551Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:14.658Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       <div class="access">
@@ -850,7 +2445,7 @@
           
           
         </div>
-        <details><summary>probe history (3)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:29:05.910Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:20.639Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:15.743Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <details><summary>probe history (5)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T00:54:58.155Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:52:58.863Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:29:05.910Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:28:20.639Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T00:27:15.743Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
         
       </div>
       

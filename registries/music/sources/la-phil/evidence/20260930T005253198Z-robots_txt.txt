@@ -1,0 +1,49 @@
+# robots.txt for https://www.laphil.com
+User-agent: *
+Allow: /
+
+# Prevent crawling of admin areas
+Disallow: /admin/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /account/
+Disallow: /create-account/
+Disallow: /recover-password/
+Disallow: /reset-password/
+Disallow: /channels
+
+# Block specific file types
+Disallow: /*.json$
+Disallow: /*.xml$
+Allow: /sitemap.xml
+
+# API routes
+Disallow: /api/
+
+# Block AI content scrapers (uncomment if you wish to block AI training)
+# User-agent: GPTBot
+# Disallow: /
+
+# User-agent: ChatGPT-User
+# Disallow: /
+
+# User-agent: Google-Extended
+# Disallow: /
+
+# User-agent: CCBot
+# Disallow: /
+
+# User-agent: anthropic-ai
+# Disallow: /
+
+# User-agent: Claude-Web
+# Disallow: /
+
+# User-agent: Claude
+# Disallow: /
+
+# Crawl delay directive
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.laphil.com/sitemap.xml

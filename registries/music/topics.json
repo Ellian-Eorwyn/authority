@@ -36,6 +36,18 @@
       "label": "Local arts press",
       "description": "Bay Area arts news, previews and listings.",
       "parent": null
+    },
+    {
+      "id": "musicology",
+      "label": "Musicology",
+      "description": "Scholarly writing on a work's history, reception, context and analysis (open access preferred).",
+      "parent": null
+    },
+    {
+      "id": "archives",
+      "label": "Archives and primary sources",
+      "description": "Manuscripts, letters, early editions, public-domain books and collection essays.",
+      "parent": null
     }
   ],
   "provenance": {

@@ -1,0 +1,46 @@
+User-agent: rogerbot
+
+Crawl-delay: 10
+
+User-agent: *
+Sitemap: https://www.classicfm.com/sitemap.xml
+
+Disallow: /preview/
+Disallow: /mobile/
+Disallow: /radio/player/
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+ 
+User-agent: Claude-Web
+Disallow: /
+ 
+User-agent: Claudebot
+Disallow: /
+ 
+User-agent: Perplexity-ai
+Disallow: /
+ 
+User-agent: Bytespider
+Disallow: /
+ 
+User-agent: magpie-crawler
+Disallow: /
+ 
+User-agent: FacebookBot
+Disallow: /
+ 
+User-agent: Applebot
+Disallow: /
+ 
+User-agent: Applebot-Extended
+Disallow: /
+ 
+User-agent: PerplexityBot
+Disallow: /

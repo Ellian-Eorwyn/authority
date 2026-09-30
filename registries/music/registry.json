@@ -21,6 +21,13 @@
   },
   "sources": [
     {
+      "source_id": "asc-47f142441270",
+      "slug": "19th-century-music",
+      "name": "19th-Century Music",
+      "path": "sources/19th-century-music/",
+      "verification_state": "blocked"
+    },
+    {
       "source_id": "asc-589c3f91b797",
       "slug": "alex-nante-official-site",
       "name": "Alex Nante (official site)",
@@ -42,6 +49,20 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-b9730a7e60a6",
+      "slug": "berliner-festspiele",
+      "name": "Berliner Festspiele",
+      "path": "sources/berliner-festspiele/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-96681fec00ca",
+      "slug": "boston-symphony-orchestra",
+      "name": "Boston Symphony Orchestra",
+      "path": "sources/boston-symphony-orchestra/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-832589156add",
       "slug": "broadwayworld",
       "name": "BroadwayWorld",
@@ -49,10 +70,108 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-5175596150ff",
+      "slug": "classic-fm",
+      "name": "Classic FM",
+      "path": "sources/classic-fm/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-c98e4b6aaea4",
       "slug": "classical-california-kdfc",
       "name": "Classical California (KDFC)",
       "path": "sources/classical-california-kdfc/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-922fff742847",
+      "slug": "classical-music-com-bbc-music-magazine",
+      "name": "Classical-Music.com (BBC Music Magazine)",
+      "path": "sources/classical-music-com-bbc-music-magazine/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-beac1a297e0a",
+      "slug": "classical-net",
+      "name": "Classical Net",
+      "path": "sources/classical-net/",
+      "verification_state": "broken"
+    },
+    {
+      "source_id": "asc-709498af4682",
+      "slug": "dubuque-symphony-orchestra",
+      "name": "Dubuque Symphony Orchestra",
+      "path": "sources/dubuque-symphony-orchestra/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-b86b511cd788",
+      "slug": "durand-salabert-eschig",
+      "name": "Durand Salabert Eschig",
+      "path": "sources/durand-salabert-eschig/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-25a9a03e4a7b",
+      "slug": "encyclopaedia-britannica",
+      "name": "Encyclopaedia Britannica",
+      "path": "sources/encyclopaedia-britannica/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-ae604257adaf",
+      "slug": "escholarship-university-of-california",
+      "name": "eScholarship (University of California)",
+      "path": "sources/escholarship-university-of-california/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-f8d4e3a90751",
+      "slug": "fort-collins-symphony",
+      "name": "Fort Collins Symphony",
+      "path": "sources/fort-collins-symphony/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-23735f663775",
+      "slug": "fugue-for-thought",
+      "name": "Fugue for Thought",
+      "path": "sources/fugue-for-thought/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-2c62c935f382",
+      "slug": "gianmaria-griglio-conductor",
+      "name": "Gianmaria Griglio (conductor)",
+      "path": "sources/gianmaria-griglio-conductor/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-f75120aee0a2",
+      "slug": "harrisonparrott",
+      "name": "HarrisonParrott",
+      "path": "sources/harrisonparrott/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-1dbd7e96c970",
+      "slug": "henry-lemoine",
+      "name": "Henry Lemoine",
+      "path": "sources/henry-lemoine/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-4b90cb548f03",
+      "slug": "hollywood-bowl",
+      "name": "Hollywood Bowl",
+      "path": "sources/hollywood-bowl/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-057b1866196d",
+      "slug": "hong-kong-philharmonic-orchestra",
+      "name": "Hong Kong Philharmonic Orchestra",
+      "path": "sources/hong-kong-philharmonic-orchestra/",
       "verification_state": "verified"
     },
     {
@@ -70,6 +189,34 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-92c5dbc49b07",
+      "slug": "interlude",
+      "name": "Interlude",
+      "path": "sources/interlude/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-5343d70be4c0",
+      "slug": "international-mendelssohn-festival",
+      "name": "International Mendelssohn Festival",
+      "path": "sources/international-mendelssohn-festival/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7da0e2b718cf",
+      "slug": "internet-archive",
+      "name": "Internet Archive",
+      "path": "sources/internet-archive/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-aad618395ba2",
+      "slug": "jstor",
+      "name": "JSTOR",
+      "path": "sources/jstor/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-723784965199",
       "slug": "kent-nagano-official-site",
       "name": "Kent Nagano (official site)",
@@ -84,10 +231,73 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-293c80cb43a5",
+      "slug": "library-of-congress",
+      "name": "Library of Congress",
+      "path": "sources/library-of-congress/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-a677dba52f01",
       "slug": "mari-kodama-official-site",
       "name": "Mari Kodama (official site)",
       "path": "sources/mari-kodama-official-site/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-2788833827ac",
+      "slug": "michael-lewanski-conductor",
+      "name": "Michael Lewanski (conductor)",
+      "path": "sources/michael-lewanski-conductor/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-abf6022cf857",
+      "slug": "music-theory-online",
+      "name": "Music Theory Online",
+      "path": "sources/music-theory-online/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-aaf06600f6aa",
+      "slug": "nashville-symphony",
+      "name": "Nashville Symphony",
+      "path": "sources/nashville-symphony/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-4d23cd56cc71",
+      "slug": "new-mexico-philharmonic",
+      "name": "New Mexico Philharmonic",
+      "path": "sources/new-mexico-philharmonic/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-2abfa6854ee9",
+      "slug": "orchlab",
+      "name": "OrchLab",
+      "path": "sources/orchlab/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-2ed086e28f87",
+      "slug": "piano-inspires",
+      "name": "Piano Inspires",
+      "path": "sources/piano-inspires/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7f67e02d78fa",
+      "slug": "princeton-symphony-orchestra",
+      "name": "Princeton Symphony Orchestra",
+      "path": "sources/princeton-symphony-orchestra/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-109d1db9b82f",
+      "slug": "runyan-program-notes",
+      "name": "Runyan Program Notes",
+      "path": "sources/runyan-program-notes/",
       "verification_state": "verified"
     },
     {
@@ -102,7 +312,7 @@
       "slug": "san-francisco-symphony",
       "name": "San Francisco Symphony",
       "path": "sources/san-francisco-symphony/",
-      "verification_state": "blocked"
+      "verification_state": "verified"
     },
     {
       "source_id": "asc-cee707dcc035",
@@ -119,6 +329,13 @@
       "verification_state": "verified"
     },
     {
+      "source_id": "asc-6d833e95ce86",
+      "slug": "tucson-symphony-orchestra",
+      "name": "Tucson Symphony Orchestra",
+      "path": "sources/tucson-symphony-orchestra/",
+      "verification_state": "verified"
+    },
+    {
       "source_id": "asc-99cd7dd3796c",
       "slug": "wikipedia-english",
       "name": "Wikipedia (English)",
@@ -127,10 +344,10 @@
     }
   ],
   "counts": {
-    "sources": 15,
-    "access_methods": 18,
-    "endpoints": 5,
-    "probes": 52,
+    "sources": 46,
+    "access_methods": 51,
+    "endpoints": 13,
+    "probes": 154,
     "fetches": 0
   },
   "integrity": {
