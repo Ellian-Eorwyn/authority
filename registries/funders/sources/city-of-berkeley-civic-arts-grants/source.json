@@ -1,0 +1,224 @@
+{
+  "source_id": "asc-7601ac584eae",
+  "aliases": {},
+  "identity": {
+    "name": "City of Berkeley Civic Arts Grants",
+    "publisher": "City of Berkeley",
+    "homepage_url": "https://berkeleyca.gov/community-recreation/civic-arts/civic-arts-grants",
+    "canonical_url": "https://berkeleyca.gov/community-recreation/civic-arts/civic-arts-grants",
+    "description": "Berkeley's Civic Arts grants for organizations and artists in the city: cycle dates, eligibility, amounts (in the guidelines PDF) and the Civic Arts contact.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "City of Berkeley",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "government_agency"
+      ],
+      "rationale": "The city's own program page.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
+      "asserted_at": "2026-09-30T04:34:01.198Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "grant-programs"
+    ],
+    "jurisdiction": {
+      "level": "local",
+      "regions": [
+        "US-CA"
+      ],
+      "notes": "Berkeley, California."
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "level": [
+        "city"
+      ],
+      "application": [
+        "open"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "program page"
+      },
+      {
+        "kind": "pdf_document",
+        "formats": [
+          "pdf"
+        ],
+        "notes": "guidelines"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-5489945a462c",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://berkeleyca.gov/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-63894100c229",
+          "name": "civic-arts-grants",
+          "description": "The grants page: cycle, eligibility, contact.",
+          "http_method": "GET",
+          "path_template": "/community-recreation/civic-arts/civic-arts-grants",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "blocked",
+        "last_probe_id": "prb-3c9e4cb5953f",
+        "last_verified_at": null,
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "blocked",
+    "summary": "site: blocked"
+  },
+  "guidance": {
+    "best_for": [
+      "City of Berkeley arts grants"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Amounts are in the guidelines PDF, not on the page.",
+      "berkeleyca.gov answered the registry probe's plain client with 403 on 2026-09-30, while the page reader (a browser) read the page; it is marked blocked for plain fetches."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred",
+      "quantitative_claims": "preferred"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "annual",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T04:34:01.198Z",
+    "added_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T04:34:01.198Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The city's own site.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US-CA"
+    ],
+    "jurisdiction_levels": [
+      "local"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

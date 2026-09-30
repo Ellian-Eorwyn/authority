@@ -1,0 +1,269 @@
+{
+  "source_id": "asc-728b1f5c01b5",
+  "aliases": {},
+  "identity": {
+    "name": "New Music USA",
+    "publisher": "New Music USA",
+    "homepage_url": "https://www.newmusicusa.org/",
+    "canonical_url": "https://www.newmusicusa.org/",
+    "description": "A national service organization for new music: the Organization Fund and other programs, with rounds, amounts and all grantees.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "New Music USA",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "professional_org"
+      ],
+      "rationale": "The organization's own program pages.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
+      "asserted_at": "2026-09-30T04:34:07.972Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "grant-programs",
+      "past-awards"
+    ],
+    "jurisdiction": {
+      "level": "national",
+      "regions": [
+        "US"
+      ],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "level": [
+        "foundation"
+      ],
+      "application": [
+        "open"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "program pages, grantee list"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-39bf9f0407af",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://newmusicusa.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-8d52398ec49e",
+          "name": "get-funding",
+          "description": "All funding programs.",
+          "http_method": "GET",
+          "path_template": "/get-funding/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-62e94b409cd2",
+          "name": "organization-fund",
+          "description": "Organization Fund: for organizations presenting new music; amounts, round dates.",
+          "http_method": "GET",
+          "path_template": "/program/organization-fund/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-63c28e689ebb",
+          "name": "all-grantees",
+          "description": "Every grantee, by program and year.",
+          "http_method": "GET",
+          "path_template": "/get-funding/all-grantees/",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-fe7093b37d6e",
+        "last_verified_at": "2026-09-30T04:34:47.435Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Funding for organizations that present new music and premieres"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "Project Grants was retired; the Organization Fund is the program for presenters."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred",
+      "quantitative_claims": "conditional"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "annual",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T04:34:07.972Z",
+    "added_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T04:34:07.972Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The organization's own site.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US"
+    ],
+    "jurisdiction_levels": [
+      "national"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "source_id": "asc-501c8f3d9326",
+  "aliases": {},
+  "identity": {
+    "name": "Aaron Copland Fund for Music",
+    "publisher": "The Aaron Copland Fund for Music",
+    "homepage_url": "https://www.coplandfund.org/",
+    "canonical_url": "https://www.coplandfund.org/",
+    "description": "A private foundation supporting contemporary American music: General Support and Project Support programs for performing ensembles, with deadlines, amounts and past grants.",
+    "languages": [
+      "en"
+    ],
+    "operator": {
+      "name": "The Aaron Copland Fund for Music",
+      "identifiers": {
+        "ror": null,
+        "wikidata": null,
+        "other": []
+      }
+    }
+  },
+  "source_role": "publisher",
+  "source_class": "primary",
+  "authority": {
+    "asserted": {
+      "tier": 1,
+      "basis": [
+        "professional_org"
+      ],
+      "rationale": "The fund's own guidelines and grant lists.",
+      "asserted_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
+      "asserted_at": "2026-09-30T04:34:05.490Z"
+    },
+    "adjudicated": {
+      "tier": null,
+      "score": null,
+      "scored_by": null,
+      "scored_at": null,
+      "method": null,
+      "notes": ""
+    }
+  },
+  "scope": {
+    "topics": [
+      "grant-programs",
+      "past-awards"
+    ],
+    "jurisdiction": {
+      "level": "national",
+      "regions": [
+        "US"
+      ],
+      "notes": ""
+    },
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present",
+      "notes": ""
+    },
+    "facets": {
+      "level": [
+        "foundation"
+      ],
+      "application": [
+        "open"
+      ]
+    }
+  },
+  "content": {
+    "artifacts": [
+      {
+        "kind": "html_page",
+        "formats": [
+          "html"
+        ],
+        "notes": "program pages, past grants"
+      }
+    ],
+    "landing_pattern": "direct",
+    "notes": ""
+  },
+  "access": [
+    {
+      "access_id": "acc-dd6592436861",
+      "name": "site",
+      "type": "web_fetch",
+      "base_url": "https://coplandfund.org/",
+      "docs_url": null,
+      "auth": {
+        "required": false,
+        "scheme": "none",
+        "credential_ref": null,
+        "signup_url": null,
+        "notes": ""
+      },
+      "limits": {
+        "requests_per_second": null,
+        "politeness_delay_ms": null,
+        "daily_budget": null,
+        "monthly_budget": null,
+        "concurrency": null,
+        "notes": ""
+      },
+      "robots": {
+        "applies": true,
+        "posture": "allowed",
+        "checked_path": "/",
+        "tos_url": null,
+        "tos_notes": ""
+      },
+      "endpoints": [
+        {
+          "endpoint_id": "end-d5473d0b92c7",
+          "name": "general-support",
+          "description": "General Support Program: eligibility, amounts, deadlines, how to apply.",
+          "http_method": "GET",
+          "path_template": "/programs/general-support-program",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-ca7bd22f1321",
+          "name": "project-support",
+          "description": "Project Support Program.",
+          "http_method": "GET",
+          "path_template": "/programs/project-support-program",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        },
+        {
+          "endpoint_id": "end-13c77e028798",
+          "name": "past-grants",
+          "description": "Past grants by program and year.",
+          "http_method": "GET",
+          "path_template": "/past-grants",
+          "params": [],
+          "pagination": {
+            "style": "none",
+            "page_param": null,
+            "size_param": null,
+            "cursor_path": null,
+            "max_page_size": null,
+            "notes": ""
+          },
+          "response": {
+            "format": "html",
+            "record_path": null,
+            "notes": ""
+          },
+          "probe_hint": {
+            "params": {}
+          },
+          "example_request": "",
+          "notes": ""
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "last_probe_id": "prb-d0d8ab7b1af1",
+        "last_verified_at": "2026-09-30T04:34:45.743Z",
+        "window_days": null,
+        "notes": ""
+      },
+      "notes": ""
+    }
+  ],
+  "verification": {
+    "state": "verified",
+    "summary": "site: verified"
+  },
+  "guidance": {
+    "best_for": [
+      "Support for ensembles that perform contemporary American music"
+    ],
+    "query_shapes": [],
+    "pitfalls": [
+      "The Performance Program was folded into General Support in 2026 and the Recording Program ended after 2025."
+    ],
+    "llm_notes": "",
+    "routing": {
+      "discovery": "preferred",
+      "citation": "preferred",
+      "quantitative_claims": "conditional"
+    }
+  },
+  "lifecycle": {
+    "status": "active",
+    "update_cadence": "annual",
+    "cadence_notes": "",
+    "effective_date": null
+  },
+  "relations": [],
+  "discovery": {
+    "discovered_via": "SearXNG search 2026-09-29, confirmed by fetch",
+    "retrieved_via": "",
+    "first_added": "2026-09-30T04:34:05.490Z",
+    "added_by": "Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30",
+    "import_ref": null
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T04:34:05.490Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": "",
+  "officiality": {
+    "default": "source_of_record",
+    "basis": "The fund's own site.",
+    "notes": ""
+  },
+  "coverage": {
+    "completeness": {
+      "claim": "selective",
+      "basis": "inferred",
+      "notes": ""
+    },
+    "jurisdictions": [
+      "US"
+    ],
+    "jurisdiction_levels": [
+      "national"
+    ],
+    "temporal": {
+      "coverage_start": null,
+      "coverage_end": "present"
+    }
+  }
+}

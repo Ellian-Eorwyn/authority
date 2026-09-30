@@ -1,0 +1,110 @@
+{
+  "registry_id": "reg-1b402216ded8",
+  "asr_spec_version": "0.4.0",
+  "title": "Funders",
+  "description": "Grant programs arts nonprofits can apply to, from the funders' own pages: federal, state, county and city arts agencies, community and private foundations. What each funds, for whom, how much, when applications are due, how to apply and whom to contact. The funder's page is the source of record; deadlines change every cycle, so re-read before relying on one.",
+  "readme": "Authoritative Source Registry. Source profiles under sources/, one directory per source; resolve objects through this manifest's sections and source index, never by guessing paths. Access claims are verified against stored probe evidence (see rules_note); credentials are referenced by name and never stored in tracked files.",
+  "rules_note": "spec/00-overview.md",
+  "defaults": {
+    "verification_window_days": 90,
+    "politeness_delay_ms": 1000,
+    "user_agent_contact": "mailto:eorwyn@ucdavis.edu"
+  },
+  "sections": {
+    "sources": "sources/",
+    "topics": "topics.json",
+    "sources_csv": "sources.csv",
+    "index_html": "index.html",
+    "credentials_example": "credentials.example.json",
+    "fetched": "fetched/",
+    "facets": "facets.json"
+  },
+  "sources": [
+    {
+      "source_id": "asc-501c8f3d9326",
+      "slug": "aaron-copland-fund-for-music",
+      "name": "Aaron Copland Fund for Music",
+      "path": "sources/aaron-copland-fund-for-music/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7abd4555867a",
+      "slug": "alameda-county-arts-commission",
+      "name": "Alameda County Arts Commission",
+      "path": "sources/alameda-county-arts-commission/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-21d600fe2514",
+      "slug": "alice-m-ditson-fund",
+      "name": "Alice M. Ditson Fund",
+      "path": "sources/alice-m-ditson-fund/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-37b430d90f4d",
+      "slug": "california-arts-council",
+      "name": "California Arts Council",
+      "path": "sources/california-arts-council/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7a740ddef18c",
+      "slug": "california-grants-portal-open-data",
+      "name": "California Grants Portal (open data)",
+      "path": "sources/california-grants-portal-open-data/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-7601ac584eae",
+      "slug": "city-of-berkeley-civic-arts-grants",
+      "name": "City of Berkeley Civic Arts Grants",
+      "path": "sources/city-of-berkeley-civic-arts-grants/",
+      "verification_state": "blocked"
+    },
+    {
+      "source_id": "asc-d709960d6886",
+      "slug": "east-bay-community-foundation",
+      "name": "East Bay Community Foundation",
+      "path": "sources/east-bay-community-foundation/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-b8e7efdcda9e",
+      "slug": "national-endowment-for-the-arts",
+      "name": "National Endowment for the Arts",
+      "path": "sources/national-endowment-for-the-arts/",
+      "verification_state": "verified"
+    },
+    {
+      "source_id": "asc-728b1f5c01b5",
+      "slug": "new-music-usa",
+      "name": "New Music USA",
+      "path": "sources/new-music-usa/",
+      "verification_state": "verified"
+    }
+  ],
+  "counts": {
+    "sources": 9,
+    "access_methods": 10,
+    "endpoints": 17,
+    "probes": 20,
+    "fetches": 1
+  },
+  "integrity": {
+    "schema_hash": "sha256:d28d58ea66b9d8294d1d4bd57f0c966b5ee18bdf3c945c4c59d4ec19fc01c6b7"
+  },
+  "provenance": {
+    "produced_by": {
+      "tool": "authority",
+      "tool_version": "0.4.0",
+      "model": null,
+      "method": "tool",
+      "person": null
+    },
+    "created_at": "2026-09-30T04:33:56.180Z",
+    "modified_at": null
+  },
+  "ext": {},
+  "notes": ""
+}

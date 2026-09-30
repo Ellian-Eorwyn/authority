@@ -1,0 +1,82 @@
+{
+  "asr_spec_version": "0.4.0",
+  "registry_id": "reg-1b402216ded8",
+  "facets": [
+    {
+      "id": "level",
+      "label": "Funder level",
+      "description": "What kind of funder it is.",
+      "values": [
+        {
+          "id": "federal",
+          "label": "Federal",
+          "description": "A US federal agency."
+        },
+        {
+          "id": "state",
+          "label": "State",
+          "description": "A state agency or the state's grants portal."
+        },
+        {
+          "id": "county",
+          "label": "County",
+          "description": "A county arts agency."
+        },
+        {
+          "id": "city",
+          "label": "City",
+          "description": "A city arts program."
+        },
+        {
+          "id": "community_foundation",
+          "label": "Community foundation",
+          "description": "A public charity pooling local giving."
+        },
+        {
+          "id": "foundation",
+          "label": "Private foundation",
+          "description": "A private or family foundation, or a music service organization's fund."
+        },
+        {
+          "id": "corporate",
+          "label": "Corporate",
+          "description": "A company's foundation or giving program."
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "label": "How to apply",
+      "description": "Whether anyone eligible may apply.",
+      "values": [
+        {
+          "id": "open",
+          "label": "Open application",
+          "description": "Eligible organizations may apply in a published cycle."
+        },
+        {
+          "id": "invitation",
+          "label": "By invitation",
+          "description": "No unsolicited applications; a relationship comes first."
+        },
+        {
+          "id": "mixed",
+          "label": "Mixed",
+          "description": "Some programs open, most by invitation."
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "claude-code",
+      "tool_version": "",
+      "model": "claude-opus-5-5",
+      "method": "model",
+      "person": null
+    },
+    "created_at": "2026-09-30T00:00:00.000Z",
+    "modified_at": null
+  },
+  "notes": "Registry-local facets for funders (2026-09-30)."
+}

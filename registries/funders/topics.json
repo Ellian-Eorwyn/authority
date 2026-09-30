@@ -1,0 +1,29 @@
+{
+  "asr_spec_version": "0.4.0",
+  "topics": [
+    {
+      "id": "grant-programs",
+      "label": "Grant programs",
+      "description": "What a program funds, who may apply, amounts, deadlines, how to apply, contacts.",
+      "parent": null
+    },
+    {
+      "id": "past-awards",
+      "label": "Past awards",
+      "description": "Who a funder has given to, and how much: grantee lists and databases.",
+      "parent": null
+    }
+  ],
+  "provenance": {
+    "produced_by": {
+      "tool": "authority",
+      "tool_version": "0.4.0",
+      "model": null,
+      "method": "tool",
+      "person": null
+    },
+    "created_at": "2026-09-30T04:33:56.180Z",
+    "modified_at": null
+  },
+  "notes": "Hand-authored taxonomy: profiles may only claim topics listed here (spec/01.5)."
+}

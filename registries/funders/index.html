@@ -1,0 +1,670 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funders — ASR registry</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1d21; --muted:#6a737d; --line:#e1e4e8; --card:#f6f8fa;
+          --ok:#116329; --okbg:#dafbe1; --warn:#7d4e00; --warnbg:#fff8c5; --bad:#a40e26; --badbg:#ffebe9; --chip:#eaeef2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+            --ok:#3fb950; --okbg:#12261e; --warn:#d29922; --warnbg:#272115; --bad:#f85149; --badbg:#25171c; --chip:#21262d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font:14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; } h2 { font-size:18px; } h3 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:20px 0 6px; }
+  h4 { margin: 0 0 2px; font-size: 14px; }
+  a { color:inherit; } .sub { color:var(--muted); font-size:12.5px; } .muted { color:var(--muted); }
+  code { background:var(--chip); padding:1px 5px; border-radius:4px; font:12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap:anywhere; }
+  .chip { display:inline-block; background:var(--chip); border-radius:10px; padding:0 8px; font-size:11.5px; white-space:nowrap; }
+  .chip.tier.adj { background:var(--okbg); color:var(--ok); font-weight:600; }
+  .chip.tier.ass { background:var(--warnbg); color:var(--warn); }
+  .badge { display:inline-block; border-radius:6px; padding:1px 8px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--okbg); color:var(--ok); } .badge.warn { background:var(--warnbg); color:var(--warn); }
+  .badge.bad { background:var(--badbg); color:var(--bad); } .badge.muted { background:var(--chip); color:var(--muted); }
+  .banner { margin:10px 0 16px; } .stat { margin-right:14px; } .stat.ok b { color:var(--ok); } .stat.warn b { color:var(--warn); } .stat.bad b { color:var(--bad); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .filters input, .filters select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:13px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  table.mini td, table.mini th { padding:3px 8px; font-size:12px; }
+  .access, .shape { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .endpoint { border-top:1px dashed var(--line); margin-top:8px; padding-top:8px; }
+  .example { margin-top:4px; }
+  .pitfall { color:var(--warn); margin:4px 0; }
+  .bestfor { font-size:15px; }
+  footer { margin-top:28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:10px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12.5px; margin-top:6px; }
+</style>
+<h1>Funders</h1>
+<div class="sub">Grant programs arts nonprofits can apply to, from the funders&#39; own pages: federal, state, county and city arts agencies, community and private foundations. What each funds, for whom, how much, when applications are due, how to apply and whom to contact. The funder&#39;s page is the source of record; deadlines change every cycle, so re-read before relying on one. — ASR registry <code>reg-1b402216ded8</code>, spec 0.4.0. Generated projection (spec/09.2): the JSON objects are the source of truth.</div>
+<div class="banner"><span class="stat ok"><b>8</b> verified</span> <span class="stat bad"><b>1</b> blocked</span></div>
+
+<main id="list">
+  <div class="filters">
+    <input id="q" type="search" placeholder="filter by name…">
+    <select id="ftopic"><option value="">topic: all</option><option>grant-programs</option><option>past-awards</option></select>
+    <select id="fstate"><option value="">state: all</option><option>verified</option><option>degraded</option><option>stale</option><option>asserted</option><option>broken</option><option>blocked</option><option>retired</option></select>
+    <select id="ftier"><option value="">tier: all</option><option>1</option><option>2</option><option>3</option></select>
+    <select id="ftype"><option value="">access: all</option><option>api_rest</option><option>web_fetch</option></select>
+    <select class="ffacet" data-facet="level"><option value="">Funder level: all</option><option>city</option><option>community_foundation</option><option>county</option><option>federal</option><option>foundation</option><option>state</option></select><select class="ffacet" data-facet="application"><option value="">How to apply: all</option><option>mixed</option><option>open</option></select>
+  </div>
+  <div class="tablewrap">
+  <table id="tbl">
+    <tr><th>Source</th><th>Role</th><th>Tier</th><th>Topics</th><th>Jurisdiction</th><th>Cadence</th><th>Access</th><th>Verification</th></tr>
+    <tr data-topics="grant-programs past-awards" data-facets="level:foundation application:open" data-state="verified" data-tier="1" data-types="web_fetch" data-text="aaron copland fund for music the aaron copland fund for music aaron-copland-fund-for-music">
+      <td><a href="#src=asc-501c8f3d9326">Aaron Copland Fund for Music</a><div class="sub">The Aaron Copland Fund for Music</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span> <span class="chip">past-awards</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">annual</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs past-awards" data-facets="level:county application:open" data-state="verified" data-tier="1" data-types="web_fetch" data-text="alameda county arts commission county of alameda alameda-county-arts-commission">
+      <td><a href="#src=asc-7abd4555867a">Alameda County Arts Commission</a><div class="sub">County of Alameda</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span> <span class="chip">past-awards</span></td>
+      <td class="sub">local · US-CA</td>
+      <td class="sub">annual</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs past-awards" data-facets="level:foundation application:open" data-state="verified" data-tier="1" data-types="web_fetch" data-text="alice m. ditson fund the alice m. ditson fund (columbia university) alice-m-ditson-fund">
+      <td><a href="#src=asc-21d600fe2514">Alice M. Ditson Fund</a><div class="sub">The Alice M. Ditson Fund (Columbia University)</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span> <span class="chip">past-awards</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">annual</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs past-awards" data-facets="level:state application:open" data-state="verified" data-tier="1" data-types="web_fetch" data-text="california arts council california arts council california-arts-council">
+      <td><a href="#src=asc-37b430d90f4d">California Arts Council</a><div class="sub">California Arts Council</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span> <span class="chip">past-awards</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs" data-facets="level:state application:open" data-state="verified" data-tier="1" data-types="api_rest web_fetch" data-text="california grants portal (open data) california state library california-grants-portal-open-data">
+      <td><a href="#src=asc-7a740ddef18c">California Grants Portal (open data)</a><div class="sub">California State Library</div></td>
+      <td><span class="chip">aggregator</span><div class="sub">official_service</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span></td>
+      <td class="sub">subnational · US-CA</td>
+      <td class="sub">daily</td>
+      <td><span class="chip">api_rest</span> <span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs" data-facets="level:city application:open" data-state="blocked" data-tier="1" data-types="web_fetch" data-text="city of berkeley civic arts grants city of berkeley city-of-berkeley-civic-arts-grants">
+      <td><a href="#src=asc-7601ac584eae">City of Berkeley Civic Arts Grants</a><div class="sub">City of Berkeley</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span></td>
+      <td class="sub">local · US-CA</td>
+      <td class="sub">annual</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge bad">blocked</span></td>
+    </tr>
+<tr data-topics="grant-programs" data-facets="level:community_foundation application:mixed" data-state="verified" data-tier="1" data-types="web_fetch" data-text="east bay community foundation east bay community foundation east-bay-community-foundation">
+      <td><a href="#src=asc-d709960d6886">East Bay Community Foundation</a><div class="sub">East Bay Community Foundation</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span></td>
+      <td class="sub">local · US-CA</td>
+      <td class="sub">annual</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs past-awards" data-facets="level:federal application:open" data-state="verified" data-tier="1" data-types="web_fetch" data-text="national endowment for the arts national endowment for the arts national-endowment-for-the-arts">
+      <td><a href="#src=asc-b8e7efdcda9e">National Endowment for the Arts</a><div class="sub">National Endowment for the Arts</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span> <span class="chip">past-awards</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">irregular</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+<tr data-topics="grant-programs past-awards" data-facets="level:foundation application:open" data-state="verified" data-tier="1" data-types="web_fetch" data-text="new music usa new music usa new-music-usa">
+      <td><a href="#src=asc-728b1f5c01b5">New Music USA</a><div class="sub">New Music USA</div></td>
+      <td><span class="chip">publisher</span><div class="sub">source_of_record</div></td>
+      <td><span class="chip tier ass" title="asserted (triage) — not yet human-adjudicated">T1?</span></td>
+      <td><span class="chip">grant-programs</span> <span class="chip">past-awards</span></td>
+      <td class="sub">national · US</td>
+      <td class="sub">annual</td>
+      <td><span class="chip">web_fetch</span></td>
+      <td><span class="badge ok">verified 0d ago</span></td>
+    </tr>
+  </table>
+  </div>
+
+  
+</main>
+
+
+    <section class="detail" id="src=asc-501c8f3d9326" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Aaron Copland Fund for Music <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">The Aaron Copland Fund for Music · <a href="https://www.coplandfund.org/">https://www.coplandfund.org/</a> · <code>asc-501c8f3d9326</code> · <code>sources/aaron-copland-fund-for-music/</code></div>
+      <p>A private foundation supporting contemporary American music: General Support and Project Support programs for performing ensembles, with deadlines, amounts and past grants.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Support for ensembles that perform contemporary American music</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: conditional</span></p>
+      
+      <div class="pitfall">⚠ The Performance Program was folded into General Support in 2026 and the Recording Program ended after 2025.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (professional_org) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The fund&#39;s own guidelines and grant lists.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">foundation</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: annual (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://coplandfund.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /programs/general-support-program</code> <span class="sub">general-support</span>
+          <div class="sub">General Support Program: eligibility, amounts, deadlines, how to apply.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /programs/project-support-program</code> <span class="sub">project-support</span>
+          <div class="sub">Project Support Program.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /past-grants</code> <span class="sub">past-grants</span>
+          <div class="sub">Past grants by program and year.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:45.743Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-7abd4555867a" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Alameda County Arts Commission <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">County of Alameda · <a href="https://arts.alamedacountyca.gov/">https://arts.alamedacountyca.gov/</a> · <code>asc-7abd4555867a</code> · <code>sources/alameda-county-arts-commission/</code></div>
+      <p>Alameda County&#39;s arts agency: the ARTSFUND grants program (dates, eligibility, standard award, contact) and yearly grantee lists as PDFs.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Alameda County arts grants · Who the county has funded (grantee lists by year)</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span></p>
+      
+      <div class="pitfall">⚠ Grantee lists are PDFs linked from the ARTSFUND page, one per year; their file names change every year.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The county&#39;s own program page and grantee lists.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-CA (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">county</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-CA — Alameda County, California.</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: direct · cadence: annual (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://arts.alamedacountyca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /artsfund/</code> <span class="sub">artsfund</span>
+          <div class="sub">ARTSFUND: dates, eligibility, award, contact; links to each year&#39;s grantee list.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:42.792Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:34:02.688Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-21d600fe2514" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>Alice M. Ditson Fund <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">The Alice M. Ditson Fund (Columbia University) · <a href="https://ditsonfund.org/">https://ditsonfund.org/</a> · <code>asc-21d600fe2514</code> · <code>sources/alice-m-ditson-fund/</code></div>
+      <p>A fund for American music: organizational support for ensembles programming contemporary American works, with deadlines by applicant type and past grants.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Support for programming contemporary American music</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: conditional</span></p>
+      
+      <div class="pitfall">⚠ Deadlines differ by applicant type (professional ensembles versus festivals and service organizations).</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (professional_org) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The fund&#39;s own guidelines and grant lists.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">foundation</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: annual (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://ditsonfund.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /programs/organizational-support</code> <span class="sub">organizational-support</span>
+          <div class="sub">Organizational support: eligibility, amounts, deadlines by applicant type.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /past-grants</code> <span class="sub">past-grants</span>
+          <div class="sub">Past grants.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:49.261Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:34:10.583Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-37b430d90f4d" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>California Arts Council <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">California Arts Council · <a href="https://arts.ca.gov/">https://arts.ca.gov/</a> · <code>asc-37b430d90f4d</code> · <code>sources/california-arts-council/</code></div>
+      <p>California&#39;s state arts agency: every grant program&#39;s guidelines (eligibility, revenue caps, amounts, deadlines, staff contacts) and a database of recent grants.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> State arts grants for California organizations · Whether the state has funded an organization (or its peers) before, and how much</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span></p>
+      
+      <div class="pitfall">⚠ A program page can still say &#39;Open&#39; after its deadline; read the deadline, not the badge.</div><div class="pitfall">⚠ General Operating Support caps performing organizations by total revenue; check the organization&#39;s own 990 against it.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The agency&#39;s own statement of its programs, and its own record of what it has granted.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-CA (subnational)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">state</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">subnational · US-CA</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://arts.ca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /grants/grant-programs/</code> <span class="sub">grant-programs</span>
+          <div class="sub">All current programs, each linking its guidelines page.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /grant_program/{slug}/</code> <span class="sub">grant-program</span>
+          <div class="sub">One program: purpose, eligibility, award amount, deadline, contact.</div>
+          <div class="sub">params: <code>slug</code>*</div>
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /grants/grantee-database/</code> <span class="sub">grantee-database</span>
+          <div class="sub">Recent grants: grantee, program, fiscal year, county, amount (a large HTML table).</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:38.317Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:33:58.086Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-7a740ddef18c" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>California Grants Portal (open data) <span class="chip">aggregator</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">official_service</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">California State Library · <a href="https://data.ca.gov/dataset/california-grants-portal">https://data.ca.gov/dataset/california-grants-portal</a> · <code>asc-7a740ddef18c</code> · <code>sources/california-grants-portal-open-data/</code></div>
+      <p>Every California state agency&#39;s grant opportunities as open data, updated daily: status (active, forecasted, closed), purpose, eligible applicants, geography, matching funds, amounts, open date, deadline, contacts and the agency&#39;s page.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Every open or forecasted California state grant an arts nonprofit might fit, with deadlines and contacts</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span></p>
+      
+      <div class="pitfall">⚠ The resource id can change when the state republishes; find it with package_show?id=california-grants-portal.</div><div class="pitfall">⚠ Closed rows stay in the data; filter on Status (active, forecasted).</div><div class="pitfall">⚠ grants.ca.gov itself did not render for the page reader on 2026-09-30; use the API.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency, primary_dataset) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The state&#39;s own portal dataset (Government Code 8333), entered by the granting agencies; the agency&#39;s page stays the source of record for details.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>systematic</strong> (provider_asserted)<br>jurisdictions: US-CA (subnational)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">state</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">subnational · US-CA</p>
+      <h3>Content</h3>
+      <p class="sub">structured_record (json) · landing: direct · cadence: daily (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>api</code> <span class="chip">api_rest</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://data.ca.gov/api/3/action · <a href="https://data.ca.gov/pages/api">docs</a></div>
+        
+        
+        
+        
+        <div class="endpoint">
+          <code>GET /datastore_search?resource_id={resource_id}&amp;q={q}&amp;limit={limit}</code> <span class="sub">datastore-search</span>
+          <div class="sub">Search the portal&#39;s grants (full text), newest data daily.</div>
+          <div class="sub">params: <code>resource_id</code>*, <code>q</code>*, <code>limit</code>*</div>
+          <div class="example"><code>https://data.ca.gov/api/3/action/datastore_search?resource_id=111c8c88-21f6-453c-ae2c-b4785a0624f5&amp;q=arts&amp;limit=5</code></div>
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:39.589Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:33:59.461Z</td><td><span class="badge ok">ok</span></td><td class="sub">http:pass api_parse:pass</td><td class="sub">200</td></tr></table></details>
+        <div class="sub">fetches: 1 (1 ok)</div>
+      </div>
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://data.ca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:40.092Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:33:59.662Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-7601ac584eae" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>City of Berkeley Civic Arts Grants <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge bad">blocked</span></h2>
+      <div class="sub">City of Berkeley · <a href="https://berkeleyca.gov/community-recreation/civic-arts/civic-arts-grants">https://berkeleyca.gov/community-recreation/civic-arts/civic-arts-grants</a> · <code>asc-7601ac584eae</code> · <code>sources/city-of-berkeley-civic-arts-grants/</code></div>
+      <p>Berkeley&#39;s Civic Arts grants for organizations and artists in the city: cycle dates, eligibility, amounts (in the guidelines PDF) and the Civic Arts contact.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> City of Berkeley arts grants</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span></p>
+      
+      <div class="pitfall">⚠ Amounts are in the guidelines PDF, not on the page.</div><div class="pitfall">⚠ berkeleyca.gov answered the registry probe&#39;s plain client with 403 on 2026-09-30, while the page reader (a browser) read the page; it is marked blocked for plain fetches.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The city&#39;s own program page.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-CA (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">city</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-CA — Berkeley, California.</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · pdf_document (pdf) · landing: direct · cadence: annual (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge bad">blocked</span></h4>
+        <div class="sub">https://berkeleyca.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /community-recreation/civic-arts/civic-arts-grants</code> <span class="sub">civic-arts-grants</span>
+          <div class="sub">The grants page: cycle, eligibility, contact.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:41.473Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr><tr><td>2026-09-30T04:34:01.313Z</td><td><span class="badge bad">blocked</span></td><td class="sub">robots:pass http:fail</td><td class="sub">403</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-d709960d6886" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>East Bay Community Foundation <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">East Bay Community Foundation · <a href="https://www.ebcf.org/">https://www.ebcf.org/</a> · <code>asc-d709960d6886</code> · <code>sources/east-bay-community-foundation/</code></div>
+      <p>The East Bay&#39;s community foundation. Most grantmaking is by invitation; the East Bay Fund for Artists is open, funding organizations&#39; commissions of new work.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Commissioning grants for East Bay organizations</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: conditional</span></p>
+      
+      <div class="pitfall">⚠ Most EBCF grantmaking is by invitation; only named initiatives (such as the Fund for Artists) take applications.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (professional_org) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The foundation&#39;s own statement of its programs.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US-CA (local)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">community_foundation</span><br>application: <span class="chip">mixed</span></p>
+      <h3>Jurisdiction</h3><p class="sub">local · US-CA — Alameda and Contra Costa counties.</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: annual (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.ebcf.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /initiatives/east-bay-fund-for-artists/</code> <span class="sub">east-bay-fund-for-artists</span>
+          <div class="sub">East Bay Fund for Artists: commissions of new work; budget cap, amounts, dates, contact.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:44.060Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:34:04.166Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-b8e7efdcda9e" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>National Endowment for the Arts <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">National Endowment for the Arts · <a href="https://www.arts.gov/">https://www.arts.gov/</a> · <code>asc-b8e7efdcda9e</code> · <code>sources/national-endowment-for-the-arts/</code></div>
+      <p>The federal arts agency: Grants for Arts Projects and Challenge America, with eligibility, cost-share rules, award ranges and each fiscal year&#39;s deadlines.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Federal arts grant programs, their eligibility, amounts and deadlines</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: preferred</span></p>
+      
+      <div class="pitfall">⚠ Deadlines are per fiscal year; the page can show last cycle&#39;s dates until the next are posted. Say &#39;not posted yet&#39; rather than guessing.</div><div class="pitfall">⚠ The /eligibility and discipline subpages answered 403 to automated readers on 2026-09-29; keep to the program pages and never try to get around it.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (government_agency) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The agency&#39;s own statement of its programs and deadlines.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">federal</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: irregular (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://www.arts.gov/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /grants/grants-for-arts-projects</code> <span class="sub">grants-for-arts-projects</span>
+          <div class="sub">Grants for Arts Projects: eligibility (three years of programming, cost share), award range, deadlines by fiscal year.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /grants/challenge-america</code> <span class="sub">challenge-america</span>
+          <div class="sub">Challenge America: small grants for projects reaching underserved audiences.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (2)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:36.684Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr><tr><td>2026-09-30T04:33:56.403Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+    <section class="detail" id="src=asc-728b1f5c01b5" hidden>
+      <p><a href="#" class="back">← all sources</a></p>
+      <h2>New Music USA <span class="chip">publisher</span> <span class="chip">primary</span> <span class="chip" title="officiality — institutional status, not authority">source_of_record</span> <span class="badge ok">verified</span></h2>
+      <div class="sub">New Music USA · <a href="https://www.newmusicusa.org/">https://www.newmusicusa.org/</a> · <code>asc-728b1f5c01b5</code> · <code>sources/new-music-usa/</code></div>
+      <p>A national service organization for new music: the Organization Fund and other programs, with rounds, amounts and all grantees.</p>
+      <h3>Guidance</h3>
+      
+      <p class="bestfor"><strong>Best for:</strong> Funding for organizations that present new music and premieres</p>
+      <p class="routing"><strong>Routing:</strong> <span class="chip">discovery: preferred</span> <span class="chip">citation: preferred</span> <span class="chip">quantitative_claims: conditional</span></p>
+      
+      <div class="pitfall">⚠ Project Grants was retired; the Organization Fund is the program for presenters.</div>
+      
+      <h3>Authority</h3>
+      <p class="sub">asserted: tier 1 (professional_org) by Claude (Opus 5.5) — Hermes funders registry pass 2026-09-30 — The organization&#39;s own program pages.<br>
+      adjudicated: <em>pending human scoring pass</em></p>
+      <h3>Coverage</h3><p class="sub">completeness: <strong>selective</strong> (inferred)<br>jurisdictions: US (national)<br>temporal: ? → present</p>
+      <h3>Facets</h3><p class="sub">level: <span class="chip">foundation</span><br>application: <span class="chip">open</span></p>
+      <h3>Jurisdiction</h3><p class="sub">national · US</p>
+      <h3>Content</h3>
+      <p class="sub">html_page (html) · landing: direct · cadence: annual (active)</p>
+      <h3>Access</h3>
+      
+      <div class="access">
+        <h4><code>site</code> <span class="chip">web_fetch</span> <span class="badge ok">verified 0d ago</span></h4>
+        <div class="sub">https://newmusicusa.org/</div>
+        
+        <div class="sub">robots: allowed</div>
+        
+        
+        <div class="endpoint">
+          <code>GET /get-funding/</code> <span class="sub">get-funding</span>
+          <div class="sub">All funding programs.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /program/organization-fund/</code> <span class="sub">organization-fund</span>
+          <div class="sub">Organization Fund: for organizations presenting new music; amounts, round dates.</div>
+          
+          
+          
+        </div>
+        <div class="endpoint">
+          <code>GET /get-funding/all-grantees/</code> <span class="sub">all-grantees</span>
+          <div class="sub">Every grantee, by program and year.</div>
+          
+          
+          
+        </div>
+        <details><summary>probe history (1)</summary><table class="mini"><tr><th>at</th><th>outcome</th><th>checks</th><th>http</th></tr><tr><td>2026-09-30T04:34:47.435Z</td><td><span class="badge ok">ok</span></td><td class="sub">robots:pass http:pass</td><td class="sub">200</td></tr></table></details>
+        
+      </div>
+      
+      
+      
+      <h3>Discovery</h3>
+      <p class="sub">SearXNG search 2026-09-29, confirmed by fetch · added 2026-09-30</p>
+    </section>
+
+<footer>Authoritative Source Registry — every access claim is backed by stored evidence, or it says so. Built by authority build-index; regenerate with <code>authority regen</code>.</footer>
+<script>
+(function () {
+  var q = document.getElementById("q"), ft = document.getElementById("ftopic"),
+      fs = document.getElementById("fstate"), fr = document.getElementById("ftier"), fy = document.getElementById("ftype");
+  var facetSels = Array.prototype.slice.call(document.querySelectorAll(".ffacet"));
+  function apply() {
+    var text = q.value.toLowerCase(), topic = ft.value, st = fs.value, tier = fr.value, ty = fy.value;
+    document.querySelectorAll("#tbl tr[data-text]").forEach(function (tr) {
+      var show = (!text || tr.dataset.text.indexOf(text) !== -1)
+        && (!topic || tr.dataset.topics.split(" ").indexOf(topic) !== -1)
+        && (!st || tr.dataset.state === st)
+        && (!tier || tr.dataset.tier === tier)
+        && (!ty || tr.dataset.types.split(" ").indexOf(ty) !== -1)
+        && facetSels.every(function (sel) {
+          if (!sel.value) return true;
+          return tr.dataset.facets.split(" ").indexOf(sel.getAttribute("data-facet") + ":" + sel.value) !== -1;
+        });
+      tr.style.display = show ? "" : "none";
+    });
+  }
+  [q, ft, fs, fr, fy].concat(facetSels).forEach(function (el) { el.addEventListener("input", apply); });
+  function route() {
+    var hash = location.hash.replace(/^#/, "");
+    var list = document.getElementById("list");
+    var showList = !hash || hash.indexOf("src=") !== 0;
+    list.hidden = !showList;
+    document.querySelectorAll(".detail").forEach(function (d) { d.hidden = true; });
+    if (!showList) {
+      var el = document.getElementById(hash);
+      if (el) el.hidden = false; else list.hidden = false;
+    }
+  }
+  window.addEventListener("hashchange", route);
+  document.querySelectorAll(".back").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); location.hash = ""; }); });
+  route();
+})();
+</script>

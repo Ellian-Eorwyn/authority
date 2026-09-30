@@ -3,7 +3,7 @@
   "profile_id": "prf-a1c5abf26af0",
   "name": "symphony",
   "title": "Orchestras and classical music presenters",
-  "description": "For work with a symphony orchestra or classical presenter: what is written about the music they play (free-to-read first), the orchestras' own seasons and self-descriptions, and nonprofit filings for finances, staff and funders. First used for Berkeley Symphony (2026-09-29).",
+  "description": "For work with a symphony orchestra or classical presenter: what is written about the music they play (free-to-read first), the orchestras' own seasons and self-descriptions, and nonprofit filings for finances, staff and funders, and the grant programs it can apply to. First used for Berkeley Symphony (2026-09-29).",
   "contact": "mailto:eorwyn@ucdavis.edu",
   "registries": [
     {
@@ -26,6 +26,11 @@
       "path": "../registries/nonprofit",
       "registry_id": "reg-3e245840a8bb",
       "use": "Form 990 filings and registration status: budgets, staff counts, officers, and (later) foundation grants."
+    },
+    {
+      "path": "../registries/funders",
+      "registry_id": "reg-1b402216ded8",
+      "use": "Grant programs the organization can apply to: arts agencies (federal, state, county, city), community and private foundations; deadlines, eligibility, amounts, contacts, past awards."
     },
     {
       "path": "../registries/scholarly",
