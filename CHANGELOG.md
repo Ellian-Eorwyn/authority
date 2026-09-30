@@ -22,6 +22,10 @@ unchanged.
   the §09 query per registry in profile order, grouped; a registry that does
   not declare a requested facet axis or topic is skipped with the reason.
 - `authority mint prf`.
+- Probes record a redirect to a bot check or waiting room (Queue-it,
+  Cloudflare challenge) as `blocked`, not `moved` (spec/04.2): the site has not
+  moved, it refuses automated access. Such sources stay in the registry, so
+  another route can be profiled later.
 - First profile: `eei` (scholarly, then energy).
 
 - **Optional credentials** (spec/03.2): `auth.required: false` with a secret

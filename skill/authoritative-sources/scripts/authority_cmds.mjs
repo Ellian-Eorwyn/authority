@@ -12,7 +12,7 @@ import {
   findStandardDirs, computeSchemaHash, resolveInside,
   deriveState, rollupState, latestProbeFor,
   resolveCredential, credEnvName, credentialsFilePath, CRED_REF_PATTERN,
-  redactSecret, loadRegistry, toolResult, printResult, writeCsv,
+  redactSecret, loadRegistry, toolResult, printResult, writeCsv, isBotCheckUrl,
 } from "./authority_common.mjs";
 
 /** Clock override for deterministic builds/tests: AUTHORITY_NOW=ISO. */
@@ -644,6 +644,11 @@ async function executeProbe(reg, s, acc, { userAgent, delayMs, ctx }) {
   }
   checks.push({ check: "http", result: "pass", detail: `HTTP ${res.status} in ${r.elapsed}ms` });
   const origHost = new URL(acc.base_url).host;
+  if (isBotCheckUrl(res.url)) {
+    outcome = "blocked";
+    note = `redirected to a bot check or waiting room (${new URL(res.url).host}); the site refuses automated access — not a move`;
+    return finish();
+  }
   if (new URL(res.url).host !== origHost) {
     outcome = "moved";
     note = `redirected off ${origHost} to ${new URL(res.url).host} — update base_url`;

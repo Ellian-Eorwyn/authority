@@ -29,7 +29,11 @@ once on pure network errors, and never retry on 4xx.
   the full bytes as evidence, evaluate the method's `checked_path` against it
   (§4.3). **If disallowed: outcome `robots_disallowed`, no further request is
   made.** (2) Otherwise HEAD the base URL (falling back to a bounded GET when
-  HEAD is rejected), recording status, headers subset, and final URL. Bulk
+  HEAD is rejected), recording status, headers subset, and final URL. A
+  redirect that lands on a bot check or waiting room (a Queue-it queue, a
+  Cloudflare challenge) is outcome `blocked`, not `moved`: the site has not
+  changed address, it is refusing automated access *(0.4.0)*. A probe never
+  tries to pass such a check. Bulk
   endpoints get a HEAD recording `content-length`; a probe never downloads the
   file.
 - **`api_rest` / `api_graphql` / `oai_pmh` / `feed`** — (1) resolve the

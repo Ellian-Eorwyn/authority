@@ -46,7 +46,7 @@
       "enum": ["verified", "stale", "asserted", "degraded", "broken", "blocked", "retired"]
     },
     "probe_outcome": {
-      "description": "Terminal outcome of one probe execution. ok: all checks passed. degraded: reachable with warning signs. failed: network or server failure (retryable class: timeout, dns_error, tls_error recorded separately for diagnosis). blocked: refused with an auth-independent 4xx. robots_disallowed: robots.txt disallows the probed path — no request was made past the robots check. auth_required: a credential was needed and did not resolve — the claim stays asserted, never an error. auth_invalid: a credential resolved but was rejected (401/403 with credential present). moved: permanent redirect off the profiled base URL — the profile needs updating.",
+      "description": "Terminal outcome of one probe execution. ok: all checks passed. degraded: reachable with warning signs. failed: network or server failure (retryable class: timeout, dns_error, tls_error recorded separately for diagnosis). blocked: refused with an auth-independent 4xx, or redirected to a bot-check or waiting-room interstitial (spec/04.2). robots_disallowed: robots.txt disallows the probed path — no request was made past the robots check. auth_required: a credential was needed and did not resolve — the claim stays asserted, never an error. auth_invalid: a credential resolved but was rejected (401/403 with credential present). moved: permanent redirect off the profiled base URL — the profile needs updating.",
       "enum": ["ok", "degraded", "failed", "blocked", "robots_disallowed", "auth_required", "auth_invalid", "timeout", "dns_error", "tls_error", "moved"]
     },
     "probe_check": {

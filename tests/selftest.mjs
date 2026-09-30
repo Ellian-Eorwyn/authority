@@ -12,7 +12,7 @@ import {
   canonicalUrl, slugify, slugifyWithCollision, checkFilename,
   deriveState, rollupState, latestProbeFor, effectiveWindowDays, OUTCOME_TO_STATE,
   redactSecret, scanForSecrets, resolveCredential, credEnvName,
-  appendJsonl, readJSONLSafe, writeCsv, atomicWriteFile, mintPrfId,
+  appendJsonl, readJSONLSafe, writeCsv, atomicWriteFile, mintPrfId, isBotCheckUrl,
 } from "../skill/authoritative-sources/scripts/authority_common.mjs";
 import { checkProfile, expandTopics } from "../skill/authoritative-sources/scripts/authority_profiles.mjs";
 import { spawnSync } from "node:child_process";
@@ -203,6 +203,13 @@ eq(writeCsv([["a", 'b"c', "d,e"], ["1", "", "x\ny"]]), 'a,"b""c","d,e"\n1,,"x\ny
   const facetsSchema = JSON.parse(fs.readFileSync(new URL("../schemas/facets.schema.json", import.meta.url), "utf8"));
   ok(facetsSchema.properties.facets && facetsSchema.required.includes("facets"), "schema: facets.schema.json declares a required facets array");
 }
+
+// --- Bot-check redirects are refusals, not moves — spec/04.2 (0.4.0) ---
+ok(isBotCheckUrl("https://waitingroom.sfsymphony.org/?c=sfsymphony&e=sitesafetynet&enqueuetoken=abc&t=https%3A%2F%2Fwww.sfsymphony.org%2F"), "botcheck: Queue-it custom waiting room");
+ok(isBotCheckUrl("https://example.queue-it.net/?c=x&e=y"), "botcheck: queue-it.net");
+ok(isBotCheckUrl("https://www.example.org/?__cf_chl_rt_tk=abc"), "botcheck: Cloudflare challenge");
+ok(!isBotCheckUrl("https://www.classicalcalifornia.org/"), "botcheck: an ordinary redirect target is not one");
+ok(!isBotCheckUrl("not a url"), "botcheck: unparseable is not one");
 
 // --- Research profiles — spec/11 ---
 {
