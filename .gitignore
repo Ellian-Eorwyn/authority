@@ -17,3 +17,8 @@ fetched/
 
 # tool-private scratch (budget ledgers, caches)
 .authority/
+
+# Registries and research profiles are data, kept by whoever builds them, not part of
+# the standard (since 2026-10-14). A checkout may symlink its own here.
+/registries
+/profiles

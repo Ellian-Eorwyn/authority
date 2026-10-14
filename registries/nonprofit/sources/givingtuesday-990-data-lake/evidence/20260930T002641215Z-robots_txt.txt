@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /backend/
-Allow: /backend/admin-ajax.php
-
-Sitemap: https://990data.givingtuesday.org/wp-sitemap.xml

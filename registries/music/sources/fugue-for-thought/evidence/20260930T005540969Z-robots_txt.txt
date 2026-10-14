@@ -1,5 +1,0 @@
-Sitemap: https://fugueforthought.de/sitemap.xml
-Sitemap: https://fugueforthought.de/news-sitemap.xml
-User-agent: *
-Disallow: /wp-admin/
-Allow: /wp-admin/admin-ajax.php

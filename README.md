@@ -151,11 +151,13 @@ against `tests/conformance/`.
 | `tests/` | `selftest.mjs` (library units) and `conformance/` (per-rule fixtures). |
 | `crosswalks/` | Field-by-field mappings: UPC, pi-forge, DCAT, OpenAPI, FAIRsharing, re3data, ROR. |
 | `skill/authoritative-sources/` | Portable zero-dep skill: `authority.mjs` CLI, common lib, references. |
-| `registries/` | Real registries: `scholarly/`, `energy/`, `philosophy/`, `naturalism/`. |
-| `profiles/` | Research profiles (spec/11): named, ordered selections of registries, e.g. `eei.json`. |
+| `registries/`, `profiles/` | Not in this repository: real registries and research profiles (spec/11) are data, kept by whoever builds them. Put yours beside `schemas/` (or symlink them there) and the CLI finds profiles by default; `examples/` shows a registry's layout. |
 | `CHANGELOG.md` | Version history. |
 
 ## Quickstart
+
+The commands take a registry's path; `registries/energy` below is a registry of your own
+beside the standard (try `examples/example-registry`).
 
 Validate a registry (schema + integrity + the access-claim gate):
 

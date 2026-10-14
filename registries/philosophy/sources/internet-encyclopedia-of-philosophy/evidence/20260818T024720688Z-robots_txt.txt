@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /wp-admin/
-Allow: /wp-admin/admin-ajax.php
-
-Sitemap: https://iep.utm.edu/sitemap.xml
-Sitemap: https://iep.utm.edu/sitemap.html

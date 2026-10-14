@@ -4,6 +4,15 @@ All notable changes to the ASR standard are documented here. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 standard adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- The real registries (`registries/`) and research profiles (`profiles/`) moved out of
+  this repository (2026-10-14): they are data, kept by whoever builds them. The standard,
+  schemas, CLI, skill, examples and tests stay. No format change; tools still find
+  profiles in `profiles/` beside `schemas/` (spec/11), which a checkout may symlink.
+
 ## [0.4.0] — 2026-09-29
 
 Backward-compatible minor revision: **research profiles** (spec/11), a layer
